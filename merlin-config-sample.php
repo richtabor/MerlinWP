@@ -18,29 +18,29 @@ if ( ! class_exists( 'Merlin' ) ) {
 $wizard = new Merlin(
 	// Configure Merlin with custom settings.
 	$config = array(
-		'directory' 				=> '', 							// Location where the 'merlin' directory is placed.
-		'demo_directory' 			=> 'demo/',  						// Location where the theme demo files exist.
-		'merlin_url' 				=> 'merlin',     					// Customize the page URL where Merlin WP loads.
-		'child_action_btn_url' 			=> 'https://codex.wordpress.org/Child_Themes', 		// The URL for the 'child-action-link'.
-		'help_mode' 				=> false, 						// Set to true to turn on the little wizard helper.
-		'branding' 				=> false, 						// Set to false to remove Merlin WP's branding.
+		'directory'						=> '',											// Location where the 'merlin' directory is placed.
+		'demo_directory'				=> 'demo/',										// Location where the theme demo files exist.
+		'merlin_url'					=> 'merlin',									// Customize the page URL where Merlin WP loads.
+		'child_action_btn_url'			=> 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
+		'help_mode'						=> false,										// Set to true to turn on the little wizard helper.
+		'branding'						=> false,										// Set to false to remove Merlin WP's branding.
 	),
 	// Text strings.
 	$strings = array(
 		'admin-menu' 				=> esc_html__( 'Theme Setup' , '@@textdomain' ),
 		'title%s%s%s%s' 			=> esc_html__( '%s%s Themes &lsaquo; Theme Setup: %s%s' , '@@textdomain' ),
 
-		'return-to-dashboard' 			=> esc_html__( 'Return to the dashboard' , '@@textdomain' ),
+		'return-to-dashboard' 		=> esc_html__( 'Return to the dashboard' , '@@textdomain' ),
 
-		'btn-skip' 				=> esc_html__( 'Skip' , '@@textdomain' ),
-		'btn-next' 				=> esc_html__( 'Next' , '@@textdomain' ),
+		'btn-skip' 					=> esc_html__( 'Skip' , '@@textdomain' ),
+		'btn-next' 					=> esc_html__( 'Next' , '@@textdomain' ),
 		'btn-start' 				=> esc_html__( 'Start' , '@@textdomain' ),
-		'btn-no' 				=> esc_html__( 'Cancel' , '@@textdomain' ),
-		'btn-plugins-install' 			=> esc_html__( 'Install' , '@@textdomain' ),
-		'btn-child-install' 			=> esc_html__( 'Install' , '@@textdomain' ),
-		'btn-content-install' 			=> esc_html__( 'Install' , '@@textdomain' ),
+		'btn-no' 					=> esc_html__( 'Cancel' , '@@textdomain' ),
+		'btn-plugins-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
+		'btn-child-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
+		'btn-content-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
 		'btn-import' 				=> esc_html__( 'Import' , '@@textdomain' ),
-		'btn-license-activate' 			=> esc_html__( 'Activate' , '@@textdomain' ),
+		'btn-license-activate' 		=> esc_html__( 'Activate' , '@@textdomain' ),
 
 		'welcome-header%s' 			=> esc_html__( 'Welcome to %s' , '@@textdomain' ),
 		'welcome-header-success%s' 	=> esc_html__( 'Hi. Welcome back' , '@@textdomain' ),
@@ -69,9 +69,9 @@ $wizard = new Merlin(
 		'license' 					=> esc_html__( 'Add your license key to activate one-click updates and theme support.' , '@@textdomain' ),
 		'license-action-link' 		=> esc_html__( 'More info' , '@@textdomain' ),
 
-		'license-link-1'              => wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-2'              => wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-3'              => wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-1'            => wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-2'            => wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-3'            => wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 
 		'ready-header' 				=> esc_html__( 'All done. Have fun!' , '@@textdomain' ),
 		'ready%s' 					=> esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
