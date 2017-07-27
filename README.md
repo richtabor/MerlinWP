@@ -1,6 +1,12 @@
 # MerlinWP
 Better WordPress Theme Onboarding https://merlinwp.com
 
+## Download
+
+## License
+
+## Usage
+
 ## Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
 
