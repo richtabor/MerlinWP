@@ -1,0 +1,154 @@
+@import "variables";
+
+@import "mixins";
+
+.merlin__body {
+	align-items: center;
+	background: $background;
+	box-shadow: none;
+	box-sizing: border-box;
+	display: flex;
+	font-size: 14px;
+	justify-content: center;
+	line-height: 1.7em;
+	margin: 0 auto;
+	padding: 0 !important;
+}
+
+h1 {
+	@include font-smoothing;
+	border: 0;
+	color: #444;
+	font-size: 20px;
+	font-weight: 500;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+p {
+	font-size: 14px;
+	line-height: 1.7em;
+	margin: 0;
+}
+
+
+
+
+.merlin__input {
+	border-radius: 3px;
+	padding: 4px 8px;
+	font-size: 12px;
+	width: 70%;
+	display: block;
+	margin: 14px auto 0;
+}
+
+
+
+
+
+.lead + .merlin__button--knockout {
+	z-index: -1;
+}
+
+p.lead {
+	animation: vanishOut 800ms linear alternate;
+	z-index: 9999;
+}
+
+p.success {
+	animation: vanishIn 700ms linear alternate;
+}
+
+
+@keyframes vanishIn {
+	0% {
+		opacity: 0;
+		transform-origin: 50% 50%;
+		transform: scale(2, 2);
+		filter: blur(70px);
+	}
+
+	100% {
+		opacity: 1;
+		transform-origin: 50% 50%;
+		transform: scale(1, 1);
+		filter: blur(0px);
+	}
+}
+
+/* Applies styles when Reduced Motion is enabled */
+@media screen and (prefers-reduced-motion: reduce) {
+	@keyframes vanishIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+}
+
+@keyframes vanishOut {
+	0% {
+		opacity: 1;
+		transform-origin: 50% 50%;
+		transform: scale(1, 1);
+		filter: blur(0px);
+	}
+
+	100% {
+		opacity: 0;
+		transform-origin: 50% 50%;
+		transform: scale(2, 2);
+		filter: blur(50px);
+	}
+}
+
+/* Applies styles when Reduced Motion is enabled */
+@media screen and (prefers-reduced-motion: reduce) {
+	@keyframes vanishOut {
+		0% {
+			opacity: 1;
+		}
+
+		100% {
+			opacity: 0;
+		}
+	}
+}
+
+@import "modules/hidden";
+
+@import "modules/huh";
+
+@import "modules/branding";
+
+@import "modules/steps";
+
+@import "modules/icons";
+
+@import "modules/content";
+
+@import "modules/buttons";
+
+@import "modules/colorchange";
+
+@import "modules/chevron";
+
+@import "modules/spinner";
+
+@import "modules/back-to-dashboard";
+
+@import "modules/drawer";
+
+@import "modules/drawer-import-content";
+
+@import "modules/drawer-install-plugins";
+
+@import "modules/drawer-more-info";
+
+@import "modules/checkmark";
+
+@import "modules/footer";

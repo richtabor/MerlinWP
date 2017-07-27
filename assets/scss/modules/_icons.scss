@@ -1,0 +1,16 @@
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.icon {
+	max-width: 100%;
+	margin-bottom: 2.8em;
+	transform: translate3d(0, 0, 0);
+
+	.js--finished &:not(.icon--checkmark) {
+		filter: blur(10px);
+		opacity: 0;
+		transform: scale(.8);
+		transition: transform 400ms cubic-bezier(.694, 0, .335, 1), opacity 400ms cubic-bezier(.694, 0, .335, 1) 0ms, filter 300ms cubic-bezier(.694, 0, .335, 1) 100ms;
+	}
+}

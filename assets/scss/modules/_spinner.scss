@@ -1,0 +1,230 @@
+.merlin-spinner {
+	animation: container-rotate 1600ms linear infinite;
+	display: block;
+	height: 20px;
+	left: calc( 50% - 10px );
+	position: absolute;
+	top: calc( 50% - 10px );
+	width: 20px;
+	transition: opacity 300ms cubic-bezier(.694, 0, .335, 1) 50ms;
+
+	.exiting & {
+		opacity: 0;
+	}
+
+	&-line {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: border-color 300ms cubic-bezier(.694, 0, .335, 1);
+
+		&--1 {
+			border-color: $blue__lighter;
+			animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-1-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+		}
+
+		&--2 {
+			border-color: $blue;
+			animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-2-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+		}
+
+		&--3 {
+			border-color: $blue__lighter;
+			animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-3-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+		}
+
+		&--4 {
+			border-color: $blue;
+			animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-4-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+		}
+
+		&-ticker {
+			border-color: inherit;
+			box-sizing: border-box;
+			height: 100%;
+			left: 45%;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			width: 20%;
+		}
+
+		&-cog {
+			border-color: inherit;
+			display: inline-block;
+			height: 100%;
+			overflow: hidden;
+			position: relative;
+			width: 50%;
+
+			&-inner {
+				animation: none;
+				border-color: inherit;
+				border-bottom-color: transparent;
+				border-radius: 50%;
+				border-style: solid;
+				border-width: 3px;
+				bottom: 0;
+				box-sizing: border-box;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 200%;
+
+				&--left {
+					animation: left-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+					border-right-color: transparent;
+					transform: rotate(129deg);
+				}
+
+				&--right {
+					animation: right-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+					border-left-color: transparent;
+					left: -100%;
+					transform: rotate(-129deg);
+				}
+
+				&--center {
+					left: -450%;
+					width: 1000%;
+				}
+			}
+		}
+	}
+}
+
+@keyframes container-rotate {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes fill-unfill-rotate {
+	12.5% {
+		transform: rotate(135deg);
+	}
+	25% {
+		transform: rotate(270deg);
+	}
+	37.5% {
+		transform: rotate(405deg);
+	}
+	50% {
+		transform: rotate(540deg);
+	}
+	62.5% {
+		transform: rotate(675deg);
+	}
+	75% {
+		transform: rotate(810deg);
+	}
+	87.5% {
+		transform: rotate(945deg);
+	}
+	to {
+		transform: rotate(1080deg);
+	}
+}
+
+@keyframes left-spin {
+	0% {
+		transform: rotate(130deg);
+	}
+	50% {
+		transform: rotate(-5deg);
+	}
+	to {
+		transform: rotate(130deg);
+	}
+}
+
+@keyframes right-spin {
+	0% {
+		transform: rotate(-130deg);
+	}
+	50% {
+		transform: rotate(5deg);
+	}
+	to {
+		transform: rotate(-130deg);
+	}
+}
+
+@keyframes line-1-fade-in-out {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 1;
+	}
+	26% {
+		opacity: 0;
+	}
+	89% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 1;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes line-2-fade-in-out {
+	0% {
+		opacity: 0;
+	}
+	15% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 1;
+	}
+	51% {
+		opacity: 0;
+	}
+}
+
+@keyframes line-3-fade-in-out {
+	0% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	76% {
+		opacity: 0;
+	}
+}
+
+@keyframes line-4-fade-in-out {
+	0% {
+		opacity: 0;
+	}
+	65% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}

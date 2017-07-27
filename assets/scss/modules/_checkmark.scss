@@ -1,0 +1,56 @@
+.icon--checkmark {
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	stroke-width: 2;
+	stroke: #fff;
+	stroke-miterlimit: 10;
+	position: absolute;
+	top: 20px;
+	display: none;
+	left: calc( 50% - 55px );
+	box-shadow: inset 0px 0px 0px $green;
+	animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+
+	.js--finished & {
+		display: inline-block;
+	}
+
+	&__check {
+		transform-origin: 50% 50%;
+		stroke-dasharray: 48;
+		stroke-dashoffset: 48;
+		animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+	}
+
+	&__circle {
+		stroke-dasharray: 166;
+		stroke-dashoffset: 166;
+		stroke-width: 2;
+		stroke-miterlimit: 10;
+		stroke: $green;
+		fill: none;
+		animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+	}
+}
+
+@keyframes stroke {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes scale {
+	0%, 100% {
+		transform: none;
+	}
+	50% {
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+
+@keyframes fill {
+	100% {
+		box-shadow: inset 0px 0px 0px 100px $green;
+	}
+}

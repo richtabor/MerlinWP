@@ -1,0 +1,20 @@
+$background: #f1f1f1;
+
+// Buttons
+$button--hover: #f4f4f4;
+$button--active: #ebebeb;
+
+// Colors
+$blue: #0073aa;
+$blue__lighter: #00a0d2;
+$blue__darker: #005d8a;
+
+$red: #d54e21;
+$green: #46b450;
+$white: #ffffff;
+$yellow: #ffb900;
+
+// Transitions
+$speed: 500ms;
+$speed_longer: #{$speed + 200};
+$speed_accessibility: 300ms;

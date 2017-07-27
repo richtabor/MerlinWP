@@ -1,0 +1,27 @@
+.return-to-dashboard {
+	color: #b5b5b5;
+	display: block;
+	padding: 1em;
+	font-size: 13px;
+	margin-top: 1em;
+	text-align: center;
+	text-decoration: none;
+	transition: color 150ms ease, opacity 300ms cubic-bezier(.694, 0, .335, 1) 150ms;
+	
+	/* Applies styles when Reduced Motion is enabled */
+	@media screen and (prefers-reduced-motion: reduce) {
+		opacity: 1 !important;
+	}
+
+	.merlin__body--welcome & {
+		opacity: 0;
+	}
+
+	.merlin__body--welcome.loaded & {
+		opacity: 1;
+	}
+}
+
+.return-to-dashboard:hover {
+	color: #0073aa;
+}

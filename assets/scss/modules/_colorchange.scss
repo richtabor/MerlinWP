@@ -1,0 +1,8 @@
+@keyframes colorchange {
+	0% {
+		background: $white;
+	}
+	100% {
+		background: $button--hover;
+	}
+}

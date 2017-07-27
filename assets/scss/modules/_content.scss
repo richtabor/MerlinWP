@@ -1,0 +1,130 @@
+.merlin__content {
+	@include font-smoothing;
+	background: #fff;
+	border-radius: 7px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, .07);
+	box-sizing: border-box;
+	color: #444;
+	display: block;
+	margin: 1.5em auto 0;
+	max-width: 350px;
+	overflow: hidden;
+	padding: 60px 33px 35px;
+	position: relative;
+	text-align: center;
+	zoom: 1;
+
+	&--transition {
+		filter: blur(10px);
+		opacity: 0;
+		transform-origin: 50%;
+		transform: translateX(50%) scale(.95);
+		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed cubic-bezier(.694, 0, .335, 1) 0;
+		
+		/* Applies styles when Reduced Motion is enabled */
+		@media screen and (prefers-reduced-motion: reduce) {
+			filter: blur(2px);
+			transform: translateX(0) scale(1);
+			transition: opacity $speed_accessibility ease-in-out, filter $speed_accessibility ease-in-out;
+		}
+	}
+	
+	&--welcome &--transition {
+		filter: blur(0);
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+
+	&--plugins &__footer.no-plugins,
+	&--welcome &__footer {
+		padding-top: 22px;
+	}
+
+	&--plugins &__footer {
+		padding-top: 3px;
+	}
+
+	&--license &__footer {
+		padding-top: 5px;
+	}
+
+	&--ready {
+		padding-bottom: 12px;
+	}
+
+	body.loaded &--transition {
+		filter: blur(0);
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+
+	body.exiting &--transition {
+		filter: blur(10px);
+		opacity: 0;
+		transform: translateX(-40%) scale(.96);
+		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed_longer cubic-bezier(.694, 0, .335, 1) 0;
+
+		/* Applies styles when Reduced Motion is enabled */
+		@media screen and (prefers-reduced-motion: reduce) {
+			filter: blur(2px);
+			transform: translateX(0) scale(1);
+			transition: opacity $speed_accessibility ease-in-out, filter $speed_accessibility ease-in-out;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.merlin__content--welcome {
+	opacity: 0;
+	animation: animation 1000ms linear both 200ms;
+	transition: opacity 400ms cubic-bezier(.694, 0, .335, 1);
+
+  	body.loaded & {
+		opacity: 1;
+	}
+
+	/* Applies styles when Reduced Motion is enabled */
+	@media screen and (prefers-reduced-motion: reduce) {
+		animation: none;
+		opacity: 1;
+	}
+}
+
+
+
+/* Generated with Bounce.js. Edit at https://goo.gl/iTptLG */
+
+@keyframes animation { 
+  0% { transform: matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  4.5% { transform: matrix3d(0.718, 0, 0, 0, 0, 0.743, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  5.51% { transform: matrix3d(0.762, 0, 0, 0, 0, 0.794, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  9.01% { transform: matrix3d(0.888, 0, 0, 0, 0, 0.94, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  11.01% { transform: matrix3d(0.941, 0, 0, 0, 0, 0.998, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  13.51% { transform: matrix3d(0.989, 0, 0, 0, 0, 1.044, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  16.52% { transform: matrix3d(1.024, 0, 0, 0, 0, 1.067, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  17.92% { transform: matrix3d(1.033, 0, 0, 0, 0, 1.07, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  21.92% { transform: matrix3d(1.042, 0, 0, 0, 0, 1.057, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  29.03% { transform: matrix3d(1.028, 0, 0, 0, 0, 1.016, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  34.63% { transform: matrix3d(1.013, 0, 0, 0, 0, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  36.24% { transform: matrix3d(1.009, 0, 0, 0, 0, 0.994, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  40.14% { transform: matrix3d(1.003, 0, 0, 0, 0, 0.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  50.55% { transform: matrix3d(0.997, 0, 0, 0, 0, 0.998, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  62.36% { transform: matrix3d(0.999, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  79.08% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  84.68% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+

@@ -1,0 +1,47 @@
+.merlin__content__footer {
+	@include clearfix();
+	clear: both;
+	margin-top: 2.75em;
+
+	&--fullwidth {
+		filter: blur(10px);
+		opacity: 0;
+		transform-origin: top;
+		transform: translateX(50%);
+		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed cubic-bezier(.694, 0, .335, 1);
+		
+		/* Applies styles when Reduced Motion is enabled */
+		@media screen and (prefers-reduced-motion: reduce) {
+			filter: blur(2px);
+			transform: translateX(0);
+			transition: opacity $speed_accessibility ease-in-out, filter $speed_accessibility ease-in-out;
+		}
+		
+		body.loaded & {
+			filter: blur(0);
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+	
+	.merlin__content--license & {
+		margin-top: -.24em;
+	}
+
+	.merlin__content--ready & {
+		margin-top: 1.9em;
+
+		.merlin__button--knockout {
+			margin-top: 10px;
+		}
+	}
+	
+	.merlin__content--content & {
+		transition: opacity $speed cubic-bezier(.694, 0, .335, 1);
+	}
+	
+	body.exiting .merlin__content--content & {
+		opacity: 0;
+	}
+}
+

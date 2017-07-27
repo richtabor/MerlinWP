@@ -1,0 +1,131 @@
+.merlin__drawer--import-content {
+	padding-top: 3px;
+
+	li {
+		text-align: left;
+		padding: 2px 25px;
+
+		&:hover {
+
+			span {
+				color: $blue;
+			}
+		}
+	}
+
+	label {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		width: 100%;
+
+		span {
+			transition: color 100ms;
+		}
+
+		i {
+			background-color: transparent;
+			border-radius: 50%;
+			border: 2px solid #b2b7ba;
+			display: inline-block;
+			float: right;
+			height: 13px;
+			margin-top: 3px;
+			position: relative;
+			text-align: left;
+			transform-origin: center;
+			transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89);
+			width: 13px;
+
+			&:before {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 0.2em;
+				position: absolute;
+				top: 0.4em;
+				transform-origin: 0% 0%;
+				transform: rotate(45deg);
+				transition: width 50ms ease 50ms;
+				width: 0px;
+			}
+
+			&:after {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 4px;
+				position: absolute;
+				top: 0.67em;
+				transform-origin: 0% 0%;
+				transform: rotate(310deg);
+				transition: width 50ms ease;
+				width: 0;
+			}
+		}
+
+		&:hover {
+			i {
+				border-color: $blue;
+			}
+		}
+	}
+
+	.checkbox {
+		display: none !important;
+
+		&:checked {
+			
+			+ label {
+
+				&.installing {
+
+					i {
+						background-color: $yellow;
+						border-color: $yellow;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+					}
+				}
+
+				&.success {
+
+					i {
+						background-color: $green;
+						border-color: $green;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+					}
+				}
+
+				&.error {
+
+					i {
+						background-color: $red;
+						border-color: $red;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+					}
+				}
+
+				i {
+					background-color: $blue;
+					border-color: $blue;
+					transform: scale(1.2);
+
+					&:after {
+						width: 9px;
+						background: $white;
+						transition: width 50ms ease 100ms;
+					}
+
+					&:before {
+						width: 5px;
+						background: $white;
+						transition: width 50ms ease 100ms;
+					}
+				}
+			}
+		}
+	}
+}
+

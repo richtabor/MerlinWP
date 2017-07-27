@@ -1,0 +1,47 @@
+.merlin__drawer--install-plugins {
+
+	.merlin__drawer--open & {
+		padding-bottom: 1px;
+	}
+
+	li {
+		// text-align: left;
+		// padding-left: 20px;
+		// padding-right: 20px;
+	}
+
+	li span {
+		display: none;
+		// float: right;
+		// font-size: 11px;
+		// padding-left: 7px;
+		// padding-right: 7px;
+		// padding-top: 2px;
+		// border: 1px solid #d1d1d1;
+		// color: #a1a5a8;
+		// border-radius: 10px;
+		// padding-bottom: 2px;
+		// line-height: 1.5;
+		// position: relative;
+		// top: 1px;
+		// transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
+	}
+	
+	li .spinner {
+		display: inline-block;
+		position: absolute;
+		margin-top: 2px;
+		right: 10px;
+		opacity:0;
+		visibility: visible;
+		transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
+	}
+
+	&.installing li .spinner {
+		opacity:1;
+	}
+
+	&.installing li span {
+		opacity: 0;
+	}
+}

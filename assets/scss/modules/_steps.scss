@@ -1,0 +1,117 @@
+.dots {
+	cursor: default;
+	display: block;
+	line-height: 1;
+	list-style: none;
+	margin: 0 auto;
+	max-width: 140px;
+	padding: 0;
+	position: relative;
+	top: 10px;
+	z-index: 0;
+
+	.merlin__content--ready & {
+		display: none;
+	}
+
+	.merlin__content--content & {
+		transition: opacity $speed cubic-bezier(.694, 0, .335, 1);
+	}
+	
+	body.exiting .merlin__content--content & {
+		opacity: 0;
+	}
+}
+
+.dots li {
+	height: 6px;
+	width: 6px;
+	padding: 0;
+	display: inline-block;
+	background: #e3e3e3;
+	border-radius: 999px;
+	margin: 0 1px;
+	position: relative;
+	top: -.15em;
+	z-index: 9999;
+	transition: background 300ms cubic-bezier(.694, 0, .335, 1);
+}
+
+.dots li.done {
+	background: $blue;
+}
+
+.dots li.active {
+	animation-fill-mode: both;
+	animation: popIn 900ms forwards;
+
+	/* Applies styles when Reduced Motion is enabled */
+	@media screen and (prefers-reduced-motion: reduce) {
+		animation: none;
+		background: $blue;
+	}
+}
+
+.dots li.active::after {
+	animation: sonarEffect 400ms ease-out 300ms;
+	border-radius: 999px;
+	content: '';
+	display: inline-block;
+	height: 7px;
+	left: 0;
+	position: absolute;
+	transition: box-shadow 300ms cubic-bezier(.694, 0, .335, 1);
+	width: 7px;
+	z-index: -1;
+
+	/* Applies styles when Reduced Motion is enabled */
+	@media screen and (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+
+@keyframes sonarEffect {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0.5;
+        box-shadow: 0 0 0 1px lighten($blue, 50%);
+    }
+    100% {
+        box-shadow: 0 0 0 1px lighten($blue, 50%);
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes popIn {
+	0% {
+		background: #e3e3e3;
+	}
+	40% {
+    }
+	55% {
+		background: #e3e3e3;
+		transform: scale(1);
+		
+	}
+	65% {
+		transform: scale(1.6);
+		background: #0073aa;
+	}
+	85% {
+		transform: scale(0.8);
+		background: #0073aa;
+	}
+	95% {
+		transform: scale(1.2);
+		background: #0073aa;
+	}
+	100% {
+		transform: scale(1);
+		background: #0073aa;
+	}
+}
