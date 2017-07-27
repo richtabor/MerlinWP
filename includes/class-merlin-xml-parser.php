@@ -34,224 +34,225 @@ class Merlin_WXR_Parser {
 	 */
 	function __construct() { }
 
-  /**
-   * Parse
-   *
-   * @param  String  $file  Maybe parse a custom file instead of the constructed file.
-   */
-  function parse( $file ) {
-	$file = wp_normalize_path($file);
+	/**
+	 * Parse
+	 *
+	 * @param string $file Maybe parse a custom file instead of the constructed file.
+	 */
+	function parse( $file ) {
+		$file = wp_normalize_path( $file );
 
-	if (empty($file)) {
-		return new WP_Error('WXR_parse_error', esc_html__('Invalid WXR file.', '@@textdomain'));
-	}
-
-	if (extension_loaded('simplexml')) {
-	return $this->simplexmlParse($file);
-	} elseif (extension_loaded('xmlreader')) {
-	return $this->xmlreaderParse($file);
-	} else {
-	return new WP_Error('WXR_parse_error', esc_html__('No XML parser found.', '@@textdomain'));
-	}
-  }
-
-  /**
-   * Parse XML file with SimpleXML
-   */
-  protected function simplexmlParse($file)
-  {
-	$authors = $posts = $categories = $tags = $terms = array();
-
-	libxml_use_internal_errors(true);
-
-	$xml = simplexml_load_file($file);
-
-	if (!$xml) {
-	  return new WP_Error('WXR_parse_error', esc_html__('Invalid WXR file.', '@@textdomain'), libxml_get_errors());
-	}
-
-	$wxr_version = $xml->xpath('/rss/channel/wp:wxr_version');
-	$wxr_version = (string)trim($wxr_version[0]);
-	$wxr_compare = version_compare($wxr_version, '1.2');
-
-	if (!$wxr_version || 1 === $wxr_compare) {
-	  return new WP_Error('WXR_parse_error', esc_html__('Invalid WXR file.', '@@textdomain'));
-	}
-
-	if (!preg_match('/^\d+\.\d+$/', $wxr_version)) {
-	  return new WP_Error('WXR_parse_error', esc_html__('Invalid WXR file.', '@@textdomain'));
-	}
-
-	$base_url = $xml->xpath('/rss/channel/wp:base_site_url');
-	$base_url = (string)trim($base_url[0]);
-	$namespaces = $xml->getDocNamespaces();
-
-	if (!isset($namespaces['wp'])) {
-	  $namespaces['wp'] = 'http://wordpress.org/export/' . $wxr_version . '/';
-	}
-
-	if (!isset($namespaces['excerpt'])) {
-	  $namespaces['excerpt'] = 'http://wordpress.org/export/' . $wxr_version . '/excerpt/';
-	}
-
-	$wp_authors = $xml->xpath('/rss/channel/wp:author');
-
-	foreach ($wp_authors as $author) {
-	  $author = $author->children($namespaces['wp']);
-	  $authors[] = array(
-		'id'           => (int)$author->author_id,
-		'login'        => (string)$author->author_login,
-		'email'        => (string)$author->author_email,
-		'first_name'   => (string)$author->author_first_name,
-		'last_name'    => (string)$author->author_last_name,
-		'display_name' => (string)$author->author_display_name,
-	  );
-	}
-
-	$wp_cats = $xml->xpath('/rss/channel/wp:category');
-
-	foreach ($wp_cats as $cat) {
-	  $cat1 = $cat->children($namespaces['wp']);
-	  $cat2= array(
-		'id'          => (int)$cat1->term_id,
-		'name'        => (string)$cat1->cat_name,
-		'slug'        => (string)$cat1->category_nicename,
-		'parent'      => (string)$cat1->category_parent,
-		'taxonomy'    => 'category',
-		'description' => (string)$cat1->category_description
-	  );
-	  foreach ($cat1->termmeta as $meta) {
-		$cat2['meta'][] = array(
-		  'key'   => (string)$meta->meta_key,
-		  'value' => (string)$meta->meta_value
-		);
-	  }
-	  $categories[] = $cat2;
-	}
-
-	$wp_tags = $xml->xpath('/rss/channel/wp:tag');
-
-	foreach ($wp_tags as $tag) {
-	  $tag1 = $tag->children($namespaces['wp']);
-	  $tag2 = array(
-		'id'          => (int)$tag1->term_id,
-		'slug'        => (string)$tag1->tag_slug,
-		'name'        => (string)$tag1->tag_name,
-		'taxonomy'    => 'post_tag',
-		'description' => (string)$tag1->tag_description
-	  );
-	  foreach ($tag1->termmeta as $meta) {
-		$tag2['meta'][] = array(
-		  'key'   => (string)$meta->meta_key,
-		  'value' => (string)$meta->meta_value
-		);
-	  }
-	  $tags[] = $tag2;
-	}
-
-	$wp_terms = $xml->xpath('/rss/channel/wp:term');
-
-	foreach ($wp_terms as $term) {
-	  $term1 = $term->children($namespaces['wp']);
-	  $term2 = array(
-		'id'          => (int)$term1->term_id,
-		'slug'        => (string)$term1->term_slug,
-		'parent'      => (string)$term1->term_parent,
-		'name'        => (string)$term1->term_name,
-		'taxonomy'    => (string)$term1->term_taxonomy,
-		'description' => (string)$term1->term_description
-	  );
-	  foreach ($term1->termmeta as $meta) {
-		$term2['meta'][] = array(
-		  'key'   => (string)$meta->meta_key,
-		  'value' => (string)$meta->meta_value
-		);
-	  }
-	  $terms[] = $term2;
-	}
-
-	foreach ($xml->channel->item as $item) {
-	  $dc = $item->children('http://purl.org/dc/elements/1.1/');
-	  $wp = $item->children($namespaces['wp']);
-	  $content = $item->children('http://purl.org/rss/1.0/modules/content/');
-	  $excerpt = $item->children($namespaces['excerpt']);
-	  $post = array(
-		'post_title'     => (string)$item->title,
-		'guid'           => (string)$item->guid,
-		'post_author'    => (string)$dc->creator,
-		'post_content'   => (string)$content->encoded,
-		'post_excerpt'   => (string)$excerpt->encoded,
-		'post_id'        => (int)$wp->post_id,
-		'post_date'      => (string)$wp->post_date,
-		'post_date_gmt'  => (string)$wp->post_date_gmt,
-		'comment_status' => (string)$wp->comment_status,
-		'ping_status'    => (string)$wp->ping_status,
-		'post_name'      => (string)$wp->post_name,
-		'post_status'    => (string)$wp->status,
-		'post_parent'    => (int)$wp->post_parent,
-		'menu_order'     => (int)$wp->menu_order,
-		'post_type'      => (string)$wp->post_type,
-		'post_password'  => (string)$wp->post_password,
-		'is_sticky'      => (int)$wp->is_sticky,
-	  );
-	  if (isset($wp->attachment_url)) {
-		$post['attachment_url'] = (string)$wp->attachment_url;
-	  }
-	  foreach ($item->category as $c) {
-		$att = $c->attributes();
-		if (isset($att['nicename'])) {
-		  $post['terms'][] = array(
-			'name'     => (string)$c,
-			'slug'     => (string)$att['nicename'],
-			'taxonomy' => (string)$att['domain']
-		  );
+		if ( empty( $file ) ) {
+			return new WP_Error( 'WXR_parse_error', esc_html__( 'Invalid WXR file.', '@@textdomain' ) );
 		}
-	  }
-	  foreach ($wp->postmeta as $meta) {
-		$post['meta'][] = array(
-		  'key'   => (string)$meta->meta_key,
-		  'value' => (string)$meta->meta_value
-		);
-	  }
-	  foreach ($wp->comment as $comment) {
-		$meta = array();
-		if (isset($comment->commentmeta)) {
-		  foreach ($comment->commentmeta as $m) {
-			$meta[] = array(
-			  'key'   => (string)$m->meta_key,
-			  'value' => (string)$m->meta_value
+
+		if ( extension_loaded( 'simplexml' ) ) {
+			return $this->simplexml_parse( $file );
+		} elseif ( extension_loaded( 'xmlreader' ) ) {
+			return $this->xmlreaderParse( $file );
+		} else {
+			return new WP_Error( 'WXR_parse_error', esc_html__( 'No XML parser found.', '@@textdomain' ) );
+		}
+	}
+
+	/**
+	 * Parse XML file
+	 *
+	 * @param string $file Maybe parse a custom file instead of the constructed file.
+	 */
+	protected function simplexml_parse( $file ) {
+		$authors = $posts = $categories = $tags = $terms = array();
+
+		libxml_use_internal_errors( true );
+
+		$xml = simplexml_load_file( $file );
+
+		if ( ! $xml ) {
+			return new WP_Error( 'WXR_parse_error', esc_html__( 'Invalid WXR file.', '@@textdomain' ), libxml_get_errors() );
+		}
+
+		$wxr_version = $xml->xpath( '/rss/channel/wp:wxr_version' );
+		$wxr_version = (string) trim( $wxr_version[0] );
+		$wxr_compare = version_compare( $wxr_version, '1.2' );
+
+		if ( ! $wxr_version || 1 === $wxr_compare ) {
+			return new WP_Error( 'WXR_parse_error', esc_html__( 'Invalid WXR file.', '@@textdomain' ) );
+		}
+
+		if ( ! preg_match( '/^\d+\.\d+$/', $wxr_version ) ) {
+			return new WP_Error( 'WXR_parse_error', esc_html__( 'Invalid WXR file.', '@@textdomain' ) );
+		}
+
+		$base_url = $xml->xpath( '/rss/channel/wp:base_site_url' );
+		$base_url = (string) trim( $base_url[0] );
+		$namespaces = $xml->getDocNamespaces();
+
+		if ( ! isset( $namespaces['wp'] ) ) {
+			$namespaces['wp'] = 'http://wordpress.org/export/' . $wxr_version . '/';
+		}
+
+		if ( ! isset( $namespaces['excerpt'] ) ) {
+			$namespaces['excerpt'] = 'http://wordpress.org/export/' . $wxr_version . '/excerpt/';
+		}
+
+		$wp_authors = $xml->xpath( '/rss/channel/wp:author' );
+
+		foreach ( $wp_authors as $author ) {
+			$author = $author->children( $namespaces['wp'] );
+			$authors[] = array(
+				'id'           => (int) $author->author_id,
+				'login'        => (string) $author->author_login,
+				'email'        => (string) $author->author_email,
+				'first_name'   => (string) $author->author_first_name,
+				'last_name'    => (string) $author->author_last_name,
+				'display_name' => (string) $author->author_display_name,
+			);
+		}
+
+		$wp_cats = $xml->xpath( '/rss/channel/wp:category' );
+
+		foreach ( $wp_cats as $cat ) {
+			$cat1 = $cat->children( $namespaces['wp'] );
+			$cat2 = array(
+				'id'          => (int) $cat1->term_id,
+				'name'        => (string) $cat1->cat_name,
+				'slug'        => (string) $cat1->category_nicename,
+				'parent'      => (string) $cat1->category_parent,
+				'taxonomy'    => 'category',
+				'description' => (string) $cat1->category_description,
+			);
+			foreach ( $cat1->termmeta as $meta ) {
+				$cat2['meta'][] = array(
+				  'key'   => (string) $meta->meta_key,
+				  'value' => (string) $meta->meta_value,
+				);
+			}
+			$categories[] = $cat2;
+		}
+
+		$wp_tags = $xml->xpath( '/rss/channel/wp:tag' );
+
+		foreach ( $wp_tags as $tag ) {
+			$tag1 = $tag->children($namespaces['wp']);
+			$tag2 = array(
+			'id'          => (int)$tag1->term_id,
+			'slug'        => (string)$tag1->tag_slug,
+			'name'        => (string)$tag1->tag_name,
+			'taxonomy'    => 'post_tag',
+			'description' => (string)$tag1->tag_description
+		  );
+		  foreach ($tag1->termmeta as $meta) {
+			$tag2['meta'][] = array(
+			  'key'   => (string)$meta->meta_key,
+			  'value' => (string)$meta->meta_value
 			);
 		  }
+		  $tags[] = $tag2;
 		}
-		$post['comments'][] = array(
-		  'comment_id'           => (int)$comment->comment_id,
-		  'comment_author'       => (string)$comment->comment_author,
-		  'comment_author_email' => (string)$comment->comment_author_email,
-		  'comment_author_IP'    => (string)$comment->comment_author_IP,
-		  'comment_author_url'   => (string)$comment->comment_author_url,
-		  'comment_date'         => (string)$comment->comment_date,
-		  'comment_date_gmt'     => (string)$comment->comment_date_gmt,
-		  'comment_content'      => (string)$comment->comment_content,
-		  'comment_approved'     => (string)$comment->comment_approved,
-		  'comment_type'         => (string)$comment->comment_type,
-		  'comment_parent'       => (int)$comment->comment_parent,
-		  'comment_user_id'      => (int)$comment->comment_user_id,
-		  'commentmeta'          => $meta,
-		);
-	  }
-	  $posts[] = $post;
-	}
 
-	return array(
-	  'users'      => $authors,
-	  'categories' => $categories,
-	  'tags'       => $tags,
-	  'terms'      => $terms,
-	  'posts'      => $posts,
-	  'baseurl'    => $base_url,
-	  'version'    => $wxr_version
-	);
-  }
+		$wp_terms = $xml->xpath('/rss/channel/wp:term');
+
+		foreach ($wp_terms as $term) {
+		  $term1 = $term->children($namespaces['wp']);
+		  $term2 = array(
+			'id'          => (int)$term1->term_id,
+			'slug'        => (string)$term1->term_slug,
+			'parent'      => (string)$term1->term_parent,
+			'name'        => (string)$term1->term_name,
+			'taxonomy'    => (string)$term1->term_taxonomy,
+			'description' => (string)$term1->term_description
+		  );
+		  foreach ($term1->termmeta as $meta) {
+			$term2['meta'][] = array(
+			  'key'   => (string)$meta->meta_key,
+			  'value' => (string)$meta->meta_value
+			);
+		  }
+		  $terms[] = $term2;
+		}
+
+		foreach ($xml->channel->item as $item) {
+		  $dc = $item->children('http://purl.org/dc/elements/1.1/');
+		  $wp = $item->children($namespaces['wp']);
+		  $content = $item->children('http://purl.org/rss/1.0/modules/content/');
+		  $excerpt = $item->children($namespaces['excerpt']);
+		  $post = array(
+			'post_title'     => (string)$item->title,
+			'guid'           => (string)$item->guid,
+			'post_author'    => (string)$dc->creator,
+			'post_content'   => (string)$content->encoded,
+			'post_excerpt'   => (string)$excerpt->encoded,
+			'post_id'        => (int)$wp->post_id,
+			'post_date'      => (string)$wp->post_date,
+			'post_date_gmt'  => (string)$wp->post_date_gmt,
+			'comment_status' => (string)$wp->comment_status,
+			'ping_status'    => (string)$wp->ping_status,
+			'post_name'      => (string)$wp->post_name,
+			'post_status'    => (string)$wp->status,
+			'post_parent'    => (int)$wp->post_parent,
+			'menu_order'     => (int)$wp->menu_order,
+			'post_type'      => (string)$wp->post_type,
+			'post_password'  => (string)$wp->post_password,
+			'is_sticky'      => (int)$wp->is_sticky,
+		  );
+		  if (isset($wp->attachment_url)) {
+			$post['attachment_url'] = (string)$wp->attachment_url;
+		  }
+		  foreach ($item->category as $c) {
+			$att = $c->attributes();
+			if (isset($att['nicename'])) {
+			  $post['terms'][] = array(
+				'name'     => (string)$c,
+				'slug'     => (string)$att['nicename'],
+				'taxonomy' => (string)$att['domain']
+			  );
+			}
+		  }
+		  foreach ($wp->postmeta as $meta) {
+			$post['meta'][] = array(
+			  'key'   => (string)$meta->meta_key,
+			  'value' => (string)$meta->meta_value
+			);
+		  }
+		  foreach ($wp->comment as $comment) {
+			$meta = array();
+			if (isset($comment->commentmeta)) {
+			  foreach ($comment->commentmeta as $m) {
+				$meta[] = array(
+				  'key'   => (string)$m->meta_key,
+				  'value' => (string)$m->meta_value
+				);
+			  }
+			}
+			$post['comments'][] = array(
+				'comment_id'           => (int)$comment->comment_id,
+				'comment_author'       => (string)$comment->comment_author,
+				'comment_author_email' => (string)$comment->comment_author_email,
+				'comment_author_IP'    => (string)$comment->comment_author_IP,
+				'comment_author_url'   => (string)$comment->comment_author_url,
+				'comment_date'         => (string)$comment->comment_date,
+				'comment_date_gmt'     => (string)$comment->comment_date_gmt,
+				'comment_content'      => (string)$comment->comment_content,
+				'comment_approved'     => (string)$comment->comment_approved,
+				'comment_type'         => (string)$comment->comment_type,
+				'comment_parent'       => (int)$comment->comment_parent,
+				'comment_user_id'      => (int)$comment->comment_user_id,
+				'commentmeta'          => $meta,
+			);
+		}
+			$posts[] = $post;
+		}
+
+		return array(
+		  'users'      => $authors,
+		  'categories' => $categories,
+		  'tags'       => $tags,
+		  'terms'      => $terms,
+		  'posts'      => $posts,
+		  'baseurl'    => $base_url,
+		  'version'    => $wxr_version,
+		);
+	}
 
   /**
    * Parse XML with XMLReader
