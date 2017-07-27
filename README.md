@@ -1,4 +1,4 @@
-# MerlinWP
+# Merlin WP
 Better WordPress Theme Onboarding https://merlinwp.com
 
 ## Download
