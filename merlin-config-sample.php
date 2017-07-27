@@ -55,31 +55,31 @@ $wizard = new Merlin(
 		'child-json-success%s' 		=> esc_html__( 'Awesome. Your child theme has already been installed and is now activated.' , '@@textdomain' ),
 		'child-json-already%s' 		=> esc_html__( 'Awesome. Your child theme has been created and is now activated.' , '@@textdomain' ),
 
-		'plugins-header' 			=> esc_html__( 'Install Plugins' , '@@textdomain' ),
+		'plugins-header' 		=> esc_html__( 'Install Plugins' , '@@textdomain' ),
 		'plugins-header-success' 	=> esc_html__( 'You\'re up to speed!' , '@@textdomain' ),
-		'plugins' 					=> esc_html__( 'Let’s install some essential WordPress plugins to get your site up to speed.' , '@@textdomain' ),
+		'plugins' 			=> esc_html__( 'Let’s install some essential WordPress plugins to get your site up to speed.' , '@@textdomain' ),
 		'plugins-success%s' 		=> esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.' , '@@textdomain' ),
 		'plugins-action-link' 		=> esc_html__( 'Advanced' , '@@textdomain' ),
 
-		'import-header' 			=> esc_html__( 'Import Content' , '@@textdomain' ),
-		'import' 					=> esc_html__( 'Let’s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
+		'import-header' 		=> esc_html__( 'Import Content' , '@@textdomain' ),
+		'import' 			=> esc_html__( 'Let’s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
 		'import-action-link' 		=> esc_html__( 'Advanced' , '@@textdomain' ),
 
-		'license-header%s' 			=> esc_html__( 'Activate %s' , '@@textdomain' ),
-		'license' 					=> esc_html__( 'Add your license key to activate one-click updates and theme support.' , '@@textdomain' ),
+		'license-header%s' 		=> esc_html__( 'Activate %s' , '@@textdomain' ),
+		'license' 			=> esc_html__( 'Add your license key to activate one-click updates and theme support.' , '@@textdomain' ),
 		'license-action-link' 		=> esc_html__( 'More info' , '@@textdomain' ),
 
-		'license-link-1'            => wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-2'            => wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-3'            => wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-1'            	=> wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-2'            	=> wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-3'           	=> wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 
-		'ready-header' 				=> esc_html__( 'All done. Have fun!' , '@@textdomain' ),
-		'ready%s' 					=> esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
+		'ready-header' 			=> esc_html__( 'All done. Have fun!' , '@@textdomain' ),
+		'ready%s' 			=> esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
 		'ready-action-link' 		=> esc_html__( 'Extras' , '@@textdomain' ),
-		'ready-big-button' 			=> esc_html__( 'View your website' , '@@textdomain' ),
+		'ready-big-button' 		=> esc_html__( 'View your website' , '@@textdomain' ),
 
-		'ready-link-1'              => wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-2'              => wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-3'              => wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-1'              	=> wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-2'              	=> wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-3'             	=> wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 	)
 );
