@@ -19,7 +19,7 @@ require get_parent_theme_file_path( '/inc/merlin-config.php' );
 > Note: In the example above, the `/merlin/` folder and the `merlin-config.php` file are both placed within the theme's `/inc/` folder directory location. 
 >
 
-If you have TGMPA included within your theme, please ensure Merlin WP is loaded after it.
+If you have TGMPA included within your theme, please ensure Merlin WP is included after it.
 
 ### Configure Merlin WP
 The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
