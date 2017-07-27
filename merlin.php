@@ -141,7 +141,7 @@ class Merlin {
 
 		// Set config arguments.
 		$this->directory 			= $config['directory'];
-		$this->demo_directory 		= $config['demo_directory'];
+		$this->demo_directory 			= $config['demo_directory'];
 		$this->merlin_url			= $config['merlin_url'];
 		$this->child_action_btn_url = $config['child_action_btn_url'];
 		$this->help_mode 			= $config['help_mode'];
@@ -156,7 +156,7 @@ class Merlin {
 
 		// Has this theme been setup yet?
 		// Comment this if you're testing.
-		// $already_setup 				= get_option( 'merlin_' . $this->slug . '_completed' );
+		// $already_setup 			= get_option( 'merlin_' . $this->slug . '_completed' );
 
 		// // Return if Merlin has already completed it's setup.
 		// if ( $already_setup ) {
@@ -336,8 +336,8 @@ class Merlin {
 			// Check first if TMGPA is included.
 			wp_localize_script( 'merlin', 'merlin_params', array(
 				'tgm_plugin_nonce' 	=> array(
-					'update'  		=> wp_create_nonce( 'tgmpa-update' ),
-					'install' 		=> wp_create_nonce( 'tgmpa-install' ),
+					'update'  	=> wp_create_nonce( 'tgmpa-update' ),
+					'install' 	=> wp_create_nonce( 'tgmpa-install' ),
 				),
 				'tgm_bulk_url' 		=> $this->tgmpa->get_tgmpa_url(),
 				'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
@@ -731,10 +731,10 @@ class Merlin {
 	protected function child() {
 
 		// Variables.
-		$is_child_theme 		= is_child_theme();
-		$child_theme_option 	= get_option( 'merlin_' . $this->slug . '_child' );
+		$is_child_theme 			= is_child_theme();
+		$child_theme_option 			= get_option( 'merlin_' . $this->slug . '_child' );
 		$theme 					= $child_theme_option ? wp_get_theme( $child_theme_option )->name : $this->theme . ' Child';
-		$action_url 			= $this->child_action_btn_url;
+		$action_url 				= $this->child_action_btn_url;
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -922,7 +922,7 @@ class Merlin {
 		$next 					= $strings['btn-next'];
 		$activate 				= $strings['btn-license-activate'];
 
-		$updater_slug 			= $this->updater->get_theme_slug();
+		$updater_slug 				= $this->updater->get_theme_slug();
 		$license 				= $this->updater->get_license();
 
 		$allowed_html_array = array(
@@ -986,7 +986,7 @@ class Merlin {
 
 		$already 				= 'asdfasdfasfasdfasdfsadf';
 		$theme 					= ucfirst( $this->theme );
-		$updater_slug 			= $this->updater->get_theme_slug();
+		$updater_slug 				= $this->updater->get_theme_slug();
 		$license 				= $this->updater->get_license();
 		$item_name 				= $this->theme;
 
@@ -1222,18 +1222,18 @@ class Merlin {
 	function generate_child() {
 
 		// Strings passed in from the config file.
-		$strings = $this->strings;
+		$strings 		= $this->strings;
 
 		// Text strings.
-		$success 	= $strings['child-json-success%s'];
-		$already 	= $strings['child-json-already%s'];
+		$success 		= $strings['child-json-success%s'];
+		$already 		= $strings['child-json-already%s'];
 
 		$name 			= $this->theme . ' Child';
 		$slug 			= sanitize_title( $name );
 
 		$path 			= get_theme_root() . '/' . $slug;
-		$screenshot_png = get_parent_theme_file_path( '/screenshot.png' );
-		$screenshot_jpg = get_parent_theme_file_path( '/screenshot.jpg' );
+		$screenshot_png 	= get_parent_theme_file_path( '/screenshot.png' );
+		$screenshot_jpg 	= get_parent_theme_file_path( '/screenshot.jpg' );
 
 		if ( ! file_exists( $path ) ) {
 
