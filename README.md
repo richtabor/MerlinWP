@@ -10,11 +10,14 @@ Better WordPress Theme Onboarding https://merlinwp.com
 2. Add the merlin-config.php file in your theme's directory
 
 ### Include Merlin WP and the configuration file
-Include both the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. Refer to the example below:
+Include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. Refer to the example below:
 ```
 require get_parent_theme_file_path( '/inc/merlin/merlin.php' );
 require get_parent_theme_file_path( '/inc/merlin-config.php' );
 ```
+
+> Note: In the example above, the `/merlin/` folder and the `merlin-config.php` file are both placed within the theme's `/inc/` folder directory location. 
+>
 
 ### Configure the configuration file
 The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
