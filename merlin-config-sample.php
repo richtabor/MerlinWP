@@ -18,39 +18,39 @@ if ( ! class_exists( 'Merlin' ) ) {
 $wizard = new Merlin(
 	// Configure Merlin with custom settings.
 	$config = array(
-		'directory'						=> '',											// Location where the 'merlin' directory is placed.
-		'demo_directory'				=> 'demo/',										// Location where the theme demo files exist.
-		'merlin_url'					=> 'merlin',									// Customize the page URL where Merlin WP loads.
-		'child_action_btn_url'			=> 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
-		'help_mode'						=> false,										// Set to true to turn on the little wizard helper.
-		'branding'						=> false,										// Set to false to remove Merlin WP's branding.
+		'directory'			=> '',						// Location where the 'merlin' directory is placed.
+		'demo_directory'		=> 'demo/',					// Location where the theme demo files exist.
+		'merlin_url'			=> 'merlin',					// Customize the page URL where Merlin WP loads.
+		'child_action_btn_url'		=> 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
+		'help_mode'			=> false,					// Set to true to turn on the little wizard helper.
+		'branding'			=> false,					// Set to false to remove Merlin WP's branding.
 	),
 	// Text strings.
 	$strings = array(
-		'admin-menu' 				=> esc_html__( 'Theme Setup' , '@@textdomain' ),
-		'title%s%s%s%s' 			=> esc_html__( '%s%s Themes &lsaquo; Theme Setup: %s%s' , '@@textdomain' ),
+		'admin-menu' 			=> esc_html__( 'Theme Setup' , '@@textdomain' ),
+		'title%s%s%s%s' 		=> esc_html__( '%s%s Themes &lsaquo; Theme Setup: %s%s' , '@@textdomain' ),
 
 		'return-to-dashboard' 		=> esc_html__( 'Return to the dashboard' , '@@textdomain' ),
 
-		'btn-skip' 					=> esc_html__( 'Skip' , '@@textdomain' ),
-		'btn-next' 					=> esc_html__( 'Next' , '@@textdomain' ),
-		'btn-start' 				=> esc_html__( 'Start' , '@@textdomain' ),
-		'btn-no' 					=> esc_html__( 'Cancel' , '@@textdomain' ),
+		'btn-skip' 			=> esc_html__( 'Skip' , '@@textdomain' ),
+		'btn-next' 			=> esc_html__( 'Next' , '@@textdomain' ),
+		'btn-start' 			=> esc_html__( 'Start' , '@@textdomain' ),
+		'btn-no' 			=> esc_html__( 'Cancel' , '@@textdomain' ),
 		'btn-plugins-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
 		'btn-child-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
 		'btn-content-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
-		'btn-import' 				=> esc_html__( 'Import' , '@@textdomain' ),
+		'btn-import' 			=> esc_html__( 'Import' , '@@textdomain' ),
 		'btn-license-activate' 		=> esc_html__( 'Activate' , '@@textdomain' ),
 
-		'welcome-header%s' 			=> esc_html__( 'Welcome to %s' , '@@textdomain' ),
+		'welcome-header%s' 		=> esc_html__( 'Welcome to %s' , '@@textdomain' ),
 		'welcome-header-success%s' 	=> esc_html__( 'Hi. Welcome back' , '@@textdomain' ),
-		'welcome%s' 				=> esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.' , '@@textdomain' ),
+		'welcome%s' 			=> esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.' , '@@textdomain' ),
 		'welcome-success%s' 		=> esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.' , '@@textdomain' ),
 
-		'child-header' 				=> esc_html__( 'Install Child Theme' , '@@textdomain' ),
+		'child-header' 			=> esc_html__( 'Install Child Theme' , '@@textdomain' ),
 		'child-header-success' 		=> esc_html__( 'You\'re good to go!' , '@@textdomain' ),
 		'child' 					=> esc_html__( 'Let’s build & activate a child theme so you may easily make theme changes.' , '@@textdomain' ),
-		'child-success%s' 			=> esc_html__( 'Your child theme has already been installed and is now activated — if it wasn\'t already.' , '@@textdomain' ),
+		'child-success%s' 		=> esc_html__( 'Your child theme has already been installed and is now activated — if it wasn\'t already.' , '@@textdomain' ),
 		'child-action-link' 		=> esc_html__( 'Learn about child themes' , '@@textdomain' ),
 		'child-json-success%s' 		=> esc_html__( 'Awesome. Your child theme has already been installed and is now activated.' , '@@textdomain' ),
 		'child-json-already%s' 		=> esc_html__( 'Awesome. Your child theme has been created and is now activated.' , '@@textdomain' ),
