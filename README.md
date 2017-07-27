@@ -1,15 +1,16 @@
 # Merlin WP
 Better WordPress Theme Onboarding https://merlinwp.com
 
-## License
+# License
 
-## Usage
+# Usage
+Let's get you set up to use Merlin WP!
 
-### Add Merlin WP to your theme
+## Add Merlin WP to your theme
 1. Add the /merlin/ folder in your theme's directory
 2. Add the merlin-config.php file in your theme's directory
 
-### Include Merlin WP and the configuration file
+## Include Merlin WP and the configuration file
 Include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. Refer to the example below:
 ```
 require get_parent_theme_file_path( '/inc/merlin/merlin.php' );
@@ -19,7 +20,7 @@ require get_parent_theme_file_path( '/inc/merlin-config.php' );
 > Note: In the example above, the `/merlin/` folder and the `merlin-config.php` file are both placed within the theme's `/inc/` folder directory location. 
 >
 
-### Configure the configuration file
+## Configure the configuration file
 The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
 
 **The important configuration settings:**
@@ -32,7 +33,7 @@ Other settings:
 * `help_mode` — a wizard for your wizard, if you need help *(beta)*
 * `branding` — show Merlin WP's logo or not *(beta)*
 
-## Contributions
+# Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
 
 There are various ways you can contribute:
