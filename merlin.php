@@ -155,12 +155,13 @@ class Merlin {
 		$this->slug  				= strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->get( 'Name' ) ) );
 
 		// Has this theme been setup yet?
-		$already_setup 				= get_option( 'merlin_' . $this->slug . '_completed' );
+		// Comment this if you're testing.
+		// $already_setup 				= get_option( 'merlin_' . $this->slug . '_completed' );
 
-		// Return if Merlin has already completed it's setup.
-		if ( $already_setup ) {
-			return;
-		}
+		// // Return if Merlin has already completed it's setup.
+		// if ( $already_setup ) {
+		// 	return;
+		// }
 
 		// Get TGMPA.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
