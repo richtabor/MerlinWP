@@ -49,7 +49,7 @@ $wizard = new Merlin(
 
 		'child-header' 			=> esc_html__( 'Install Child Theme' , '@@textdomain' ),
 		'child-header-success' 		=> esc_html__( 'You\'re good to go!' , '@@textdomain' ),
-		'child' 					=> esc_html__( 'Let’s build & activate a child theme so you may easily make theme changes.' , '@@textdomain' ),
+		'child' 			=> esc_html__( 'Let’s build & activate a child theme so you may easily make theme changes.' , '@@textdomain' ),
 		'child-success%s' 		=> esc_html__( 'Your child theme has already been installed and is now activated — if it wasn\'t already.' , '@@textdomain' ),
 		'child-action-link' 		=> esc_html__( 'Learn about child themes' , '@@textdomain' ),
 		'child-json-success%s' 		=> esc_html__( 'Awesome. Your child theme has already been installed and is now activated.' , '@@textdomain' ),
