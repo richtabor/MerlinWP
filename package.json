@@ -1,11 +1,11 @@
 {
-  "name": "Merlin WP",
-  "slug": "merlin-wp",  
-  "textdomain": "merlin-wp",
-  "version": "1.0",
-  "theme_uri": "https://merlinwp.com",
-  "author": "Rich Tabor <hello@merlinwp.com>",
-  "author_uri": "https://merlinwp.com",
-  "author_shop": "Merlin WP",
-  "license": "http://www.gnu.org/licenses/gpl-3.0.html GNU Public License"
+	"name": "Merlin WP",
+	"slug": "merlin-wp",  
+	"textdomain": "merlin-wp",
+	"version": "1.0",
+	"theme_uri": "https://merlinwp.com",
+	"author": "Rich Tabor <hello@merlinwp.com>",
+	"author_uri": "https://merlinwp.com",
+	"author_shop": "Merlin WP",
+	"license": "http://www.gnu.org/licenses/gpl-3.0.html GNU Public License"
 }

@@ -17,16 +17,16 @@ var lastTranslator          = pkg.author;
 var team                    = pkg.author_shop;
 
 // Styles.
-var merlinStyleSRC          = './merlin/assets/scss/merlin.scss'; // Path to main .scss file.
-var merlinStyleDestination  = './merlin/assets/css/'; // Path to place the compiled CSS file.
-var merlinCssFiles          = './merlin/assets/css/**/*.css'; // Path to main .scss file.
-var merlinStyleWatchFiles   = './merlin/assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
+var merlinStyleSRC          = './assets/scss/merlin.scss'; // Path to main .scss file.
+var merlinStyleDestination  = './assets/css/'; // Path to place the compiled CSS file.
+var merlinCssFiles          = './assets/css/**/*.css'; // Path to main .scss file.
+var merlinStyleWatchFiles   = './assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 
 // Scripts.
-var merlinScriptSRC             = './merlin/assets/js/*.js'; // Path to JS custom scripts folder.
-var merlinScriptDestination     = './merlin/assets/js/'; // Path to place the compiled JS custom scripts file.
+var merlinScriptSRC             = './assets/js/*.js'; // Path to JS custom scripts folder.
+var merlinScriptDestination     = './assets/js/'; // Path to place the compiled JS custom scripts file.
 var merlinScriptFile            = 'merlin'; // Compiled JS file name.
-var merlinScriptWatchFiles  	= './merlin/assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
+var merlinScriptWatchFiles  	= './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
 
 // Watch files paths.
 var projectPHPWatchFiles    = ['./**/*.php', '!_dist', '!_dist/**', '!_dist/**/*.php', '!_demo', '!_demo/**','!_demo/**/*.php'];
@@ -53,6 +53,7 @@ var gulp         = require('gulp');
 var cache        = require('gulp-cache');
 var sass         = require('gulp-sass');
 var minifycss    = require('gulp-clean-css');
+var csscomb      = require('gulp-csscomb');
 var autoprefixer = require('gulp-autoprefixer');
 var lineec       = require('gulp-line-ending-corrector');
 var rename       = require('gulp-rename');
@@ -100,6 +101,8 @@ gulp.task('styles', function () {
 	.on( 'error', console.error.bind( console ) )
 
 	.pipe( autoprefixer( AUTOPREFIXER_BROWSERS ) )
+
+	.pipe( csscomb() )
 
 	.pipe( gulp.dest( merlinStyleDestination ) )
 

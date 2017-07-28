@@ -1,9 +1,6 @@
 <svg id="sprite" xmlns="http://www.w3.org/2000/svg" version="1.0" class="hidden">
 
 <symbol id="icon-merlin" width="80px" height="122px" viewBox="0 0 80 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M17,60.7982835 L37.9947017,2.5892267 C39.110827,-0.863075567 40.9197197,-0.863075567 42.0366469,2.5892267 L62.9521959,60.7982835 L17,60.7982835 Z" id="Fill-5" fill="#0073AA"></path>
@@ -25,11 +22,7 @@
 
 </symbol>
 
-
-    
 <symbol id="icon-welcome" width="166px" height="105px" viewBox="0 0 166 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Getting-Started">
@@ -345,8 +338,6 @@
 
 
 <symbol id="icon-license" width="168px" height="104px" viewBox="0 0 168 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M159.557,102.076 L159.557,23.847 C159.557,21.722 157.834,20 155.71,20 L98.847,20 C96.722,20 95,21.722 95,23.847 L95,102.077 L159.557,102.076" id="Fill-16" fill="#ADDDF8"></path>
@@ -440,8 +431,6 @@
 
 
 <symbol id="icon-content" width="175px" height="110px" viewBox="0 0 175 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-2" transform="translate(55.000000, 43.000000)">
@@ -565,8 +554,6 @@
 
 
 <symbol id="icon-child" width="199px" height="100px" viewBox="0 0 199 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M162.238416,41.0256956 L161.782416,38.7086956 C161.569416,37.0636956 160.061416,35.9026956 158.416416,36.1156956 L123.618416,40.6336956 C121.972416,40.8476956 120.811416,42.3546956 121.025416,43.9996956 L127.394416,93.0586956 L166.852416,80.9746956 L162.238416,41.0256956" id="Fill-261" fill="#FFFFFF"></path>
