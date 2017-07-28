@@ -21,7 +21,6 @@ The commercial license is designed to for you to use Merlin WP in commercial pro
   
 If you want to include Merlin WP as part of a commercial interface builder, SDK, or toolkit, choose the Commercial OEM license. Commercial OEM licenses are customized for each customer. Contact hi@merlinwp.com.
 
-***
 
 # Usage
 
@@ -60,7 +59,6 @@ You'll want to add the following files:
 * `widgets.wie` — Exported widgets using [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/)
 * `customizer.dat` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
 
-***
 
 # Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
