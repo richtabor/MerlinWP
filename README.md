@@ -26,7 +26,7 @@ If you want to include Merlin WP as part of a commercial interface builder, SDK,
 
 ## Usage
 
-### Add Merlin WP to your theme
+### 1. Add Merlin WP to your theme
 Let's get you set up to use Merlin WP! First off, download and add the add the /merlin/ folder and the merlin-config.php file into your theme. Next, include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. 
 
 Refer to the example below:
@@ -40,7 +40,7 @@ require get_parent_theme_file_path( '/inc/merlin-config.php' );
 
 If you have TGMPA included within your theme, please ensure Merlin WP is included after it.
 
-### Configure Merlin WP
+### 2. Configure Merlin WP
 The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
 
 **The important configuration settings:**
@@ -53,7 +53,7 @@ Other settings:
 * `help_mode` — a wizard for your wizard, if you need help *(beta)*
 * `branding` — show Merlin WP's logo or not *(beta)*
 
-### Add your demo content
+### 3. Add your demo content
 Add your theme's demo content to the demo directory location specificed in the `merlin-config.php` file.
 
 You'll want to add the following files:
