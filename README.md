@@ -34,6 +34,14 @@ Other settings:
 * `help_mode` — a wizard for your wizard, if you need help *(beta)*
 * `branding` — show Merlin WP's logo or not *(beta)*
 
+## Demo Content
+Add your theme's demo content to the demo directory location specificed in the `merlin-config.php` file.
+
+You'll want to add the following files:
+* `content.xml` — Exported demo content using the WordPress Exporter
+* `widgets.wie` — Exported widgets using [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/)
+* `customizer.xml` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
+
 ## Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
 
