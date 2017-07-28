@@ -51,7 +51,7 @@ Other settings:
 * `help_mode` — a wizard for your wizard, if you need help *(beta)*
 * `branding` — show Merlin WP's logo or not *(beta)*
 
-## Add your demo content
+### Add your demo content
 Add your theme's demo content to the demo directory location specificed in the `merlin-config.php` file.
 
 You'll want to add the following files:
