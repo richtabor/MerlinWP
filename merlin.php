@@ -208,7 +208,7 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
-		add_filter( 'sidebars_widgets', array( $this, 'unset_sidebar_widgets' ) );
+		//add_filter( 'sidebars_widgets', array( $this, 'unset_sidebar_widgets' ) );
 	}
 
 	/**
