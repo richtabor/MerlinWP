@@ -8,11 +8,11 @@
  * licensed under the terms of the GNU Public License, verison 2.
  *
  * @package   Merlin
- * @version   1.0.0
+ * @version   1.0
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
- * @copyright Copyright (c) 2011, Richard Tabor
- * @license   GPL-2.0+
+ * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
+ * @license   Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use
  */
 
 /**
