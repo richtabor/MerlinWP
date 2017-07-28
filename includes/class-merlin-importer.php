@@ -4,7 +4,7 @@
  * Better WordPress Theme Onboarding
  *
  * @package   Merlin WP
- * @version   1.0
+ * @version   @@pkg.version
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
@@ -461,14 +461,6 @@ class Merlin_Importer {
 			return 'true';
 		}
 	}
-
-	/**
-	 * Re-map imported data.
-	 */
-	// function _unset_sidebar_widget( $sidebars_widgets ) {
-	// 	unset( $sidebars_widgets[ 'sidebar-1' ] );
-	// 	return $sidebars_widgets;
-	// }
 
 	/**
 	 * Import revo sliders

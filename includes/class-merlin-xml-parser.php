@@ -4,7 +4,7 @@
  * Better WordPress Theme Onboarding
  *
  * @package   Merlin WP
- * @version   1.0
+ * @version   @@pkg.version
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
