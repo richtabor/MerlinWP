@@ -1,0 +1,166 @@
+# Copyright (C) 2017 Merlin WP
+# This file is distributed under the same license as the Merlin WP package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Merlin WP\n"
+"Report-Msgid-Bugs-To: https://merlinwp.com\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
+"Language-Team: Merlin WP\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+
+#: includes/class-merlin-importer.php:97
+msgid "This user is created while installing demo content. You should delete or modify this user&#8217;s information now."
+msgstr ""
+
+#: includes/class-merlin-importer.php:662
+msgid "Invalid attachment file type!"
+msgstr ""
+
+#: includes/class-merlin-importer.php:838
+msgid "Remote server returned %1$d %2$s for %3$s"
+msgstr ""
+
+#: includes/class-merlin-importer.php:846
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: includes/class-merlin-importer.php:851
+msgid "Zero size file downloaded."
+msgstr ""
+
+#: includes/class-merlin-importer.php:858
+msgid "Remote file is too large, limit is %s."
+msgstr ""
+
+#: includes/class-merlin-importer.php:1141, includes/class-merlin-importer.php:1142
+msgid "Taxonomy names must be between 1 and 32 characters in length."
+msgstr ""
+
+#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:274
+msgid "Invalid WXR file."
+msgstr ""
+
+#: includes/class-merlin-xml-parser.php:50
+msgid "No XML parser found."
+msgstr ""
+
+#: includes/class-merlin-xml-parser.php:263
+msgid "Could not open the file for parsing"
+msgstr ""
+
+#: merlin.php:507
+msgid "Please define default parameters in the form of an array."
+msgstr ""
+
+#: merlin.php:512
+msgid "Please define an SVG icon filename."
+msgstr ""
+
+#: merlin.php:606
+msgid "Welcome"
+msgstr ""
+
+#: merlin.php:613
+msgid "Child"
+msgstr ""
+
+#: merlin.php:620
+msgid "Plugins"
+msgstr ""
+
+#: merlin.php:629
+msgid "License"
+msgstr ""
+
+#: merlin.php:637
+msgid "Content"
+msgstr ""
+
+#: merlin.php:643
+msgid "Ready"
+msgstr ""
+
+#: merlin.php:889
+msgid "Install"
+msgstr ""
+
+#: merlin.php:892
+msgid "Update"
+msgstr ""
+
+#: merlin.php:895
+msgid "Activate"
+msgstr ""
+
+#: merlin.php:897
+msgid "and"
+msgstr ""
+
+#: merlin.php:1420
+msgid "Activating"
+msgstr ""
+
+#: merlin.php:1436
+msgid "Updating"
+msgstr ""
+
+#: merlin.php:1452, merlin.php:1550, merlin.php:1563, merlin.php:1576, merlin.php:1589
+msgid "Installing"
+msgstr ""
+
+#: merlin.php:1462, merlin.php:1551, merlin.php:1564, merlin.php:1577, merlin.php:1590
+msgid "Success"
+msgstr ""
+
+#: merlin.php:1481
+msgid "Invalid content!"
+msgstr ""
+
+#: merlin.php:1519
+msgid "Error"
+msgstr ""
+
+#: merlin.php:1548
+msgid "Sample"
+msgstr ""
+
+#: merlin.php:1548
+msgid "data."
+msgstr ""
+
+#: merlin.php:1549, merlin.php:1562, merlin.php:1575, merlin.php:1588
+msgid "Pending"
+msgstr ""
+
+#: merlin.php:1560
+msgid "Widgets"
+msgstr ""
+
+#: merlin.php:1561
+msgid "Sample widgets data."
+msgstr ""
+
+#: merlin.php:1573
+msgid "Sliders"
+msgstr ""
+
+#: merlin.php:1574
+msgid "Sample sliders data."
+msgstr ""
+
+#: merlin.php:1586
+msgid "Options"
+msgstr ""
+
+#: merlin.php:1587
+msgid "Sample theme options data."
+msgstr ""

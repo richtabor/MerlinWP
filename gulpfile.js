@@ -6,6 +6,7 @@
 var pkg                     = require('./package.json');
 var project                 = pkg.name;
 var slug                    = pkg.slug;
+var version                 = pkg.version;
 var projectURL              = 'http://demo.merlinwp.dev/wp-admin/themes.php?page=merlin';
 
 // Translations.
@@ -15,6 +16,8 @@ var packageName             = project;
 var bugReport               = pkg.author_uri;
 var lastTranslator          = pkg.author;
 var team                    = pkg.author_shop;
+var translatePath           = './languages';
+var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters.php' ];
 
 // Styles.
 var merlinStyleSRC          = './assets/scss/merlin.scss'; // Path to main .scss file.
@@ -23,52 +26,62 @@ var merlinCssFiles          = './assets/css/**/*.css'; // Path to main .scss fil
 var merlinStyleWatchFiles   = './assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 
 // Scripts.
-var merlinScriptSRC             = './assets/js/*.js'; // Path to JS custom scripts folder.
-var merlinScriptDestination     = './assets/js/'; // Path to place the compiled JS custom scripts file.
-var merlinScriptFile            = 'merlin'; // Compiled JS file name.
-var merlinScriptWatchFiles  	= './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
+var merlinScriptSRC         = './assets/js/*.js'; // Path to JS custom scripts folder.
+var merlinScriptDestination = './assets/js/'; // Path to place the compiled JS custom scripts file.
+var merlinScriptFile        = 'merlin'; // Compiled JS file name.
+var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
 
-// Watch files paths.
-var projectPHPWatchFiles    = ['./**/*.php', '!_dist', '!_dist/**', '!_dist/**/*.php', '!_demo', '!_demo/**','!_demo/**/*.php'];
+// Watch files.
+var projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
+
+// Build files.
+var buildFiles      	    = ['./**', '!dist/', '!.gitattributes', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
+var buildDestination        = './dist/merlin/';
+var distributionFiles       = './dist/merlin/**/*';
 
 // Browsers you care about for autoprefixing. https://github.com/ai/browserslist
 const AUTOPREFIXER_BROWSERS = [
-'last 2 version',
-'> 1%',
-'ie >= 9',
-'ie_mob >= 10',
-'ff >= 30',
-'chrome >= 34',
-'safari >= 7',
-'opera >= 23',
-'ios >= 7',
-'android >= 4',
-'bb >= 10'
+	'last 2 version',
+	'> 1%',
+	'ie >= 9',
+	'ie_mob >= 10',
+	'ff >= 30',
+	'chrome >= 34',
+	'safari >= 7',
+	'opera >= 23',
+	'ios >= 7',
+	'android >= 4',
+	'bb >= 10'
 ];
 
 /**
 * Load Plugins.
 */
-var gulp         = require('gulp');
-var cache        = require('gulp-cache');
-var sass         = require('gulp-sass');
-var minifycss    = require('gulp-clean-css');
-var csscomb      = require('gulp-csscomb');
 var autoprefixer = require('gulp-autoprefixer');
-var lineec       = require('gulp-line-ending-corrector');
-var rename       = require('gulp-rename');
-var filter       = require('gulp-filter');
-var notify       = require('gulp-notify');
 var browserSync  = require('browser-sync').create();
+var cache        = require('gulp-cache');
+var cleaner      = require('gulp-clean');
+var concat       = require('gulp-concat');
+var copy         = require('gulp-copy');
+var csscomb      = require('gulp-csscomb');
+var filter       = require('gulp-filter');
+var gulp         = require('gulp');
+var lineec       = require('gulp-line-ending-corrector');
+var minifycss    = require('gulp-clean-css');
+var notify       = require('gulp-notify');
 var reload       = browserSync.reload;
+var rename       = require('gulp-rename');
+var replace      = require('gulp-replace-task');
+var runSequence  = require('gulp-run-sequence');
+var sass         = require('gulp-sass');
+var sort         = require('gulp-sort');
 var uglify       = require('gulp-uglify');
 var wpPot        = require('gulp-wp-pot');
-var sort         = require('gulp-sort');
-var concat       = require('gulp-concat');
+var zip          = require('gulp-zip');
 
 /**
-* Tasks.
-*/
+ * Development Tasks.
+ */
 gulp.task('clear', function () {
 	cache.clearAll();
 });
@@ -137,5 +150,80 @@ gulp.task( 'scripts', function() {
 gulp.task( 'default', ['clear', 'styles', 'scripts', 'browser_sync' ], function () {
 	gulp.watch( projectPHPWatchFiles, reload );
 	gulp.watch( merlinStyleWatchFiles, [ 'styles' ] );
-	// gulp.watch( merlinScriptWatchFiles, [ 'scripts' ] );
+});
+
+/**
+ * Build Tasks.
+ */
+
+gulp.task( 'build-translate', function () {
+
+	gulp.src( translatableFiles )
+
+	.pipe( sort() )
+	.pipe( wpPot( {
+		domain        : text_domain,
+		destFile      : destFile,
+		package       : project,
+		bugReport     : bugReport,
+		lastTranslator: lastTranslator,
+		team          : team
+	} ))
+	.pipe( gulp.dest( translatePath ) )
+
+});
+
+gulp.task( 'build-clean', function () {
+	return gulp.src( ['./dist/*'] , { read: false } )
+	.pipe(cleaner());
+});
+
+gulp.task( 'build-copy', ['build-clean'], function() {
+    return gulp.src( buildFiles )
+    .pipe( copy( buildDestination ) );
+});
+
+gulp.task( 'build-clean-and-copy', ['build-clean', 'build-copy' ], function () { } );
+
+gulp.task('build-variables', ['build-clean-and-copy'], function () {
+	return gulp.src( distributionFiles )
+	.pipe( replace( {
+		patterns: [
+		{
+			match: 'pkg.version',
+			replacement: version
+		},
+		{
+			match: 'textdomain',
+			replacement: pkg.textdomain
+		},
+		{
+			match: /^			define\( 'MERLIN_VERSION'.*$/m,
+			replacement: '			define( \'MERLIN_VERSION\', '+version+' );'
+		}
+		]
+	}))
+	.pipe( gulp.dest( buildDestination ) );
+});
+
+gulp.task( 'build-zip', ['build-variables'] , function() {
+    return gulp.src( buildDestination+'/**' )
+    .pipe( zip( 'merlin.zip' ) )
+    .pipe( gulp.dest( './dist/' ) );
+});
+
+gulp.task( 'build-clean-after-zip', ['build-zip'], function () {
+	return gulp.src( [ buildDestination, '!/dist/' + slug + '-wp.zip'] , { read: false } )
+	.pipe(cleaner());
+});
+
+gulp.task( 'build-zip-and-clean', ['build-zip', 'build-clean-after-zip' ], function () { } );
+
+gulp.task( 'build-notification', function () {
+	return gulp.src( '' )
+	.pipe( notify( { message: 'Your build of ' + packageName + ' is completed.', onLast: true } ) );
+});
+
+gulp.task('build', function(callback) {
+	runSequence( 'clear', 'build-clean', ['styles', 'scripts', 'build-translate'], 'build-clean-and-copy', 'build-variables', 'build-zip-and-clean', 'build-notification', callback);
 });
