@@ -1,6 +1,6 @@
 <?php
 /**
- * Merlin WP Configuration file.
+ * Merlin WP configuration file.
  *
  * @package @@pkg.name
  * @version @@pkg.version

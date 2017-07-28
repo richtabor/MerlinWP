@@ -1,13 +1,9 @@
 <?php
 /**
- * Merlin
- * A magical on-boarding experience for WordPress themes.
+ * Merlin WP
+ * Better WordPress Theme Onboarding
  *
- * The following code is a derivative work of the code from the Envato WordPress Theme
- * Setup Wizard by David Baker, which is licensed GPLv2. This code therefore is also
- * licensed under the terms of the GNU Public License, verison 2.
- *
- * @package   Merlin
+ * @package   Merlin WP
  * @version   1.0
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
