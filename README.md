@@ -22,7 +22,7 @@ The commercial license is designed to for you to use Merlin WP in commercial pro
 If you want to include Merlin WP as part of a commercial interface builder, SDK, or toolkit, choose the Commercial OEM license. Commercial OEM licenses are customized for each customer. Contact hi@merlinwp.com.
 
 
-# Usage
+## Usage
 
 ### Add Merlin WP to your theme
 Let's get you set up to use Merlin WP! First off, download and add the add the /merlin/ folder and the merlin-config.php file into your theme. Next, include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. 
@@ -60,7 +60,7 @@ You'll want to add the following files:
 * `customizer.dat` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
 
 
-# Contributions
+## Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
 
 There are various ways you can contribute:
