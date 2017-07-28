@@ -1,5 +1,5 @@
-# Merlin WP
-Better WordPress Theme Onboarding https://merlinwp.com
+# [Merlin WP](https://merlinwp.com)
+Better WordPress Theme Onboarding — Read about it here: https://richtabor.com/merlin-wp
 
 ## License
 
