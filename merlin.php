@@ -7,7 +7,7 @@
  * Envato WordPress Theme Setup Wizard by David Baker.
  *
  * @package   Merlin WP
- * @version   1.0
+ * @version   @@pkg.version
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
@@ -1557,40 +1557,40 @@ class Merlin {
 
 		if ( file_exists( $base_dir . 'widgets.wie' ) ) {
 			$content['widgets'] = array(
-				'title'            => esc_html__( 'Widgets', '@@textdomain' ),
-				'description'      => esc_html__( 'Sample widgets data.', '@@textdomain' ),
-				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
-				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
-				'success'          => esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' => array( $this->importer, 'importWidgets' ),
-				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data' 			   => $base_dir . 'widgets.wie',
+				'title'            	=> esc_html__( 'Widgets', '@@textdomain' ),
+				'description'      	=> esc_html__( 'Sample widgets data.', '@@textdomain' ),
+				'pending'          	=> esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       	=> esc_html__( 'Installing', '@@textdomain' ),
+				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' 	=> array( $this->importer, 'importWidgets' ),
+				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
+				'data'			=> $base_dir . 'widgets.wie',
 			);
 		}
 
 		if ( file_exists( $base_dir . 'slider.zip' ) ) {
 			$content['sliders'] = array(
-				'title'            => esc_html__( 'Sliders', '@@textdomain' ),
-				'description'      => esc_html__( 'Sample sliders data.', '@@textdomain' ),
-				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
-				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
-				'success'          => esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' => array( $this->importer, 'importRevSliders' ),
-				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data' 			   => $base_dir . 'slider.zip',
+				'title'            	=> esc_html__( 'Sliders', '@@textdomain' ),
+				'description'     	=> esc_html__( 'Sample sliders data.', '@@textdomain' ),
+				'pending'         	=> esc_html__( 'Pending', '@@textdomain' ),
+				'installing'      	=> esc_html__( 'Installing', '@@textdomain' ),
+				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' 	=> array( $this->importer, 'importRevSliders' ),
+				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
+				'data' 			=> $base_dir . 'slider.zip',
 			);
 		}
 
 		if ( file_exists( $base_dir . 'customizer.dat' ) ) {
 			$content['options'] = array(
-				'title'            => esc_html__( 'Options', '@@textdomain' ),
-				'description'      => esc_html__( 'Sample theme options data.', '@@textdomain' ),
-				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
-				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
-				'success'          => esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' => array( $this->importer, 'importThemeOptions' ),
-				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data' 			   => $base_dir . 'customizer.dat',
+				'title'            	=> esc_html__( 'Options', '@@textdomain' ),
+				'description'      	=> esc_html__( 'Sample theme options data.', '@@textdomain' ),
+				'pending'          	=> esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       	=> esc_html__( 'Installing', '@@textdomain' ),
+				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' 	=> array( $this->importer, 'importThemeOptions' ),
+				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
+				'data' 			=> $base_dir . 'customizer.dat',
 			);
 		}
 
