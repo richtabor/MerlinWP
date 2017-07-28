@@ -26,7 +26,7 @@ var Merlin = (function($){
     function window_loaded(){
 
     	var 
-    	body 			= $('.merlin__body'),
+    	body 		= $('.merlin__body'),
     	body_loading 	= $('.merlin__body--loading'),
     	body_exiting 	= $('.merlin__body--exiting'),
     	drawer_trigger 	= $('#merlin__drawer-trigger'),
@@ -119,20 +119,19 @@ var Merlin = (function($){
             init: function(btn) {
                 complete = function() {
 
-
                 	setTimeout(function(){
-				        $(".merlin__body").addClass('js--finished');
-				    },1500);
+				$(".merlin__body").addClass('js--finished');
+			},1500);
 
                 	body.removeClass( drawer_opened );
 
                 	setTimeout(function(){
-				        $('.merlin__body').addClass('exiting');
-				    },3500);   
+				$('.merlin__body').addClass('exiting');
+			},3500);   
 
-                    setTimeout(function(){
-				        window.location.href=btn.href;
-				    },4000);
+                    	setTimeout(function(){
+				window.location.href=btn.href;
+			},4000);
 		    
                 };
                 do_ajax();
@@ -150,7 +149,7 @@ var Merlin = (function($){
 
 
     function ActivateLicense() {
-    	var body 				= $('.merlin__body');
+    	var body 		= $('.merlin__body');
         var complete, notice 	= $("#child-theme-text");
 
         function ajax_callback(r) {
@@ -187,18 +186,18 @@ var Merlin = (function($){
 
 
                 	setTimeout(function(){
-				        $(".merlin__body").addClass('js--finished');
-				    },1500);
+				$(".merlin__body").addClass('js--finished');
+			},1500);
 
                 	body.removeClass( drawer_opened );
 
                 	setTimeout(function(){
-				        $('.merlin__body').addClass('exiting');
-				    },3500);   
+				$('.merlin__body').addClass('exiting');
+			},3500);   
 
-                    setTimeout(function(){
-				        window.location.href=btn.href;
-				    },4000);
+                    	setTimeout(function(){
+				window.location.href=btn.href;
+			},4000);
 		    
                 };
                 do_ajax();
