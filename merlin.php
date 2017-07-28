@@ -109,11 +109,18 @@ class Merlin {
 	protected $child_action_btn_url = null;
 
 	/**
-	 * Turn on debug mode to get some help.
+	 * Turn on help mode to get some help.
 	 *
 	 * @var string $child_action_btn_url
 	 */
 	protected $help_mode = false;
+
+	/**
+	 * Turn on dev mode if you're developing.
+	 *
+	 * @var string $child_action_btn_url
+	 */
+	protected $dev_mode = false;
 
 	/**
 	 * The URL for the "Learn more about child themes" link.
@@ -123,6 +130,20 @@ class Merlin {
 	protected $branding = false;
 
 	/**
+	 * Setup plugin version.
+	 *
+	 * @access private
+	 * @since 1.0
+	 * @return void
+	 */
+	private function version() {
+
+		if ( ! defined( 'MERLIN_VERSION' ) ) {
+			define( 'MERLIN_VERSION', '1.0' );
+		}
+	}
+
+	/**
 	 * Class Constructor.
 	 *
 	 * @param array $config Package-specific configuration args.
@@ -130,12 +151,15 @@ class Merlin {
 	 */
 	function __construct( $config = array(), $strings = array() ) {
 
+		$this->version();
+
 		$config = wp_parse_args( $config, array(
 			'directory' => '',
 			'demo_directory' => '',
 			'merlin_url' => 'merlin',
 			'child_action_btn_url' => '',
 			'help_mode' => '',
+			'dev_mode' => '',
 			'branding' => '',
 		) );
 
@@ -145,6 +169,7 @@ class Merlin {
 		$this->merlin_url			= $config['merlin_url'];
 		$this->child_action_btn_url = $config['child_action_btn_url'];
 		$this->help_mode 			= $config['help_mode'];
+		$this->dev_mode 			= $config['dev_mode'];
 		$this->branding 			= $config['branding'];
 
 		// Strings passed in from the config file.
@@ -154,14 +179,17 @@ class Merlin {
 		$this->theme 				= wp_get_theme();
 		$this->slug  				= strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->get( 'Name' ) ) );
 
-		// Has this theme been setup yet?
-		// Comment this if you're testing.
-		// $already_setup 			= get_option( 'merlin_' . $this->slug . '_completed' );
+		// Is Dev Mode turned on?
+		if ( true != $this->dev_mode ) {
 
-		// // Return if Merlin has already completed it's setup.
-		// if ( $already_setup ) {
-		// 	return;
-		// }
+			// Has this theme been setup yet?
+			$already_setup 			= get_option( 'merlin_' . $this->slug . '_completed' );
+
+			// Return if Merlin has already completed it's setup.
+			if ( $already_setup ) {
+				return;
+			}
+		}
 
 		// Get TGMPA.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
@@ -325,11 +353,14 @@ class Merlin {
 
 		$this->step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) : current( array_keys( $this->steps ) );
 
+		// Use minified libraries if dev mode is turned on.
+		$suffix = ( ( true == $this->dev_mode ) ) ? '' : '.min';
+
 		// Enqueue styles.
-		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/css/merlin.css' ), array( 'wp-admin' ), '@@pkg.version' );
+		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
 
 		// Enqueue javascript.
-		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/js/merlin.js' ), array( 'jquery-core' ), '@@pkg.version' );
+		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
 
 		// Localize the javascript.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
