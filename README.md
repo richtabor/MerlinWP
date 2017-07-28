@@ -3,6 +3,24 @@ Better WordPress Theme Onboarding — Read about it here: https://richtabor.com/
 
 ## License
 
+Merlin WP has three kinds of licenses: open-source, commercial, and OEM.
+
+### Open Source License
+
+The open source license is designed for you to use Merlin WP to build open source and personal projects. The Merlin WP open source license is [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html). The GPLv3 has many terms, but the most important is how [it is sticky when you distribute your work publicly](https://www.gnu.org/licenses/gpl-3.0.html#section5). From the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic "GPL FAQ"):
+
+> If you release the modified version to the public in some way, the GPL requires you to make the modified source code available to the program's users, under the GPL.
+
+Releasing your project that uses Merlin WP under the GPLv3, in turn, requires your project to be licensed under the GPLv3. If you are okay with this, feel free to use Merlin WP under the GPLv3, without purchasing a commercial license.
+
+### Commercial License
+
+The commercial license is designed to for you to use Merlin WP in commercial products and applications, without the provisions of the GPLv3. With the commercial license, your code is kept propietary, to yourself. If you want to use Merlin WP to develop commercial sites, themes, projects, and applications, the commercial license is the appropriate license.
+
+### Commercial OEM license
+  
+If you want to include Merlin WP as part of a commercial interface builder, SDK, or toolkit, choose the Commercial OEM license. Commercial OEM licenses are customized for each customer. Contact hi@merlinwp.com.
+
 ## Add Merlin WP to your theme
 Let's get you set up to use Merlin WP! First off, download!
 
