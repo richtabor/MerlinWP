@@ -1,11 +1,19 @@
 # [Merlin WP](https://merlinwp.com)
 #### Better WordPress Theme Onboarding 
 
-Merlin WP is my stab at addressing the tedious and exhausting WordPress theme setup and onboarding process. It makes installing a new WordPress theme, its recommended WordPress plugins, Customizer settings, widgets, and demo content, an exciting and gratifying user experience. Read about it here: https://richtabor.com/merlin-wp
+Merlin WP is my stab at addressing the tedious and exhausting WordPress theme setup and onboarding process. It makes installing a new WordPress theme, its recommended WordPress plugins, Customizer settings, widgets, and demo content, an exciting and gratifying user experience. 
+
+Read about Merlin WP here: https://richtabor.com/merlin-wp
+
+## Beta & Testing
+
+Merlin WP is currently in beta, it's not suggested to use Merlin WP in live products just yet. There's still a few kinks and features to be added. If you run into anything, raise an [issue](https://github.com/richtabor/MerlinWP/issues) and let's work on it.
+
+In the package, I've included a fork of one of my themes, [York Pro](https://themebeans.com/themes/york-pro), with Merlin WP already integrated. If you want to run a live test of Merlin WP, install this theme anywhere and give it a spin.
 
 ## License
 
-Merlin WP has three kinds of licenses: open-source, commercial, and OEM.
+Merlin WP has three kinds of licenses: open-source, commercial, and OEM. The commercial and OEM licenses will be available once Merlin WP is out of beta.
 
 ### 1. Open Source License
 
@@ -27,7 +35,7 @@ If you want to include Merlin WP as part of a commercial interface builder, SDK,
 ## Usage
 
 ### 1. Add Merlin WP to your theme
-Let's get you set up to use Merlin WP! First off, download and add the add the /merlin/ folder and the merlin-config.php file into your theme. Next, include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. 
+Let's get you set up to use Merlin WP! First off, download and add the add the unzipped `/merlin/` folder (within the `/dist/` directory) and the merlin-config.php file into your theme. Next, include the Merlin class (`merlin/merlin.php`) and the `merlin-config.php` file. 
 
 Refer to the example below:
 ```
