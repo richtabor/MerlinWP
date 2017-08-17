@@ -70,17 +70,17 @@ $wizard = new Merlin(
 		'license' 			=> esc_html__( 'Add your license key to activate one-click updates and theme support.' , '@@textdomain' ),
 		'license-action-link' 		=> esc_html__( 'More info' , '@@textdomain' ),
 
-		'license-link-1'            	=> wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-2'            	=> wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-3'           	=> wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-1'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-2'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://themebeans.com/contact/', esc_html__( 'Get Theme Support', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'license-link-3'           	=> wp_kses( sprintf( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', esc_html__( 'Start Customizing', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 
 		'ready-header' 			=> esc_html__( 'All done. Have fun!' , '@@textdomain' ),
 		'ready%s' 			=> esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
 		'ready-action-link' 		=> esc_html__( 'Extras' , '@@textdomain' ),
 		'ready-big-button' 		=> esc_html__( 'View your website' , '@@textdomain' ),
 
-		'ready-link-1'              	=> wp_kses( sprintf( __( '<a href="https://wordpress.org/support/" target="_blank">%s</a>', '@@textdomain' ), 'Explore WordPress' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-2'              	=> wp_kses( sprintf( __( '<a href="https://themebeans.com/contact/" target="_blank">%s</a>', '@@textdomain' ), 'Get Theme Support' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-3'             	=> wp_kses( sprintf( __( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', '@@textdomain' ), 'Start Customizing' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-1'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-2'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://themebeans.com/contact/', esc_html__( 'Get Theme Support', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		'ready-link-3'           	=> wp_kses( sprintf( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', esc_html__( 'Start Customizing', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 	)
 );
