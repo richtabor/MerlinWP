@@ -1545,7 +1545,7 @@ class Merlin {
 					continue;
 				}
 				$content[ $slug ]['title'] = ucwords( $slug );
-				$content[ $slug ]['description'] = esc_html__( 'Sample', '@@textdomain' ) . ' ' . $slug . ' ' . esc_html__( 'data.', '@@textdomain' );
+				$content[ $slug ]['description'] = sprintf( esc_html__( 'Sample %s data.', '@@textdomain' ), $slug );
 				$content[ $slug ]['pending'] = esc_html__( 'Pending', '@@textdomain' );
 				$content[ $slug ]['installing'] = esc_html__( 'Installing', '@@textdomain' );
 				$content[ $slug ]['success'] = esc_html__( 'Success', '@@textdomain' );
