@@ -8,6 +8,18 @@
 		// text-align: left;
 		// padding-left: 20px;
 		// padding-right: 20px;
+		cursor: pointer;
+
+		> strong {
+			display: none;
+			position: absolute;
+			margin-left: -25px;
+			margin-top: 3px;
+		}
+
+		&.selected > strong {
+			display: inline-block;
+		}
 	}
 
 	li span {
@@ -26,7 +38,7 @@
 		// top: 1px;
 		// transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
 	}
-	
+
 	li .spinner {
 		display: inline-block;
 		position: absolute;
@@ -37,7 +49,7 @@
 		transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
 	}
 
-	&.installing li .spinner {
+	&.installing li.selected .spinner {
 		opacity:1;
 	}
 
