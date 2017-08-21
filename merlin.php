@@ -348,7 +348,9 @@ class Merlin {
 			return;
 		}
 
-		ob_end_clean();
+		if ( ob_get_length() ) {
+			ob_end_clean();
+		}
 
 		$this->step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) : current( array_keys( $this->steps ) );
 
