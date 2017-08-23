@@ -1,7 +1,8 @@
-# [Merlin WP](https://merlinwp.com)
-#### Better WordPress Theme Onboarding 
+# Merlin WP
 
-Merlin WP is my stab at addressing the tedious and exhausting WordPress theme setup and onboarding process. It makes installing a new WordPress theme, its recommended WordPress plugins, Customizer settings, widgets, and demo content, an exciting and gratifying user experience. 
+Better WordPress Theme Onboarding.
+
+[Merlin WP](https://merlinwp.com) is my stab at addressing the tedious and exhausting WordPress theme setup and onboarding process. It makes installing a new WordPress theme, its recommended WordPress plugins, Customizer settings, widgets, and demo content, an exciting and gratifying user experience. 
 
 Read about Merlin WP here: https://richtabor.com/merlin-wp
 
