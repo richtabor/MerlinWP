@@ -58,12 +58,12 @@ $wizard = new Merlin(
 
 		'plugins-header' 		=> esc_html__( 'Install Plugins' , '@@textdomain' ),
 		'plugins-header-success' 	=> esc_html__( 'You\'re up to speed!' , '@@textdomain' ),
-		'plugins' 			=> esc_html__( 'Let’s install some essential WordPress plugins to get your site up to speed.' , '@@textdomain' ),
+		'plugins' 			=> esc_html__( 'Let\'s install some essential WordPress plugins to get your site up to speed.' , '@@textdomain' ),
 		'plugins-success%s' 		=> esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.' , '@@textdomain' ),
 		'plugins-action-link' 		=> esc_html__( 'Advanced' , '@@textdomain' ),
 
 		'import-header' 		=> esc_html__( 'Import Content' , '@@textdomain' ),
-		'import' 			=> esc_html__( 'Let’s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
+		'import' 			=> esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
 		'import-action-link' 		=> esc_html__( 'Advanced' , '@@textdomain' ),
 
 		'license-header%s' 		=> esc_html__( 'Activate %s' , '@@textdomain' ),
