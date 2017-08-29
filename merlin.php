@@ -646,7 +646,7 @@ class Merlin {
 			'view'    => array( $this, 'ready' ),
 		);
 
-		$this->steps = apply_filters( $this->theme . '_merlin_steps', $this->steps );
+		$this->steps = apply_filters( $this->theme->template . '_merlin_steps', $this->steps );
 	}
 
 	/**
