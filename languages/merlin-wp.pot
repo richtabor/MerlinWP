@@ -3,19 +3,118 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Merlin WP\n"
-"Report-Msgid-Bugs-To: https://merlinwp.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
 "Language-Team: Merlin WP\n"
+"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
+"Report-Msgid-Bugs-To: https://merlinwp.com\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: merlin.php:509
+msgid "Please define default parameters in the form of an array."
+msgstr ""
+
+#: merlin.php:514
+msgid "Please define an SVG icon filename."
+msgstr ""
+
+#: merlin.php:608
+msgid "Welcome"
+msgstr ""
+
+#: merlin.php:615
+msgid "Child"
+msgstr ""
+
+#: merlin.php:622
+msgid "Plugins"
+msgstr ""
+
+#: merlin.php:639
+msgid "Content"
+msgstr ""
+
+#: merlin.php:645
+msgid "Ready"
+msgstr ""
+
+#: merlin.php:893
+msgid "Install"
+msgstr ""
+
+#: merlin.php:896
+msgid "Update"
+msgstr ""
+
+#: merlin.php:899
+msgid "Activate"
+msgstr ""
+
+#: merlin.php:901
+msgid " and "
+msgstr ""
+
+#: merlin.php:1424
+msgid "Activating"
+msgstr ""
+
+#: merlin.php:1441
+msgid "Updating"
+msgstr ""
+
+#: merlin.php:1458, merlin.php:1557, merlin.php:1570, merlin.php:1583, merlin.php:1596
+msgid "Installing"
+msgstr ""
+
+#: merlin.php:1469, merlin.php:1558, merlin.php:1571, merlin.php:1584, merlin.php:1597
+msgid "Success"
+msgstr ""
+
+#: merlin.php:1488
+msgid "Invalid content!"
+msgstr ""
+
+#: merlin.php:1526
+msgid "Error"
+msgstr ""
+
+#: merlin.php:1555
+msgid "Sample %s data."
+msgstr ""
+
+#: merlin.php:1556, merlin.php:1569, merlin.php:1582, merlin.php:1595
+msgid "Pending"
+msgstr ""
+
+#: merlin.php:1567
+msgid "Widgets"
+msgstr ""
+
+#: merlin.php:1568
+msgid "Sample widgets data."
+msgstr ""
+
+#: merlin.php:1580
+msgid "Sliders"
+msgstr ""
+
+#: merlin.php:1581
+msgid "Sample sliders data."
+msgstr ""
+
+#: merlin.php:1593
+msgid "Options"
+msgstr ""
+
+#: merlin.php:1594
+msgid "Sample theme options data."
+msgstr ""
 
 #: includes/class-merlin-importer.php:97
 msgid "This user is created while installing demo content. You should delete or modify this user&#8217;s information now."
@@ -55,108 +154,4 @@ msgstr ""
 
 #: includes/class-merlin-xml-parser.php:263
 msgid "Could not open the file for parsing"
-msgstr ""
-
-#: merlin.php:509
-msgid "Please define default parameters in the form of an array."
-msgstr ""
-
-#: merlin.php:514
-msgid "Please define an SVG icon filename."
-msgstr ""
-
-#: merlin.php:608
-msgid "Welcome"
-msgstr ""
-
-#: merlin.php:615
-msgid "Child"
-msgstr ""
-
-#: merlin.php:622
-msgid "Plugins"
-msgstr ""
-
-#: merlin.php:631
-msgid "License"
-msgstr ""
-
-#: merlin.php:639
-msgid "Content"
-msgstr ""
-
-#: merlin.php:645
-msgid "Ready"
-msgstr ""
-
-#: merlin.php:891
-msgid "Install"
-msgstr ""
-
-#: merlin.php:894
-msgid "Update"
-msgstr ""
-
-#: merlin.php:897
-msgid "Activate"
-msgstr ""
-
-#: merlin.php:899
-msgid "and"
-msgstr ""
-
-#: merlin.php:1422
-msgid "Activating"
-msgstr ""
-
-#: merlin.php:1438
-msgid "Updating"
-msgstr ""
-
-#: merlin.php:1454, merlin.php:1552, merlin.php:1565, merlin.php:1578, merlin.php:1591
-msgid "Installing"
-msgstr ""
-
-#: merlin.php:1464, merlin.php:1553, merlin.php:1566, merlin.php:1579, merlin.php:1592
-msgid "Success"
-msgstr ""
-
-#: merlin.php:1483
-msgid "Invalid content!"
-msgstr ""
-
-#: merlin.php:1521
-msgid "Error"
-msgstr ""
-
-#: merlin.php:1550
-msgid "Sample %s data."
-msgstr ""
-
-#: merlin.php:1551, merlin.php:1564, merlin.php:1577, merlin.php:1590
-msgid "Pending"
-msgstr ""
-
-#: merlin.php:1562
-msgid "Widgets"
-msgstr ""
-
-#: merlin.php:1563
-msgid "Sample widgets data."
-msgstr ""
-
-#: merlin.php:1575
-msgid "Sliders"
-msgstr ""
-
-#: merlin.php:1576
-msgid "Sample sliders data."
-msgstr ""
-
-#: merlin.php:1588
-msgid "Options"
-msgstr ""
-
-#: merlin.php:1589
-msgid "Sample theme options data."
 msgstr ""

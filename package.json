@@ -1,11 +1,34 @@
 {
 	"name": "Merlin WP",
-	"slug": "merlin-wp",  
+	"slug": "merlin-wp",
 	"textdomain": "merlin-wp",
 	"version": "0.1.1",
 	"theme_uri": "https://merlinwp.com",
 	"author": "Rich Tabor <hello@merlinwp.com>",
 	"author_uri": "https://merlinwp.com",
 	"author_shop": "Merlin WP",
-	"license": "Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use"
+	"license": "Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use",
+	"devDependencies": {
+		"browser-sync": "^2.18.13",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^4.0.0",
+		"gulp-cache": "^0.4.6",
+		"gulp-clean": "^0.3.2",
+		"gulp-clean-css": "^3.7.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-copy": "^1.0.1",
+		"gulp-csscomb": "^3.0.8",
+		"gulp-filter": "^5.0.1",
+		"gulp-line-ending-corrector": "^1.0.1",
+		"gulp-notify": "^3.0.0",
+		"gulp-rename": "^1.2.2",
+		"gulp-replace-task": "^0.11.0",
+		"gulp-run-sequence": "^0.3.2",
+		"gulp-sass": "^3.1.0",
+		"gulp-sort": "^2.0.0",
+		"gulp-uglify": "^3.0.0",
+		"gulp-wp-pot": "^2.0.6",
+		"gulp-zip": "^4.0.0",
+		"relo": "^1.0.0"
+	}
 }

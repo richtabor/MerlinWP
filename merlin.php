@@ -138,7 +138,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '1.0' );
+			define( 'MERLIN_VERSION', '0.1.1' );
 		}
 	}
 
@@ -646,7 +646,7 @@ class Merlin {
 			'view'    => array( $this, 'ready' ),
 		);
 
-		$this->steps = apply_filters( $this->theme . '_merlin_steps', $this->steps );
+		$this->steps = apply_filters( $this->theme->template . '_merlin_steps', $this->steps );
 	}
 
 	/**
@@ -881,7 +881,7 @@ class Merlin {
 
 					<li data-slug="<?php echo esc_attr( $slug ); ?>">
 
-						<strong class="dashicons dashicons-yes"></strong>
+						<i></i>
 
 						<?php echo esc_html( $plugin['name'] ); ?>
 
@@ -898,7 +898,7 @@ class Merlin {
 							if ( isset( $plugins['activate'][ $slug ] ) ) {
 								$keys[] = esc_html__( 'Activate', '@@textdomain' );
 							}
-							echo implode( esc_html__( 'and', '@@textdomain' ) , $keys );
+							echo implode( esc_html__( ' and ', '@@textdomain' ) , $keys );
 							?>
 
 						</span>
@@ -982,7 +982,7 @@ class Merlin {
 
 			<div class="merlin__content--transition">
 
-				<input autofocus id="theme_license_key" class="merlin__input" name="theme_license_key" type="text" value="<?php echo esc_attr( $license ); ?>" />
+				<?php do_action( $this->theme->template . '_merlin_license_form' ) ?>
 
 				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
@@ -1404,7 +1404,7 @@ class Merlin {
 	function _ajax_plugins() {
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['slug'] ) ) {
-			exit( 0 );
+			wp_send_json( array( 'error' => 1, 'message' => esc_html__( 'No slug found.', 'merlin-wp' ) ) );
 		}
 
 		$json = array();
@@ -1422,6 +1422,7 @@ class Merlin {
 					'action'        => 'tgmpa-bulk-activate',
 					'action2'       => - 1,
 					'message'       => esc_html__( 'Activating', '@@textdomain' ),
+					'css_class'		=> 'activating'
 				);
 				break;
 			}
@@ -1438,6 +1439,7 @@ class Merlin {
 					'action'        => 'tgmpa-bulk-update',
 					'action2'       => - 1,
 					'message'       => esc_html__( 'Updating', '@@textdomain' ),
+					'css_class'		=> 'updating'
 				);
 				break;
 			}
@@ -1454,6 +1456,7 @@ class Merlin {
 					'action'        => 'tgmpa-bulk-install',
 					'action2'       => - 1,
 					'message'       => esc_html__( 'Installing', '@@textdomain' ),
+					'css_class'		=> 'installing'
 				);
 				break;
 			}
@@ -1463,7 +1466,7 @@ class Merlin {
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
-			wp_send_json( array( 'done' => 1, 'message' => esc_html__( 'Success', '@@textdomain' ) ) );
+			wp_send_json( array( 'done' => 1, 'message' => esc_html__( 'Success', '@@textdomain' ), 'css_class' => 'success' ) );
 		}
 
 		exit;
