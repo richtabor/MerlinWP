@@ -77,86 +77,82 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:631
-msgid "License"
-msgstr ""
-
-#: merlin.php:639
+#: merlin.php:630
 msgid "Content"
 msgstr ""
 
-#: merlin.php:645
+#: merlin.php:636
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:891
+#: merlin.php:882
 msgid "Install"
 msgstr ""
 
-#: merlin.php:894
+#: merlin.php:885
 msgid "Update"
 msgstr ""
 
-#: merlin.php:897
+#: merlin.php:888
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:899
+#: merlin.php:890
 msgid "and"
 msgstr ""
 
-#: merlin.php:1422
+#: merlin.php:1275
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1438
+#: merlin.php:1291
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1454, merlin.php:1552, merlin.php:1565, merlin.php:1578, merlin.php:1591
+#: merlin.php:1307, merlin.php:1405, merlin.php:1418, merlin.php:1431, merlin.php:1444
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1464, merlin.php:1553, merlin.php:1566, merlin.php:1579, merlin.php:1592
+#: merlin.php:1317, merlin.php:1406, merlin.php:1419, merlin.php:1432, merlin.php:1445
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1483
+#: merlin.php:1336
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1521
+#: merlin.php:1374
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1550
+#: merlin.php:1403
 msgid "Sample %s data."
 msgstr ""
 
-#: merlin.php:1551, merlin.php:1564, merlin.php:1577, merlin.php:1590
+#: merlin.php:1404, merlin.php:1417, merlin.php:1430, merlin.php:1443
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1562
+#: merlin.php:1415
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1563
+#: merlin.php:1416
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1575
+#: merlin.php:1428
 msgid "Sliders"
 msgstr ""
 
-#: merlin.php:1576
+#: merlin.php:1429
 msgid "Sample sliders data."
 msgstr ""
 
-#: merlin.php:1588
+#: merlin.php:1441
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1589
+#: merlin.php:1442
 msgid "Sample theme options data."
 msgstr ""
