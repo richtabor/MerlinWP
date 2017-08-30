@@ -138,7 +138,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '1.0.2' );
+			define( 'MERLIN_VERSION', '0.1.2' );
 		}
 	}
 
