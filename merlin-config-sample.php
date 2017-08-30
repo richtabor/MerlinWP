@@ -23,7 +23,7 @@ $wizard = new Merlin(
 		'merlin_url'			=> 'merlin',					// Customize the page URL where Merlin WP loads.
 		'child_action_btn_url'		=> 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
 		'help_mode'			=> false,					// Set to true to turn on the little wizard helper.
-		'dev_mode'			=> false,					// Set to true if you're testing or developing.
+		'dev_mode'			=> true,					// Set to true if you're testing or developing.
 		'branding'			=> false,					// Set to false to remove Merlin WP's branding.
 	),
 	// Text strings.
@@ -41,7 +41,6 @@ $wizard = new Merlin(
 		'btn-child-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
 		'btn-content-install' 		=> esc_html__( 'Install' , '@@textdomain' ),
 		'btn-import' 			=> esc_html__( 'Import' , '@@textdomain' ),
-		'btn-license-activate' 		=> esc_html__( 'Activate' , '@@textdomain' ),
 
 		'welcome-header%s' 		=> esc_html__( 'Welcome to %s' , '@@textdomain' ),
 		'welcome-header-success%s' 	=> esc_html__( 'Hi. Welcome back' , '@@textdomain' ),
@@ -65,14 +64,6 @@ $wizard = new Merlin(
 		'import-header' 		=> esc_html__( 'Import Content' , '@@textdomain' ),
 		'import' 			=> esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
 		'import-action-link' 		=> esc_html__( 'Advanced' , '@@textdomain' ),
-
-		'license-header%s' 		=> esc_html__( 'Activate %s' , '@@textdomain' ),
-		'license' 			=> esc_html__( 'Add your license key to activate one-click updates and theme support.' , '@@textdomain' ),
-		'license-action-link' 		=> esc_html__( 'More info' , '@@textdomain' ),
-
-		'license-link-1'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-2'            	=> wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://themebeans.com/contact/', esc_html__( 'Get Theme Support', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'license-link-3'           	=> wp_kses( sprintf( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', esc_html__( 'Start Customizing', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
 
 		'ready-header' 			=> esc_html__( 'All done. Have fun!' , '@@textdomain' ),
 		'ready%s' 			=> esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
