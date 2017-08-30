@@ -1,3 +1,6 @@
 .github/
 /dist/merlin/
+/node_modules/
 *.cache
+*.bak
+package-lock.json

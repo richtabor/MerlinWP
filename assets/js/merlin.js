@@ -25,7 +25,7 @@ var Merlin = (function($){
 
     function window_loaded(){
 
-    	var 
+    	var
     	body 		= $('.merlin__body'),
     	body_loading 	= $('.merlin__body--loading'),
     	body_exiting 	= $('.merlin__body--exiting'),
@@ -35,7 +35,7 @@ var Merlin = (function($){
 
     	setTimeout(function(){
 	        body.addClass('loaded');
-	    },100); 
+	    },100);
 
     	drawer_trigger.on('click', function(){
         	body.toggleClass( drawer_opened );
@@ -49,7 +49,7 @@ var Merlin = (function($){
 
 		    setTimeout(function(){
 		        window.location = goTo;
-		    },400);       
+		    },400);
 		});
 
         $(".merlin__button--closer").on('click', function(e){
@@ -61,11 +61,11 @@ var Merlin = (function($){
 
 		    setTimeout(function(){
 		        body.addClass('exiting');
-		    },600);   
-		    
+		    },600);
+
 		    setTimeout(function(){
 		        window.location = goTo;
-		    },1100);   
+		    },1100);
         });
 
         $(".button-next").on( "click", function(e) {
@@ -83,6 +83,10 @@ var Merlin = (function($){
                 return true;
             }
         });
+
+		$(".merlin__drawer--install-plugins").on("click", "li", function() {
+			$( this ).toggleClass("selected");
+		});
     }
 
     function ChildTheme() {
@@ -90,17 +94,17 @@ var Merlin = (function($){
         var complete, notice 	= $("#child-theme-text");
 
         function ajax_callback(r) {
-            
+
             if (typeof r.done !== "undefined") {
             	setTimeout(function(){
 			        notice.addClass("lead");
-			    },0); 
+			    },0);
 			    setTimeout(function(){
 			        notice.addClass("success");
 			        notice.html(r.message);
-			    },600); 
-			    
-                
+			    },600);
+
+
                 complete();
             } else {
                 notice.addClass("lead error");
@@ -127,12 +131,12 @@ var Merlin = (function($){
 
                 	setTimeout(function(){
 				$('.merlin__body').addClass('exiting');
-			},3500);   
+			},3500);
 
                     	setTimeout(function(){
 				window.location.href=btn.href;
 			},4000);
-		    
+
                 };
                 do_ajax();
             }
@@ -153,17 +157,17 @@ var Merlin = (function($){
         var complete, notice 	= $("#child-theme-text");
 
         function ajax_callback(r) {
-            
+
             if (typeof r.done !== "undefined") {
             	setTimeout(function(){
 			        notice.addClass("lead");
-			    },0); 
+			    },0);
 			    setTimeout(function(){
 			        notice.addClass("success");
 			        notice.html(r.message);
-			    },600); 
-			    
-                
+			    },600);
+
+
                 complete();
             } else {
                 notice.addClass("lead error");
@@ -172,11 +176,19 @@ var Merlin = (function($){
         }
 
         function do_ajax() {
-        	childThemeName = $("#theme_license_key").val();
+        	var data = $('.merlin__content--license > form').serializeArray(),
+				newData = {};
+
+			data.forEach(function(item) {
+				if ( '_wpnonce' !== item.name && '_wp_http_referer' !== item.name ) {
+					newData[item.name] = item.value;
+				}
+			});
+
             jQuery.post(merlin_params.ajaxurl, {
                 action: "merlin_activate_license",
                 wpnonce: merlin_params.wpnonce,
-                cThemeName: childThemeName
+                cThemeData: newData
             }, ajax_callback).fail(ajax_callback);
         }
 
@@ -193,12 +205,12 @@ var Merlin = (function($){
 
                 	setTimeout(function(){
 				$('.merlin__body').addClass('exiting');
-			},3500);   
+			},3500);
 
                     	setTimeout(function(){
 				window.location.href=btn.href;
 			},4000);
-		    
+
                 };
                 do_ajax();
             }
@@ -226,16 +238,19 @@ var Merlin = (function($){
         function ajax_callback(response){
             if(typeof response === "object" && typeof response.message !== "undefined"){
                 $current_node.find("span").text(response.message);
+				$current_node.removeClass('installing activating updating error success').addClass(response.css_class);
                 if(typeof response.url != "undefined"){
                     // we have an ajax url action to perform.
 
                     if(response.hash == current_item_hash){
                         $current_node.find("span").text("failed");
+						$current_node.removeClass('installing activating updating error success').addClass('error');
                         find_next();
                     }else {
                         current_item_hash = response.hash;
                         jQuery.post(response.url, response, function(response2) {
                             process_current();
+							$current_node.removeClass('installing activating updating error success').addClass(response.css_class);
                         }).fail(ajax_callback);
                     }
 
@@ -248,7 +263,8 @@ var Merlin = (function($){
                 }
             }else{
                 // error - try again with next plugin
-                $current_node.find("span").text("Success");
+                $current_node.find("span").text("Ajax Error");
+				$current_node.removeClass('installing activating updating error success').addClass('error');
                 find_next();
             }
         }
@@ -272,11 +288,12 @@ var Merlin = (function($){
                 }
                 $current_node.find(".spinner").css("visibility","hidden");
             }
-            var $li = $(".merlin__drawer--install-plugins li");
+            var $li = $(".merlin__drawer--install-plugins li.selected");
             $li.each(function(){
                 if(current_item == "" || do_next){
                     current_item = $(this).data("slug");
                     $current_node = $(this);
+					$current_node.removeClass('installing activating updating error success').addClass('installing');
                     process_current();
                     do_next = false;
                 }else if($(this).data("slug") == current_item){
@@ -302,7 +319,7 @@ var Merlin = (function($){
 
                 	setTimeout(function(){
 				        $('.merlin__body').addClass('exiting');
-				    },3000);   
+				    },3000);
 
                     setTimeout(function(){
 				        window.location.href=btn.href;
@@ -409,7 +426,7 @@ var Merlin = (function($){
 
                 	setTimeout(function(){
 				        $('.merlin__body').addClass('exiting');
-				    },3400);   
+				    },3400);
 
                     setTimeout(function(){
 				        window.location.href=btn.href;
@@ -431,9 +448,9 @@ var Merlin = (function($){
         var completed = false;
 
         var _modifier = $button.is("input") || $button.is("button") ? "val" : "text";
-        
+
         $button.data("done-loading","yes");
-        
+
         $button.addClass("merlin__button--loading");
 
         return {

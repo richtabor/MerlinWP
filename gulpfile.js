@@ -11,12 +11,12 @@ var projectURL              = 'http://demo.merlinwp.dev/wp-admin/themes.php?page
 
 // Translations.
 var text_domain             = '@@textdomain';
-var destFile                = slug+'.pot';
+var destFile                = slug + '.pot';
 var packageName             = project;
 var bugReport               = pkg.author_uri;
 var lastTranslator          = pkg.author;
 var team                    = pkg.author_shop;
-var translatePath           = './languages';
+var translatePath           = './languages/';
 var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters.php' ];
 
 // Styles.
@@ -35,7 +35,7 @@ var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files in
 var projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
 
 // Build files.
-var buildFiles      	    = ['./**', '!dist/', '!.gitattributes', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
+var buildFiles      	    = ['./**', '!dist/', '!.gitattributes', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php', '!node_modules/**' ];
 var buildDestination        = './dist/merlin/';
 var distributionFiles       = './dist/merlin/**/*';
 
@@ -119,7 +119,7 @@ gulp.task('styles', function () {
 
 	.pipe( gulp.dest( merlinStyleDestination ) )
 
-	.pipe( browserSync.stream() ) 
+	.pipe( browserSync.stream() )
 
 	.pipe( rename( { suffix: '.min' } ) )
 
@@ -144,7 +144,7 @@ gulp.task( 'scripts', function() {
 	.pipe( uglify() )
 	.pipe( lineec() )
 	.pipe( gulp.dest( merlinScriptDestination ) )
-	
+
 });
 
 gulp.task( 'default', ['clear', 'styles', 'scripts', 'browser_sync' ], function () {
@@ -159,17 +159,16 @@ gulp.task( 'default', ['clear', 'styles', 'scripts', 'browser_sync' ], function 
 gulp.task( 'build-translate', function () {
 
 	gulp.src( translatableFiles )
-
 	.pipe( sort() )
 	.pipe( wpPot( {
 		domain        : text_domain,
-		destFile      : destFile,
+		//destFile      : destFile,
 		package       : project,
 		bugReport     : bugReport,
 		lastTranslator: lastTranslator,
 		team          : team
 	} ))
-	.pipe( gulp.dest( translatePath ) )
+	.pipe( gulp.dest( translatePath + destFile ) )
 
 });
 
