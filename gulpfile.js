@@ -35,7 +35,7 @@ var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files in
 var projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
 
 // Build files.
-var buildFiles      	    = ['./**', '!dist/', '!.gitattributes', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
+var buildFiles      	    = ['./**', '!dist/', '!.gitattributes', '!phpcs.ruleset.xml', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
 var buildDestination        = './dist/merlin/';
 var distributionFiles       = './dist/merlin/**/*';
 
@@ -196,10 +196,6 @@ gulp.task('build-variables', ['build-clean-and-copy'], function () {
 		{
 			match: 'textdomain',
 			replacement: pkg.textdomain
-		},
-		{
-			match: /^			define\( 'MERLIN_VERSION'.*$/m,
-			replacement: '			define( \'MERLIN_VERSION\', '+version+' );'
 		}
 		]
 	}))
