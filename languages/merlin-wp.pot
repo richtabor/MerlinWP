@@ -45,7 +45,7 @@ msgstr ""
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr ""
 
-#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:274
+#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:277
 msgid "Invalid WXR file."
 msgstr ""
 
@@ -53,106 +53,106 @@ msgstr ""
 msgid "No XML parser found."
 msgstr ""
 
-#: includes/class-merlin-xml-parser.php:263
+#: includes/class-merlin-xml-parser.php:265
 msgid "Could not open the file for parsing"
 msgstr ""
 
-#: merlin.php:509
+#: merlin.php:500
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: merlin.php:514
+#: merlin.php:505
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: merlin.php:608
+#: merlin.php:599
 msgid "Welcome"
 msgstr ""
 
-#: merlin.php:615
+#: merlin.php:606
 msgid "Child"
 msgstr ""
 
-#: merlin.php:622
+#: merlin.php:613
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:630
+#: merlin.php:621
 msgid "Content"
 msgstr ""
 
-#: merlin.php:636
+#: merlin.php:627
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:882
+#: merlin.php:873
 msgid "Install"
 msgstr ""
 
-#: merlin.php:885
+#: merlin.php:876
 msgid "Update"
 msgstr ""
 
-#: merlin.php:888
+#: merlin.php:879
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:890
+#: merlin.php:881
 msgid "and"
 msgstr ""
 
-#: merlin.php:1275
+#: merlin.php:1268
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1291
+#: merlin.php:1284
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1307, merlin.php:1405, merlin.php:1418, merlin.php:1431, merlin.php:1444
+#: merlin.php:1300, merlin.php:1398, merlin.php:1411, merlin.php:1424, merlin.php:1437
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1317, merlin.php:1406, merlin.php:1419, merlin.php:1432, merlin.php:1445
+#: merlin.php:1310, merlin.php:1399, merlin.php:1412, merlin.php:1425, merlin.php:1438
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1336
+#: merlin.php:1329
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1374
+#: merlin.php:1367
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1403
+#: merlin.php:1396
 msgid "Sample %s data."
 msgstr ""
 
-#: merlin.php:1404, merlin.php:1417, merlin.php:1430, merlin.php:1443
+#: merlin.php:1397, merlin.php:1410, merlin.php:1423, merlin.php:1436
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1415
+#: merlin.php:1408
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1416
+#: merlin.php:1409
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1428
+#: merlin.php:1421
 msgid "Sliders"
 msgstr ""
 
-#: merlin.php:1429
+#: merlin.php:1422
 msgid "Sample sliders data."
 msgstr ""
 
-#: merlin.php:1441
+#: merlin.php:1434
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1442
+#: merlin.php:1435
 msgid "Sample theme options data."
 msgstr ""

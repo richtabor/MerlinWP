@@ -1,6 +1,6 @@
 <?php
 /**
- * Merlin
+ * Merlin WP
  * Better WordPress Theme Onboarding
  *
  * The following code is a derivative work from the
@@ -110,21 +110,21 @@ class Merlin {
 	/**
 	 * Turn on help mode to get some help.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $help_mode
 	 */
 	protected $help_mode = false;
 
 	/**
 	 * Turn on dev mode if you're developing.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $dev_mode
 	 */
 	protected $dev_mode = false;
 
 	/**
 	 * The URL for the "Learn more about child themes" link.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $branding
 	 */
 	protected $branding = false;
 
@@ -138,7 +138,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '0.1.2' );
+			define( 'MERLIN_VERSION', '0.1.3' );
 		}
 	}
 
@@ -166,7 +166,7 @@ class Merlin {
 		$this->directory 			= $config['directory'];
 		$this->demo_directory 			= $config['demo_directory'];
 		$this->merlin_url			= $config['merlin_url'];
-		$this->child_action_btn_url = $config['child_action_btn_url'];
+		$this->child_action_btn_url 		= $config['child_action_btn_url'];
 		$this->help_mode 			= $config['help_mode'];
 		$this->dev_mode 			= $config['dev_mode'];
 		$this->branding 			= $config['branding'];
@@ -208,7 +208,6 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
-		//add_filter( 'sidebars_widgets', array( $this, 'unset_sidebar_widgets' ) );
 	}
 
 	/**
@@ -262,22 +261,14 @@ class Merlin {
 
 	/**
 	 * Remove default sidebar widgets.
-	 *
-	 * @param array $sidebars_widgets An associative array of sidebars and their widgets.
-	 * @todo Only run this when Merlin has be initiated, not when a theme is activated.
 	 */
-	function unset_sidebar_widgets( $sidebars_widgets ) {
+	function unset_default_widgets() {
 
-		foreach ( $sidebars_widgets as $widget_area => $widget_list ) {
+		$widget_areas = array(
+			'sidebar-1' => array(),
+		);
 
-			foreach ( $widget_list as $pos => $widget_id ) {
-				if ( 'search-2' == $widget_id || 'recent-posts-2' == $widget_id || 'recent-comments-2' == $widget_id || 'archives-2' == $widget_id || 'categories-2' == $widget_id || 'meta-2' == $widget_id ) {
-					unset( $sidebars_widgets[ $widget_area ][ $pos ] );
-				}
-			}
-		}
-
-		return $sidebars_widgets;
+		update_option( 'sidebars_widgets', apply_filters( 'merlin_unset_default_widgets_args', $widget_areas ) );
 	}
 
 	/**
@@ -994,6 +985,8 @@ class Merlin {
 				<?php wp_nonce_field( 'merlin' ); ?>
 			</footer>
 		</form>
+
+		<?php $this->unset_default_widgets(); ?>
 
 	<?php
 	}
