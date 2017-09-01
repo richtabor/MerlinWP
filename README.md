@@ -47,7 +47,7 @@ Other settings:
 * `merlin_url` — the admin url where Merlin WP will exist
 * `child_action_btn_url` — the url for the child theme generator's "Learn more" link
 * `help_mode` — a wizard for your wizard, if you need help *(beta)*
-* `dev_mode` — retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files.
+* `dev_mode` — retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files. This is on by default during the beta.
 * `branding` — show Merlin WP's logo or not *(beta)*
 
 ### 3. Add your demo content
@@ -58,6 +58,13 @@ You'll want to add the following files:
 * `widgets.wie` — Exported widgets using [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/)
 * `customizer.dat` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
 
+### 4. Add filters
+Inside the pacakge download exists a `merlin-filters.php` file, which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's functions.php file. 
+
+You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done runing.
+
+### 5. Testing
+To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [WP Reset](https://wordpress.org/plugins/wp-reset/) plugin to reset and run through more tests. 
 
 ## Contributions
 Anyone is welcome to contribute to Merlin WP. Please read the [guidelines for contributing](https://github.com/richtabor/MerlinWP/blob/master/.github/contributing.md) to this repository.
