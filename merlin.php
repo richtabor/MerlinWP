@@ -264,6 +264,13 @@ class Merlin {
 	 */
 	function unset_default_widgets() {
 
+		$base_dir = get_parent_theme_file_path( $this->demo_directory );
+
+		// If the widgets.wie file does not exist, then let's not remove the default widgets, as there are none to replace them with.
+		if ( ! file_exists( $base_dir . 'widgets.wie' ) ) {
+			return;
+		}
+
 		$widget_areas = array(
 			'sidebar-1' => array(),
 		);
