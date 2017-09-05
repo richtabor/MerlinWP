@@ -7,7 +7,7 @@
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
- * @license   Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use
+ * @license   Licensed GPLv3 for open source use
  */
 
 /**
