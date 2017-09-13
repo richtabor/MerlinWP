@@ -1130,7 +1130,7 @@ class Merlin {
 
 			$wp_filesystem->mkdir( $path );
 			$wp_filesystem->put_contents( $path . '/style.css', $this->generate_child_style_css( $this->theme->template, $this->theme->name, $this->theme->author, $this->theme->version ) );
-			$wp_filesystem->put_contents( $path . '/functions.php', $this->generate_child_functions_php( $this->theme->template ) );
+			$wp_filesystem->put_contents( $path . '/functions.php', $this->generate_child_functions_php( $this->theme->template, $this->parent_style_deps ) );
 
 			if ( file_exists( $screenshot_png ) ) {
 				copy( $screenshot_png, $path . '/screenshot.png' );
