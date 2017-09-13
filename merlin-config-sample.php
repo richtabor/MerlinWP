@@ -25,6 +25,7 @@ $wizard = new Merlin(
 		'help_mode'			=> false,					// Set to true to turn on the little wizard helper.
 		'dev_mode'			=> true,					// Set to true if you're testing or developing.
 		'branding'			=> false,					// Set to false to remove Merlin WP's branding.
+		'parent_style_deps'			=> array(),					// Set array with dependecies for parent stylesheet (Used when creating Child Theme).
 	),
 	// Text strings.
 	$strings = array(
