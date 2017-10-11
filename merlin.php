@@ -160,6 +160,7 @@ class Merlin {
 			'help_mode' => '',
 			'dev_mode' => '',
 			'branding' => '',
+			'parent_style_deps' => '',
 		) );
 
 		// Set config arguments.
@@ -170,6 +171,7 @@ class Merlin {
 		$this->help_mode 			= $config['help_mode'];
 		$this->dev_mode 			= $config['dev_mode'];
 		$this->branding 			= $config['branding'];
+		$this->parent_style_deps 	= $config['parent_style_deps'];
 
 		// Strings passed in from the config file.
 		$this->strings 				= $strings;
@@ -1128,7 +1130,7 @@ class Merlin {
 
 			$wp_filesystem->mkdir( $path );
 			$wp_filesystem->put_contents( $path . '/style.css', $this->generate_child_style_css( $this->theme->template, $this->theme->name, $this->theme->author, $this->theme->version ) );
-			$wp_filesystem->put_contents( $path . '/functions.php', $this->generate_child_functions_php( $this->theme->template ) );
+			$wp_filesystem->put_contents( $path . '/functions.php', $this->generate_child_functions_php( $this->theme->template, $this->parent_style_deps ) );
 
 			if ( file_exists( $screenshot_png ) ) {
 				copy( $screenshot_png, $path . '/screenshot.png' );
@@ -1177,9 +1179,17 @@ class Merlin {
 	 *
 	 * @param string $slug Parent theme slug.
 	 */
-	function generate_child_functions_php( $slug ) {
+	function generate_child_functions_php( $slug, $parent_style_deps ) {
 
 		$slug_no_hyphens = strtolower( preg_replace( '#[^a-zA-Z]#', '', $slug ) );
+		$print_parent_style_deps = '';
+		if ( is_array( $parent_style_deps ) && ! empty( $parent_style_deps ) ) {
+			$print_parent_style_deps = ', array( ';
+			foreach ( $parent_style_deps as $dep ) {
+				$print_parent_style_deps .= "'{$dep}', ";
+			}
+			$print_parent_style_deps .= ' )';
+		}
 
 		$output = "
 			<?php
@@ -1201,7 +1211,7 @@ class Merlin {
 			 * @link https://codex.wordpress.org/Child_Themes
 			 */
 			function {$slug_no_hyphens}_child_enqueue_styles() {
-			    wp_enqueue_style( '{$slug}-style' , get_template_directory_uri() . '/style.css' );
+			    wp_enqueue_style( '{$slug}-style' , get_template_directory_uri() . '/style.css'{$print_parent_style_deps} );
 			    wp_enqueue_style( '{$slug}-child-style',
 			        get_stylesheet_directory_uri() . '/style.css',
 			        array( '{$slug}-style' ),
