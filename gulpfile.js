@@ -217,7 +217,7 @@ gulp.task( 'build-zip-and-clean', ['build-zip', 'build-clean-after-zip' ], funct
 
 gulp.task( 'build-notification', function () {
 	return gulp.src( '' )
-	.pipe( notify( { message: 'Your build of ' + packageName + ' is completed.', onLast: true } ) );
+	.pipe( notify( { message: 'Your build of ' + packageName + ' is complete.', onLast: true } ) );
 });
 
 gulp.task('build', function(callback) {
