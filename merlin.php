@@ -1,6 +1,6 @@
 <?php
 /**
- * Merlin
+ * Merlin WP
  * Better WordPress Theme Onboarding
  *
  * The following code is a derivative work from the
@@ -11,7 +11,7 @@
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
- * @license   Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use
+ * @license   Licensed GPLv3 for open source use
  */
 
 // Exit if accessed directly.
@@ -110,21 +110,21 @@ class Merlin {
 	/**
 	 * Turn on help mode to get some help.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $help_mode
 	 */
 	protected $help_mode = false;
 
 	/**
 	 * Turn on dev mode if you're developing.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $dev_mode
 	 */
 	protected $dev_mode = false;
 
 	/**
 	 * The URL for the "Learn more about child themes" link.
 	 *
-	 * @var string $child_action_btn_url
+	 * @var string $branding
 	 */
 	protected $branding = false;
 
@@ -138,7 +138,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '1.0' );
+			define( 'MERLIN_VERSION', '0.1.3' );
 		}
 	}
 
@@ -166,7 +166,7 @@ class Merlin {
 		$this->directory 			= $config['directory'];
 		$this->demo_directory 			= $config['demo_directory'];
 		$this->merlin_url			= $config['merlin_url'];
-		$this->child_action_btn_url = $config['child_action_btn_url'];
+		$this->child_action_btn_url 		= $config['child_action_btn_url'];
 		$this->help_mode 			= $config['help_mode'];
 		$this->dev_mode 			= $config['dev_mode'];
 		$this->branding 			= $config['branding'];
@@ -208,7 +208,6 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
-		//add_filter( 'sidebars_widgets', array( $this, 'unset_sidebar_widgets' ) );
 	}
 
 	/**
@@ -262,22 +261,21 @@ class Merlin {
 
 	/**
 	 * Remove default sidebar widgets.
-	 *
-	 * @param array $sidebars_widgets An associative array of sidebars and their widgets.
-	 * @todo Only run this when Merlin has be initiated, not when a theme is activated.
 	 */
-	function unset_sidebar_widgets( $sidebars_widgets ) {
+	function unset_default_widgets() {
 
-		foreach ( $sidebars_widgets as $widget_area => $widget_list ) {
+		$base_dir = get_parent_theme_file_path( $this->demo_directory );
 
-			foreach ( $widget_list as $pos => $widget_id ) {
-				if ( 'search-2' == $widget_id || 'recent-posts-2' == $widget_id || 'recent-comments-2' == $widget_id || 'archives-2' == $widget_id || 'categories-2' == $widget_id || 'meta-2' == $widget_id ) {
-					unset( $sidebars_widgets[ $widget_area ][ $pos ] );
-				}
-			}
+		// If the widgets.wie file does not exist, then let's not remove the default widgets, as there are none to replace them with.
+		if ( ! file_exists( $base_dir . 'widgets.wie' ) ) {
+			return;
 		}
 
-		return $sidebars_widgets;
+		$widget_areas = array(
+			'sidebar-1' => array(),
+		);
+
+		update_option( 'sidebars_widgets', apply_filters( 'merlin_unset_default_widgets_args', $widget_areas ) );
 	}
 
 	/**
@@ -348,7 +346,9 @@ class Merlin {
 			return;
 		}
 
-		ob_end_clean();
+		if ( ob_get_length() ) {
+			ob_end_clean();
+		}
 
 		$this->step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) : current( array_keys( $this->steps ) );
 
@@ -622,15 +622,6 @@ class Merlin {
 			);
 		}
 
-		// Show the license activator, only if it's included.
-		// @todo It's not quite ready yet.
-		// if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
-		// 	$this->steps['license'] = array(
-		// 		'name'    => esc_html__( 'License', '@@textdomain' ),
-		// 		'view'    => array( $this, 'license' ),
-		// 	);
-		// }
-
 		// Show the content importer, only if there's demo content added.
 		if ( $this->get_base_content() ) {
 			$this->steps['content'] = array(
@@ -644,7 +635,7 @@ class Merlin {
 			'view'    => array( $this, 'ready' ),
 		);
 
-		$this->steps = apply_filters( $this->theme . '_merlin_steps', $this->steps );
+		$this->steps = apply_filters( $this->theme->template . '_merlin_steps', $this->steps );
 	}
 
 	/**
@@ -926,144 +917,6 @@ class Merlin {
 	}
 
 	/**
-	 * Theme License Key
-	 */
-	protected function license() {
-
-		// Theme Name.
-		$theme 					= ucfirst( $this->theme );
-
-		// Remove "Child" from the current theme name, if it's installed.
-		$theme 					= str_replace( ' Child','', $theme );
-
-		// Strings passed in from the config file.
-		$strings = $this->strings;
-
-		// Links.
-		$link_1 				= $strings['license-link-1'];
-		$link_2 				= $strings['license-link-2'];
-		$link_3 				= $strings['license-link-3'];
-
-		// Text strings.
-		$header 				= $strings['license-header%s'];
-		$paragraph 				= $strings['license'];
-		$action 				= $strings['license-action-link'];
-		$skip 					= $strings['btn-skip'];
-		$next 					= $strings['btn-next'];
-		$activate 				= $strings['btn-license-activate'];
-
-		$updater_slug 				= $this->updater->get_theme_slug();
-		$license 				= $this->updater->get_license();
-
-		$allowed_html_array = array(
-			'a' => array(
-				'href' 		=> array(),
-				'title' 	=> array(),
-				'target' 	=> array(),
-			),
-		);
-		?>
-		
-		<div class="merlin__content--transition">
-
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'license' ) ), $this->svg_allowed_html() ); ?>
-			
-			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
-		
-			<p id="child-theme-text"><?php echo esc_html( $paragraph ); ?></p>
-
-		</div>
-
-		<form class="" action="" method="post">
-			
-			<div class="merlin__content--transition">
-
-				<input autofocus id="theme_license_key" class="merlin__input" name="theme_license_key" type="text" value="<?php echo esc_attr( $license ); ?>" />
-			
-				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
-				
-				<ul class="merlin__drawer merlin__drawer--extras">
-
-					<li><?php echo wp_kses( $link_1, $allowed_html_array ); ?></li>
-					<li><?php echo wp_kses( $link_2, $allowed_html_array ); ?></li>
-					<li><?php echo wp_kses( $link_3, $allowed_html_array ); ?></li>
-
-				</ul>
-
-			</div>
-			
-			<footer class="merlin__content__footer">
-
-				<p class="merlin__content__footer">
-					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
-					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="activate_license"><?php echo esc_html( $activate ); ?></a>
-					<?php wp_nonce_field( 'merlin' ); ?>
-				</p>
-
-			</footer>
-
-		</form>
-
-		
-
-		<?php
-	}
-
-	/**
-	 * Generate the child theme via AJAX.
-	 */
-	function activate_license() {
-
-		$already 				= 'asdfasdfasfasdfasdfsadf';
-		$theme 					= ucfirst( $this->theme );
-		$updater_slug 				= $this->updater->get_theme_slug();
-		$license 				= $this->updater->get_license();
-		$item_name 				= $this->theme;
-
-		$entered_license_key = sanitize_text_field( $_POST['cThemeName'] );
-
-		$license = trim( get_option( $updater_slug . '_license_key' ) );
-		$status = trim( get_option( $updater_slug . '_license_key_status' ) );
-
-		// Data to send in our API request.
-		$api_params = array(
-			'edd_action' => 'activate_license',
-			'license'    => $entered_license_key,
-			'item_name'  => urlencode( $item_name ),
-		);
-
-		// Call the custom API.
-		$response = wp_remote_post( 'https://themebeans.com/', array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-
-		// Make sure the response came back okay.
-		if ( is_wp_error( $response ) ) {
-			return false;
-		}
-
-		$response = json_decode( wp_remote_retrieve_body( $response ) );
-
-		if ( $response && isset( $response->license ) ) {
-			update_option( $updater_slug . '_license_key_status', $response->license );
-			update_option( $updater_slug . '_license_expiration', $expires_on );
-			// delete_transient( $updater_slug . '_license_message' );
-			// delete_transient( $this->club_notice_email_slug );
-			// delete_transient( $this->club_notice_subscription_slug );
-			// $expires_on = date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires ) );
-			// update_option( $this->theme_slug . '_license_expiration', $expires_on );
-		}
-
-		update_option( $updater_slug . '_license_key', $entered_license_key );
-
-		wp_send_json(
-			array(
-				'done' => 1,
-				'message' => sprintf( esc_html( 'The newly entered license key is: '. $entered_license_key .'. The item name is: '. $item_name .' The item status is: '. $status .'  ' ), $theme
-				),
-			)
-		);
-	}
-
-	/**
 	 * Page setup
 	 */
 	protected function content() {
@@ -1139,6 +992,8 @@ class Merlin {
 				<?php wp_nonce_field( 'merlin' ); ?>
 			</footer>
 		</form>
+
+		<?php $this->unset_default_widgets(); ?>
 
 	<?php
 	}

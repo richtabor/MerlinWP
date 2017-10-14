@@ -7,7 +7,7 @@
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
- * @license   Licensed GPLv3 for open source use, or Merlin WP Commercial License for commercial use
+ * @license   Licensed GPLv3 for open source use
  */
 
 /**
@@ -31,6 +31,25 @@ function prefix_merlin_content_blog_page_title( $output ) {
 	return 'Journal';
 }
 add_filter( 'merlin_content_blog_page_title', 'prefix_merlin_content_blog_page_title' );
+
+/**
+ * Add your widget area to unset the default widgets from.
+ * If your theme's first widget area is "sidebar-1", you don't need this.
+ *
+ * @see https://stackoverflow.com/questions/11757461/how-to-populate-widgets-on-sidebar-on-theme-activation
+ *
+ * @param  array $widget_areas Arguments for the sidebars_widgets widget areas.
+ * @return array of arguments to update the sidebars_widgets option.
+ */
+function prefix_merlin_unset_default_widgets_args( $widget_areas ) {
+
+	$widget_areas = array(
+		'sidebar-1' => array(),
+	);
+
+	return $widget_areas;
+}
+add_filter( 'merlin_unset_default_widgets_args', 'prefix_merlin_unset_default_widgets_args' );
 
 /**
  * Custom content for the generated child theme's functions.php file.

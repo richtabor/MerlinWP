@@ -45,7 +45,7 @@ msgstr ""
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr ""
 
-#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:274
+#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:277
 msgid "Invalid WXR file."
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "No XML parser found."
 msgstr ""
 
-#: includes/class-merlin-xml-parser.php:263
+#: includes/class-merlin-xml-parser.php:265
 msgid "Could not open the file for parsing"
 msgstr ""
 
@@ -77,90 +77,82 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:629
-msgid "License"
-msgstr ""
-
-#: merlin.php:637
+#: merlin.php:628
 msgid "Content"
 msgstr ""
 
-#: merlin.php:643
+#: merlin.php:634
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:889
+#: merlin.php:880
 msgid "Install"
 msgstr ""
 
-#: merlin.php:892
+#: merlin.php:883
 msgid "Update"
 msgstr ""
 
-#: merlin.php:895
+#: merlin.php:886
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:897
+#: merlin.php:888
 msgid "and"
 msgstr ""
 
-#: merlin.php:1420
+#: merlin.php:1275
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1436
+#: merlin.php:1291
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1452, merlin.php:1550, merlin.php:1563, merlin.php:1576, merlin.php:1589
+#: merlin.php:1307, merlin.php:1405, merlin.php:1418, merlin.php:1431, merlin.php:1444
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1462, merlin.php:1551, merlin.php:1564, merlin.php:1577, merlin.php:1590
+#: merlin.php:1317, merlin.php:1406, merlin.php:1419, merlin.php:1432, merlin.php:1445
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1481
+#: merlin.php:1336
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1519
+#: merlin.php:1374
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1548
-msgid "Sample"
+#: merlin.php:1403
+msgid "Sample %s data."
 msgstr ""
 
-#: merlin.php:1548
-msgid "data."
-msgstr ""
-
-#: merlin.php:1549, merlin.php:1562, merlin.php:1575, merlin.php:1588
+#: merlin.php:1404, merlin.php:1417, merlin.php:1430, merlin.php:1443
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1560
+#: merlin.php:1415
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1561
+#: merlin.php:1416
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1573
+#: merlin.php:1428
 msgid "Sliders"
 msgstr ""
 
-#: merlin.php:1574
+#: merlin.php:1429
 msgid "Sample sliders data."
 msgstr ""
 
-#: merlin.php:1586
+#: merlin.php:1441
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1587
+#: merlin.php:1442
 msgid "Sample theme options data."
 msgstr ""
