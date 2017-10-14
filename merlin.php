@@ -413,7 +413,7 @@ class Merlin {
 		</div>
 
 		<?php $this->footer(); ?>
-		
+
 		<?php
 		exit;
 	}
@@ -424,7 +424,7 @@ class Merlin {
 	protected function header() {
 
 		// Strings passed in from the config file.
-		$strings = $this->strings; 
+		$strings = $this->strings;
 
 		// Get the current step.
 		$current_step = strtolower( $this->steps[ $this->step ]['name'] ); ?>
@@ -719,11 +719,11 @@ class Merlin {
 		<div class="merlin__content--transition">
 
 			<?php echo wp_kses( $this->svg( array( 'icon' => 'welcome' ) ), $this->svg_allowed_html() ); ?>
-			
+
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
 			<p><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
-	
+
 		</div>
 
 		<footer class="merlin__content__footer">
@@ -768,7 +768,7 @@ class Merlin {
 		$paragraph 				= ! $is_child_theme ? $strings['child'] : $strings['child-success%s'];
 		$install 				= $strings['btn-child-install'];
 		?>
-		
+
 		<div class="merlin__content--transition">
 
 			<?php echo wp_kses( $this->svg( array( 'icon' => 'child' ) ), $this->svg_allowed_html() ); ?>
@@ -782,7 +782,7 @@ class Merlin {
 			<p id="child-theme-text"><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
 
 			<a class="merlin__button merlin__button--knockout merlin__button--no-chevron" href="<?php echo esc_url( $action_url ); ?>" target="_blank"><?php echo esc_html( $action ); ?></a>
-			
+
 		</div>
 
 		<footer class="merlin__content__footer">
@@ -790,7 +790,7 @@ class Merlin {
 			<?php if ( ! $is_child_theme ) : ?>
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
-				
+
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_child">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
 				</a>
@@ -843,7 +843,7 @@ class Merlin {
 		?>
 
 		<div class="merlin__content--transition">
-			
+
 			<?php echo wp_kses( $this->svg( array( 'icon' => 'plugins' ) ), $this->svg_allowed_html() ); ?>
 
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -851,7 +851,7 @@ class Merlin {
 			</svg>
 
 			<h1><?php echo esc_html( $header ); ?></h1>
-				
+
 			<p><?php echo esc_html( $paragraph ); ?></p>
 
 			<?php if ( $count ) { ?>
@@ -865,11 +865,11 @@ class Merlin {
 			<?php if ( $count ) : ?>
 
 				<ul class="merlin__drawer merlin__drawer--install-plugins">
-				
+
 				<?php foreach ( $plugins['all'] as $slug => $plugin ) : ?>
 
 					<li data-slug="<?php echo esc_attr( $slug ); ?>">
-						
+
 						<?php echo esc_html( $plugin['name'] ); ?>
 
 						<span>
@@ -887,7 +887,7 @@ class Merlin {
 							}
 							echo implode( esc_html__( 'and', '@@textdomain' ) , $keys );
 							?>
-							
+
 						</span>
 
 						<div class="spinner"></div>
@@ -938,7 +938,7 @@ class Merlin {
 		$next 					= $strings['btn-next'];
 		$import 				= $strings['btn-import'];
 		?>
-		
+
 		<div class="merlin__content--transition">
 
 			<?php echo wp_kses( $this->svg( array( 'icon' => 'content' ) ), $this->svg_allowed_html() ); ?>
@@ -948,9 +948,9 @@ class Merlin {
 			</svg>
 
 			<h1><?php echo esc_html( $header ); ?></h1>
-		
+
 			<p><?php echo esc_html( $paragraph ); ?></p>
-			
+
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
 		</div>
@@ -978,13 +978,13 @@ class Merlin {
 
 				<?php endforeach; ?>
 			</ul>
-	
+
 			<footer class="merlin__content__footer">
-				
+
 				<a id="close" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--closer merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
-				
+
 				<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
-				
+
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $import ); ?></span><?php echo $this->loading_spinner(); ?>
 				</a>
@@ -1041,19 +1041,19 @@ class Merlin {
 		<div class="merlin__content--transition">
 
 			<?php echo wp_kses( $this->svg( array( 'icon' => 'done' ) ), $this->svg_allowed_html() ); ?>
-			
+
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
-			<p><?php wp_kses(  printf( $paragraph, $author ), $allowed_html_array ); ?></p>
+			<p><?php wp_kses( printf( $paragraph, $author ), $allowed_html_array ); ?></p>
 
 		</div>
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
-			
+
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
-			
+
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
-			
+
 			<ul class="merlin__drawer merlin__drawer--extras">
 
 				<li><?php echo wp_kses( $link_1, $allowed_html_array ); ?></li>
@@ -1191,7 +1191,7 @@ class Merlin {
 			 */
 
 			/*
-			 * If your child theme has more than one .css file (eg. ie.css, style.css, main.css) then 
+			 * If your child theme has more than one .css file (eg. ie.css, style.css, main.css) then
 			 * you will have to make sure to maintain all of the parent theme dependencies.
 			 *
 			 * Make sure you're using the correct handle for loading the parent theme's styles.
