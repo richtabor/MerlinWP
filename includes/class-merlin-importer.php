@@ -369,7 +369,7 @@ class Merlin_Importer {
 		// Update the Hello World! post by making it a draft.
 		$hello_world = get_page_by_title( 'Hello World!', OBJECT, 'post' );
 
-		if ( $blogpage ) {
+		if ( $hello_world ) {
 			$my_post = array(
 				'ID'           => 1,
 				'post_status'   => 'draft',
