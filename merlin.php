@@ -1044,7 +1044,7 @@ class Merlin {
 
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
-			<p><?php wp_kses(  printf( $paragraph, $author ), $allowed_html_array ); ?></p>
+			<p><?php wp_kses( printf( $paragraph, $author ), $allowed_html_array ); ?></p>
 
 		</div>
 

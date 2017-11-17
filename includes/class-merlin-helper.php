@@ -40,7 +40,7 @@ if ( ! class_exists( 'Merlin_Helper' ) ) :
 
 				<?php if ( 'welcome' == $current_step ) : ?>
 					<div class="from-me with-second-message">
-						<p>Welcome to Merlin! If you need anything,<br>get in touch via <a href="mailto:hi@merlinwp.com">hi@merlinwp.com</a></p> 
+						<p>Welcome to Merlin! If you need anything,<br>get in touch via <a href="mailto:hi@merlinwp.com">hi@merlinwp.com</a></p>
 					</div>
 					<div class="from-me is-third-message">
 						<p>BTW, you're seeing this because you have 'dev_mode' set to 'true' in your config file. Don't forget to turn it off when you're done. :)</p>
