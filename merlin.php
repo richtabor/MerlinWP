@@ -153,36 +153,36 @@ class Merlin {
 		$this->version();
 
 		$config = wp_parse_args( $config, array(
-			'directory' => '',
-			'demo_directory' => '',
-			'merlin_url' => 'merlin',
+			'directory'            => '',
+			'demo_directory'       => '',
+			'merlin_url'           => 'merlin',
 			'child_action_btn_url' => '',
-			'help_mode' => '',
-			'dev_mode' => '',
-			'branding' => '',
+			'help_mode'            => '',
+			'dev_mode'             => '',
+			'branding'             => '',
 		) );
 
 		// Set config arguments.
-		$this->directory 			= $config['directory'];
-		$this->demo_directory 			= $config['demo_directory'];
-		$this->merlin_url			= $config['merlin_url'];
-		$this->child_action_btn_url 		= $config['child_action_btn_url'];
-		$this->help_mode 			= $config['help_mode'];
-		$this->dev_mode 			= $config['dev_mode'];
-		$this->branding 			= $config['branding'];
+		$this->directory            = $config['directory'];
+		$this->demo_directory       = $config['demo_directory'];
+		$this->merlin_url           = $config['merlin_url'];
+		$this->child_action_btn_url = $config['child_action_btn_url'];
+		$this->help_mode            = $config['help_mode'];
+		$this->dev_mode             = $config['dev_mode'];
+		$this->branding             = $config['branding'];
 
 		// Strings passed in from the config file.
-		$this->strings 				= $strings;
+		$this->strings = $strings;
 
 		// Retrieve a WP_Theme object.
-		$this->theme 				= wp_get_theme();
-		$this->slug  				= strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->get( 'Name' ) ) );
+		$this->theme = wp_get_theme();
+		$this->slug  = strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->get( 'Name' ) ) );
 
 		// Is Dev Mode turned on?
-		if ( true != $this->dev_mode ) {
+		if ( true !== $this->dev_mode ) {
 
 			// Has this theme been setup yet?
-			$already_setup 			= get_option( 'merlin_' . $this->slug . '_completed' );
+			$already_setup = get_option( 'merlin_' . $this->slug . '_completed' );
 
 			// Return if Merlin has already completed it's setup.
 			if ( $already_setup ) {
@@ -225,10 +225,10 @@ class Merlin {
 		}
 
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
-			$this->updater = new EDD_Theme_Updater_Admin;
+			$this->updater = new EDD_Theme_Updater_Admin();
 		}
 
-		if ( ! class_exists( 'Merlin_Helper' ) and  true == $this->help_mode ) {
+		if ( true === $this->help_mode ) {
 			require get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-helper.php' );
 			$this->helper = new Merlin_Helper();
 		}
@@ -254,7 +254,7 @@ class Merlin {
 
 		delete_transient( $this->theme->template . '_merlin_redirect' );
 
-		wp_safe_redirect( admin_url( 'themes.php?page='.$this->merlin_url ) );
+		wp_safe_redirect( admin_url( 'themes.php?page= ' . $this->merlin_url ) );
 
 		exit;
 	}
@@ -262,7 +262,7 @@ class Merlin {
 	/**
 	 * Remove default sidebar widgets.
 	 */
-	function unset_default_widgets() {
+	protected function unset_default_widgets() {
 
 		$base_dir = get_parent_theme_file_path( $this->demo_directory );
 
@@ -283,7 +283,7 @@ class Merlin {
 	 *
 	 * @param string $status User's manage capabilities.
 	 */
-	function load_tgmpa( $status ) {
+	public function load_tgmpa( $status ) {
 		return is_admin() || current_user_can( 'install_themes' );
 	}
 
@@ -302,10 +302,10 @@ class Merlin {
 	 * After a theme update, we clear the slug_merlin_completed option.
 	 * This prompts the user to visit the update page again.
 	 *
-	 * @param 		string $return To end or not.
-	 * @param 		string $theme  The current theme.
+	 * @param string $return To end or not.
+	 * @param string $theme  The current theme.
 	 */
-	function post_install_check( $return, $theme ) {
+	protected function post_install_check( $return, $theme ) {
 
 		if ( is_wp_error( $return ) ) {
 			return $return;
@@ -323,7 +323,7 @@ class Merlin {
 	/**
 	 * Add the admin menu item, under Appearance.
 	 */
-	function add_admin_menu() {
+	public function add_admin_menu() {
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -336,7 +336,7 @@ class Merlin {
 	/**
 	 * Add the admin page.
 	 */
-	function admin_page() {
+	public function admin_page() {
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -365,19 +365,19 @@ class Merlin {
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Check first if TMGPA is included.
 			wp_localize_script( 'merlin', 'merlin_params', array(
-				'tgm_plugin_nonce' 	=> array(
-					'update'  	=> wp_create_nonce( 'tgmpa-update' ),
-					'install' 	=> wp_create_nonce( 'tgmpa-install' ),
+				'tgm_plugin_nonce' => array(
+					'update'  => wp_create_nonce( 'tgmpa-update' ),
+					'install' => wp_create_nonce( 'tgmpa-install' ),
 				),
-				'tgm_bulk_url' 		=> $this->tgmpa->get_tgmpa_url(),
-				'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
-				'wpnonce'      		=> wp_create_nonce( 'merlin_nonce' ),
+				'tgm_bulk_url'     => $this->tgmpa->get_tgmpa_url(),
+				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+				'wpnonce'          => wp_create_nonce( 'merlin_nonce' ),
 			) );
 		} else {
 			// If TMGPA is not included.
 			wp_localize_script( 'merlin', 'merlin_params', array(
-				'ajaxurl'      		=> admin_url( 'admin-ajax.php' ),
-				'wpnonce'      		=> wp_create_nonce( 'merlin_nonce' ),
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
 			) );
 		}
 
@@ -402,7 +402,8 @@ class Merlin {
 
 				if ( $show_content ) {
 					$this->body();
-				} ?>
+				}
+				?>
 
 			<?php $this->step_output(); ?>
 
@@ -427,7 +428,8 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Get the current step.
-		$current_step = strtolower( $this->steps[ $this->step ]['name'] ); ?>
+		$current_step = strtolower( $this->steps[ $this->step ]['name'] );
+		?>
 
 		<!DOCTYPE html>
 		<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
@@ -456,12 +458,13 @@ class Merlin {
 	protected function footer() {
 
 		// Is help_mode set in the merlin-config.php file?
-		if ( true == $this->help_mode ) :
+		if ( true === $this->help_mode ) :
 			$current_step = strtolower( $this->steps[ $this->step ]['name'] );
 			$this->helper->helper_wizard( $current_step );
 		endif;
 
-		if ( true == $this->help_mode or true == $this->branding ) : ?>
+		if ( true === $this->help_mode || true === $this->branding ) :
+			?>
 			<a class="merlin--icon" target="_blank" href="https://merlinwp.com">
 				<?php echo wp_kses( $this->svg( array( 'icon' => 'merlin' ) ), $this->svg_allowed_html() ); ?>
 			</a>
@@ -477,7 +480,7 @@ class Merlin {
 	/**
 	 * SVG
 	 */
-	function svg_sprite() {
+	public function svg_sprite() {
 
 		// Define SVG sprite file.
 		$svg = get_parent_theme_file_path( $this->directory . '/merlin/assets/images/sprite.svg' );
@@ -500,7 +503,7 @@ class Merlin {
 	 * }
 	 * @return string SVG markup.
 	 */
-	function svg( $args = array() ) {
+	public function svg( $args = array() ) {
 
 		// Make sure $args are an array.
 		if ( empty( $args ) ) {
@@ -566,13 +569,13 @@ class Merlin {
 	/**
 	 * Adds data attributes to the body, based on Customizer entries.
 	 */
-	function svg_allowed_html() {
+	public function svg_allowed_html() {
 
 		$array = array(
 			'svg' => array(
-				'class' => array(),
+				'class'       => array(),
 				'aria-hidden' => array(),
-				'role' => array(),
+				'role'        => array(),
 			),
 			'use' => array(
 				'xlink:href' => array(),
@@ -586,7 +589,7 @@ class Merlin {
 	/**
 	 * Loading merlin-spinner.
 	 */
-	function loading_spinner() {
+	public function loading_spinner() {
 
 		// Define the spinner file.
 		$spinner = $this->directory . '/merlin/assets/images/spinner';
@@ -610,29 +613,29 @@ class Merlin {
 		);
 
 		$this->steps['child'] = array(
-			'name'    => esc_html__( 'Child', '@@textdomain' ),
-			'view'    => array( $this, 'child' ),
+			'name' => esc_html__( 'Child', '@@textdomain' ),
+			'view' => array( $this, 'child' ),
 		);
 
 		// Show the plugin importer, only if TGMPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->steps['plugins'] = array(
-				'name'    => esc_html__( 'Plugins', '@@textdomain' ),
-				'view'    => array( $this, 'plugins' ),
+				'name' => esc_html__( 'Plugins', '@@textdomain' ),
+				'view' => array( $this, 'plugins' ),
 			);
 		}
 
 		// Show the content importer, only if there's demo content added.
 		if ( $this->get_base_content() ) {
 			$this->steps['content'] = array(
-				'name'    => esc_html__( 'Content', '@@textdomain' ),
-				'view'    => array( $this, 'content' ),
+				'name' => esc_html__( 'Content', '@@textdomain' ),
+				'view' => array( $this, 'content' ),
 			);
 		}
 
 		$this->steps['ready'] = array(
-			'name'    => esc_html__( 'Ready', '@@textdomain' ),
-			'view'    => array( $this, 'ready' ),
+			'name' => esc_html__( 'Ready', '@@textdomain' ),
+			'view' => array( $this, 'ready' ),
 		);
 
 		$this->steps = apply_filters( $this->theme->template . '_merlin_steps', $this->steps );
@@ -642,25 +645,28 @@ class Merlin {
 	 * Output the steps
 	 */
 	protected function step_output() {
-		$ouput_steps 	= $this->steps;
-		$array_keys 	= array_keys( $this->steps );
-		$current_step 	= array_search( $this->step, $array_keys );
+		$ouput_steps  = $this->steps;
+		$array_keys   = array_keys( $this->steps );
+		$current_step = array_search( $this->step, $array_keys, true );
 
-		array_shift( $ouput_steps ); ?>
+		array_shift( $ouput_steps );
+		?>
 
 		<ol class="dots">
 
-			<?php foreach ( $ouput_steps as $step_key => $step ) :
+			<?php
+			foreach ( $ouput_steps as $step_key => $step ) :
 
 				$class_attr = '';
-				$show_link = false;
+				$show_link  = false;
 
 				if ( $step_key === $this->step ) {
 					$class_attr = 'active';
-				} elseif ( $current_step > array_search( $step_key, $array_keys ) ) {
+				} elseif ( $current_step > array_search( $step_key, $array_keys, true ) ) {
 					$class_attr = 'done';
-					$show_link = true;
-				} ?>
+					$show_link  = true;
+				}
+				?>
 
 				<li class="<?php echo esc_attr( $class_attr ); ?>">
 					<a href="<?php echo esc_url( $this->step_link( $step_key ) ); ?>" title="<?php echo esc_attr( $step['name'] ); ?>"></a>
@@ -676,7 +682,7 @@ class Merlin {
 	/**
 	 * Get the step URL.
 	 *
-	 * @param 	string $step Name of the step, appended to the URL.
+	 * @param string $step Name of the step, appended to the URL.
 	 */
 	protected function step_link( $step ) {
 		return add_query_arg( 'step', $step );
@@ -687,7 +693,7 @@ class Merlin {
 	 */
 	protected function step_next_link() {
 		$keys = array_keys( $this->steps );
-		$step = array_search( $this->step, $keys ) + 1;
+		$step = array_search( $this->step, $keys, true ) + 1;
 
 		return add_query_arg( 'step', $keys[ $step ] );
 	}
@@ -698,22 +704,22 @@ class Merlin {
 	protected function welcome() {
 
 		// Has this theme been setup yet? Compare this to the option set when you get to the last panel.
-		$already_setup 			= get_option( 'merlin_' . $this->slug . '_completed' );
+		$already_setup = get_option( 'merlin_' . $this->slug . '_completed' );
 
 		// Theme Name.
-		$theme 					= ucfirst( $this->theme );
+		$theme = ucfirst( $this->theme );
 
 		// Remove "Child" from the current theme name, if it's installed.
-		$theme  = str_replace( ' Child','', $theme );
+		$theme = str_replace( ' Child','', $theme );
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
 		// Text strings.
-		$header 				= ! $already_setup ? $strings['welcome-header%s'] : $strings['welcome-header-success%s'];
-		$paragraph 				= ! $already_setup ? $strings['welcome%s'] : $strings['welcome-success%s'];
-		$start 					= $strings['btn-start'];
-		$no 					= $strings['btn-no'];
+		$header    = ! $already_setup ? $strings['welcome-header%s'] : $strings['welcome-header-success%s'];
+		$paragraph = ! $already_setup ? $strings['welcome%s'] : $strings['welcome-success%s'];
+		$start     = $strings['btn-start'];
+		$no        = $strings['btn-no'];
 		?>
 
 		<div class="merlin__content--transition">
@@ -752,21 +758,21 @@ class Merlin {
 	protected function child() {
 
 		// Variables.
-		$is_child_theme 			= is_child_theme();
-		$child_theme_option 			= get_option( 'merlin_' . $this->slug . '_child' );
-		$theme 					= $child_theme_option ? wp_get_theme( $child_theme_option )->name : $this->theme . ' Child';
-		$action_url 				= $this->child_action_btn_url;
+		$is_child_theme     = is_child_theme();
+		$child_theme_option = get_option( 'merlin_' . $this->slug . '_child' );
+		$theme              = $child_theme_option ? wp_get_theme( $child_theme_option )->name : $this->theme . ' Child';
+		$action_url         = $this->child_action_btn_url;
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
 		// Text strings.
-		$header 				= ! $is_child_theme ? $strings['child-header'] : $strings['child-header-success'];
-		$action 				= $strings['child-action-link'];
-		$skip 					= $strings['btn-skip'];
-		$next 					= $strings['btn-next'];
-		$paragraph 				= ! $is_child_theme ? $strings['child'] : $strings['child-success%s'];
-		$install 				= $strings['btn-child-install'];
+		$header    = ! $is_child_theme ? $strings['child-header'] : $strings['child-header-success'];
+		$action    = $strings['child-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$paragraph = ! $is_child_theme ? $strings['child'] : $strings['child-success%s'];
+		$install   = $strings['btn-child-install'];
 		?>
 
 		<div class="merlin__content--transition">
@@ -809,10 +815,10 @@ class Merlin {
 	protected function plugins() {
 
 		// Variables.
-		$url     				= wp_nonce_url( add_query_arg( array( 'plugins' => 'go' ) ), 'merlin' );
-		$method  				= '';
-		$fields 				= array_keys( $_POST );
-		$creds   				= request_filesystem_credentials( esc_url_raw( $url ), $method, false, false, $fields );
+		$url    = wp_nonce_url( add_query_arg( array( 'plugins' => 'go' ) ), 'merlin' );
+		$method = '';
+		$fields = array_keys( $_POST );
+		$creds  = request_filesystem_credentials( esc_url_raw( $url ), $method, false, false, $fields );
 
 		tgmpa_load_bulk_installer();
 
@@ -826,20 +832,20 @@ class Merlin {
 		}
 
 		// Are there plugins that need installing/activating?
-		$plugins 				= $this->get_tgmpa_plugins();
-		$count 					= count( $plugins['all'] );
-		$class 					= $count ? null : 'no-plugins';
+		$plugins = $this->get_tgmpa_plugins();
+		$count   = count( $plugins['all'] );
+		$class   = $count ? null : 'no-plugins';
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
 		// Text strings.
-		$header 				= $count ? $strings['plugins-header'] : $strings['plugins-header-success'];
-		$paragraph 				= $count ? $strings['plugins'] : $strings['plugins-success%s'];
-		$action 				= $strings['plugins-action-link'];
-		$skip 					= $strings['btn-skip'];
-		$next 					= $strings['btn-next'];
-		$install 				= $strings['btn-plugins-install'];
+		$header    = $count ? $strings['plugins-header'] : $strings['plugins-header-success'];
+		$paragraph = $count ? $strings['plugins'] : $strings['plugins-success%s'];
+		$action    = $strings['plugins-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$install   = $strings['btn-plugins-install'];
 		?>
 
 		<div class="merlin__content--transition">
@@ -856,7 +862,7 @@ class Merlin {
 
 			<?php if ( $count ) { ?>
 				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
-			<?php  } ?>
+			<?php } ?>
 
 		</div>
 
@@ -931,12 +937,12 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Text strings.
-		$header 				= $strings['import-header'];
-		$paragraph 				= $strings['import'];
-		$action 				= $strings['import-action-link'];
-		$skip 					= $strings['btn-skip'];
-		$next 					= $strings['btn-next'];
-		$import 				= $strings['btn-import'];
+		$header    = $strings['import-header'];
+		$paragraph = $strings['import'];
+		$action    = $strings['import-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$import    = $strings['btn-import'];
 		?>
 
 		<div class="merlin__content--transition">
@@ -967,7 +973,8 @@ class Merlin {
 
 					if ( 'users' === $slug ) {
 						$default['checked'] = false;
-					} ?>
+					}
+					?>
 
 					<li class="merlin__drawer--import-content__list-item status status--<?php echo esc_attr( $default['pending'] ); ?>" data-content="<?php echo esc_attr( $slug ); ?>">
 						<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" <?php echo ( ! isset( $default['checked'] ) || $default['checked'] ) ? ' checked' : ''; ?>>
@@ -1007,36 +1014,37 @@ class Merlin {
 		$author = $this->theme->author;
 
 		// Theme Name.
-		$theme 					= ucfirst( $this->theme );
+		$theme = ucfirst( $this->theme );
 
 		// Remove "Child" from the current theme name, if it's installed.
-		$theme 					= str_replace( ' Child','', $theme );
+		$theme = str_replace( ' Child', '', $theme );
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
 		// Text strings.
-		$header 				= $strings['ready-header'];
-		$paragraph 				= $strings['ready%s'];
-		$action 				= $strings['ready-action-link'];
-		$skip 					= $strings['btn-skip'];
-		$next 					= $strings['btn-next'];
-		$big_btn 				= $strings['ready-big-button'];
+		$header    = $strings['ready-header'];
+		$paragraph = $strings['ready%s'];
+		$action    = $strings['ready-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$big_btn   = $strings['ready-big-button'];
 
 		// Links.
-		$link_1 				= $strings['ready-link-1'];
-		$link_2 				= $strings['ready-link-2'];
-		$link_3 				= $strings['ready-link-3'];
+		$link_1 = $strings['ready-link-1'];
+		$link_2 = $strings['ready-link-2'];
+		$link_3 = $strings['ready-link-3'];
 
 		$allowed_html_array = array(
 			'a' => array(
-				'href' 		=> array(),
-				'title' 	=> array(),
-				'target' 	=> array(),
+				'href'   => array(),
+				'title'  => array(),
+				'target' => array(),
 			),
 		);
 
-		update_option( 'merlin_' . $this->slug . '_completed', time() ); ?>
+		update_option( 'merlin_' . $this->slug . '_completed', time() );
+		?>
 
 		<div class="merlin__content--transition">
 
@@ -1073,7 +1081,7 @@ class Merlin {
 	 * @return    array
 	 */
 	protected function get_tgmpa_plugins() {
-		$plugins  = array(
+		$plugins = array(
 			'all'      => array(), // Meaning: all plugins which still have open actions.
 			'install'  => array(),
 			'update'   => array(),
@@ -1104,21 +1112,21 @@ class Merlin {
 	/**
 	 * Generate the child theme via AJAX.
 	 */
-	function generate_child() {
+	public function generate_child() {
 
 		// Strings passed in from the config file.
-		$strings 		= $this->strings;
+		$strings = $this->strings;
 
 		// Text strings.
-		$success 		= $strings['child-json-success%s'];
-		$already 		= $strings['child-json-already%s'];
+		$success = $strings['child-json-success%s'];
+		$already = $strings['child-json-already%s'];
 
-		$name 			= $this->theme . ' Child';
-		$slug 			= sanitize_title( $name );
+		$name = $this->theme . ' Child';
+		$slug = sanitize_title( $name );
 
-		$path 			= get_theme_root() . '/' . $slug;
-		$screenshot_png 	= get_parent_theme_file_path( '/screenshot.png' );
-		$screenshot_jpg 	= get_parent_theme_file_path( '/screenshot.jpg' );
+		$path           = get_theme_root() . '/' . $slug;
+		$screenshot_png = get_parent_theme_file_path( '/screenshot.png' );
+		$screenshot_jpg = get_parent_theme_file_path( '/screenshot.jpg' );
 
 		if ( ! file_exists( $path ) ) {
 
@@ -1136,7 +1144,7 @@ class Merlin {
 				copy( $screenshot_png, $path . '/screenshot.jpg' );
 			}
 
-			$allowed_themes = get_option( 'allowedthemes' );
+			$allowed_themes          = get_option( 'allowedthemes' );
 			$allowed_themes[ $slug ] = true;
 			update_option( 'allowedthemes', $allowed_themes );
 
@@ -1149,7 +1157,7 @@ class Merlin {
 
 			wp_send_json(
 				array(
-					'done' => 1,
+					'done'    => 1,
 					'message' => sprintf( esc_html( $success ), $slug
 					),
 				)
@@ -1163,7 +1171,7 @@ class Merlin {
 
 		wp_send_json(
 			array(
-				'done' => 1,
+				'done'    => 1,
 				'message' => sprintf( esc_html( $already ), $name
 				),
 			)
@@ -1177,7 +1185,7 @@ class Merlin {
 	 *
 	 * @param string $slug Parent theme slug.
 	 */
-	function generate_child_functions_php( $slug ) {
+	public function generate_child_functions_php( $slug ) {
 
 		$slug_no_hyphens = strtolower( preg_replace( '#[^a-zA-Z]#', '', $slug ) );
 
@@ -1224,12 +1232,12 @@ class Merlin {
 	 *
 	 * @link https://gist.github.com/richtabor/7d88d279706fc3093911e958fd1fd791
 	 *
-	 * @param string $slug 	  Parent theme slug.
+	 * @param string $slug    Parent theme slug.
 	 * @param string $parent  Parent theme name.
 	 * @param string $author  Parent theme author.
 	 * @param string $version Parent theme version.
 	 */
-	function generate_child_style_css( $slug, $parent, $author, $version ) {
+	public function generate_child_style_css( $slug, $parent, $author, $version ) {
 
 		$output = "
 			/**
