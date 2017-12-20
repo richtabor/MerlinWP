@@ -57,7 +57,7 @@ You'll want to add the following files:
 
 Inside the package download exists a `merlin-filters.php` file which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's `functions.php` file. 
 
-You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done runing.
+You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done running.
 
 ### 5. Testing
 
