@@ -208,21 +208,20 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
+		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 	}
 
 	/**
 	 * Require necessary classes.
 	 */
 	function required_classes() {
-
-		if ( ! class_exists( 'Merlin_WXR_Parser' ) ) {
-			require get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-xml-parser.php' );
+		if ( ! class_exists( '\WP_Importer' ) ) {
+			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
 
-		if ( ! class_exists( 'Merlin_Importer' ) ) {
-			require get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-importer.php' );
-			$this->importer = new Merlin_Importer();
-		}
+		$logger = new ProteusThemes\WPContentImporter2\WPImporterLogger();
+
+		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $logger );
 
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
@@ -926,10 +925,6 @@ class Merlin {
 	 * Page setup
 	 */
 	protected function content() {
-
-		// Start the importing process.
-		$this->importer->importStart();
-
 		// Retrieve the content to import.
 		$content = $this->get_base_content();
 
@@ -1393,28 +1388,29 @@ class Merlin {
 	 */
 	protected function get_base_content() {
 
+		$basic_import_data = array();
 		$content = array();
 
 		$base_dir = get_parent_theme_file_path( $this->demo_directory );
 
 		if ( file_exists( $base_dir . 'content.xml' ) ) {
-			$xml_parser = new Merlin_WXR_Parser();
-			$content = $xml_parser->parse( $base_dir . 'content.xml' );
+			$basic_import_data = $this->importer->get_basic_import_content_data( $base_dir . 'content.xml' );
 		}
 
-		if ( ! empty( $content ) && is_array( $content ) ) {
-			foreach ( $content as $slug => $data ) {
-				if ( 'baseurl' === $slug || 'version' === $slug ) {
+		if ( ! empty( $basic_import_data ) && is_array( $basic_import_data ) ) {
+			foreach ( $basic_import_data as $slug => $is_enabled ) {
+				if ( 'baseurl' === $slug || 'version' === $slug || empty( $is_enabled ) ) {
 					continue;
 				}
+
 				$content[ $slug ]['title'] = ucwords( $slug );
 				$content[ $slug ]['description'] = sprintf( esc_html__( 'Sample %s data.', '@@textdomain' ), $slug );
 				$content[ $slug ]['pending'] = esc_html__( 'Pending', '@@textdomain' );
 				$content[ $slug ]['installing'] = esc_html__( 'Installing', '@@textdomain' );
 				$content[ $slug ]['success'] = esc_html__( 'Success', '@@textdomain' );
 				$content[ $slug ]['checked'] = $this->is_possible_upgrade() ? 0 : 1;
-				$content[ $slug ]['install_callback'] = array( $this->importer, 'import' . ucfirst( $slug ) );
-				$content[ $slug ]['data'] = $data;
+				$content[ $slug ]['install_callback'] = array( $this->importer, 'import_' . $slug );
+				$content[ $slug ]['data'] = $base_dir . 'content.xml';
 			}
 		}
 
@@ -1460,5 +1456,24 @@ class Merlin {
 		$content = apply_filters( 'merlin_get_base_content', $content, $this );
 
 		return $content;
+	}
+
+	/**
+	 * Change the new AJAX request response data.
+	 *
+	 * @param array $data The default data.
+	 *
+	 * @return array The updated data.
+	 */
+	public function pt_importer_new_ajax_request_response_data( $data ) {
+		$data['url']      = admin_url( 'admin-ajax.php' );
+		$data['message']  = esc_html__( 'Installing', '@@textdomain' );
+		$data['proceed']  = 'true';
+		$data['action']   = 'merlin_content';
+		$data['content']  = 'posts';
+		$data['_wpnonce'] = wp_create_nonce( 'merlin_nonce' );
+		$data['hash']     = md5( rand() ); // Has to be unique (check JS code catching this AJAX response).
+
+		return $data;
 	}
 }
