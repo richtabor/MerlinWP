@@ -15,13 +15,14 @@ In the package, I've included a fork of one of my themes, [York Pro](https://the
 
 First, download the `merlin.zip` file located within the `/dist/` directory. Next, copy all of the files within this archive into your themes `inc` sub-directory.
 
-Now all you need to do is require the `merlin.php` class and `merlin-config.php` file in your `functions.php`.
+Now all you need to do is require the `merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`.
 
 Refer to the example below:
 
 ```php
-require get_parent_theme_file_path( '/inc/merlin/merlin.php' );
-require get_parent_theme_file_path( '/inc/merlin-config.php' );
+require_once get_parent_theme_file_path( '/inc/merlin/vendor/autoload.php' );
+require_once get_parent_theme_file_path( '/inc/merlin/merlin.php' );
+require_once get_parent_theme_file_path( '/inc/merlin-config.php' );
 ```
 
 > Note: In the example above, the `/merlin/` directory and the `merlin-config.php` file are both placed within the theme's `/inc/` directory location. 
