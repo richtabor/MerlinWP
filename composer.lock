@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c87eba589c67588e1c7665586786ee85",
+    "packages": [
+        {
+            "name": "proteusthemes/wp-content-importer-v2",
+            "version": "dev-improved-importer",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/proteusthemes/WordPress-Importer.git",
+                "reference": "f14ef63050374de54d631f9ccb4cb87d57646452"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/f14ef63050374de54d631f9ccb4cb87d57646452",
+                "reference": "f14ef63050374de54d631f9ccb4cb87d57646452",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ProteusThemes\\WPContentImporter2\\": "src/"
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/humanmade/WordPress-Importer/graphs/contributors"
+                }
+            ],
+            "description": "WP content importer v2 forked from humanmade/wordpress-importer.",
+            "keywords": [
+                "content",
+                "import",
+                "proteusthemes",
+                "theme",
+                "wordpress",
+                "wp"
+            ],
+            "support": {
+                "source": "https://github.com/proteusthemes/WordPress-Importer/tree/improved-importer"
+            },
+            "time": "2018-02-06 08:41:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "proteusthemes/wp-content-importer-v2": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
