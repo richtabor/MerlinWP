@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/proteusthemes/WordPress-Importer.git",
-                "reference": "f14ef63050374de54d631f9ccb4cb87d57646452"
+                "reference": "211c28af187253eb68f8a59b9ae9e77897153e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/f14ef63050374de54d631f9ccb4cb87d57646452",
-                "reference": "f14ef63050374de54d631f9ccb4cb87d57646452",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/211c28af187253eb68f8a59b9ae9e77897153e13",
+                "reference": "211c28af187253eb68f8a59b9ae9e77897153e13",
                 "shasum": ""
             },
             "type": "library",
@@ -47,7 +47,7 @@
             "support": {
                 "source": "https://github.com/proteusthemes/WordPress-Importer/tree/improved-importer"
             },
-            "time": "2018-02-06 08:41:01"
+            "time": "2018-02-07 08:08:24"
         }
     ],
     "packages-dev": [],
