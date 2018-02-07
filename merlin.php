@@ -1428,14 +1428,14 @@ class Merlin {
 
 		if ( file_exists( $base_dir . 'slider.zip' ) ) {
 			$content['sliders'] = array(
-				'title'            	=> esc_html__( 'Sliders', '@@textdomain' ),
-				'description'     	=> esc_html__( 'Sample sliders data.', '@@textdomain' ),
-				'pending'         	=> esc_html__( 'Pending', '@@textdomain' ),
-				'installing'      	=> esc_html__( 'Installing', '@@textdomain' ),
-				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' 	=> array( $this->importer, 'importRevSliders' ),
-				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
-				'data' 			=> $base_dir . 'slider.zip',
+				'title'            => esc_html__( 'Revolution Slider', '@@textdomain' ),
+				'description'      => esc_html__( 'Sample Revolution sliders data.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' => array( $this, 'import_revolution_sliders' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'data'             => $base_dir . 'slider.zip',
 			);
 		}
 
@@ -1455,6 +1455,25 @@ class Merlin {
 		$content = apply_filters( 'merlin_get_base_content', $content, $this );
 
 		return $content;
+	}
+
+	/**
+	 * Import revolution slider.
+	 *
+	 * @param string $file Path to the revolution slider zip file.
+	 */
+	public function import_revolution_sliders( $file ) {
+		if ( ! class_exists( 'RevSlider', false ) ) {
+			return 'failed';
+		}
+
+		$importer = new RevSlider();
+
+		$response = $importer->importSliderFromPost(true, true, $file);
+
+		if (defined('DOING_AJAX') && DOING_AJAX) {
+			return 'true';
+		}
 	}
 
 	/**
