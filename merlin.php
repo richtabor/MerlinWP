@@ -225,6 +225,13 @@ class Merlin {
 
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-widget-importer.php' );
 
+		if ( ! class_exists( 'WP_Customize_Setting' ) ) {
+			require_once ABSPATH . 'wp-includes/class-wp-customize-setting.php';
+		}
+
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-option.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-importer.php' );
+
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
 		}
@@ -1434,14 +1441,14 @@ class Merlin {
 
 		if ( file_exists( $base_dir . 'customizer.dat' ) ) {
 			$content['options'] = array(
-				'title'            	=> esc_html__( 'Options', '@@textdomain' ),
-				'description'      	=> esc_html__( 'Sample theme options data.', '@@textdomain' ),
-				'pending'          	=> esc_html__( 'Pending', '@@textdomain' ),
-				'installing'       	=> esc_html__( 'Installing', '@@textdomain' ),
-				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' 	=> array( $this->importer, 'importThemeOptions' ),
-				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
-				'data' 			=> $base_dir . 'customizer.dat',
+				'title'            => esc_html__( 'Options', '@@textdomain' ),
+				'description'      => esc_html__( 'Sample theme options data.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' => array( 'Merlin_Customizer_Importer', 'import' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'data'             => $base_dir . 'customizer.dat',
 			);
 		}
 
