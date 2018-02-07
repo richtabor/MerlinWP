@@ -20,6 +20,8 @@ class Merlin_Widget_Importer {
 			return false;
 		}
 
+		self::unset_default_widgets();
+
 		$results = self::import_widgets( $widget_import_file_path );
 
 		if ( empty( $results ) || is_wp_error( $results ) ) {
@@ -287,6 +289,21 @@ class Merlin_Widget_Importer {
 		}
 
 		return apply_filters( 'pt-ocdi/available_widgets', $available_widgets );
+	}
+
+
+	/**
+	 * Remove widgets from sidebars.
+	 * By default none are removed, but with the filter you can remove them.
+	 */
+	private function unset_default_widgets() {
+		$widget_areas = apply_filters( 'merlin_unset_default_widgets_args', false );
+
+		if ( empty( $widget_areas ) ) {
+			return false;
+		}
+
+		update_option( 'sidebars_widgets', $widget_areas );
 	}
 
 
