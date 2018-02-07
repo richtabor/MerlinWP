@@ -1,0 +1,25 @@
+{
+  "name": "richtabor/merlin-wp",
+  "description": "Better WordPress Theme Onboarding.",
+  "keywords": ["wp", "wordpress", "theme", "onboarding", "import", "content"],
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name"     : "Rich Tabor",
+      "homepage" : "https://github.com/richtabor"
+    },
+    {
+      "name"     : "ProteusThemes",
+      "homepage" : "https://www.proteusthemes.com/"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "https://github.com/proteusthemes/WordPress-Importer.git"
+    }
+  ],
+  "require": {
+    "proteusthemes/wp-content-importer-v2": "^2.0.0"
+  }
+}

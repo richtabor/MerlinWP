@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "04c02f4b81416890a939f2bdc24450d3",
+    "packages": [
+        {
+            "name": "proteusthemes/wp-content-importer-v2",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/proteusthemes/WordPress-Importer.git",
+                "reference": "58cdc8406d74f3d9740649356ecb1302b06e9544"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/58cdc8406d74f3d9740649356ecb1302b06e9544",
+                "reference": "58cdc8406d74f3d9740649356ecb1302b06e9544",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ProteusThemes\\WPContentImporter2\\": "src/"
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/humanmade/WordPress-Importer/graphs/contributors"
+                }
+            ],
+            "description": "WP content importer v2 forked from humanmade/wordpress-importer.",
+            "keywords": [
+                "content",
+                "import",
+                "proteusthemes",
+                "theme",
+                "wordpress",
+                "wp"
+            ],
+            "support": {
+                "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v2.0.0"
+            },
+            "time": "2018-02-07T12:55:25+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

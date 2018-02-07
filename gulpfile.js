@@ -35,7 +35,7 @@ var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files in
 var projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
 
 // Build files.
-var buildFiles      	    = ['./**', '!dist/', '!demo/**', '!.gitattributes', '!phpcs.ruleset.xml', '!package.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
+var buildFiles              = ['./**', '!node_modules/**', '!dist/', '!demo/**', '!composer.json', '!composer.lock', '!.gitattributes', '!phpcs.ruleset.xml', '!package.json', '!package-lock.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters.php' ];
 var buildDestination        = './dist/merlin/';
 var distributionFiles       = './dist/merlin/**/*';
 
@@ -57,6 +57,7 @@ const AUTOPREFIXER_BROWSERS = [
 /**
 * Load Plugins.
 */
+var gulp         = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync  = require('browser-sync').create();
 var cache        = require('gulp-cache');
@@ -65,7 +66,6 @@ var concat       = require('gulp-concat');
 var copy         = require('gulp-copy');
 var csscomb      = require('gulp-csscomb');
 var filter       = require('gulp-filter');
-var gulp         = require('gulp');
 var lineec       = require('gulp-line-ending-corrector');
 var minifycss    = require('gulp-clean-css');
 var notify       = require('gulp-notify');
@@ -78,6 +78,7 @@ var sort         = require('gulp-sort');
 var uglify       = require('gulp-uglify');
 var wpPot        = require('gulp-wp-pot');
 var zip          = require('gulp-zip');
+var composer     = require('gulp-composer');
 
 /**
  * Development Tasks.
@@ -152,6 +153,10 @@ gulp.task( 'default', ['clear', 'styles', 'scripts', 'browser_sync' ], function 
 	gulp.watch( merlinStyleWatchFiles, [ 'styles' ] );
 });
 
+gulp.task("composer", function () {
+	composer({ "async": false });
+});
+
 /**
  * Build Tasks.
  */
@@ -178,7 +183,7 @@ gulp.task( 'build-clean', function () {
 	.pipe(cleaner());
 });
 
-gulp.task( 'build-copy', ['build-clean'], function() {
+gulp.task( 'build-copy', ['build-clean', 'composer'], function() {
     return gulp.src( buildFiles )
     .pipe( copy( buildDestination ) );
 });
