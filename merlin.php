@@ -1387,31 +1387,21 @@ class Merlin {
 	 * @return    array
 	 */
 	protected function get_base_content() {
-
-		$basic_import_data = array();
 		$content = array();
 
 		$base_dir = get_parent_theme_file_path( $this->demo_directory );
 
 		if ( file_exists( $base_dir . 'content.xml' ) ) {
-			$basic_import_data = $this->importer->get_basic_import_content_data( $base_dir . 'content.xml' );
-		}
-
-		if ( ! empty( $basic_import_data ) && is_array( $basic_import_data ) ) {
-			foreach ( $basic_import_data as $slug => $is_enabled ) {
-				if ( 'baseurl' === $slug || 'version' === $slug || empty( $is_enabled ) ) {
-					continue;
-				}
-
-				$content[ $slug ]['title'] = ucwords( $slug );
-				$content[ $slug ]['description'] = sprintf( esc_html__( 'Sample %s data.', '@@textdomain' ), $slug );
-				$content[ $slug ]['pending'] = esc_html__( 'Pending', '@@textdomain' );
-				$content[ $slug ]['installing'] = esc_html__( 'Installing', '@@textdomain' );
-				$content[ $slug ]['success'] = esc_html__( 'Success', '@@textdomain' );
-				$content[ $slug ]['checked'] = $this->is_possible_upgrade() ? 0 : 1;
-				$content[ $slug ]['install_callback'] = array( $this->importer, 'import_' . $slug );
-				$content[ $slug ]['data'] = $base_dir . 'content.xml';
-			}
+			$content['content'] = array(
+				'title'             => esc_html__( 'Content', '@@textdomain' ),
+				'description'       => esc_html__( 'Demo content data.', '@@textdomain' ),
+				'pending'           => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'        => esc_html__( 'Installing', '@@textdomain' ),
+				'success'           => esc_html__( 'Success', '@@textdomain' ),
+				'checked'           => $this->is_possible_upgrade() ? 0 : 1,
+				'install_callback'  => array( $this->importer, 'import' ),
+				'data'              => $base_dir . 'content.xml',
+			);
 		}
 
 		if ( file_exists( $base_dir . 'widgets.wie' ) ) {
@@ -1470,7 +1460,7 @@ class Merlin {
 		$data['message']  = esc_html__( 'Installing', '@@textdomain' );
 		$data['proceed']  = 'true';
 		$data['action']   = 'merlin_content';
-		$data['content']  = 'posts';
+		$data['content']  = 'content';
 		$data['_wpnonce'] = wp_create_nonce( 'merlin_nonce' );
 		$data['hash']     = md5( rand() ); // Has to be unique (check JS code catching this AJAX response).
 
