@@ -209,6 +209,8 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
+		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
+		add_action( 'import_start', array( $this, 'before_content_import_setup' ) );
 	}
 
 	/**
@@ -1493,5 +1495,39 @@ class Merlin {
 		$data['hash']     = md5( rand() ); // Has to be unique (check JS code catching this AJAX response).
 
 		return $data;
+	}
+
+	/**
+	 * After content import setup code.
+	 */
+	public function after_content_import_setup() {
+		// Set static homepage.
+		$homepage = get_page_by_title( apply_filters( 'merlin_content_home_page_title', 'Home' ) );
+
+		if ( $homepage ) {
+			update_option( 'page_on_front', $homepage->ID );
+			update_option( 'show_on_front', 'page' );
+		}
+
+		// Set static blog page.
+		$blogpage = get_page_by_title( apply_filters( 'merlin_content_blog_page_title', 'Blog' ) );
+
+		if ( $blogpage ) {
+			update_option( 'page_for_posts', $blogpage->ID );
+			update_option( 'show_on_front', 'page' );
+		}
+	}
+
+	/**
+	 * Before content import setup code.
+	 */
+	public function before_content_import_setup() {
+		// Update the Hello World! post by making it a draft.
+		$hello_world = get_page_by_title( 'Hello World!', OBJECT, 'post' );
+
+		if ( ! empty( $hello_world ) ) {
+			$hello_world->post_status = 'draft';
+			wp_update_post( $hello_world );
+		}
 	}
 }
