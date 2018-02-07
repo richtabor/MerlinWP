@@ -223,6 +223,8 @@ class Merlin {
 
 		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $logger );
 
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-widget-importer.php' );
+
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
 		}
@@ -1406,14 +1408,14 @@ class Merlin {
 
 		if ( file_exists( $base_dir . 'widgets.wie' ) ) {
 			$content['widgets'] = array(
-				'title'            	=> esc_html__( 'Widgets', '@@textdomain' ),
-				'description'      	=> esc_html__( 'Sample widgets data.', '@@textdomain' ),
-				'pending'          	=> esc_html__( 'Pending', '@@textdomain' ),
-				'installing'       	=> esc_html__( 'Installing', '@@textdomain' ),
-				'success'          	=> esc_html__( 'Success', '@@textdomain' ),
-				'install_callback' 	=> array( $this->importer, 'importWidgets' ),
-				'checked'          	=> $this->is_possible_upgrade() ? 0 : 1,
-				'data'			=> $base_dir . 'widgets.wie',
+				'title'            => esc_html__( 'Widgets', '@@textdomain' ),
+				'description'      => esc_html__( 'Sample widgets data.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' => array( 'Merlin_Widget_Importer', 'import' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'data'             => $base_dir . 'widgets.wie',
 			);
 		}
 
