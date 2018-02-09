@@ -20,6 +20,6 @@
     }
   ],
   "require": {
-    "proteusthemes/wp-content-importer-v2": "^2.0.0"
+    "proteusthemes/wp-content-importer-v2": "^2.0.1"
   }
 }

@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "04c02f4b81416890a939f2bdc24450d3",
+    "content-hash": "2db0fd87f325055e5079237a39357143",
     "packages": [
         {
             "name": "proteusthemes/wp-content-importer-v2",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/proteusthemes/WordPress-Importer.git",
