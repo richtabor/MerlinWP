@@ -91,3 +91,93 @@ function prefix_generate_child_functions_php( $output, $slug ) {
 	return $output;
 }
 add_filter( 'merlin_generate_child_functions_php', 'prefix_generate_child_functions_php', 10, 2 );
+
+
+/**
+ * Define the demo import files (remote files).
+ *
+ * To define imports, you just have to add the following code structure,
+ * with your own values to your theme (using the 'merlin_import_files' filter).
+ */
+function merlin_import_files() {
+	return array(
+		array(
+			'import_file_name'           => 'Demo Import 1',
+			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content.xml',
+			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets.json',
+			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer.dat',
+			'import_preview_image_url'   => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                => 'http://www.your_domain.com/my-demo-1',
+		),
+		array(
+			'import_file_name'           => 'Demo Import 2',
+			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content2.xml',
+			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets2.json',
+			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer2.dat',
+			'import_preview_image_url'   => 'http://www.your_domain.com/merlin/preview_import_image2.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                => 'http://www.your_domain.com/my-demo-2',
+		),
+	);
+}
+add_filter( 'merlin_import_files', 'merlin_import_files' );
+
+
+/**
+ * Define the demo import files (local files).
+ *
+ * You have to use the same filter as in above example,
+ * but with a slightly different array keys: local_*.
+ * The values have to be absolute paths (not URLs) to your import files.
+ * To use local import files, that reside in your theme folder,
+ * please use the below code.
+ * Note: make sure your import files are readable!
+ */
+function merlin_local_import_files() {
+	return array(
+		array(
+			'import_file_name'             => 'Demo Import 1',
+			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content.xml',
+			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets.json',
+			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer.dat',
+			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
+			'import_notice'                => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
+			'preview_url'                  => 'http://www.your_domain.com/my-demo-1',
+		),
+		array(
+			'import_file_name'             => 'Demo Import 2',
+			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content2.xml',
+			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets2.json',
+			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer2.dat',
+			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image2.jpg',
+			'import_notice'                => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                  => 'http://www.your_domain.com/my-demo-2',
+		),
+	);
+}
+add_filter( 'merlin_import_files', 'merlin_local_import_files' );
+
+
+/**
+ * Execute custom code after the whole import has finished.
+ */
+function merlin_after_import_setup() {
+	// Assign menus to their locations.
+	$main_menu = get_term_by( 'name', 'Main Menu', 'nav_menu' );
+
+	set_theme_mod( 'nav_menu_locations', array(
+			'main-menu' => $main_menu->term_id,
+		)
+	);
+
+	// Assign front page and posts page (blog page).
+	$front_page_id = get_page_by_title( 'Home' );
+	$blog_page_id  = get_page_by_title( 'Blog' );
+
+	update_option( 'show_on_front', 'page' );
+	update_option( 'page_on_front', $front_page_id->ID );
+	update_option( 'page_for_posts', $blog_page_id->ID );
+
+}
+add_action( 'merlin_after_all_import', 'merlin_after_import_setup' );
