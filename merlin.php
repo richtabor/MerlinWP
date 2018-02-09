@@ -66,6 +66,20 @@ class Merlin {
 	protected $hooks;
 
 	/**
+	 * Holds the verified import files.
+	 *
+	 * @var array
+	 */
+	public $import_files;
+
+	/**
+	 * The base import file name.
+	 *
+	 * @var string
+	 */
+	public $import_file_base_name;
+
+	/**
 	 * Helper.
 	 *
 	 * @var    array
@@ -178,6 +192,9 @@ class Merlin {
 		$this->dev_mode             = $config['dev_mode'];
 		$this->branding             = $config['branding'];
 
+		// Set the base name for the import files.
+		$this->set_import_file_base_name();
+
 		// Strings passed in from the config file.
 		$this->strings = $strings;
 
@@ -218,6 +235,7 @@ class Merlin {
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
 		add_action( 'import_start', array( $this, 'before_content_import_setup' ) );
+		add_action( 'admin_init', array( $this, 'register_import_files' ) );
 	}
 
 	/**
@@ -227,6 +245,8 @@ class Merlin {
 		if ( ! class_exists( '\WP_Importer' ) ) {
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
+
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-downloader.php' );
 
 		$logger = new ProteusThemes\WPContentImporter2\WPImporterLogger();
 
@@ -647,7 +667,7 @@ class Merlin {
 		}
 
 		// Show the content importer, only if there's demo content added.
-		if ( $this->get_base_content() ) {
+		if ( ! empty( $this->import_files ) ) {
 			$this->steps['content'] = array(
 				'name' => esc_html__( 'Content', '@@textdomain' ),
 				'view' => array( $this, 'content' ),
@@ -1411,9 +1431,10 @@ class Merlin {
 	protected function get_base_content() {
 		$content = array();
 
-		$base_dir = get_parent_theme_file_path( $this->demo_directory );
+		$selected_import_index = 0;
+		$import_files          = $this->get_import_files_paths( $selected_import_index );
 
-		if ( file_exists( $base_dir . 'content.xml' ) ) {
+		if ( ! empty( $import_files['content'] ) ) {
 			$content['content'] = array(
 				'title'             => esc_html__( 'Content', '@@textdomain' ),
 				'description'       => esc_html__( 'Demo content data.', '@@textdomain' ),
@@ -1422,11 +1443,11 @@ class Merlin {
 				'success'           => esc_html__( 'Success', '@@textdomain' ),
 				'checked'           => $this->is_possible_upgrade() ? 0 : 1,
 				'install_callback'  => array( $this->importer, 'import' ),
-				'data'              => $base_dir . 'content.xml',
+				'data'              => $import_files['content'],
 			);
 		}
 
-		if ( file_exists( $base_dir . 'widgets.wie' ) ) {
+		if ( ! empty( $import_files['widgets'] )  ) {
 			$content['widgets'] = array(
 				'title'            => esc_html__( 'Widgets', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample widgets data.', '@@textdomain' ),
@@ -1435,11 +1456,11 @@ class Merlin {
 				'success'          => esc_html__( 'Success', '@@textdomain' ),
 				'install_callback' => array( 'Merlin_Widget_Importer', 'import' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data'             => $base_dir . 'widgets.wie',
+				'data'             => $import_files['widgets'],
 			);
 		}
 
-		if ( file_exists( $base_dir . 'slider.zip' ) ) {
+		if ( ! empty( $import_files['sliders'] )  ) {
 			$content['sliders'] = array(
 				'title'            => esc_html__( 'Revolution Slider', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample Revolution sliders data.', '@@textdomain' ),
@@ -1448,11 +1469,11 @@ class Merlin {
 				'success'          => esc_html__( 'Success', '@@textdomain' ),
 				'install_callback' => array( $this, 'import_revolution_sliders' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data'             => $base_dir . 'slider.zip',
+				'data'             => $import_files['sliders'],
 			);
 		}
 
-		if ( file_exists( $base_dir . 'customizer.dat' ) ) {
+		if ( ! empty( $import_files['options'] )  ) {
 			$content['options'] = array(
 				'title'            => esc_html__( 'Options', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample theme options data.', '@@textdomain' ),
@@ -1461,7 +1482,7 @@ class Merlin {
 				'success'          => esc_html__( 'Success', '@@textdomain' ),
 				'install_callback' => array( 'Merlin_Customizer_Importer', 'import' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data'             => $base_dir . 'customizer.dat',
+				'data'             => $import_files['options'],
 			);
 		}
 
@@ -1553,5 +1574,170 @@ class Merlin {
 			$hello_world->post_status = 'draft';
 			wp_update_post( $hello_world );
 		}
+	}
+
+	/**
+	 * Register the import files via the `merlin_import_files` filter.
+	 */
+	public function register_import_files() {
+		$this->import_files = $this->validate_import_file_info( apply_filters( 'merlin_import_files', array() ) );
+	}
+
+	/**
+	 * Filter through the array of import files and get rid of those who do not comply.
+	 *
+	 * @param  array $import_files list of arrays with import file details.
+	 * @return array list of filtered arrays.
+	 */
+	public function validate_import_file_info( $import_files ) {
+		$filtered_import_file_info = array();
+
+		foreach ( $import_files as $import_file ) {
+			if ( ! empty( $import_file['import_file_name'] ) ) {
+				$filtered_import_file_info[] = $import_file;
+			}
+		}
+
+		return $filtered_import_file_info;
+	}
+
+	/**
+	 * Set the import file base name.
+	 * Check if an existing base name is available (saved in a transient).
+	 */
+	public function set_import_file_base_name() {
+		$existing_name = get_transient( 'merlin_import_file_base_name' );
+
+		if ( ! empty( $existing_name ) ) {
+			$this->import_file_base_name = $existing_name;
+		}
+		else {
+			$this->import_file_base_name = date( 'Y-m-d__H-i-s' );
+			set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, 5 * MINUTE_IN_SECONDS );
+		}
+	}
+
+	/**
+	 * Get the import file paths.
+	 * Grab the defined local paths, download the files or reuse existing files.
+	 *
+	 * @param int $selected_import_index The index of the selected import.
+	 *
+	 * @return array
+	 */
+	public function get_import_files_paths( $selected_import_index ) {
+		$selected_import_data = empty( $this->import_files[ $selected_import_index ] ) ? false : $this->import_files[ $selected_import_index ];
+
+		if ( empty( $selected_import_data ) ) {
+			return array();
+		}
+
+		$base_file_name = $this->import_file_base_name;
+		$import_files   = array(
+			'content' => '',
+			'widgets' => '',
+			'options' => '',
+			'sliders' => '',
+		);
+
+		$downloader = new Merlin_Downloader();
+
+		// Check if 'import_file_url' is not defined. That would mean a local file.
+		if ( empty( $selected_import_data['import_file_url'] ) ) {
+			if ( file_exists( $selected_import_data['local_import_file'] ) ) {
+				$import_files['content'] = $selected_import_data['local_import_file'];
+			}
+		}
+		else {
+			// Set the filename string for content import file.
+			$content_filename = 'content-' . $base_file_name . '.xml';
+
+			// Retrieve the content import file.
+			$import_files['content'] = $downloader->fetch_existing_file( $content_filename );
+
+			// Download the file, if it's missing.
+			if ( empty( $import_files['content'] ) ) {
+				$import_files['content'] = $downloader->download_file( $selected_import_data['import_file_url'], $content_filename );
+			}
+
+			// Reset the variable, if there was an error.
+			if ( is_wp_error( $import_files['content'] ) ) {
+				$import_files['content'] = '';
+			}
+		}
+
+		// Get widgets file as well. If defined!
+		if ( ! empty( $selected_import_data['import_widget_file_url'] ) ) {
+			// Set the filename string for widgets import file.
+			$widget_filename = 'widgets-' . $base_file_name . '.json';
+
+			// Retrieve the content import file.
+			$import_files['widgets'] = $downloader->fetch_existing_file( $widget_filename );
+
+			// Download the file, if it's missing.
+			if ( empty( $import_files['widgets'] ) ) {
+				$import_files['widgets'] = $downloader->download_file( $selected_import_data['import_widget_file_url'], $widget_filename );
+			}
+
+			// Reset the variable, if there was an error.
+			if ( is_wp_error( $import_files['widgets'] ) ) {
+				$import_files['widgets'] = '';
+			}
+		}
+		else if ( ! empty( $selected_import_data['local_import_widget_file'] ) ) {
+			if ( file_exists( $selected_import_data['local_import_widget_file'] ) ) {
+				$import_files['widgets'] = $selected_import_data['local_import_widget_file'];
+			}
+		}
+
+		// Get customizer import file as well. If defined!
+		if ( ! empty( $selected_import_data['import_customizer_file_url'] ) ) {
+			// Setup filename path to save the customizer content.
+			$customizer_filename = 'options-' . $base_file_name . '.dat';
+
+			// Retrieve the content import file.
+			$import_files['options'] = $downloader->fetch_existing_file( $customizer_filename );
+
+			// Download the file, if it's missing.
+			if ( empty( $import_files['options'] ) ) {
+				$import_files['options'] = $downloader->download_file( $selected_import_data['import_customizer_file_url'], $customizer_filename );
+			}
+
+			// Reset the variable, if there was an error.
+			if ( is_wp_error( $import_files['options'] ) ) {
+				$import_files['options'] = '';
+			}
+		}
+		else if ( ! empty( $selected_import_data['local_import_customizer_file'] ) ) {
+			if ( file_exists( $selected_import_data['local_import_customizer_file'] ) ) {
+				$import_files['options'] = $selected_import_data['local_import_customizer_file'];
+			}
+		}
+
+		// Get revolution slider import file as well. If defined!
+		if ( ! empty( $selected_import_data['import_rev_slider_file_url'] ) ) {
+			// Setup filename path to save the customizer content.
+			$rev_slider_filename = 'slider' . $base_file_name . '.zip';
+
+			// Retrieve the content import file.
+			$import_files['sliders'] = $downloader->fetch_existing_file( $rev_slider_filename );
+
+			// Download the file, if it's missing.
+			if ( empty( $import_files['sliders'] ) ) {
+				$import_files['sliders'] = $downloader->download_file( $selected_import_data['import_rev_slider_file_url'], $rev_slider_filename );
+			}
+
+			// Reset the variable, if there was an error.
+			if ( is_wp_error( $import_files['sliders'] ) ) {
+				$import_files['sliders'] = '';
+			}
+		}
+		else if ( ! empty( $selected_import_data['local_import_rev_slider_file'] ) ) {
+			if ( file_exists( $selected_import_data['local_import_rev_slider_file'] ) ) {
+				$import_files['sliders'] = $selected_import_data['local_import_rev_slider_file'];
+			}
+		}
+
+		return $import_files;
 	}
 }
