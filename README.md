@@ -32,11 +32,10 @@ If you have TGMPA included within your theme, please ensure Merlin WP is include
 
 ### 2. Configure Merlin WP
 
-The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
+The `merlin-config.php` file tells Merlin WP where the class is installed. It also let's you modify any of the text strings throughout the wizard.
 
 ** The important configuration settings: **
 * `directory` — The location in your theme where the `/merlin/` directory is placed
-* `demo_directory` — The directory location of where your demo content is located
 
 Other settings:
 * `merlin_url` — The admin url where Merlin WP will exist

@@ -108,13 +108,6 @@ class Merlin {
 	protected $directory = null;
 
 	/**
-	 * The location where the demo content is located within the theme.
-	 *
-	 * @var string $demo_directory
-	 */
-	protected $demo_directory = null;
-
-	/**
 	 * Top level admin page.
 	 *
 	 * @var string $merlin_url
@@ -175,7 +168,6 @@ class Merlin {
 
 		$config = wp_parse_args( $config, array(
 			'directory'            => '',
-			'demo_directory'       => '',
 			'merlin_url'           => 'merlin',
 			'child_action_btn_url' => '',
 			'help_mode'            => '',
@@ -185,7 +177,6 @@ class Merlin {
 
 		// Set config arguments.
 		$this->directory            = $config['directory'];
-		$this->demo_directory       = $config['demo_directory'];
 		$this->merlin_url           = $config['merlin_url'];
 		$this->child_action_btn_url = $config['child_action_btn_url'];
 		$this->help_mode            = $config['help_mode'];
@@ -298,25 +289,6 @@ class Merlin {
 		wp_safe_redirect( admin_url( 'themes.php?page= ' . $this->merlin_url ) );
 
 		exit;
-	}
-
-	/**
-	 * Remove default sidebar widgets.
-	 */
-	protected function unset_default_widgets() {
-
-		$base_dir = get_parent_theme_file_path( $this->demo_directory );
-
-		// If the widgets.wie file does not exist, then let's not remove the default widgets, as there are none to replace them with.
-		if ( ! file_exists( $base_dir . 'widgets.wie' ) ) {
-			return;
-		}
-
-		$widget_areas = array(
-			'sidebar-1' => array(),
-		);
-
-		update_option( 'sidebars_widgets', apply_filters( 'merlin_unset_default_widgets_args', $widget_areas ) );
 	}
 
 	/**
@@ -1036,8 +1008,6 @@ class Merlin {
 				<?php wp_nonce_field( 'merlin' ); ?>
 			</footer>
 		</form>
-
-		<?php $this->unset_default_widgets(); ?>
 
 	<?php
 	}
