@@ -234,6 +234,10 @@ class Merlin {
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-option.php' );
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-importer.php' );
 
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-hooks.php' );
+
+		$hooks = new Merlin_Hooks();
+
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
 		}
