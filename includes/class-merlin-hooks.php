@@ -43,4 +43,15 @@ class Merlin_Hooks {
 
 		return $widget;
 	}
+
+	/**
+	 * Wrapper function for the after all import action hook.
+	 *
+	 * @param int $selected_import_index The selected demo import index.
+	 */
+	public function after_all_import_action( $selected_import_index ) {
+		do_action( 'merlin_after_all_import', $selected_import_index );
+
+		return true;
+	}
 }
