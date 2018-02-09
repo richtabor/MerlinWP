@@ -59,6 +59,13 @@ class Merlin {
 	protected $importer;
 
 	/**
+	 * WP Hook class.
+	 *
+	 * @var Merlin_Hooks
+	 */
+	protected $hooks;
+
+	/**
 	 * Helper.
 	 *
 	 * @var    array
@@ -233,6 +240,10 @@ class Merlin {
 
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-option.php' );
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-importer.php' );
+
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-hooks.php' );
+
+		$this->hooks = new Merlin_Hooks();
 
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
@@ -1451,6 +1462,19 @@ class Merlin {
 				'install_callback' => array( 'Merlin_Customizer_Importer', 'import' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
 				'data'             => $base_dir . 'customizer.dat',
+			);
+		}
+
+		if ( false !== has_action( 'merlin_after_all_import' ) ) {
+			$content['after_import'] = array(
+				'title'            => esc_html__( 'After import setup', '@@textdomain' ),
+				'description'      => esc_html__( 'After import setup.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' => array( $this->hooks, 'after_all_import_action' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'data'             => 0,
 			);
 		}
 
