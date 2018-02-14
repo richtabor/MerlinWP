@@ -219,6 +219,8 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
@@ -1769,5 +1771,64 @@ class Merlin {
 		}
 
 		return $import_files;
+	}
+
+
+	/**
+	 * AJAX callback for the 'merlin_update_selected_import_data_info' action.
+	 */
+	public function update_selected_import_data_info() {
+		$selected_index = ! isset( $_POST['selected_index'] ) ? false : intval( $_POST['selected_index'] );
+
+		if ( false === $selected_index ) {
+			wp_send_json_error();
+		}
+
+		$import_info = $this->get_import_data_info( $selected_index );
+		$import_info_html = $this->get_import_steps_html( $import_info );
+
+		wp_send_json_success( $import_info_html );
+	}
+
+	/**
+	 * Get the import steps HTML output.
+	 *
+	 * @param array $import_info The import info to prepare the HTML for.
+	 *
+	 * @return string
+	 */
+	public function get_import_steps_html( $import_info ) {
+		ob_start();
+		?>
+			<?php foreach ( $import_info as $slug => $available ) : ?>
+				<?php
+				if ( ! $available ) {
+					continue;
+				}
+				?>
+
+				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
+					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
+					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
+						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
+					</label>
+				</li>
+
+			<?php endforeach; ?>
+		<?php
+
+		return ob_get_clean();
+	}
+
+
+	/**
+	 * AJAX call for cleanup after the importing steps are done -> import finished.
+	 *
+	 * @return bool
+	 */
+	public function import_finished() {
+		delete_transient( 'merlin_import_file_base_name' );
+
+		wp_send_json_success();
 	}
 }
