@@ -422,6 +422,12 @@ var Merlin = (function($){
                 $(".merlin__drawer--import-content").find("input").prop("disabled", true);
                 complete = function(){
 
+									$.post(merlin_params.ajaxurl, {
+										action: "merlin_import_finished",
+										wpnonce: merlin_params.wpnonce,
+										selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
+									});
+
                 	setTimeout(function(){
 				       body.removeClass( drawer_opened );
 				    },500);
