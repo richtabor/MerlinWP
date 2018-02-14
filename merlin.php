@@ -1677,7 +1677,7 @@ class Merlin {
 
 		// Check if 'import_file_url' is not defined. That would mean a local file.
 		if ( empty( $selected_import_data['import_file_url'] ) ) {
-			if ( file_exists( $selected_import_data['local_import_file'] ) ) {
+			if ( ! empty( $selected_import_data['local_import_file'] ) && file_exists( $selected_import_data['local_import_file'] ) ) {
 				$import_files['content'] = $selected_import_data['local_import_file'];
 			}
 		}
