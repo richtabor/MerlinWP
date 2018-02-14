@@ -1455,15 +1455,16 @@ class Merlin {
 
 
 	/**
-	 * Get base sample data
+	 * Get the import files/data.
+	 *
+	 * @param int $selected_import_index The index of the predefined demo import.
 	 *
 	 * @return    array
 	 */
-	protected function get_base_content() {
+	protected function get_import_data( $selected_import_index = 0 ) {
 		$content = array();
 
-		$selected_import_index = 0;
-		$import_files          = $this->get_import_files_paths( $selected_import_index );
+		$import_files = $this->get_import_files_paths( $selected_import_index );
 
 		if ( ! empty( $import_files['content'] ) ) {
 			$content['content'] = array(
