@@ -969,24 +969,25 @@ class Merlin {
 
 			<p><?php echo esc_html( $paragraph ); ?></p>
 
+			<?php if ( 1 < count( $this->import_files ) ) : ?>
+				<p><?php esc_html_e( 'Select which demo data you want to import:', '@@textdomain' ); ?></p>
+				<select class="js-merlin-demo-import-select">
+					<?php foreach ( $this->import_files as $index => $import_file ) : ?>
+						<?php
+						$img_src          = isset( $import_file['import_preview_image_url'] ) ? $import_file['import_preview_image_url'] : '';
+						$import_notice    = isset( $import_file['import_notice'] ) ? $import_file['import_notice'] : '';
+						$demo_preview_url = isset( $import_file['preview_url'] ) ? $import_file['preview_url'] : '';
+						?>
+
+						<option value="<?php echo esc_attr( $index ); ?>" data-img-src="<?php echo esc_url( $img_src ); ?>" data-notice="<?php echo esc_html( $import_notice ); ?>" data-preview-url="<?php echo esc_url( $demo_preview_url ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+
+					<?php endforeach; ?>
+				</select>
+			<?php endif; ?>
+
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
 		</div>
-
-		<form action="" method="post">
-
-			<ul class="merlin__drawer merlin__drawer--import-content">
-				<?php
-				foreach ( $content as $slug => $default ) :
-
-					if ( 'baseurl' === $slug || 'version' === $slug ) {
-						continue;
-					}
-
-					if ( 'users' === $slug ) {
-						$default['checked'] = false;
-					}
-					?>
 
 					<li class="merlin__drawer--import-content__list-item status status--<?php echo esc_attr( $default['pending'] ); ?>" data-content="<?php echo esc_attr( $slug ); ?>">
 						<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" <?php echo ( ! isset( $default['checked'] ) || $default['checked'] ) ? ' checked' : ''; ?>>
