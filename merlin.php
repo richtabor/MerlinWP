@@ -183,9 +183,6 @@ class Merlin {
 		$this->dev_mode             = $config['dev_mode'];
 		$this->branding             = $config['branding'];
 
-		// Set the base name for the import files.
-		$this->set_import_file_base_name();
-
 		// Strings passed in from the config file.
 		$this->strings = $strings;
 
@@ -1601,6 +1598,9 @@ class Merlin {
 		if ( empty( $selected_import_data ) ) {
 			return array();
 		}
+
+		// Set the base name for the import files.
+		$this->set_import_file_base_name();
 
 		$base_file_name = $this->import_file_base_name;
 		$import_files   = array(
