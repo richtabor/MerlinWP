@@ -942,8 +942,7 @@ class Merlin {
 	 * Page setup
 	 */
 	protected function content() {
-		// Retrieve the content to import.
-		$content = $this->get_base_content();
+		$import_info = $this->get_import_data_info();
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -989,14 +988,10 @@ class Merlin {
 
 		</div>
 
-					<li class="merlin__drawer--import-content__list-item status status--<?php echo esc_attr( $default['pending'] ); ?>" data-content="<?php echo esc_attr( $slug ); ?>">
-						<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" <?php echo ( ! isset( $default['checked'] ) || $default['checked'] ) ? ' checked' : ''; ?>>
-						<label for="default_content_<?php echo esc_attr( $slug ); ?>">
-							<i></i><span><?php echo esc_html( $default['title'] ); ?></span>
-						</label>
-					</li>
+		<form action="" method="post">
 
-				<?php endforeach; ?>
+			<ul class="merlin__drawer merlin__drawer--import-content js-merlin-drawer-import-content">
+				<?php echo $this->get_import_steps_html( $import_info ); ?>
 			</ul>
 
 			<footer class="merlin__content__footer">
@@ -1396,6 +1391,64 @@ class Merlin {
 			) );
 		}
 	}
+
+
+	/**
+	 * Get import data from the selected import.
+	 * Which data does the selected import have for the import.
+	 *
+	 * @param int $selected_import_index The index of the predefined demo import.
+	 *
+	 * @return bool|array
+	 */
+	public function get_import_data_info( $selected_import_index = 0 ) {
+		$import_data = array(
+			'content'      => false,
+			'widgets'      => false,
+			'options'      => false,
+			'sliders'      => false,
+			'after_import' => false,
+		);
+
+		if ( empty( $this->import_files[ $selected_import_index ] ) ) {
+			return false;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_file'] )
+		) {
+			$import_data['content'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_widget_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_widget_file'] )
+		) {
+			$import_data['widgets'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_customizer_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_customizer_file'] )
+		) {
+			$import_data['options'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_rev_slider_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_rev_slider_file'] )
+		) {
+			$import_data['sliders'] = true;
+		}
+
+		if ( false !== has_action( 'merlin_after_all_import' ) ) {
+			$import_data['after_import'] = true;
+		}
+
+		return $import_data;
+	}
+
 
 	/**
 	 * Get base sample data
