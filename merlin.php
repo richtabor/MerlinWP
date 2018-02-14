@@ -1524,7 +1524,7 @@ class Merlin {
 				'success'          => esc_html__( 'Success', '@@textdomain' ),
 				'install_callback' => array( $this->hooks, 'after_all_import_action' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data'             => 0,
+				'data'             => $selected_import_index,
 			);
 		}
 
