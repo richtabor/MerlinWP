@@ -83,6 +83,28 @@ var Merlin = (function($){
                 return true;
             }
         });
+
+				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
+					var selectedIndex  = $( this ).val(),
+						$selectedOption  = $( this ).children( ':selected' ),
+						optionImgSrc     = $selectedOption.data( 'img-src' ),
+						optionNotice     = $selectedOption.data( 'notice' ),
+						optionPreviewUrl = $selectedOption.data( 'preview-url' );
+
+					$.post( merlin_params.ajaxurl, {
+						action: 'merlin_update_selected_import_data_info',
+						wpnonce: merlin_params.wpnonce,
+						selected_index: selectedIndex,
+					}, function( response ) {
+						if ( response.success ) {
+							$( '.js-merlin-drawer-import-content' ).html( response.data );
+						}
+						else {
+							alert( merlin_params.texts.something_went_wrong );
+						}
+					} )
+						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
+				} );
     }
 
     function ChildTheme() {
@@ -358,7 +380,8 @@ var Merlin = (function($){
                     jQuery.post(merlin_params.ajaxurl, {
                         action: "merlin_content",
                         wpnonce: merlin_params.wpnonce,
-                        content: current_item
+                        content: current_item,
+                        selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
                     }, ajax_callback).fail(ajax_callback);
                 }else{
                     $current_node.addClass("skipping");
@@ -398,6 +421,12 @@ var Merlin = (function($){
                 $(".merlin__drawer--import-content").addClass("installing");
                 $(".merlin__drawer--import-content").find("input").prop("disabled", true);
                 complete = function(){
+
+									$.post(merlin_params.ajaxurl, {
+										action: "merlin_import_finished",
+										wpnonce: merlin_params.wpnonce,
+										selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
+									});
 
                 	setTimeout(function(){
 				       body.removeClass( drawer_opened );

@@ -183,9 +183,6 @@ class Merlin {
 		$this->dev_mode             = $config['dev_mode'];
 		$this->branding             = $config['branding'];
 
-		// Set the base name for the import files.
-		$this->set_import_file_base_name();
-
 		// Strings passed in from the config file.
 		$this->strings = $strings;
 
@@ -222,6 +219,8 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
@@ -374,6 +373,10 @@ class Merlin {
 		// Enqueue javascript.
 		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
 
+		$texts = array(
+			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
+		);
+
 		// Localize the javascript.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Check first if TMGPA is included.
@@ -385,12 +388,14 @@ class Merlin {
 				'tgm_bulk_url'     => $this->tgmpa->get_tgmpa_url(),
 				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 				'wpnonce'          => wp_create_nonce( 'merlin_nonce' ),
+				'texts'            => $texts,
 			) );
 		} else {
 			// If TMGPA is not included.
 			wp_localize_script( 'merlin', 'merlin_params', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
+				'texts'   => $texts,
 			) );
 		}
 
@@ -939,8 +944,7 @@ class Merlin {
 	 * Page setup
 	 */
 	protected function content() {
-		// Retrieve the content to import.
-		$content = $this->get_base_content();
+		$import_info = $this->get_import_data_info();
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -966,33 +970,30 @@ class Merlin {
 
 			<p><?php echo esc_html( $paragraph ); ?></p>
 
+			<?php if ( 1 < count( $this->import_files ) ) : ?>
+				<p><?php esc_html_e( 'Select which demo data you want to import:', '@@textdomain' ); ?></p>
+				<select class="js-merlin-demo-import-select">
+					<?php foreach ( $this->import_files as $index => $import_file ) : ?>
+						<?php
+						$img_src          = isset( $import_file['import_preview_image_url'] ) ? $import_file['import_preview_image_url'] : '';
+						$import_notice    = isset( $import_file['import_notice'] ) ? $import_file['import_notice'] : '';
+						$demo_preview_url = isset( $import_file['preview_url'] ) ? $import_file['preview_url'] : '';
+						?>
+
+						<option value="<?php echo esc_attr( $index ); ?>" data-img-src="<?php echo esc_url( $img_src ); ?>" data-notice="<?php echo esc_html( $import_notice ); ?>" data-preview-url="<?php echo esc_url( $demo_preview_url ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+
+					<?php endforeach; ?>
+				</select>
+			<?php endif; ?>
+
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
 		</div>
 
 		<form action="" method="post">
 
-			<ul class="merlin__drawer merlin__drawer--import-content">
-				<?php
-				foreach ( $content as $slug => $default ) :
-
-					if ( 'baseurl' === $slug || 'version' === $slug ) {
-						continue;
-					}
-
-					if ( 'users' === $slug ) {
-						$default['checked'] = false;
-					}
-					?>
-
-					<li class="merlin__drawer--import-content__list-item status status--<?php echo esc_attr( $default['pending'] ); ?>" data-content="<?php echo esc_attr( $slug ); ?>">
-						<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" <?php echo ( ! isset( $default['checked'] ) || $default['checked'] ) ? ' checked' : ''; ?>>
-						<label for="default_content_<?php echo esc_attr( $slug ); ?>">
-							<i></i><span><?php echo esc_html( $default['title'] ); ?></span>
-						</label>
-					</li>
-
-				<?php endforeach; ?>
+			<ul class="merlin__drawer merlin__drawer--import-content js-merlin-drawer-import-content">
+				<?php echo $this->get_import_steps_html( $import_info ); ?>
 			</ul>
 
 			<footer class="merlin__content__footer">
@@ -1343,8 +1344,10 @@ class Merlin {
 	function _ajax_content() {
 		static $content = null;
 
+		$selected_import = intval( $_POST['selected_index'] );
+
 		if ( null === $content ) {
-			$content = $this->get_base_content();
+			$content = $this->get_import_data( $selected_import );
 		}
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
@@ -1393,16 +1396,75 @@ class Merlin {
 		}
 	}
 
+
 	/**
-	 * Get base sample data
+	 * Get import data from the selected import.
+	 * Which data does the selected import have for the import.
+	 *
+	 * @param int $selected_import_index The index of the predefined demo import.
+	 *
+	 * @return bool|array
+	 */
+	public function get_import_data_info( $selected_import_index = 0 ) {
+		$import_data = array(
+			'content'      => false,
+			'widgets'      => false,
+			'options'      => false,
+			'sliders'      => false,
+			'after_import' => false,
+		);
+
+		if ( empty( $this->import_files[ $selected_import_index ] ) ) {
+			return false;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_file'] )
+		) {
+			$import_data['content'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_widget_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_widget_file'] )
+		) {
+			$import_data['widgets'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_customizer_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_customizer_file'] )
+		) {
+			$import_data['options'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_rev_slider_file_url'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_rev_slider_file'] )
+		) {
+			$import_data['sliders'] = true;
+		}
+
+		if ( false !== has_action( 'merlin_after_all_import' ) ) {
+			$import_data['after_import'] = true;
+		}
+
+		return $import_data;
+	}
+
+
+	/**
+	 * Get the import files/data.
+	 *
+	 * @param int $selected_import_index The index of the predefined demo import.
 	 *
 	 * @return    array
 	 */
-	protected function get_base_content() {
+	protected function get_import_data( $selected_import_index = 0 ) {
 		$content = array();
 
-		$selected_import_index = 0;
-		$import_files          = $this->get_import_files_paths( $selected_import_index );
+		$import_files = $this->get_import_files_paths( $selected_import_index );
 
 		if ( ! empty( $import_files['content'] ) ) {
 			$content['content'] = array(
@@ -1465,7 +1527,7 @@ class Merlin {
 				'success'          => esc_html__( 'Success', '@@textdomain' ),
 				'install_callback' => array( $this->hooks, 'after_all_import_action' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
-				'data'             => 0,
+				'data'             => $selected_import_index,
 			);
 		}
 
@@ -1583,8 +1645,9 @@ class Merlin {
 		}
 		else {
 			$this->import_file_base_name = date( 'Y-m-d__H-i-s' );
-			set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, 5 * MINUTE_IN_SECONDS );
 		}
+
+		set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, MINUTE_IN_SECONDS );
 	}
 
 	/**
@@ -1602,6 +1665,9 @@ class Merlin {
 			return array();
 		}
 
+		// Set the base name for the import files.
+		$this->set_import_file_base_name();
+
 		$base_file_name = $this->import_file_base_name;
 		$import_files   = array(
 			'content' => '',
@@ -1614,7 +1680,7 @@ class Merlin {
 
 		// Check if 'import_file_url' is not defined. That would mean a local file.
 		if ( empty( $selected_import_data['import_file_url'] ) ) {
-			if ( file_exists( $selected_import_data['local_import_file'] ) ) {
+			if ( ! empty( $selected_import_data['local_import_file'] ) && file_exists( $selected_import_data['local_import_file'] ) ) {
 				$import_files['content'] = $selected_import_data['local_import_file'];
 			}
 		}
@@ -1709,5 +1775,64 @@ class Merlin {
 		}
 
 		return $import_files;
+	}
+
+
+	/**
+	 * AJAX callback for the 'merlin_update_selected_import_data_info' action.
+	 */
+	public function update_selected_import_data_info() {
+		$selected_index = ! isset( $_POST['selected_index'] ) ? false : intval( $_POST['selected_index'] );
+
+		if ( false === $selected_index ) {
+			wp_send_json_error();
+		}
+
+		$import_info = $this->get_import_data_info( $selected_index );
+		$import_info_html = $this->get_import_steps_html( $import_info );
+
+		wp_send_json_success( $import_info_html );
+	}
+
+	/**
+	 * Get the import steps HTML output.
+	 *
+	 * @param array $import_info The import info to prepare the HTML for.
+	 *
+	 * @return string
+	 */
+	public function get_import_steps_html( $import_info ) {
+		ob_start();
+		?>
+			<?php foreach ( $import_info as $slug => $available ) : ?>
+				<?php
+				if ( ! $available ) {
+					continue;
+				}
+				?>
+
+				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
+					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
+					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
+						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
+					</label>
+				</li>
+
+			<?php endforeach; ?>
+		<?php
+
+		return ob_get_clean();
+	}
+
+
+	/**
+	 * AJAX call for cleanup after the importing steps are done -> import finished.
+	 *
+	 * @return bool
+	 */
+	public function import_finished() {
+		delete_transient( 'merlin_import_file_base_name' );
+
+		wp_send_json_success();
 	}
 }
