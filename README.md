@@ -93,6 +93,9 @@ function merlin_local_import_files() {
 add_filter( 'merlin_import_files', 'merlin_local_import_files' );
 ```
 
+#### Multiple demo imports?
+If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the ` merlin-filters.php` file.
+
 ### 4. Add filters
 
 Inside the package download exists a `merlin-filters.php` file which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's `functions.php` file. 
