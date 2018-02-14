@@ -380,7 +380,8 @@ var Merlin = (function($){
                     jQuery.post(merlin_params.ajaxurl, {
                         action: "merlin_content",
                         wpnonce: merlin_params.wpnonce,
-                        content: current_item
+                        content: current_item,
+                        selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
                     }, ajax_callback).fail(ajax_callback);
                 }else{
                     $current_node.addClass("skipping");
