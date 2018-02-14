@@ -83,6 +83,28 @@ var Merlin = (function($){
                 return true;
             }
         });
+
+				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
+					var selectedIndex  = $( this ).val(),
+						$selectedOption  = $( this ).children( ':selected' ),
+						optionImgSrc     = $selectedOption.data( 'img-src' ),
+						optionNotice     = $selectedOption.data( 'notice' ),
+						optionPreviewUrl = $selectedOption.data( 'preview-url' );
+
+					$.post( merlin_params.ajaxurl, {
+						action: 'merlin_update_selected_import_data_info',
+						wpnonce: merlin_params.wpnonce,
+						selected_index: selectedIndex,
+					}, function( response ) {
+						if ( response.success ) {
+							$( '.js-merlin-drawer-import-content' ).html( response.data );
+						}
+						else {
+							alert( merlin_params.texts.something_went_wrong );
+						}
+					} )
+						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
+				} );
     }
 
     function ChildTheme() {
