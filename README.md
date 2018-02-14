@@ -32,11 +32,10 @@ If you have TGMPA included within your theme, please ensure Merlin WP is include
 
 ### 2. Configure Merlin WP
 
-The `merlin-config.php` file tells Merlin WP where the class is installed and where your demo content is located. It also let's you modify any of the text strings throughout the wizard.
+The `merlin-config.php` file tells Merlin WP where the class is installed. It also let's you modify any of the text strings throughout the wizard.
 
 ** The important configuration settings: **
 * `directory` — The location in your theme where the `/merlin/` directory is placed
-* `demo_directory` — The directory location of where your demo content is located
 
 Other settings:
 * `merlin_url` — The admin url where Merlin WP will exist
@@ -45,14 +44,54 @@ Other settings:
 * `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files. This is on by default during the beta.
 * `branding` — Show Merlin WP's logo or not *(beta)*
 
-### 3. Add your demo content
+### 3. Define your demo content import files
 
-Add your theme's demo content to the demo directory location specificed in the `merlin-config.php` file.
-
-You'll want to add the following files:
+You'll need the following files:
 * `content.xml` — Exported demo content using the WordPress Exporter
 * `widgets.wie` — Exported widgets using [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/)
 * `customizer.dat` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
+
+Once you have those files, you can upload them to your server (recommeded), or include them somewhere in your theme.
+
+Next you have to define a filter in your theme, to let WP Merlin know, where these files are located. Depending on where you placed the import files, you have two ways to define the filter:
+
+1\. If you uploaded the import files to your server, then use this code example and edit it, to suit your file locations:
+
+```
+function merlin_import_files() {
+	return array(
+		array(
+			'import_file_name'           => 'Demo Import 1',
+			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content.xml',
+			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets.json',
+			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer.dat',
+			'import_preview_image_url'   => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
+			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                => 'http://www.your_domain.com/my-demo-1',
+		),
+	);
+}
+add_filter( 'merlin_import_files', 'merlin_import_files' );
+```
+
+2\. If you included the import files somewhere in the theme, then use this code example:
+
+```
+function merlin_local_import_files() {
+	return array(
+		array(
+			'import_file_name'             => 'Demo Import 1',
+			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content.xml',
+			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets.json',
+			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer.dat',
+			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
+			'import_notice'                => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
+			'preview_url'                  => 'http://www.your_domain.com/my-demo-1',
+		),
+	);
+}
+add_filter( 'merlin_import_files', 'merlin_local_import_files' );
+```
 
 ### 4. Add filters
 

@@ -19,7 +19,6 @@ $wizard = new Merlin(
 	// Configure Merlin with custom settings.
 	$config = array(
 		'directory'                => '', // Location where the 'merlin' directory is placed.
-		'demo_directory'           => 'demo/', // Location where the theme demo files exist.
 		'merlin_url'               => 'merlin', // Customize the page URL where Merlin WP loads.
 		'child_action_btn_url'     => 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
 		'help_mode'                => false, // Set to true to turn on the little wizard helper.
