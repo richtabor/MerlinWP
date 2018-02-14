@@ -1344,8 +1344,10 @@ class Merlin {
 	function _ajax_content() {
 		static $content = null;
 
+		$selected_import = intval( $_POST['selected_index'] );
+
 		if ( null === $content ) {
-			$content = $this->get_base_content();
+			$content = $this->get_import_data( $selected_import );
 		}
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
