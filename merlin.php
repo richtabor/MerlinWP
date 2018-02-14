@@ -371,6 +371,10 @@ class Merlin {
 		// Enqueue javascript.
 		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
 
+		$texts = array(
+			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
+		);
+
 		// Localize the javascript.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Check first if TMGPA is included.
@@ -382,12 +386,14 @@ class Merlin {
 				'tgm_bulk_url'     => $this->tgmpa->get_tgmpa_url(),
 				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 				'wpnonce'          => wp_create_nonce( 'merlin_nonce' ),
+				'texts'            => $texts,
 			) );
 		} else {
 			// If TMGPA is not included.
 			wp_localize_script( 'merlin', 'merlin_params', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
+				'texts'   => $texts,
 			) );
 		}
 
