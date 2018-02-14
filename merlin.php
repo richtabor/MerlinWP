@@ -1642,8 +1642,9 @@ class Merlin {
 		}
 		else {
 			$this->import_file_base_name = date( 'Y-m-d__H-i-s' );
-			set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, 5 * MINUTE_IN_SECONDS );
 		}
+
+		set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, MINUTE_IN_SECONDS );
 	}
 
 	/**
