@@ -94,7 +94,10 @@ add_filter( 'merlin_import_files', 'merlin_local_import_files' );
 ```
 
 #### Multiple demo imports?
-If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the ` merlin-filters.php` file.
+If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the `merlin-filters.php` file.
+
+#### Redux framework import?
+If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters.php` file for an example on how to define the Redux import files.
 
 ### 4. Add filters
 
