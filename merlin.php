@@ -251,6 +251,8 @@ class Merlin {
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-option.php' );
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-importer.php' );
 
+		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-redux-importer.php' );
+
 		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-hooks.php' );
 
 		$this->hooks = new Merlin_Hooks();
@@ -1411,6 +1413,7 @@ class Merlin {
 			'widgets'      => false,
 			'options'      => false,
 			'sliders'      => false,
+			'redux'        => false,
 			'after_import' => false,
 		);
 
@@ -1444,6 +1447,13 @@ class Merlin {
 			! empty( $this->import_files[ $selected_import_index ]['local_import_rev_slider_file'] )
 		) {
 			$import_data['sliders'] = true;
+		}
+
+		if (
+			! empty( $this->import_files[ $selected_import_index ]['import_redux'] ) ||
+			! empty( $this->import_files[ $selected_import_index ]['local_import_redux'] )
+		) {
+			$import_data['redux'] = true;
 		}
 
 		if ( false !== has_action( 'merlin_after_all_import' ) ) {
@@ -1515,6 +1525,19 @@ class Merlin {
 				'install_callback' => array( 'Merlin_Customizer_Importer', 'import' ),
 				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
 				'data'             => $import_files['options'],
+			);
+		}
+
+		if ( ! empty( $import_files['redux'] )  ) {
+			$content['redux'] = array(
+				'title'            => esc_html__( 'Redux Options', '@@textdomain' ),
+				'description'      => esc_html__( 'Redux framework options.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'install_callback' => array( 'Merlin_Redux_Importer', 'import' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'data'             => $import_files['redux'],
 			);
 		}
 
@@ -1673,6 +1696,7 @@ class Merlin {
 			'content' => '',
 			'widgets' => '',
 			'options' => '',
+			'redux'   => array(),
 			'sliders' => '',
 		);
 
@@ -1753,7 +1777,7 @@ class Merlin {
 		// Get revolution slider import file as well. If defined!
 		if ( ! empty( $selected_import_data['import_rev_slider_file_url'] ) ) {
 			// Setup filename path to save the customizer content.
-			$rev_slider_filename = 'slider' . $base_file_name . '.zip';
+			$rev_slider_filename = 'slider-' . $base_file_name . '.zip';
 
 			// Retrieve the content import file.
 			$import_files['sliders'] = $downloader->fetch_existing_file( $rev_slider_filename );
@@ -1772,6 +1796,50 @@ class Merlin {
 			if ( file_exists( $selected_import_data['local_import_rev_slider_file'] ) ) {
 				$import_files['sliders'] = $selected_import_data['local_import_rev_slider_file'];
 			}
+		}
+
+		// Get redux import file as well. If defined!
+		if ( ! empty( $selected_import_data['import_redux'] ) ) {
+			$redux_items = array();
+
+			// Setup filename paths to save the Redux content.
+			foreach ( $selected_import_data['import_redux'] as $index => $redux_item ) {
+				$redux_filename = 'redux-' . $index . '-' . $base_file_name . '.json';
+
+				// Retrieve the content import file.
+				$file_path = $downloader->fetch_existing_file( $redux_filename );
+
+				// Download the file, if it's missing.
+				if ( empty( $file_path ) ) {
+					$file_path = $downloader->download_file( $redux_item['file_url'], $redux_filename );
+				}
+
+				// Reset the variable, if there was an error.
+				if ( is_wp_error( $file_path ) ) {
+					$file_path = '';
+				}
+
+				$redux_items[] = array(
+					'option_name' => $redux_item['option_name'],
+					'file_path'   => $file_path,
+				);
+			}
+
+			// Download the Redux import file.
+			$import_files['redux'] = $redux_items;
+		}
+		else if ( ! empty( $selected_import_data['local_import_redux'] ) ) {
+			$redux_items = array();
+
+			// Setup filename paths to save the Redux content.
+			foreach ( $selected_import_data['local_import_redux'] as $redux_item ) {
+				if ( file_exists( $redux_item['file_path'] ) ) {
+					$redux_items[] = $redux_item;
+				}
+			}
+
+			// Download the Redux import file.
+			$import_files['redux'] = $redux_items;
 		}
 
 		return $import_files;

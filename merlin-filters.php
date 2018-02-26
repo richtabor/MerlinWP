@@ -106,6 +106,12 @@ function merlin_import_files() {
 			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content.xml',
 			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets.json',
 			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer.dat',
+			'import_redux'               => array(
+				array(
+					'file_url'    => 'http://www.your_domain.com/merlin/redux_options.json',
+					'option_name' => 'redux_option_name',
+				),
+			),
 			'import_preview_image_url'   => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
 			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
 			'preview_url'                => 'http://www.your_domain.com/my-demo-1',
@@ -115,6 +121,12 @@ function merlin_import_files() {
 			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content2.xml',
 			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets2.json',
 			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer2.dat',
+			'import_redux'               => array(
+				array(
+					'file_url'    => 'http://www.your_domain.com/merlin/redux_options2.json',
+					'option_name' => 'redux_option_name2',
+				),
+			),
 			'import_preview_image_url'   => 'http://www.your_domain.com/merlin/preview_import_image2.jpg',
 			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
 			'preview_url'                => 'http://www.your_domain.com/my-demo-2',
@@ -141,6 +153,12 @@ function merlin_local_import_files() {
 			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content.xml',
 			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets.json',
 			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer.dat',
+			'local_import_redux'           => array(
+				array(
+					'file_path'   => trailingslashit( get_template_directory() ) . 'merlin/redux_options.json',
+					'option_name' => 'redux_option_name',
+				),
+			),
 			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
 			'import_notice'                => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
 			'preview_url'                  => 'http://www.your_domain.com/my-demo-1',
@@ -150,6 +168,12 @@ function merlin_local_import_files() {
 			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content2.xml',
 			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets2.json',
 			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer2.dat',
+			'local_import_redux'           => array(
+				array(
+					'file_path'   => trailingslashit( get_template_directory() ) . 'merlin/redux_options2.json',
+					'option_name' => 'redux_option_name2',
+				),
+			),
 			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image2.jpg',
 			'import_notice'                => __( 'A special note for this import.', 'your-textdomain' ),
 			'preview_url'                  => 'http://www.your_domain.com/my-demo-2',
