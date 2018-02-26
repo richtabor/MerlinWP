@@ -17,12 +17,12 @@ class Merlin_Redux_Importer {
 	 */
 	public static function import( $import_data ) {
 		// Redux plugin is not active!
-		if ( ! class_exists( 'ReduxFramework' ) || empty( $import_data ) ) {
+		if ( ! class_exists( 'ReduxFramework' ) || ! class_exists( 'ReduxFrameworkInstances' ) || empty( $import_data ) ) {
 			return false;
 		}
 
 		foreach ( $import_data as $redux_item ) {
-			$redux_options_raw_data = Helpers::data_from_file( $redux_item['file_path'] );
+			$redux_options_raw_data = file_get_contents( $redux_item['file_path'] );
 			$redux_options_data     = json_decode( $redux_options_raw_data, true );
 			$redux_framework        = ReduxFrameworkInstances::get_instance( $redux_item['option_name'] );
 
