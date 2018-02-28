@@ -152,7 +152,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '0.1.3' );
+			define( 'MERLIN_VERSION', '@@pkg.version' );
 		}
 	}
 
