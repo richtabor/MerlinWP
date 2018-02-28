@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .merlin__body {
 	background: #f1f1f1;
 	-webkit-box-shadow: none;
@@ -30,9 +31,6 @@ h1 {
 	font-weight: 500;
 	margin: 0 0 20px;
 	padding: 0;
-
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 p {
@@ -840,9 +838,6 @@ svg:not(:root) {
 	position: relative;
 	text-align: center;
 	zoom: 1;
-
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 .merlin__content--transition {
@@ -1151,7 +1146,7 @@ body.loaded .merlin__content--welcome {
 
 .merlin__button:hover .chevron::after,
 .merlin__button:hover .chevron::before {
-	background: #a1a5a8;
+	background: #7d8183;
 }
 
 .merlin__button:active {
@@ -1199,7 +1194,7 @@ body.loaded .merlin__content--welcome {
 
 .merlin__button--skip:hover,
 .merlin__button--skip:active {
-	color: #666;
+	color: #7d8183;
 }
 
 .merlin__button--blue {
@@ -1214,21 +1209,21 @@ body.loaded .merlin__content--welcome {
 }
 
 .merlin__button--knockout {
-	background: #fff;
-	color: #cbcbcb;
+	background: transparent;
+	color: #7d8183;
 	font-size: 14px;
 	font-weight: 500;
 	margin-left: -10px;
 	padding-right: 25px;
 	padding-top: 10px;
-	-webkit-transition: color 900ms cubic-bezier(0.694, 0, 0.335, 1);
-	transition: color 900ms cubic-bezier(0.694, 0, 0.335, 1);
+	-webkit-transition: color 150ms ease;
+	transition: color 150ms ease;
 }
 
 .merlin__button--knockout:hover,
 .merlin__button--knockout:active {
 	background: transparent;
-	color: #a1a5a8;
+	color: #0073aa;
 }
 
 .merlin__button--no-chevron {
@@ -1275,6 +1270,30 @@ body.loaded .merlin__content--welcome {
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
+}
+
+.merlin__button--external::after {
+	content: "➝";
+	display: inline-block !important;
+	font-size: 0.85em;
+	margin-top: 3px;
+	opacity: 0;
+	padding-left: 0.35em;
+	position: absolute;
+	-webkit-transform: translateX(-5px);
+	-ms-transform: translateX(-5px);
+	transform: translateX(-5px);
+	-webkit-transition: opacity 0.3s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.3s cubic-bezier(0, 0.25, 0.08, 1);
+	transition: opacity 0.3s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.3s cubic-bezier(0, 0.25, 0.08, 1);
+	transition: transform 0.3s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.3s cubic-bezier(0, 0.25, 0.08, 1);
+	transition: transform 0.3s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.3s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.3s cubic-bezier(0, 0.25, 0.08, 1);
+}
+
+.merlin__button--external:hover::after {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+	-ms-transform: translateX(0);
+	transform: translateX(0);
 }
 
 #skip {
@@ -1793,7 +1812,7 @@ body.loaded .merlin__content--welcome {
 }
 
 .return-to-dashboard {
-	color: #b5b5b5;
+	color: #7d8183;
 	display: block;
 	font-size: 13px;
 	margin-top: 1em;
@@ -1973,12 +1992,12 @@ body.loaded .merlin__content--welcome {
 }
 
 .merlin__drawer--open .merlin__button--knockout {
-	color: #a1a5a8;
+	color: #7d8183;
 }
 
 .merlin__drawer--open .chevron::after,
 .merlin__drawer--open .chevron::before {
-	background: #a1a5a8;
+	background: #7d8183;
 }
 
 .merlin__drawer--open .merlin__button--next {
