@@ -16,7 +16,7 @@ var packageName             = project;
 var bugReport               = pkg.author_uri;
 var lastTranslator          = pkg.author;
 var team                    = pkg.author_shop;
-var translatePath           = './languages';
+var translatePath           = './languages/' + destFile;
 var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters.php' ];
 
 // Styles.
@@ -120,7 +120,7 @@ gulp.task('styles', function () {
 
 	.pipe( gulp.dest( merlinStyleDestination ) )
 
-	.pipe( browserSync.stream() ) 
+	.pipe( browserSync.stream() )
 
 	.pipe( rename( { suffix: '.min' } ) )
 
@@ -145,7 +145,7 @@ gulp.task( 'scripts', function() {
 	.pipe( uglify() )
 	.pipe( lineec() )
 	.pipe( gulp.dest( merlinScriptDestination ) )
-	
+
 });
 
 gulp.task( 'default', ['clear', 'styles', 'scripts', 'browser_sync' ], function () {
