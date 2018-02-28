@@ -1,9 +1,9 @@
 .merlin__button {
-	@include font-smoothing;
-	background: #fff;
+	// @include font-smoothing;
+	background: $white;
 	border-radius: 4px;
 	border: 0;
-	color: #a1a5a8;
+	color: $gray;
 	cursor: pointer;
 	display: inline-block;
 	font-size: 15px;
@@ -26,7 +26,7 @@
 		.chevron {
 			&::after,
 			&::before {
-				background: #a1a5a8;
+				background: $blue;
 			}
 		}
 	}
@@ -74,7 +74,7 @@
 
 		&:hover,
 		&:active {
-			color: #666;
+			color: $black;
 		}
 	}
 
@@ -90,19 +90,19 @@
 	}
 
 	&--knockout {
-		background: #fff;
-		color: #cbcbcb;
+		background: transparent;
+		color: $gray;
 		font-size: 14px;
 		font-weight: 500;
 		margin-left: -10px;
 		padding-right: 25px;
 		padding-top: 10px;
-		transition: color 900ms cubic-bezier(.694, 0, .335, 1);
+		transition: color 150ms ease;
 
 		&:hover,
 		&:active {
 			background: transparent;
-			color: #a1a5a8;
+			color: $blue;
 		}
 	}
 
@@ -141,6 +141,23 @@
 			opacity: 1;
 			transform: scale(1);
 		}
+	}
+
+	&--external::after {
+		content: "➝";
+		display: inline-block !important;
+		font-size: 1em;
+		margin-top: .05em;
+		opacity: 0;
+		padding-left: 0.25em;
+		position: absolute;
+		transform: translateX(-5px);
+		transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1);
+	}
+
+	&--external:hover::after {
+		opacity: 1;
+		transform: translateX(0);
 	}
 }
 

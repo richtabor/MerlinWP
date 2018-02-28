@@ -1,5 +1,5 @@
 .return-to-dashboard {
-	color: #b5b5b5;
+	color: $gray;
 	display: block;
 	padding: 1em;
 	font-size: 13px;
@@ -7,7 +7,7 @@
 	text-align: center;
 	text-decoration: none;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(.694, 0, .335, 1) 150ms;
-	
+
 	/* Applies styles when Reduced Motion is enabled */
 	@media screen and (prefers-reduced-motion: reduce) {
 		opacity: 1 !important;
