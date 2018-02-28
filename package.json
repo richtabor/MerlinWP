@@ -17,7 +17,6 @@
 		"gulp-clean": "^0.4.0",
 		"gulp-clean-css": "^3.9.2",
 		"gulp-composer": "^0.4.5",
-		"gulp-concat": "^2.6.1",
 		"gulp-copy": "^1.1.0",
 		"gulp-csscomb": "^3.0.8",
 		"gulp-filter": "^5.1.0",

@@ -62,7 +62,6 @@ var autoprefixer = require('gulp-autoprefixer');
 var browserSync  = require('browser-sync').create();
 var cache        = require('gulp-cache');
 var cleaner      = require('gulp-clean');
-var concat       = require('gulp-concat');
 var copy         = require('gulp-copy');
 var csscomb      = require('gulp-csscomb');
 var filter       = require('gulp-filter');
@@ -135,7 +134,6 @@ gulp.task('styles', function () {
 
 gulp.task( 'scripts', function() {
 	gulp.src( merlinScriptSRC )
-	.pipe( concat( merlinScriptFile + '.min.js' ) )
 	.pipe( lineec() )
 	.pipe( gulp.dest( merlinScriptDestination ) )
 	.pipe( rename( {
