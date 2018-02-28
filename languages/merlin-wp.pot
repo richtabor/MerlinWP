@@ -1,158 +1,177 @@
-# Copyright (C) 2017 Merlin WP
-# This file is distributed under the same license as the Merlin WP package.
+# Copyright (C) 2018 Merlin-WP
+# This file is distributed under the same license as the Merlin-WP package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Merlin WP\n"
-"Report-Msgid-Bugs-To: https://merlinwp.com\n"
+"Project-Id-Version: Merlin-WP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
 "Language-Team: Merlin WP\n"
+"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
+"Report-Msgid-Bugs-To: https://merlinwp.com\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/class-merlin-importer.php:97
-msgid "This user is created while installing demo content. You should delete or modify this user&#8217;s information now."
+#: merlin.php:379
+msgid "Something went wrong. Please refresh the page and try again!"
 msgstr ""
 
-#: includes/class-merlin-importer.php:662
-msgid "Invalid attachment file type!"
-msgstr ""
-
-#: includes/class-merlin-importer.php:838
-msgid "Remote server returned %1$d %2$s for %3$s"
-msgstr ""
-
-#: includes/class-merlin-importer.php:846
-msgid "Remote file is incorrect size"
-msgstr ""
-
-#: includes/class-merlin-importer.php:851
-msgid "Zero size file downloaded."
-msgstr ""
-
-#: includes/class-merlin-importer.php:858
-msgid "Remote file is too large, limit is %s."
-msgstr ""
-
-#: includes/class-merlin-importer.php:1141, includes/class-merlin-importer.php:1142
-msgid "Taxonomy names must be between 1 and 32 characters in length."
-msgstr ""
-
-#: includes/class-merlin-xml-parser.php:42, includes/class-merlin-xml-parser.php:67, includes/class-merlin-xml-parser.php:75, includes/class-merlin-xml-parser.php:79, includes/class-merlin-xml-parser.php:277
-msgid "Invalid WXR file."
-msgstr ""
-
-#: includes/class-merlin-xml-parser.php:50
-msgid "No XML parser found."
-msgstr ""
-
-#: includes/class-merlin-xml-parser.php:265
-msgid "Could not open the file for parsing"
-msgstr ""
-
-#: merlin.php:507
+#: merlin.php:530
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: merlin.php:512
+#: merlin.php:535
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: merlin.php:606
+#: merlin.php:629
 msgid "Welcome"
 msgstr ""
 
-#: merlin.php:613
+#: merlin.php:636
 msgid "Child"
 msgstr ""
 
-#: merlin.php:620
+#: merlin.php:643
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:628
+#: merlin.php:651, merlin.php:1481
 msgid "Content"
 msgstr ""
 
-#: merlin.php:634
+#: merlin.php:657
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:880
+#: merlin.php:906
 msgid "Install"
 msgstr ""
 
-#: merlin.php:883
+#: merlin.php:909
 msgid "Update"
 msgstr ""
 
-#: merlin.php:886
+#: merlin.php:912
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:888
+#: merlin.php:914
 msgid "and"
 msgstr ""
 
-#: merlin.php:1275
+#: merlin.php:976
+msgid "Select which demo data you want to import:"
+msgstr ""
+
+#: merlin.php:1293
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1291
+#: merlin.php:1309
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1307, merlin.php:1405, merlin.php:1418, merlin.php:1431, merlin.php:1444
+#: merlin.php:1325, merlin.php:1484, merlin.php:1497, merlin.php:1510, merlin.php:1523, merlin.php:1536, merlin.php:1549, merlin.php:1590
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1317, merlin.php:1406, merlin.php:1419, merlin.php:1432, merlin.php:1445
+#: merlin.php:1335, merlin.php:1485, merlin.php:1498, merlin.php:1511, merlin.php:1524, merlin.php:1537, merlin.php:1550
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1336
+#: merlin.php:1356
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1374
+#: merlin.php:1394
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1403
-msgid "Sample %s data."
+#: merlin.php:1482
+msgid "Demo content data."
 msgstr ""
 
-#: merlin.php:1404, merlin.php:1417, merlin.php:1430, merlin.php:1443
+#: merlin.php:1483, merlin.php:1496, merlin.php:1509, merlin.php:1522, merlin.php:1535, merlin.php:1548
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1415
+#: merlin.php:1494
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1416
+#: merlin.php:1495
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1428
-msgid "Sliders"
+#: merlin.php:1507
+msgid "Revolution Slider"
 msgstr ""
 
-#: merlin.php:1429
-msgid "Sample sliders data."
+#: merlin.php:1508
+msgid "Sample Revolution sliders data."
 msgstr ""
 
-#: merlin.php:1441
+#: merlin.php:1520
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1442
+#: merlin.php:1521
 msgid "Sample theme options data."
+msgstr ""
+
+#: merlin.php:1533
+msgid "Redux Options"
+msgstr ""
+
+#: merlin.php:1534
+msgid "Redux framework options."
+msgstr ""
+
+#: merlin.php:1546
+msgid "After import setup"
+msgstr ""
+
+#: merlin.php:1547
+msgid "After import setup."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:64
+msgid "Error: Widget import file could not be found."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:94
+msgid "Error: Widget import data could not be read. Please try a different file."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:133
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:154
+msgid "Site does not support widget"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:187
+msgid "Widget already exists"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:245
+msgid "Imported"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:249
+msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:255
+msgid "No Title"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:317
+msgid "No results for widget import!"
 msgstr ""
