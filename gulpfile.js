@@ -26,7 +26,7 @@ var merlinCssFiles          = './assets/css/**/*.css'; // Path to main .scss fil
 var merlinStyleWatchFiles   = './assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 
 // Scripts.
-var merlinScriptSRC         = './assets/js/*.js'; // Path to JS custom scripts folder.
+var merlinScriptSRC         = './assets/js/merlin.js'; // Path to JS custom scripts folder.
 var merlinScriptDestination = './assets/js/'; // Path to place the compiled JS custom scripts file.
 var merlinScriptFile        = 'merlin'; // Compiled JS file name.
 var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
@@ -134,8 +134,6 @@ gulp.task('styles', function () {
 
 gulp.task( 'scripts', function() {
 	gulp.src( merlinScriptSRC )
-	.pipe( lineec() )
-	.pipe( gulp.dest( merlinScriptDestination ) )
 	.pipe( rename( {
 		basename: merlinScriptFile,
 		suffix: '.min'
