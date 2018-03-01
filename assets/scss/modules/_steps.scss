@@ -17,18 +17,18 @@
 	.merlin__content--content & {
 		transition: opacity $speed cubic-bezier(.694, 0, .335, 1);
 	}
-	
+
 	body.exiting .merlin__content--content & {
 		opacity: 0;
 	}
 }
 
 .dots li {
-	height: 6px;
-	width: 6px;
+	height: 7px;
+	width: 7px;
 	padding: 0;
 	display: inline-block;
-	background: #e3e3e3;
+	background: $dotsBackground;
 	border-radius: 999px;
 	margin: 0 1px;
 	position: relative;
@@ -57,11 +57,11 @@
 	border-radius: 999px;
 	content: '';
 	display: inline-block;
-	height: 7px;
+	height: 8px;
 	left: 0;
 	position: absolute;
 	transition: box-shadow 300ms cubic-bezier(.694, 0, .335, 1);
-	width: 7px;
+	width: 8px;
 	z-index: -1;
 
 	/* Applies styles when Reduced Motion is enabled */
@@ -96,7 +96,7 @@
 	55% {
 		background: #e3e3e3;
 		transform: scale(1);
-		
+
 	}
 	65% {
 		transform: scale(1.6);
