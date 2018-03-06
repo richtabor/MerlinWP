@@ -92,14 +92,13 @@ function prefix_generate_child_functions_php( $output, $slug ) {
 }
 add_filter( 'merlin_generate_child_functions_php', 'prefix_generate_child_functions_php', 10, 2 );
 
-
 /**
  * Define the demo import files (remote files).
  *
  * To define imports, you just have to add the following code structure,
  * with your own values to your theme (using the 'merlin_import_files' filter).
  */
-function merlin_import_files() {
+function prefix_merlin_import_files() {
 	return array(
 		array(
 			'import_file_name'           => 'Demo Import 1',
@@ -133,8 +132,7 @@ function merlin_import_files() {
 		),
 	);
 }
-add_filter( 'merlin_import_files', 'merlin_import_files' );
-
+add_filter( 'merlin_import_files', 'prefix_merlin_import_files' );
 
 /**
  * Define the demo import files (local files).
@@ -146,7 +144,7 @@ add_filter( 'merlin_import_files', 'merlin_import_files' );
  * please use the below code.
  * Note: make sure your import files are readable!
  */
-function merlin_local_import_files() {
+function prefix_merlin_local_import_files() {
 	return array(
 		array(
 			'import_file_name'             => 'Demo Import 1',
@@ -180,20 +178,18 @@ function merlin_local_import_files() {
 		),
 	);
 }
-add_filter( 'merlin_import_files', 'merlin_local_import_files' );
-
+add_filter( 'merlin_import_files', 'prefix_merlin_local_import_files' );
 
 /**
  * Execute custom code after the whole import has finished.
  */
-function merlin_after_import_setup() {
+function prefix_merlin_after_import_setup() {
 	// Assign menus to their locations.
 	$main_menu = get_term_by( 'name', 'Main Menu', 'nav_menu' );
 
 	set_theme_mod( 'nav_menu_locations', array(
-			'main-menu' => $main_menu->term_id,
-		)
-	);
+		'main-menu' => $main_menu->term_id,
+	) );
 
 	// Assign front page and posts page (blog page).
 	$front_page_id = get_page_by_title( 'Home' );
@@ -204,4 +200,4 @@ function merlin_after_import_setup() {
 	update_option( 'page_for_posts', $blog_page_id->ID );
 
 }
-add_action( 'merlin_after_all_import', 'merlin_after_import_setup' );
+add_action( 'merlin_after_all_import', 'prefix_merlin_after_import_setup' );
