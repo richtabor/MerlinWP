@@ -188,7 +188,7 @@ class Merlin {
 
 		// Retrieve a WP_Theme object.
 		$this->theme = wp_get_theme();
-		$this->slug  = strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->get( 'Name' ) ) );
+		$this->slug  = strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->template ) );
 
 		// Is Dev Mode turned on?
 		if ( true !== $this->dev_mode ) {
