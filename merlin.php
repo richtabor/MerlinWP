@@ -910,7 +910,7 @@ class Merlin {
 							if ( isset( $plugins['activate'][ $slug ] ) ) {
 								$keys[] = esc_html__( 'Activate', '@@textdomain' );
 							}
-							echo implode( esc_html__( 'and', '@@textdomain' ) , $keys );
+							echo implode( esc_html__( 'and', '@@textdomain' ), $keys );
 							?>
 
 						</span>
@@ -1275,9 +1275,9 @@ class Merlin {
 			exit( 0 );
 		}
 
-		$json = array();
+		$json      = array();
 		$tgmpa_url = $this->tgmpa->get_tgmpa_url();
-		$plugins = $this->get_tgmpa_plugins();
+		$plugins   = $this->get_tgmpa_plugins();
 
 		foreach ( $plugins['activate'] as $slug => $plugin ) {
 			if ( $_POST['slug'] === $slug ) {
@@ -1355,7 +1355,7 @@ class Merlin {
 			wp_send_json_error( array( 'error' => 1, 'message' => esc_html__( 'Invalid content!', '@@textdomain' ) ) );
 		}
 
-		$json = false;
+		$json         = false;
 		$this_content = $content[ $_POST['content'] ];
 
 		if ( isset( $_POST['proceed'] ) ) {
@@ -1488,7 +1488,7 @@ class Merlin {
 			);
 		}
 
-		if ( ! empty( $import_files['widgets'] )  ) {
+		if ( ! empty( $import_files['widgets'] ) ) {
 			$content['widgets'] = array(
 				'title'            => esc_html__( 'Widgets', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample widgets data.', '@@textdomain' ),
@@ -1501,7 +1501,7 @@ class Merlin {
 			);
 		}
 
-		if ( ! empty( $import_files['sliders'] )  ) {
+		if ( ! empty( $import_files['sliders'] ) ) {
 			$content['sliders'] = array(
 				'title'            => esc_html__( 'Revolution Slider', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample Revolution sliders data.', '@@textdomain' ),
@@ -1514,7 +1514,7 @@ class Merlin {
 			);
 		}
 
-		if ( ! empty( $import_files['options'] )  ) {
+		if ( ! empty( $import_files['options'] ) ) {
 			$content['options'] = array(
 				'title'            => esc_html__( 'Options', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample theme options data.', '@@textdomain' ),
@@ -1527,7 +1527,7 @@ class Merlin {
 			);
 		}
 
-		if ( ! empty( $import_files['redux'] )  ) {
+		if ( ! empty( $import_files['redux'] ) ) {
 			$content['redux'] = array(
 				'title'            => esc_html__( 'Redux Options', '@@textdomain' ),
 				'description'      => esc_html__( 'Redux framework options.', '@@textdomain' ),
@@ -1570,9 +1570,9 @@ class Merlin {
 
 		$importer = new RevSlider();
 
-		$response = $importer->importSliderFromPost(true, true, $file);
+		$response = $importer->importSliderFromPost( true, true, $file );
 
-		if (defined('DOING_AJAX') && DOING_AJAX) {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			return 'true';
 		}
 	}
@@ -1664,8 +1664,7 @@ class Merlin {
 
 		if ( ! empty( $existing_name ) ) {
 			$this->import_file_base_name = $existing_name;
-		}
-		else {
+		} else {
 			$this->import_file_base_name = date( 'Y-m-d__H-i-s' );
 		}
 
@@ -1706,8 +1705,7 @@ class Merlin {
 			if ( ! empty( $selected_import_data['local_import_file'] ) && file_exists( $selected_import_data['local_import_file'] ) ) {
 				$import_files['content'] = $selected_import_data['local_import_file'];
 			}
-		}
-		else {
+		} else {
 			// Set the filename string for content import file.
 			$content_filename = 'content-' . $base_file_name . '.xml';
 
@@ -1742,8 +1740,7 @@ class Merlin {
 			if ( is_wp_error( $import_files['widgets'] ) ) {
 				$import_files['widgets'] = '';
 			}
-		}
-		else if ( ! empty( $selected_import_data['local_import_widget_file'] ) ) {
+		} elseif ( ! empty( $selected_import_data['local_import_widget_file'] ) ) {
 			if ( file_exists( $selected_import_data['local_import_widget_file'] ) ) {
 				$import_files['widgets'] = $selected_import_data['local_import_widget_file'];
 			}
@@ -1766,8 +1763,7 @@ class Merlin {
 			if ( is_wp_error( $import_files['options'] ) ) {
 				$import_files['options'] = '';
 			}
-		}
-		else if ( ! empty( $selected_import_data['local_import_customizer_file'] ) ) {
+		} elseif ( ! empty( $selected_import_data['local_import_customizer_file'] ) ) {
 			if ( file_exists( $selected_import_data['local_import_customizer_file'] ) ) {
 				$import_files['options'] = $selected_import_data['local_import_customizer_file'];
 			}
@@ -1790,8 +1786,7 @@ class Merlin {
 			if ( is_wp_error( $import_files['sliders'] ) ) {
 				$import_files['sliders'] = '';
 			}
-		}
-		else if ( ! empty( $selected_import_data['local_import_rev_slider_file'] ) ) {
+		} elseif ( ! empty( $selected_import_data['local_import_rev_slider_file'] ) ) {
 			if ( file_exists( $selected_import_data['local_import_rev_slider_file'] ) ) {
 				$import_files['sliders'] = $selected_import_data['local_import_rev_slider_file'];
 			}
@@ -1826,8 +1821,7 @@ class Merlin {
 
 			// Download the Redux import file.
 			$import_files['redux'] = $redux_items;
-		}
-		else if ( ! empty( $selected_import_data['local_import_redux'] ) ) {
+		} elseif ( ! empty( $selected_import_data['local_import_redux'] ) ) {
 			$redux_items = array();
 
 			// Setup filename paths to save the Redux content.
@@ -1844,7 +1838,6 @@ class Merlin {
 		return $import_files;
 	}
 
-
 	/**
 	 * AJAX callback for the 'merlin_update_selected_import_data_info' action.
 	 */
@@ -1855,7 +1848,7 @@ class Merlin {
 			wp_send_json_error();
 		}
 
-		$import_info = $this->get_import_data_info( $selected_index );
+		$import_info      = $this->get_import_data_info( $selected_index );
 		$import_info_html = $this->get_import_steps_html( $import_info );
 
 		wp_send_json_success( $import_info_html );
@@ -1894,12 +1887,9 @@ class Merlin {
 
 	/**
 	 * AJAX call for cleanup after the importing steps are done -> import finished.
-	 *
-	 * @return bool
 	 */
 	public function import_finished() {
 		delete_transient( 'merlin_import_file_base_name' );
-
 		wp_send_json_success();
 	}
 }
