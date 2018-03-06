@@ -218,7 +218,6 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
-		add_action( 'wp_ajax_merlin_activate_license', array( $this, 'activate_license' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
