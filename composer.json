@@ -13,12 +13,6 @@
       "homepage" : "https://www.proteusthemes.com/"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url":  "https://github.com/proteusthemes/WordPress-Importer.git"
-    }
-  ],
   "require": {
     "proteusthemes/wp-content-importer-v2": "^2.0.2"
   }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f714d039650595df06c8e06490894234",
+    "content-hash": "df97a659bb83d2e76e298c6000142414",
     "packages": [
         {
             "name": "proteusthemes/wp-content-importer-v2",
