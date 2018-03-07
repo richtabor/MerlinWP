@@ -194,11 +194,10 @@ var Merlin = (function($){
         }
 
         function do_ajax() {
-        	childThemeName = $("#theme_license_key").val();
             jQuery.post(merlin_params.ajaxurl, {
-                action: "merlin_activate_license",
-                wpnonce: merlin_params.wpnonce,
-                cThemeName: childThemeName
+              action: "merlin_activate_license",
+              wpnonce: merlin_params.wpnonce,
+              license_key: $( '.js-license-key' ).val()
             }, ajax_callback).fail(ajax_callback);
         }
 
