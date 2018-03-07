@@ -47,6 +47,18 @@
 		padding-top: 5px;
 	}
 
+	&--license-key {
+		margin: 20px 0;
+
+		label {
+			font-weight: bold;
+		}
+
+		input {
+			width: 100%;
+		}
+	}
+
 	&--ready {
 		padding-bottom: 12px;
 	}
