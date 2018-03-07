@@ -61,7 +61,7 @@ Next you have to define a filter in your theme, to let WP Merlin know, where the
 function merlin_import_files() {
 	return array(
 		array(
-			'import_file_name'           => 'Demo Import 1',
+			'import_file_name'           => 'Demo Import',
 			'import_file_url'            => 'http://www.your_domain.com/merlin/demo-content.xml',
 			'import_widget_file_url'     => 'http://www.your_domain.com/merlin/widgets.json',
 			'import_customizer_file_url' => 'http://www.your_domain.com/merlin/customizer.dat',
@@ -80,12 +80,12 @@ add_filter( 'merlin_import_files', 'merlin_import_files' );
 function merlin_local_import_files() {
 	return array(
 		array(
-			'import_file_name'             => 'Demo Import 1',
-			'local_import_file'            => trailingslashit( get_template_directory() ) . 'merlin/demo-content.xml',
-			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'merlin/widgets.json',
-			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'merlin/customizer.dat',
+			'import_file_name'             => 'Demo Import',
+			'local_import_file'            => get_parent_theme_file_path( '/inc/demo/content.xml' ),
+			'local_import_widget_file'     => get_parent_theme_file_path( '/inc/demo/widgets.wie' ),
+			'local_import_customizer_file' => get_parent_theme_file_path( '/inc/demo/customizer.dat' ),
 			'import_preview_image_url'     => 'http://www.your_domain.com/merlin/preview_import_image1.jpg',
-			'import_notice'                => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
+			'import_notice'                => __( 'A special note for this import.', 'your-textdomain' ),
 			'preview_url'                  => 'http://www.your_domain.com/my-demo-1',
 		),
 	);
