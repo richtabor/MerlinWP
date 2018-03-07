@@ -107,7 +107,7 @@ You may also need to filter your theme demo's home page, so that Merlin WP knows
 
 ### 5. Testing
 
-To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [WP Reset](https://wordpress.org/plugins/wp-reset/) plugin to reset and run through more tests. 
+To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [Reset WP](https://wordpress.org/plugins/reset-wp/) plugin to reset and run through more tests. 
 
 ## Contributions
 
