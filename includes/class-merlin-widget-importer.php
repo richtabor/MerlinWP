@@ -296,7 +296,7 @@ class Merlin_Widget_Importer {
 	 * Remove widgets from sidebars.
 	 * By default none are removed, but with the filter you can remove them.
 	 */
-	private function unset_default_widgets() {
+	private static function unset_default_widgets() {
 		$widget_areas = apply_filters( 'merlin_unset_default_widgets_args', false );
 
 		if ( empty( $widget_areas ) ) {
