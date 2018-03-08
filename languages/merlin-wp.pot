@@ -16,128 +16,148 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: merlin.php:379
+#: merlin.php:378
 msgid "Something went wrong. Please refresh the page and try again!"
 msgstr ""
 
-#: merlin.php:530
+#: merlin.php:529
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: merlin.php:535
+#: merlin.php:534
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: merlin.php:629
+#: merlin.php:628
 msgid "Welcome"
 msgstr ""
 
-#: merlin.php:636
+#: merlin.php:635
 msgid "Child"
 msgstr ""
 
-#: merlin.php:643
+#: merlin.php:642
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:651, merlin.php:1481
+#: merlin.php:650, merlin.php:1480
 msgid "Content"
 msgstr ""
 
-#: merlin.php:657
+#: merlin.php:656
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:906
+#: merlin.php:905
 msgid "Install"
 msgstr ""
 
-#: merlin.php:909
+#: merlin.php:908
 msgid "Update"
 msgstr ""
 
-#: merlin.php:912
+#: merlin.php:911
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:914
+#: merlin.php:913
 msgid "and"
 msgstr ""
 
-#: merlin.php:976
+#: merlin.php:975
 msgid "Select which demo data you want to import:"
 msgstr ""
 
-#: merlin.php:1293
+#: merlin.php:1292
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1309
+#: merlin.php:1308
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1325, merlin.php:1484, merlin.php:1497, merlin.php:1510, merlin.php:1523, merlin.php:1536, merlin.php:1549, merlin.php:1590
+#: merlin.php:1324, merlin.php:1483, merlin.php:1496, merlin.php:1509, merlin.php:1522, merlin.php:1535, merlin.php:1548, merlin.php:1589
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1335, merlin.php:1485, merlin.php:1498, merlin.php:1511, merlin.php:1524, merlin.php:1537, merlin.php:1550
+#: merlin.php:1334, merlin.php:1484, merlin.php:1497, merlin.php:1510, merlin.php:1523, merlin.php:1536, merlin.php:1549
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1356
+#: merlin.php:1355
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1394
+#: merlin.php:1393
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1482
+#: merlin.php:1481
 msgid "Demo content data."
 msgstr ""
 
-#: merlin.php:1483, merlin.php:1496, merlin.php:1509, merlin.php:1522, merlin.php:1535, merlin.php:1548
+#: merlin.php:1482, merlin.php:1495, merlin.php:1508, merlin.php:1521, merlin.php:1534, merlin.php:1547
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1494
+#: merlin.php:1493
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1495
+#: merlin.php:1494
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1507
+#: merlin.php:1506
 msgid "Revolution Slider"
 msgstr ""
 
-#: merlin.php:1508
+#: merlin.php:1507
 msgid "Sample Revolution sliders data."
 msgstr ""
 
-#: merlin.php:1520
+#: merlin.php:1519
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1521
+#: merlin.php:1520
 msgid "Sample theme options data."
 msgstr ""
 
-#: merlin.php:1533
+#: merlin.php:1532
 msgid "Redux Options"
 msgstr ""
 
-#: merlin.php:1534
+#: merlin.php:1533
 msgid "Redux framework options."
 msgstr ""
 
-#: merlin.php:1546
+#: merlin.php:1545
 msgid "After import setup"
 msgstr ""
 
-#: merlin.php:1547
+#: merlin.php:1546
 msgid "After import setup."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:54
+msgid "Error: The customizer import file is missing! File path: %s"
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:74
+msgid "Error: The customizer import file is not in a correct format. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:80
+msgid "Error: The customizer import file is not suitable for current theme. You can only import customizer settings for the same theme or a child theme."
+msgstr ""
+
+#: includes/class-merlin-downloader.php:62
+msgid "Missing URL for downloading a file!"
+msgstr ""
+
+#: includes/class-merlin-downloader.php:80
+msgid "An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s."
 msgstr ""
 
 #: includes/class-merlin-widget-importer.php:64
@@ -174,4 +194,204 @@ msgstr ""
 
 #: includes/class-merlin-widget-importer.php:317
 msgid "No results for widget import!"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:50
+msgid "The XMLReader class is missing! Please install the XMLReader PHP extension on your server"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:63
+msgid "Could not open the XML file for parsing!"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:203
+msgid "Content import start error: "
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:235, vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:173, vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:291, vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:364
+msgid "This WXR file (version %s) is newer than the importer (version %s) and may not be supported. Please consider updating."
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:458
+msgid "New AJAX call!"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:135
+msgid "Could not open the file for parsing"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:514
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:577
+msgid "Invalid author mapping"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:678
+msgid "Cannot import auto-draft posts"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:770
+msgid "Failed to import \"%s\": Invalid post type %s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:780
+msgid "%s \"%s\" already exists."
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:858
+msgid "Skipping attachment \"%s\", fetching attachments disabled"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:872
+msgid "Failed to import \"%s\" (%s)"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:904, vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1822
+msgid "Imported \"%s\" (%s)"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:909
+msgid "Post %d remapped to %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:949
+msgid "Failed to import term: %s - %s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1094
+msgid "Invalid file type"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1593
+msgid "Failed to import user \"%s\""
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1614
+msgid "Imported user \"%s\""
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1618
+msgid "User %d remapped to %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1783
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1827
+msgid "Term %d remapped to %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1886
+msgid "Failed to add metakey: %s, metavalue: %s to term_id: %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1895
+msgid "Meta for term_id %d : %s => %s ; successfully added!"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1947
+msgid "Remote server returned %1$d %2$s for %3$s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1969
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1975
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2000
+msgid "Running post-processing for post %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2013
+msgid "Could not find the post parent for \"%s\" (post #%d)"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2018
+msgid "Post %d was imported with parent %d, but could not be found"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2032
+msgid "Could not find the author for \"%s\" (post #%d)"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2037
+msgid "Post %d was imported with author \"%s\", but could not be found"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2063
+msgid "Post %d was marked for post-processing, but none was required."
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2074
+msgid "Could not update \"%s\" (post #%d) with mapped data"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2119
+msgid "Could not find the menu object for \"%s\" (post #%d)"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2124
+msgid "Post %d was imported with object \"%d\" of type \"%s\", but could not be found"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2146
+msgid "Could not find the comment parent for comment #%d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2150
+msgid "Comment %d was imported with parent %d, but could not be found"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2164
+msgid "Could not find the author for comment #%d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2168
+msgid "Comment %d was imported with author %d, but could not be found"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2185
+msgid "Could not update comment #%d with mapped data"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2216
+msgid "Faulty term_id provided in terms-to-be-remapped array %s"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2226
+msgid "No taxonomy provided in terms-to-be-remapped array for term #%d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2236
+msgid "No parent_slug identified in remapping-array for term: %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2244
+msgid "The term(%d)\"s parent_slug (%s) is not found in the remapping-array."
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2258
+msgid "No data returned by get_term_by for term_id #%d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2277
+msgid "Could not update \"%s\" (term #%d) with mapped data"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2287
+msgid "Term %d was successfully updated with parent %d"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2322
+msgid "Starting remapping of featured images"
+msgstr ""
+
+#: vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2331
+msgid "Remapping featured image ID %d to new ID %d for post ID %d"
 msgstr ""
