@@ -1329,7 +1329,13 @@ class Merlin {
 
 		$license_key = sanitize_key( $_POST['license_key'] );
 
-		$result = $this->edd_activate_license( $license_key );
+		if ( ! has_filter( 'merlin_ajax_activate_license' ) ) {
+			$result = $this->edd_activate_license( $license_key );
+		}
+		else {
+			$result = apply_filters( 'merlin_ajax_activate_license', $license_key );
+		}
+
 
 		wp_send_json( array_merge( array( 'done' => 1 ), $result ) );
 	}
