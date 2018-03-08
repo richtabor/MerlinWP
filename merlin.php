@@ -1336,7 +1336,6 @@ class Merlin {
 			$result = apply_filters( 'merlin_ajax_activate_license', $license_key );
 		}
 
-
 		wp_send_json( array_merge( array( 'done' => 1 ), $result ) );
 	}
 
