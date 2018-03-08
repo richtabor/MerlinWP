@@ -122,6 +122,13 @@ class Merlin {
 	protected $child_action_btn_url = null;
 
 	/**
+	 * The flag, to mark, if the theme license step should be enabled.
+	 *
+	 * @var boolean $theme_license_step_enabled
+	 */
+	protected $theme_license_step_enabled = false;
+
+	/**
 	 * The URL for the "Where can I find the license key?" link.
 	 *
 	 * @var string $theme_license_action_btn_url
@@ -207,6 +214,7 @@ class Merlin {
 		$this->directory                    = $config['directory'];
 		$this->merlin_url                   = $config['merlin_url'];
 		$this->child_action_btn_url         = $config['child_action_btn_url'];
+		$this->theme_license_step_enabled   = $config['theme_license_step'];
 		$this->theme_license_action_btn_url = $config['theme_license_btn_url'];
 		$this->edd_item_name                = $config['edd_item_name'];
 		$this->edd_theme_slug               = $config['edd_theme_slug'];
@@ -664,10 +672,12 @@ class Merlin {
 			),
 		);
 
-		$this->steps['edd-license'] = array(
-			'name' => esc_html__( 'Theme license', '@@textdomain' ),
-			'view' => array( $this, 'theme_edd_license' ),
-		);
+		if ( $this->theme_license_step_enabled ) {
+			$this->steps['edd-license'] = array(
+				'name' => esc_html__( 'Theme license', '@@textdomain' ),
+				'view' => array( $this, 'theme_edd_license' ),
+			);
+		}
 
 		$this->steps['child'] = array(
 			'name' => esc_html__( 'Child', '@@textdomain' ),
