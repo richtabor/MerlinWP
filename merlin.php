@@ -858,7 +858,7 @@ class Merlin {
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 
-				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="activate_license">
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-theme-license-activate-button" data-callback="activate_license">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
 				</a>
 
@@ -877,7 +877,7 @@ class Merlin {
 	 * @return boolean
 	 */
 	private function is_theme_registered() {
-		$is_registered = get_option( get_template() . '_license_key_status', false ) == 'valid';
+		$is_registered = get_option( $this->edd_theme_slug . '_license_key_status', false ) == 'valid';
 
 		return apply_filters( 'merlin_is_theme_registered', $is_registered );
 	}
@@ -1304,13 +1304,15 @@ class Merlin {
 	public function _ajax_activate_license() {
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
-			wp_send_json_error( array(
+			wp_send_json( array(
+				'success' => false,
 				'message' => esc_html__( 'Access denied!', '@@textdomain' ),
 			) );
 		}
 
 		if ( empty( $_POST['license_key'] ) ) {
-			wp_send_json_error( array(
+			wp_send_json( array(
+				'success' => false,
 				'message' => esc_html__( 'Please input your license key!', '@@textdomain' ),
 			) );
 		}
@@ -1388,7 +1390,7 @@ class Merlin {
 
 					case 'item_name_mismatch' :
 
-						$message = sprintf( __( 'This appears to be an invalid license key for %s.' ), $args['name'] );
+						$message = sprintf( __( 'This appears to be an invalid license key for %s.' ), $this->edd_item_name );
 						break;
 
 					case 'no_activations_left':
@@ -1401,17 +1403,20 @@ class Merlin {
 						$message = __( 'An error occurred, please try again.' );
 						break;
 				}
+			} else {
+
+
+				if ( 'valid' === $license_data->license ) {
+					$message = esc_html__( 'The license was successfully activated!' );
+					$success = true;
+
+					// Removes the default EDD hook for this option, which breaks the AJAX call.
+					remove_all_actions( 'update_option_' . $this->edd_theme_slug . '_license_key', 10 );
+
+					update_option( $this->edd_theme_slug . '_license_key_status', $license_data->license );
+					update_option( $this->edd_theme_slug . '_license_key', $license );
+				}
 			}
-		}
-
-		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-
-		// $response->license will be either "active" or "inactive"
-		if ( $license_data && isset( $license_data->license ) ) {
-			update_option( $this->edd_theme_slug . '_license_key_status', $license_data->license );
-			delete_transient( $this->edd_theme_slug . '_license_message' );
-			$message = esc_html__( 'The license was successfully activated!' );
-			$success = true;
 		}
 
 		return compact( 'success', 'message' );
