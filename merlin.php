@@ -672,17 +672,17 @@ class Merlin {
 			),
 		);
 
+		$this->steps['child'] = array(
+			'name' => esc_html__( 'Child', '@@textdomain' ),
+			'view' => array( $this, 'child' ),
+		);
+
 		if ( $this->theme_license_step_enabled ) {
 			$this->steps['edd-license'] = array(
 				'name' => esc_html__( 'Theme license', '@@textdomain' ),
 				'view' => array( $this, 'theme_edd_license' ),
 			);
 		}
-
-		$this->steps['child'] = array(
-			'name' => esc_html__( 'Child', '@@textdomain' ),
-			'view' => array( $this, 'child' ),
-		);
 
 		// Show the plugin importer, only if TGMPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
