@@ -105,9 +105,13 @@ If you have multiple demo imports, then just define multiple arrays with appropr
 If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters.php` file for an example on how to define the Redux import files.
 
 ### 4 Easy Digital Downloads license activation step
+You will need to use the EDD and the EDD software licensing addon on your shop, to use this step.
+
 By default this step is disabled, so you have to enabled it in the `merlin-config.php` file (look at the the _Configure Merlin WP_ step above).
 
 Once all the needed settings are configured in the `merlin-config.php` file, the license activation step will show up, right after the child theme step.
+
+The integration is done for the [EDD licensing theme example](https://docs.easydigitaldownloads.com/article/382-automatic-upgrades-for-wordpress-themes), which you can also add to your theme. This will add a **Theme license** page in *Appearance* wp-admin menu of the theme, where the user can deactivate or check the license expiration date.
 
 ### 5. Add filters
 
