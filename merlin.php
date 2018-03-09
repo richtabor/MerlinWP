@@ -1370,7 +1370,7 @@ class Merlin {
 			if ( is_wp_error( $response ) ) {
 				$message = $response->get_error_message();
 			} else {
-				$message = __( 'An error occurred, please try again.' );
+				$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
 			}
 
 		} else {
@@ -1384,47 +1384,47 @@ class Merlin {
 					case 'expired' :
 
 						$message = sprintf(
-							__( 'Your license key expired on %s.' ),
+							esc_html__( 'Your license key expired on %s.', '@@textdomain' ),
 							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
 						);
 						break;
 
 					case 'revoked' :
 
-						$message = __( 'Your license key has been disabled.' );
+						$message = esc_html__( 'Your license key has been disabled.', '@@textdomain' );
 						break;
 
 					case 'missing' :
 
-						$message = __( 'Invalid license.' );
+						$message = esc_html__( 'Invalid license.', '@@textdomain' );
 						break;
 
 					case 'invalid' :
 					case 'site_inactive' :
 
-						$message = __( 'Your license is not active for this URL.' );
+						$message = esc_html__( 'Your license is not active for this URL.', '@@textdomain' );
 						break;
 
 					case 'item_name_mismatch' :
 
-						$message = sprintf( __( 'This appears to be an invalid license key for %s.' ), $this->edd_item_name );
+						$message = sprintf( esc_html__( 'This appears to be an invalid license key for %s.', '@@textdomain' ), $this->edd_item_name );
 						break;
 
 					case 'no_activations_left':
 
-						$message = __( 'Your license key has reached its activation limit.' );
+						$message = esc_html__( 'Your license key has reached its activation limit.', '@@textdomain' );
 						break;
 
 					default :
 
-						$message = __( 'An error occurred, please try again.' );
+						$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
 						break;
 				}
 			} else {
 
 
 				if ( 'valid' === $license_data->license ) {
-					$message = esc_html__( 'The license was successfully activated!' );
+					$message = esc_html__( 'The license was successfully activated!', '@@textdomain' );
 					$success = true;
 
 					// Removes the default EDD hook for this option, which breaks the AJAX call.
