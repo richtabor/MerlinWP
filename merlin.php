@@ -857,7 +857,9 @@ class Merlin {
 					<input type="text" id="license-key" class="js-license-key">
 				</p>
 
-				<a class="merlin__button merlin__button--knockout merlin__button--no-chevron merlin__button--external" href="<?php echo esc_url( $action_url ); ?>" target="_blank"><?php echo esc_html( $action ); ?></a>
+				<?php if ( ! empty( $action_url ) ) : ?>
+					<a class="merlin__button merlin__button--knockout merlin__button--no-chevron merlin__button--external" href="<?php echo esc_url( $action_url ); ?>" target="_blank"><?php echo esc_html( $action ); ?></a>
+				<?php endif ?>
 			<?php endif; ?>
 
 		</div>
