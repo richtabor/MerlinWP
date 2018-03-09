@@ -122,6 +122,41 @@ class Merlin {
 	protected $child_action_btn_url = null;
 
 	/**
+	 * The flag, to mark, if the theme license step should be enabled.
+	 *
+	 * @var boolean $theme_license_step_enabled
+	 */
+	protected $theme_license_step_enabled = false;
+
+	/**
+	 * The URL for the "Where can I find the license key?" link.
+	 *
+	 * @var string $theme_license_action_btn_url
+	 */
+	protected $theme_license_action_btn_url = null;
+
+	/**
+	 * The item name of the EDD product (this theme).
+	 *
+	 * @var string $edd_item_name
+	 */
+	protected $edd_item_name = null;
+
+	/**
+	 * The theme slug of the EDD product (this theme).
+	 *
+	 * @var string $edd_theme_slug
+	 */
+	protected $edd_theme_slug = null;
+
+	/**
+	 * The remote_api_url of the EDD shop.
+	 *
+	 * @var string $edd_remote_api_url
+	 */
+	protected $edd_remote_api_url = null;
+
+	/**
 	 * Turn on help mode to get some help.
 	 *
 	 * @var string $help_mode
@@ -176,12 +211,17 @@ class Merlin {
 		) );
 
 		// Set config arguments.
-		$this->directory            = $config['directory'];
-		$this->merlin_url           = $config['merlin_url'];
-		$this->child_action_btn_url = $config['child_action_btn_url'];
-		$this->help_mode            = $config['help_mode'];
-		$this->dev_mode             = $config['dev_mode'];
-		$this->branding             = $config['branding'];
+		$this->directory                    = $config['directory'];
+		$this->merlin_url                   = $config['merlin_url'];
+		$this->child_action_btn_url         = $config['child_action_btn_url'];
+		$this->theme_license_step_enabled   = $config['theme_license_step'];
+		$this->theme_license_action_btn_url = $config['theme_license_btn_url'];
+		$this->edd_item_name                = $config['edd_item_name'];
+		$this->edd_theme_slug               = $config['edd_theme_slug'];
+		$this->edd_remote_api_url           = $config['edd_remote_api_url'];
+		$this->help_mode                    = $config['help_mode'];
+		$this->dev_mode                     = $config['dev_mode'];
+		$this->branding                     = $config['branding'];
 
 		// Strings passed in from the config file.
 		$this->strings = $strings;
@@ -218,6 +258,7 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
 		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
@@ -636,6 +677,13 @@ class Merlin {
 			'view' => array( $this, 'child' ),
 		);
 
+		if ( $this->theme_license_step_enabled ) {
+			$this->steps['edd-license'] = array(
+				'name' => esc_html__( 'Theme license', '@@textdomain' ),
+				'view' => array( $this, 'theme_edd_license' ),
+			);
+		}
+
 		// Show the plugin importer, only if TGMPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->steps['plugins'] = array(
@@ -769,6 +817,81 @@ class Merlin {
 		check_admin_referer( 'merlin' );
 
 		return false;
+	}
+
+	/**
+	 * Theme EDD license step.
+	 */
+	protected function theme_edd_license() {
+		$is_theme_registered = $this->is_theme_registered();
+		$action_url          = $this->theme_license_action_btn_url;
+
+		// Strings passed in from the config file.
+		$strings = $this->strings;
+
+		// Text strings.
+		$header    = ! $is_theme_registered ? $strings['theme-license-header'] : $strings['theme-license-header-success'];
+		$action    = $strings['theme-license-action-link'];
+		$label     = $strings['theme-license-label'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$paragraph = ! $is_theme_registered ? $strings['theme-license'] : $strings['theme-license-success%s'];
+		$install   = $strings['btn-theme-license-install'];
+		?>
+
+		<div class="merlin__content--transition">
+
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'license' ) ), $this->svg_allowed_html() ); ?>
+
+			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>
+
+			<h1><?php echo esc_html( $header ); ?></h1>
+
+			<p id="theme-license-text"><?php echo esc_html( $paragraph ); ?></p>
+
+			<?php if ( ! $is_theme_registered ) : ?>
+				<p class="merlin__content--license-key">
+					<label for="license-key"><?php echo esc_html( $label ); ?></label>
+					<input type="text" id="license-key" class="js-license-key">
+				</p>
+
+				<?php if ( ! empty( $action_url ) ) : ?>
+					<a class="merlin__button merlin__button--knockout merlin__button--no-chevron merlin__button--external" href="<?php echo esc_url( $action_url ); ?>" target="_blank"><?php echo esc_html( $action ); ?></a>
+				<?php endif ?>
+			<?php endif; ?>
+
+		</div>
+
+		<footer class="merlin__content__footer">
+
+			<?php if ( ! $is_theme_registered ) : ?>
+
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
+
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-theme-license-activate-button" data-callback="activate_license">
+					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
+				</a>
+
+			<?php else : ?>
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( $next ); ?></a>
+			<?php endif; ?>
+			<?php wp_nonce_field( 'merlin' ); ?>
+		</footer>
+		<?php
+	}
+
+
+	/**
+	 * Check, if the theme is currently registered.
+	 *
+	 * @return boolean
+	 */
+	private function is_theme_registered() {
+		$is_registered = get_option( $this->edd_theme_slug . '_license_key_status', false ) == 'valid';
+
+		return apply_filters( 'merlin_is_theme_registered', $is_registered );
 	}
 
 	/**
@@ -1185,6 +1308,152 @@ class Merlin {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Activate the theme (license key) via AJAX.
+	 */
+	public function _ajax_activate_license() {
+
+		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
+			wp_send_json( array(
+				'success' => false,
+				'message' => esc_html__( 'Access denied!', '@@textdomain' ),
+			) );
+		}
+
+		if ( empty( $_POST['license_key'] ) ) {
+			wp_send_json( array(
+				'success' => false,
+				'message' => esc_html__( 'Please input your license key!', '@@textdomain' ),
+			) );
+		}
+
+		$license_key = sanitize_key( $_POST['license_key'] );
+
+		if ( ! has_filter( 'merlin_ajax_activate_license' ) ) {
+			$result = $this->edd_activate_license( $license_key );
+		}
+		else {
+			$result = apply_filters( 'merlin_ajax_activate_license', $license_key );
+		}
+
+		wp_send_json( array_merge( array( 'done' => 1 ), $result ) );
+	}
+
+	/**
+	 * Activate the EDD license.
+	 *
+	 * This code was taken from the EDD licensing addon theme example code
+	 * (`activate_license` method of the `EDD_Theme_Updater_Admin` class).
+	 *
+	 * @param $license
+	 *
+	 * @return array
+	 */
+	private function edd_activate_license( $license ) {
+		$success = false;
+
+		// Data to send in our API request.
+		$api_params = array(
+			'edd_action' => 'activate_license',
+			'license'    => $license,
+			'item_name'  => urlencode( $this->edd_item_name ),
+			'url'        => home_url()
+		);
+
+		$response = $this->edd_get_api_response( $api_params );
+
+		// Make sure the response came back okay.
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+
+			if ( is_wp_error( $response ) ) {
+				$message = $response->get_error_message();
+			} else {
+				$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
+			}
+
+		} else {
+
+			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+			if ( false === $license_data->success ) {
+
+				switch( $license_data->error ) {
+
+					case 'expired' :
+
+						$message = sprintf(
+							esc_html__( 'Your license key expired on %s.', '@@textdomain' ),
+							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
+						);
+						break;
+
+					case 'revoked' :
+
+						$message = esc_html__( 'Your license key has been disabled.', '@@textdomain' );
+						break;
+
+					case 'missing' :
+
+						$message = esc_html__( 'Invalid license.', '@@textdomain' );
+						break;
+
+					case 'invalid' :
+					case 'site_inactive' :
+
+						$message = esc_html__( 'Your license is not active for this URL.', '@@textdomain' );
+						break;
+
+					case 'item_name_mismatch' :
+
+						$message = sprintf( esc_html__( 'This appears to be an invalid license key for %s.', '@@textdomain' ), $this->edd_item_name );
+						break;
+
+					case 'no_activations_left':
+
+						$message = esc_html__( 'Your license key has reached its activation limit.', '@@textdomain' );
+						break;
+
+					default :
+
+						$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
+						break;
+				}
+			} else {
+
+
+				if ( 'valid' === $license_data->license ) {
+					$message = esc_html__( 'The license was successfully activated!', '@@textdomain' );
+					$success = true;
+
+					// Removes the default EDD hook for this option, which breaks the AJAX call.
+					remove_all_actions( 'update_option_' . $this->edd_theme_slug . '_license_key', 10 );
+
+					update_option( $this->edd_theme_slug . '_license_key_status', $license_data->license );
+					update_option( $this->edd_theme_slug . '_license_key', $license );
+				}
+			}
+		}
+
+		return compact( 'success', 'message' );
+	}
+
+
+	/**
+	 * Makes a call to the API.
+	 *
+	 * This code was taken from the EDD licensing addon theme example code
+	 * (`get_api_response` method of the `EDD_Theme_Updater_Admin` class).
+	 *
+	 * @param array $api_params to be used for wp_remote_get.
+	 * @return array $response JSON response.
+	 */
+	private function edd_get_api_response( $api_params ) {
+		$verify_ssl = (bool) apply_filters( 'edd_sl_api_request_verify_ssl', true );
+		$response   = wp_remote_post( $this->edd_remote_api_url, array( 'timeout' => 15, 'sslverify' => $verify_ssl, 'body' => $api_params ) );
+
+		return $response;
 	}
 
 	/**

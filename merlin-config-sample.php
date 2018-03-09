@@ -21,6 +21,11 @@ $wizard = new Merlin(
 		'directory'                => '', // Location where the 'merlin' directory is placed.
 		'merlin_url'               => 'merlin', // Customize the page URL where Merlin WP loads.
 		'child_action_btn_url'     => 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
+		'theme_license_step'       => false, // Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
+		'theme_license_btn_url'    => 'https://your-domain.com/link-to-the-support-article', // The URL for the 'theme-license-action-link'.
+		'edd_item_name'            => '', // The same item_name as in the config parameter in the EDD_Theme_Updater_Admin class.
+		'edd_theme_slug'           => '', // The same theme_slug as in the config parameter in the EDD_Theme_Updater_Admin class.
+		'edd_remote_api_url'       => '', // The same remote_api_url as in the config parameter in the EDD_Theme_Updater_Admin class.
 		'help_mode'                => false, // Set to true to turn on the little wizard helper.
 		'dev_mode'                 => true, // Set to true if you're testing or developing.
 		'branding'                 => false, // Set to false to remove Merlin WP's branding.
@@ -32,19 +37,27 @@ $wizard = new Merlin(
 
 		'return-to-dashboard'      => esc_html__( 'Return to the dashboard' , '@@textdomain' ),
 
-		'btn-skip'                 => esc_html__( 'Skip' , '@@textdomain' ),
-		'btn-next'                 => esc_html__( 'Next' , '@@textdomain' ),
-		'btn-start'                => esc_html__( 'Start' , '@@textdomain' ),
-		'btn-no'                   => esc_html__( 'Cancel' , '@@textdomain' ),
-		'btn-plugins-install'      => esc_html__( 'Install' , '@@textdomain' ),
-		'btn-child-install'        => esc_html__( 'Install' , '@@textdomain' ),
-		'btn-content-install'      => esc_html__( 'Install' , '@@textdomain' ),
-		'btn-import'               => esc_html__( 'Import' , '@@textdomain' ),
+		'btn-skip'                  => esc_html__( 'Skip', '@@textdomain' ),
+		'btn-next'                  => esc_html__( 'Next', '@@textdomain' ),
+		'btn-start'                 => esc_html__( 'Start', '@@textdomain' ),
+		'btn-no'                    => esc_html__( 'Cancel', '@@textdomain' ),
+		'btn-plugins-install'       => esc_html__( 'Install', '@@textdomain' ),
+		'btn-theme-license-install' => esc_html__( 'Activate', '@@textdomain' ),
+		'btn-child-install'         => esc_html__( 'Install', '@@textdomain' ),
+		'btn-content-install'       => esc_html__( 'Install', '@@textdomain' ),
+		'btn-import'                => esc_html__( 'Import' , '@@textdomain' ),
 
 		'welcome-header%s'         => esc_html__( 'Welcome to %s' , '@@textdomain' ),
 		'welcome-header-success%s' => esc_html__( 'Hi. Welcome back' , '@@textdomain' ),
 		'welcome%s'                => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.' , '@@textdomain' ),
 		'welcome-success%s'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.' , '@@textdomain' ),
+
+		'theme-license-header'         => esc_html__( 'Register theme' , '@@textdomain' ),
+		'theme-license-header-success' => esc_html__( 'You\'re good to go!' , '@@textdomain' ),
+		'theme-license'                => esc_html__( 'Input the theme license key and activate it, to unlock the theme\'s full potential.' , '@@textdomain' ),
+		'theme-license-label'          => esc_html__( 'License key:' , '@@textdomain' ),
+		'theme-license-success%s'      => esc_html__( 'The theme is already registered, so you can go to the next step!' , '@@textdomain' ),
+		'theme-license-action-link'    => esc_html__( 'Where can I find the license key?' , '@@textdomain' ),
 
 		'child-header'             => esc_html__( 'Install Child Theme' , '@@textdomain' ),
 		'child-header-success'     => esc_html__( 'You\'re good to go!' , '@@textdomain' ),

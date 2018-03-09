@@ -32,7 +32,7 @@ If you have TGMPA included within your theme, please ensure Merlin WP is include
 
 ### 2. Configure Merlin WP
 
-The `merlin-config.php` file tells Merlin WP where the class is installed. It also let's you modify any of the text strings throughout the wizard.
+The `merlin-config.php` file tells Merlin WP where the class is installed. In this config file, you can also enable the Easy Digital Downloads license activation step. It also let's you modify any of the text strings throughout the wizard.
 
 ** The important configuration settings: **
 * `directory` — The location in your theme where the `/merlin/` directory is placed
@@ -40,6 +40,11 @@ The `merlin-config.php` file tells Merlin WP where the class is installed. It al
 Other settings:
 * `merlin_url` — The admin url where Merlin WP will exist
 * `child_action_btn_url` — The url for the child theme generator's "Learn more" link
+* `theme_license_step` - Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
+* `theme_license_btn_url` - (only if theme_license_step is enabled) The url to a website explaining, where the user can get the EDD license key.
+* `edd_item_name` - (only if theme_license_step is enabled) The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_theme_slug` - (only if theme_license_step is enabled) The EDD theme slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_remote_api_url` - (only if theme_license_step is enabled) The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
 * `help_mode` — A wizard for your wizard, if you need help *(beta)*
 * `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files. This is on by default during the beta.
 * `branding` — Show Merlin WP's logo or not *(beta)*
@@ -99,13 +104,22 @@ If you have multiple demo imports, then just define multiple arrays with appropr
 #### Redux framework import?
 If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters.php` file for an example on how to define the Redux import files.
 
-### 4. Add filters
+### 4 Easy Digital Downloads license activation step
+You will need to use the EDD and the EDD software licensing addon on your shop, to use this step.
+
+By default this step is disabled, so you have to enabled it in the `merlin-config.php` file (look at the the _Configure Merlin WP_ step above).
+
+Once all the needed settings are configured in the `merlin-config.php` file, the license activation step will show up, right after the child theme step.
+
+The integration is done for the [EDD licensing theme example](https://docs.easydigitaldownloads.com/article/382-automatic-upgrades-for-wordpress-themes), which you can also add to your theme. This will add a **Theme license** page in *Appearance* wp-admin menu of the theme, where the user can deactivate or check the license expiration date.
+
+### 5. Add filters
 
 Inside the package download exists a `merlin-filters.php` file which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's `functions.php` file. 
 
 You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done running.
 
-### 5. Testing
+### 6. Testing
 
 To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [Reset WP](https://wordpress.org/plugins/reset-wp/) plugin to reset and run through more tests. 
 

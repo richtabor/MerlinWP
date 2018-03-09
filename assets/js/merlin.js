@@ -172,11 +172,11 @@ var Merlin = (function($){
 
     function ActivateLicense() {
     	var body 		= $('.merlin__body');
-        var complete, notice 	= $("#child-theme-text");
+        var complete, notice 	= $("#theme-license-text");
 
         function ajax_callback(r) {
-
-            if (typeof r.done !== "undefined") {
+            if (typeof r.success !== "undefined" && r.success) {
+              notice.siblings( '.error-message' ).remove();
             	setTimeout(function(){
 			        notice.addClass("lead");
 			    },0);
@@ -188,17 +188,21 @@ var Merlin = (function($){
 
                 complete();
             } else {
-                notice.addClass("lead error");
-                notice.html(r.error);
+                $( '.js-merlin-theme-license-activate-button' )
+                  .removeClass( 'merlin__button--loading' )
+                  .data( 'done-loading', 'no' );
+
+                notice.siblings( '.error-message' ).remove();
+                notice.after('<p class="error-message">' + r.message + '<p>');
+                notice.siblings( '.error-message' ).addClass("lead error");
             }
         }
 
         function do_ajax() {
-        	childThemeName = $("#theme_license_key").val();
             jQuery.post(merlin_params.ajaxurl, {
-                action: "merlin_activate_license",
-                wpnonce: merlin_params.wpnonce,
-                cThemeName: childThemeName
+              action: "merlin_activate_license",
+              wpnonce: merlin_params.wpnonce,
+              license_key: $( '.js-license-key' ).val()
             }, ajax_callback).fail(ajax_callback);
         }
 

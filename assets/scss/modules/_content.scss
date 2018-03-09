@@ -47,6 +47,25 @@
 		padding-top: 5px;
 	}
 
+	&--license-key {
+		margin-top: 20px;
+
+		label {
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		input {
+			margin-top: 8px;
+			width: 100%;
+			padding: 15px;
+			border-radius: 4px;
+			background-color: #ffffff;
+			box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+			border: solid 1px #dddddd;
+		}
+	}
+
 	&--ready {
 		padding-bottom: 12px;
 	}
