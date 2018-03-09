@@ -356,6 +356,12 @@ var Merlin = (function($){
                         find_next();
                     }else {
                         current_item_hash = response.hash;
+
+                        // Fix the undefined selected_index issue on new AJAX calls.
+                        if ( typeof response.selected_index === "undefined" ) {
+                            response.selected_index = $( '.js-merlin-demo-import-select' ).val() || 0;
+                        }
+
                         jQuery.post(response.url, response, ajax_callback).fail(ajax_callback); // recuurrssionnnnn
                     }
                 }else if(typeof response.done !== "undefined"){
