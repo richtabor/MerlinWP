@@ -18,8 +18,8 @@ if ( ! class_exists( 'Merlin' ) ) {
 $wizard = new Merlin(
 	// Configure Merlin with custom settings.
 	$config = array(
-		'directory'                => '', // Location where the 'merlin' directory is placed.
-		'merlin_url'               => 'merlin', // Customize the page URL where Merlin WP loads.
+		'directory'                => 'merlin', // Location where the 'merlin' directory is placed in your theme.
+		'merlin_url'               => 'merlin', // Customize the page URL where Merlin WP loads (wp-admin page slug).
 		'child_action_btn_url'     => 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
 		'theme_license_step'       => false, // Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
 		'theme_license_btn_url'    => 'https://your-domain.com/link-to-the-support-article', // The URL for the 'theme-license-action-link'.

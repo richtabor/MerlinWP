@@ -35,10 +35,10 @@ If you have TGMPA included within your theme, please ensure Merlin WP is include
 The `merlin-config.php` file tells Merlin WP where the class is installed. In this config file, you can also enable the Easy Digital Downloads license activation step. It also let's you modify any of the text strings throughout the wizard.
 
 ** The important configuration settings: **
-* `directory` — The location in your theme where the `/merlin/` directory is placed
+* `directory` — The location in your theme where the merlin code directory is placed (example: `inc/merlin`, if you placed the `merlin` folder in your theme's `inc` folder)
 
 Other settings:
-* `merlin_url` — The admin url where Merlin WP will exist
+* `merlin_url` — The admin url slug where Merlin WP will exist
 * `child_action_btn_url` — The url for the child theme generator's "Learn more" link
 * `theme_license_step` - Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
 * `theme_license_btn_url` - (only if theme_license_step is enabled) The url to a website explaining, where the user can get the EDD license key.

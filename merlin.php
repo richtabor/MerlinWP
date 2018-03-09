@@ -202,7 +202,7 @@ class Merlin {
 		$this->version();
 
 		$config = wp_parse_args( $config, array(
-			'directory'            => '',
+			'directory'            => 'merlin',
 			'merlin_url'           => 'merlin',
 			'child_action_btn_url' => '',
 			'help_mode'            => '',
@@ -276,24 +276,24 @@ class Merlin {
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
 
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-downloader.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-downloader.php' );
 
 		$logger = new ProteusThemes\WPContentImporter2\WPImporterLogger();
 
 		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $logger );
 
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-widget-importer.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-widget-importer.php' );
 
 		if ( ! class_exists( 'WP_Customize_Setting' ) ) {
 			require_once ABSPATH . 'wp-includes/class-wp-customize-setting.php';
 		}
 
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-option.php' );
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-customizer-importer.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-option.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-importer.php' );
 
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-redux-importer.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-redux-importer.php' );
 
-		require_once get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-hooks.php' );
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-hooks.php' );
 
 		$this->hooks = new Merlin_Hooks();
 
@@ -302,7 +302,7 @@ class Merlin {
 		}
 
 		if ( true === $this->help_mode ) {
-			require get_parent_theme_file_path( $this->directory . '/merlin/includes/class-merlin-helper.php' );
+			require get_parent_theme_file_path( $this->directory . '/includes/class-merlin-helper.php' );
 			$this->helper = new Merlin_Helper();
 		}
 	}
@@ -410,10 +410,10 @@ class Merlin {
 		$suffix = ( ( true == $this->dev_mode ) ) ? '' : '.min';
 
 		// Enqueue styles.
-		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
+		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
 
 		// Enqueue javascript.
-		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/merlin/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
+		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
 
 		$texts = array(
 			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
@@ -543,7 +543,7 @@ class Merlin {
 	public function svg_sprite() {
 
 		// Define SVG sprite file.
-		$svg = get_parent_theme_file_path( $this->directory . '/merlin/assets/images/sprite.svg' );
+		$svg = get_parent_theme_file_path( $this->directory . '/assets/images/sprite.svg' );
 
 		// If it exists, include it.
 		if ( file_exists( $svg ) ) {
@@ -652,7 +652,7 @@ class Merlin {
 	public function loading_spinner() {
 
 		// Define the spinner file.
-		$spinner = $this->directory . '/merlin/assets/images/spinner';
+		$spinner = $this->directory . '/assets/images/spinner';
 
 		// Retrieve the spinner.
 		get_template_part( apply_filters( 'merlin_loading_spinner', $spinner ) );
