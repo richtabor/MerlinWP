@@ -16,127 +16,171 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: merlin.php:379
+#: merlin.php:419
 msgid "Something went wrong. Please refresh the page and try again!"
 msgstr ""
 
-#: merlin.php:530
+#: merlin.php:570
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: merlin.php:535
+#: merlin.php:575
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: merlin.php:629
+#: merlin.php:669
 msgid "Welcome"
 msgstr ""
 
-#: merlin.php:636
+#: merlin.php:676
 msgid "Child"
 msgstr ""
 
-#: merlin.php:643
+#: merlin.php:682
+msgid "Theme license"
+msgstr ""
+
+#: merlin.php:690
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:651, merlin.php:1481
+#: merlin.php:698, merlin.php:1750
 msgid "Content"
 msgstr ""
 
-#: merlin.php:657
+#: merlin.php:704
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:906
+#: merlin.php:1028
 msgid "Install"
 msgstr ""
 
-#: merlin.php:909
+#: merlin.php:1031
 msgid "Update"
 msgstr ""
 
-#: merlin.php:912
+#: merlin.php:1034
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:914
+#: merlin.php:1036
 msgid "and"
 msgstr ""
 
-#: merlin.php:976
+#: merlin.php:1098
 msgid "Select which demo data you want to import:"
 msgstr ""
 
-#: merlin.php:1293
-msgid "Activating"
+#: merlin.php:1321
+msgid "Access denied!"
 msgstr ""
 
-#: merlin.php:1309
-msgid "Updating"
+#: merlin.php:1328
+msgid "Please input your license key!"
 msgstr ""
 
-#: merlin.php:1325, merlin.php:1484, merlin.php:1497, merlin.php:1510, merlin.php:1523, merlin.php:1536, merlin.php:1549, merlin.php:1590
-msgid "Installing"
+#: merlin.php:1373, merlin.php:1420
+msgid "An error occurred, please try again."
 msgstr ""
 
-#: merlin.php:1335, merlin.php:1485, merlin.php:1498, merlin.php:1511, merlin.php:1524, merlin.php:1537, merlin.php:1550
-msgid "Success"
-msgstr ""
-
-#: merlin.php:1356
-msgid "Invalid content!"
+#: merlin.php:1387
+msgid "Your license key expired on %s."
 msgstr ""
 
 #: merlin.php:1394
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: merlin.php:1399
+msgid "Invalid license."
+msgstr ""
+
+#: merlin.php:1405
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: merlin.php:1410
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: merlin.php:1415
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: merlin.php:1427
+msgid "The license was successfully activated!"
+msgstr ""
+
+#: merlin.php:1561
+msgid "Activating"
+msgstr ""
+
+#: merlin.php:1577
+msgid "Updating"
+msgstr ""
+
+#: merlin.php:1593, merlin.php:1753, merlin.php:1766, merlin.php:1779, merlin.php:1792, merlin.php:1805, merlin.php:1818, merlin.php:1859
+msgid "Installing"
+msgstr ""
+
+#: merlin.php:1603, merlin.php:1754, merlin.php:1767, merlin.php:1780, merlin.php:1793, merlin.php:1806, merlin.php:1819
+msgid "Success"
+msgstr ""
+
+#: merlin.php:1624
+msgid "Invalid content!"
+msgstr ""
+
+#: merlin.php:1663
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1482
+#: merlin.php:1751
 msgid "Demo content data."
 msgstr ""
 
-#: merlin.php:1483, merlin.php:1496, merlin.php:1509, merlin.php:1522, merlin.php:1535, merlin.php:1548
+#: merlin.php:1752, merlin.php:1765, merlin.php:1778, merlin.php:1791, merlin.php:1804, merlin.php:1817
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1494
+#: merlin.php:1763
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1495
+#: merlin.php:1764
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1507
+#: merlin.php:1776
 msgid "Revolution Slider"
 msgstr ""
 
-#: merlin.php:1508
+#: merlin.php:1777
 msgid "Sample Revolution sliders data."
 msgstr ""
 
-#: merlin.php:1520
+#: merlin.php:1789
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1521
+#: merlin.php:1790
 msgid "Sample theme options data."
 msgstr ""
 
-#: merlin.php:1533
+#: merlin.php:1802
 msgid "Redux Options"
 msgstr ""
 
-#: merlin.php:1534
+#: merlin.php:1803
 msgid "Redux framework options."
 msgstr ""
 
-#: merlin.php:1546
+#: merlin.php:1815
 msgid "After import setup"
 msgstr ""
 
-#: merlin.php:1547
+#: merlin.php:1816
 msgid "After import setup."
 msgstr ""
 
