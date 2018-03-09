@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "proteusthemes/wp-content-importer-v2",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/proteusthemes/WordPress-Importer.git",
-                "reference": "704d3900b189ef58733e7eab75becd370d47ef9e"
+                "reference": "e6529965082b11d043cc00b518249205648b1713"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/704d3900b189ef58733e7eab75becd370d47ef9e",
-                "reference": "704d3900b189ef58733e7eab75becd370d47ef9e",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/e6529965082b11d043cc00b518249205648b1713",
+                "reference": "e6529965082b11d043cc00b518249205648b1713",
                 "shasum": ""
             },
             "type": "library",
@@ -31,11 +31,19 @@
             ],
             "authors": [
                 {
-                    "name": "Contributors",
+                    "name": "Gregor Capuder",
+                    "email": "capuderg@gmail.com"
+                },
+                {
+                    "name": "Primoz Cigler",
+                    "email": "primoz@proteusnet.com"
+                },
+                {
+                    "name": "Humanmade contributors",
                     "homepage": "https://github.com/humanmade/WordPress-Importer/graphs/contributors"
                 }
             ],
-            "description": "WP content importer v2 forked from humanmade/wordpress-importer.",
+            "description": "Improved WP content importer used in OCDI plugin and MerlinWP.",
             "keywords": [
                 "content",
                 "import",
@@ -45,9 +53,9 @@
                 "wp"
             ],
             "support": {
-                "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v2.0.2"
+                "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v2.0.3"
             },
-            "time": "2018-02-09T08:14:54+00:00"
+            "time": "2018-03-07T09:47:56+00:00"
         }
     ],
     "packages-dev": [],

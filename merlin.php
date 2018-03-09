@@ -1373,14 +1373,15 @@ class Merlin {
 			}
 		} else {
 			$json = array(
-				'url'      => admin_url( 'admin-ajax.php' ),
-				'action'   => 'merlin_content',
-				'proceed'  => 'true',
-				'content'  => $_POST['content'],
-				'_wpnonce' => wp_create_nonce( 'merlin_nonce' ),
-				'message'  => $this_content['installing'],
-				'logs'     => '',
-				'errors'   => '',
+				'url'            => admin_url( 'admin-ajax.php' ),
+				'action'         => 'merlin_content',
+				'proceed'        => 'true',
+				'content'        => $_POST['content'],
+				'_wpnonce'       => wp_create_nonce( 'merlin_nonce' ),
+				'selected_index' => $selected_import,
+				'message'        => $this_content['installing'],
+				'logs'           => '',
+				'errors'         => '',
 			);
 		}
 
