@@ -868,8 +868,6 @@ class Merlin {
 
 			<?php if ( ! $is_theme_registered ) : ?>
 
-				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
-
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-theme-license-activate-button" data-callback="activate_license">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
 				</a>
