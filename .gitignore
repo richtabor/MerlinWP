@@ -3,6 +3,3 @@
 *.cache
 /vendor/
 /node_modules/
-assets/css/merlin.css
-
-assets/css/merlin.min.css
