@@ -261,7 +261,6 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
-		add_action( 'upgrader_post_install', array( $this, 'post_install_check' ), 10, 2 );
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
 		add_action( 'import_start', array( $this, 'before_content_import_setup' ) );
@@ -350,28 +349,6 @@ class Merlin {
 	 */
 	protected function is_possible_upgrade() {
 		return false;
-	}
-
-	/**
-	 * After a theme update, we clear the slug_merlin_completed option.
-	 * This prompts the user to visit the update page again.
-	 *
-	 * @param string $return To end or not.
-	 * @param string $theme  The current theme.
-	 */
-	protected function post_install_check( $return, $theme ) {
-
-		if ( is_wp_error( $return ) ) {
-			return $return;
-		}
-
-		if ( $theme !== $this->theme->stylesheet ) {
-			return $return;
-		}
-
-		update_option( 'merlin_' . $this->slug . '_completed', false );
-
-		return $return;
 	}
 
 	/**
