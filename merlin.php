@@ -754,7 +754,7 @@ class Merlin {
 		$theme = ucfirst( $this->theme );
 
 		// Remove "Child" from the current theme name, if it's installed.
-		$theme = str_replace( ' Child','', $theme );
+		$theme = str_replace( ' Child', '', $theme );
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
