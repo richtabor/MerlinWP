@@ -803,11 +803,17 @@ class Merlin {
 		$is_theme_registered = $this->is_theme_registered();
 		$action_url          = $this->theme_license_action_btn_url;
 
+		// Theme Name.
+		$theme = ucfirst( $this->theme );
+
+		// Remove "Child" from the current theme name, if it's installed.
+		$theme = str_replace( ' Child', '', $theme );
+
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
 		// Text strings.
-		$header    = ! $is_theme_registered ? $strings['theme-license-header'] : $strings['theme-license-header-success'];
+		$header    = ! $is_theme_registered ? $strings['theme-license-header%s'] : $strings['theme-license-header-success'];
 		$action    = $strings['theme-license-action-link'];
 		$label     = $strings['theme-license-label'];
 		$skip      = $strings['btn-skip'];
@@ -824,9 +830,9 @@ class Merlin {
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
 			</svg>
 
-			<h1><?php echo esc_html( $header ); ?></h1>
+			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
-			<p id="theme-license-text"><?php echo esc_html( $paragraph ); ?></p>
+			<p id="theme-license-text"><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
 
 			<?php if ( ! $is_theme_registered ) : ?>
 				<p class="merlin__content--license-key">
