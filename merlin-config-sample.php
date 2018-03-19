@@ -13,77 +13,77 @@ if ( ! class_exists( 'Merlin' ) ) {
 }
 
 /**
- * Set directory locations, text strings, and other settings for Merlin WP.
+ * Set directory locations, text strings, and settings.
  */
 $wizard = new Merlin(
-	// Configure Merlin with custom settings.
-	$config = array(
-		'directory'                => 'merlin', // Location where the 'merlin' directory is placed in your theme.
-		'merlin_url'               => 'merlin', // Customize the page URL where Merlin WP loads (wp-admin page slug).
-		'child_action_btn_url'     => 'https://codex.wordpress.org/Child_Themes',  // The URL for the 'child-action-link'.
-		'theme_license_step'       => false, // Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
-		'theme_license_btn_url'    => 'https://your-domain.com/link-to-the-support-article', // The URL for the 'theme-license-action-link'.
-		'edd_item_name'            => '', // The same item_name as in the config parameter in the EDD_Theme_Updater_Admin class.
-		'edd_theme_slug'           => '', // The same theme_slug as in the config parameter in the EDD_Theme_Updater_Admin class.
-		'edd_remote_api_url'       => '', // The same remote_api_url as in the config parameter in the EDD_Theme_Updater_Admin class.
-		'help_mode'                => false, // Set to true to turn on the little wizard helper.
-		'dev_mode'                 => true, // Set to true if you're testing or developing.
-		'branding'                 => false, // Set to false to remove Merlin WP's branding.
+
+	$config  = array(
+		'directory'             => 'merlin', // Location / directory where Merlin WP is placed in your theme.
+		'merlin_url'            => 'merlin',  // The wp-admin page slug where Merlin WP loads.
+		'child_action_btn_url'  => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
+		'dev_mode'              => false,
+		'theme_license_step'    => false, // EDD license activation step.
+		'edd_remote_api_url'    => '', // EDD_Theme_Updater_Admin remote_api_url.
+		'edd_item_name'         => '', // EDD_Theme_Updater_Admin item_name.
+		'edd_theme_slug'        => '', // EDD_Theme_Updater_Admin item_slug.
+		'theme_license_btn_url' => '', // URL for the 'theme-license-action-link'.
 	),
-	// Text strings.
 	$strings = array(
-		'admin-menu'               => esc_html__( 'Theme Setup' , '@@textdomain' ),
-		'title%s%s%s%s' 		       => esc_html__( '%s%s Themes &lsaquo; Theme Setup: %s%s' , '@@textdomain' ),
+		'admin-menu'                   => esc_html__( 'Theme Setup', '@@textdomain' ),
 
-		'return-to-dashboard'      => esc_html__( 'Return to the dashboard' , '@@textdomain' ),
+		/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */
+		'title%s%s%s%s'                => esc_html__( '%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s', '@@textdomain' ),
+		'return-to-dashboard'          => esc_html__( 'Return to the dashboard', '@@textdomain' ),
 
-		'btn-skip'                  => esc_html__( 'Skip', '@@textdomain' ),
-		'btn-next'                  => esc_html__( 'Next', '@@textdomain' ),
-		'btn-start'                 => esc_html__( 'Start', '@@textdomain' ),
-		'btn-no'                    => esc_html__( 'Cancel', '@@textdomain' ),
-		'btn-plugins-install'       => esc_html__( 'Install', '@@textdomain' ),
-		'btn-theme-license-install' => esc_html__( 'Activate', '@@textdomain' ),
-		'btn-child-install'         => esc_html__( 'Install', '@@textdomain' ),
-		'btn-content-install'       => esc_html__( 'Install', '@@textdomain' ),
-		'btn-import'                => esc_html__( 'Import' , '@@textdomain' ),
+		'btn-skip'                     => esc_html__( 'Skip', '@@textdomain' ),
+		'btn-next'                     => esc_html__( 'Next', '@@textdomain' ),
+		'btn-start'                    => esc_html__( 'Start', '@@textdomain' ),
+		'btn-no'                       => esc_html__( 'Cancel', '@@textdomain' ),
+		'btn-plugins-install'          => esc_html__( 'Install', '@@textdomain' ),
+		'btn-child-install'            => esc_html__( 'Install', '@@textdomain' ),
+		'btn-content-install'          => esc_html__( 'Install', '@@textdomain' ),
+		'btn-import'                   => esc_html__( 'Import', '@@textdomain' ),
+		'btn-theme-license-install'    => esc_html__( 'Activate', '@@textdomain' ),
 
-		'welcome-header%s'         => esc_html__( 'Welcome to %s' , '@@textdomain' ),
-		'welcome-header-success%s' => esc_html__( 'Hi. Welcome back' , '@@textdomain' ),
-		'welcome%s'                => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.' , '@@textdomain' ),
-		'welcome-success%s'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.' , '@@textdomain' ),
+		'theme-license-header'         => esc_html__( 'Activate', '@@textdomain' ),
+		'theme-license-header-success' => esc_html__( 'You\'re good to go!', '@@textdomain' ),
+		'theme-license'                => esc_html__( 'Input the theme license key and activate it, to unlock the theme\'s full potential.', '@@textdomain' ),
+		'theme-license-label'          => esc_html__( 'License Key:', '@@textdomain' ),
+		'theme-license-success%s'      => esc_html__( 'The theme is already registered, so you can go to the next step!', '@@textdomain' ),
+		'theme-license-action-link'    => esc_html__( 'Need help?', '@@textdomain' ),
 
-		'theme-license-header'         => esc_html__( 'Register theme' , '@@textdomain' ),
-		'theme-license-header-success' => esc_html__( 'You\'re good to go!' , '@@textdomain' ),
-		'theme-license'                => esc_html__( 'Input the theme license key and activate it, to unlock the theme\'s full potential.' , '@@textdomain' ),
-		'theme-license-label'          => esc_html__( 'License key:' , '@@textdomain' ),
-		'theme-license-success%s'      => esc_html__( 'The theme is already registered, so you can go to the next step!' , '@@textdomain' ),
-		'theme-license-action-link'    => esc_html__( 'Where can I find the license key?' , '@@textdomain' ),
+		/* translators: ThemeName */
+		'welcome-header%s'             => esc_html__( 'Welcome to %s', '@@textdomain' ),
+		'welcome-header-success%s'     => esc_html__( 'Hi. Welcome back', '@@textdomain' ),
+		'welcome%s'                    => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.', '@@textdomain' ),
+		'welcome-success%s'            => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', '@@textdomain' ),
 
-		'child-header'             => esc_html__( 'Install Child Theme' , '@@textdomain' ),
-		'child-header-success'     => esc_html__( 'You\'re good to go!' , '@@textdomain' ),
-		'child'                    => esc_html__( 'Let\'s build & activate a child theme so you may easily make theme changes.' , '@@textdomain' ),
-		'child-success%s'          => esc_html__( 'Your child theme has already been installed and is now activated, if it wasn\'t already.' , '@@textdomain' ),
-		'child-action-link'        => esc_html__( 'Learn about child themes' , '@@textdomain' ),
-		'child-json-success%s'     => esc_html__( 'Awesome. Your child theme has already been installed and is now activated.' , '@@textdomain' ),
-		'child-json-already%s'     => esc_html__( 'Awesome. Your child theme has been created and is now activated.' , '@@textdomain' ),
+		'child-header'                 => esc_html__( 'Install Child Theme', '@@textdomain' ),
+		'child-header-success'         => esc_html__( 'You\'re good to go!', '@@textdomain' ),
+		'child'                        => esc_html__( 'Let\'s build & activate a child theme so you may easily make theme changes.', '@@textdomain' ),
+		'child-success%s'              => esc_html__( 'Your child theme has already been installed and is now activated, if it wasn\'t already.', '@@textdomain' ),
+		'child-action-link'            => esc_html__( 'Learn about child themes', '@@textdomain' ),
+		'child-json-success%s'         => esc_html__( 'Awesome. Your child theme has already been installed and is now activated.', '@@textdomain' ),
+		'child-json-already%s'         => esc_html__( 'Awesome. Your child theme has been created and is now activated.', '@@textdomain' ),
 
-		'plugins-header'           => esc_html__( 'Install Plugins' , '@@textdomain' ),
-		'plugins-header-success'   => esc_html__( 'You\'re up to speed!' , '@@textdomain' ),
-		'plugins'                  => esc_html__( 'Let\'s install some essential WordPress plugins to get your site up to speed.' , '@@textdomain' ),
-		'plugins-success%s'        => esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.' , '@@textdomain' ),
-		'plugins-action-link'      => esc_html__( 'Advanced' , '@@textdomain' ),
+		'plugins-header'               => esc_html__( 'Install Plugins', '@@textdomain' ),
+		'plugins-header-success'       => esc_html__( 'You\'re up to speed!', '@@textdomain' ),
+		'plugins'                      => esc_html__( 'Let\'s install some essential WordPress plugins to get your site up to speed.', '@@textdomain' ),
+		'plugins-success%s'            => esc_html__( 'The required WordPress plugins are all installed and up to date. Press "Next" to continue the setup wizard.', '@@textdomain' ),
+		'plugins-action-link'          => esc_html__( 'Advanced', '@@textdomain' ),
 
-		'import-header'            => esc_html__( 'Import Content' , '@@textdomain' ),
-		'import'                   => esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.' , '@@textdomain' ),
-		'import-action-link'       => esc_html__( 'Advanced' , '@@textdomain' ),
+		'import-header'                => esc_html__( 'Import Content', '@@textdomain' ),
+		'import'                       => esc_html__( 'Let\'s import content to your website, to help you get familiar with the theme.', '@@textdomain' ),
+		'import-action-link'           => esc_html__( 'Advanced', '@@textdomain' ),
 
-		'ready-header'             => esc_html__( 'All done. Have fun!' , '@@textdomain' ),
-		'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.' , '@@textdomain' ),
-		'ready-action-link'        => esc_html__( 'Extras' , '@@textdomain' ),
-		'ready-big-button'         => esc_html__( 'View your website' , '@@textdomain' ),
+		'ready-header'                 => esc_html__( 'All done. Have fun!', '@@textdomain' ),
 
-		'ready-link-1'             => wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-2'             => wp_kses( sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://themebeans.com/contact/', esc_html__( 'Get Theme Support', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
-		'ready-link-3'             => wp_kses( sprintf( '<a href="'.admin_url( 'customize.php' ).'" target="_blank">%s</a>', esc_html__( 'Start Customizing', '@@textdomain' ) ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ),
+		/* translators: Theme Author */
+		'ready%s'                      => esc_html__( 'Your theme has been all set up. Enjoy your new theme by %s.', '@@textdomain' ),
+		'ready-action-link'            => esc_html__( 'Extras', '@@textdomain' ),
+		'ready-big-button'             => esc_html__( 'View your website', '@@textdomain' ),
+		'ready-link-1'                 => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://wordpress.org/support/', esc_html__( 'Explore WordPress', '@@textdomain' ) ),
+		'ready-link-2'                 => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://themebeans.com/contact/', esc_html__( 'Get Theme Support', '@@textdomain' ) ),
+		'ready-link-3'                 => sprintf( '<a href="%1$s" target="_blank">%2$s</a>', admin_url( 'customize.php' ), esc_html__( 'Start Customizing', '@@textdomain' ) ),
 	)
 );
