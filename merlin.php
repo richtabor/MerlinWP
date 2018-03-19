@@ -806,7 +806,9 @@ class Merlin {
 						<input type="text" id="license-key" class="js-license-key" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 						<?php if ( ! empty( $action_url ) ) : ?>
 							<a href="<?php echo esc_url( $action_url ); ?>" alt="<?php echo esc_attr( $action ); ?>" target="_blank">
-								<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
+								<span class="hint--top" aria-label="<?php echo esc_attr( $action ); ?>">
+									<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
+								</span>
 							</a>
 						<?php endif ?>
 					</div>
