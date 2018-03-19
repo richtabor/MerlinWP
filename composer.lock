@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df97a659bb83d2e76e298c6000142414",
+    "content-hash": "20053ddaf206ea93691b248f79aea9bf",
     "packages": [
         {
             "name": "proteusthemes/wp-content-importer-v2",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/proteusthemes/WordPress-Importer.git",
-                "reference": "e6529965082b11d043cc00b518249205648b1713"
+                "reference": "d1e61025f0a662437607d05f4463f6a6a3fb88c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/e6529965082b11d043cc00b518249205648b1713",
-                "reference": "e6529965082b11d043cc00b518249205648b1713",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/d1e61025f0a662437607d05f4463f6a6a3fb88c5",
+                "reference": "d1e61025f0a662437607d05f4463f6a6a3fb88c5",
                 "shasum": ""
             },
             "type": "library",
@@ -26,17 +26,18 @@
                     "ProteusThemes\\WPContentImporter2\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "Gregor Capuder",
-                    "email": "capuderg@gmail.com"
-                },
-                {
                     "name": "Primoz Cigler",
                     "email": "primoz@proteusnet.com"
+                },
+                {
+                    "name": "Gregor Capuder",
+                    "email": "capuderg@gmail.com"
                 },
                 {
                     "name": "Humanmade contributors",
@@ -52,10 +53,7 @@
                 "wordpress",
                 "wp"
             ],
-            "support": {
-                "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v2.0.3"
-            },
-            "time": "2018-03-07T09:47:56+00:00"
+            "time": "2018-03-19T10:00:06+00:00"
         }
     ],
     "packages-dev": [],
