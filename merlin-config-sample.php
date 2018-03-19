@@ -18,15 +18,16 @@ if ( ! class_exists( 'Merlin' ) ) {
 $wizard = new Merlin(
 
 	$config  = array(
-		'directory'             => 'merlin', // Location / directory where Merlin WP is placed in your theme.
-		'merlin_url'            => 'merlin',  // The wp-admin page slug where Merlin WP loads.
-		'child_action_btn_url'  => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
-		'dev_mode'              => false,
-		'theme_license_step'    => false, // EDD license activation step.
-		'edd_remote_api_url'    => '', // EDD_Theme_Updater_Admin remote_api_url.
-		'edd_item_name'         => '', // EDD_Theme_Updater_Admin item_name.
-		'edd_theme_slug'        => '', // EDD_Theme_Updater_Admin item_slug.
-		'theme_license_btn_url' => '', // URL for the 'theme-license-action-link'.
+		'directory'              => 'merlin', // Location / directory where Merlin WP is placed in your theme.
+		'merlin_url'             => 'merlin',  // The wp-admin page slug where Merlin WP loads.
+		'child_action_btn_url'   => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
+		'dev_mode'               => false, // Enable development mode for testing.
+		'theme_license_step'     => false, // EDD license activation step.
+		'theme_license_required' => true, // Require the license activation step.
+		'edd_remote_api_url'     => '', // EDD_Theme_Updater_Admin remote_api_url.
+		'edd_item_name'          => '', // EDD_Theme_Updater_Admin item_name.
+		'edd_theme_slug'         => '', // EDD_Theme_Updater_Admin item_slug.
+		'theme_license_btn_url'  => '', // URL for the 'theme-license-action-link'.
 	),
 	$strings = array(
 		'admin-menu'                   => esc_html__( 'Theme Setup', '@@textdomain' ),
