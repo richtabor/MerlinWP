@@ -69,10 +69,11 @@
 
 		.icon {
 			fill: $gray;
-			height: 29px;
-			width: 29px;
+			height: 27px;
+			width: 27px;
 			margin-bottom: 0;
-			opacity: .8;
+			opacity: .75;
+			z-index: 9999;
 			transform: translate3d(0, 0, 0);
 			backface-visibility: hidden;
 			transition: fill 150ms cubic-bezier(.694, 0, .335, 1), opacity 150ms cubic-bezier(.694, 0, .335, 1);
@@ -90,10 +91,25 @@
 
 		a {
 			position: absolute;
-			right: 0;
-			height: 29px;
-			width: 29px;
-			top: 2px;
+			right: 1px;
+			height: 27px;
+			width: 27px;
+			top: 3px;
+
+			&::after {
+				/* gradient on the right - to indicate it's possible to scroll */
+				content: '';
+				position: absolute;
+				z-index: 1;
+				top: -1px;
+				right: 23px;
+				height: 29px;
+				width: 20px;
+				background: transparent;
+				border-radius: 3px;
+				background: linear-gradient( to left, $white 40%, rgba( $white, 0 ) );
+				pointer-events: none;
+			}
 		}
 
 		a:active svg {
@@ -106,8 +122,9 @@
 			display: inline-block;
 			width: 100%;
 			font-size: 12px;
+			background: transparent;
 			font-family: Menlo, Consolas, monaco, monospace;
-			padding: 8px 30px 7px 9px;
+			padding: 8px 27px 7px 9px;
 			border-radius: 4px;
 			box-shadow: inset 0 1px 2px rgba(0, 0, 0, .03);
 		}
