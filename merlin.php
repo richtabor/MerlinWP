@@ -164,13 +164,6 @@ class Merlin {
 	protected $dev_mode = false;
 
 	/**
-	 * The URL for the "Learn more about child themes" link.
-	 *
-	 * @var string $branding
-	 */
-	protected $branding = false;
-
-	/**
 	 * Setup plugin version.
 	 *
 	 * @access private
@@ -199,7 +192,6 @@ class Merlin {
 			'merlin_url'           => 'merlin',
 			'child_action_btn_url' => '',
 			'dev_mode'             => '',
-			'branding'             => '',
 		) );
 
 		// Set config arguments.
@@ -212,7 +204,6 @@ class Merlin {
 		$this->edd_theme_slug               = $config['edd_theme_slug'];
 		$this->edd_remote_api_url           = $config['edd_remote_api_url'];
 		$this->dev_mode                     = $config['dev_mode'];
-		$this->branding                     = $config['branding'];
 
 		// Strings passed in from the config file.
 		$this->strings = $strings;
@@ -479,14 +470,7 @@ class Merlin {
 	 * Output the footer.
 	 */
 	protected function footer() {
-
-		if ( true === $this->branding ) :
-			?>
-			<a class="merlin--icon" target="_blank" href="https://merlinwp.com">
-				<?php echo wp_kses( $this->svg( array( 'icon' => 'merlin' ) ), $this->svg_allowed_html() ); ?>
-			</a>
-		<?php endif; ?>
-
+		?>
 		</body>
 		<?php do_action( 'admin_footer' ); ?>
 		<?php do_action( 'admin_print_footer_scripts' ); ?>
