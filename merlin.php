@@ -576,7 +576,7 @@ class Merlin {
 	}
 
 	/**
-	 * Adds data attributes to the body, based on Customizer entries.
+	 * Allowed HTML for sprites.
 	 */
 	public function svg_allowed_html() {
 
@@ -605,6 +605,24 @@ class Merlin {
 
 		// Retrieve the spinner.
 		get_template_part( apply_filters( 'merlin_loading_spinner', $spinner ) );
+
+	}
+
+	/**
+	 * Allowed HTML for the loading spinner.
+	 */
+	public function loading_spinner_allowed_html() {
+
+		$array = array(
+			'span' => array(
+				'class' => array(),
+			),
+			'cite' => array(
+				'class' => array(),
+			),
+		);
+
+		return apply_filters( 'merlin_loading_spinner_allowed_html', $array );
 
 	}
 
@@ -829,7 +847,8 @@ class Merlin {
 				<?php endif ?>
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-theme-license-activate-button" data-callback="activate_license">
-					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
+					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
+					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
 				</a>
 
 			<?php else : ?>
@@ -898,7 +917,8 @@ class Merlin {
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_child">
-					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
+					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
+					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
 				</a>
 
 			<?php else : ?>
@@ -1010,7 +1030,8 @@ class Merlin {
 					<a id="close" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--closer merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 					<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_plugins">
-						<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span><?php echo $this->loading_spinner(); ?>
+						<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
+						<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
 					</a>
 				<?php else : ?>
 					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( $next ); ?></a>
@@ -1085,7 +1106,8 @@ class Merlin {
 				<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
-					<span class="merlin__button--loading__text"><?php echo esc_html( $import ); ?></span><?php echo $this->loading_spinner(); ?>
+					<span class="merlin__button--loading__text"><?php echo esc_html( $import ); ?></span>
+					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
 				</a>
 
 				<?php wp_nonce_field( 'merlin' ); ?>
