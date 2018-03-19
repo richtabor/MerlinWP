@@ -69,7 +69,7 @@ p.success {
 	}
 }
 
-/* Applies styles when Reduced Motion is enabled */
+// Applies styles when Reduced Motion is enabled
 @media screen and (prefers-reduced-motion: reduce) {
 	@keyframes vanishIn {
 		0% {
@@ -98,7 +98,7 @@ p.success {
 	}
 }
 
-/* Applies styles when Reduced Motion is enabled */
+// Applies styles when Reduced Motion is enabled
 @media screen and (prefers-reduced-motion: reduce) {
 	@keyframes vanishOut {
 		0% {

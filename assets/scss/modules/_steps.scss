@@ -45,7 +45,7 @@
 	animation-fill-mode: both;
 	animation: popIn 900ms forwards;
 
-	/* Applies styles when Reduced Motion is enabled */
+	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
 		animation: none;
 		background: $blue;
@@ -64,7 +64,7 @@
 	width: 8px;
 	z-index: -1;
 
-	/* Applies styles when Reduced Motion is enabled */
+	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
 		animation: none;
 	}

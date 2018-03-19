@@ -20,7 +20,7 @@
 		transform: translateX(50%) scale(.95);
 		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed cubic-bezier(.694, 0, .335, 1) 0;
 
-		/* Applies styles when Reduced Motion is enabled */
+		// Applies styles when Reduced Motion is enabled
 		@media screen and (prefers-reduced-motion: reduce) {
 			filter: blur(2px);
 			transform: translateX(0) scale(1);
@@ -78,7 +78,7 @@
 			backface-visibility: hidden;
 			transition: fill 150ms cubic-bezier(.694, 0, .335, 1), opacity 150ms cubic-bezier(.694, 0, .335, 1);
 
-			/* Applies styles when Reduced Motion is enabled */
+			// Applies styles when Reduced Motion is enabled
 			@media screen and (prefers-reduced-motion: reduce) {
 				transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
 			}
@@ -146,7 +146,7 @@
 		transform: translateX(-40%) scale(.96);
 		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed_longer cubic-bezier(.694, 0, .335, 1) 0;
 
-		/* Applies styles when Reduced Motion is enabled */
+		// Applies styles when Reduced Motion is enabled
 		@media screen and (prefers-reduced-motion: reduce) {
 			filter: blur(2px);
 			transform: translateX(0) scale(1);
@@ -164,7 +164,7 @@
 		opacity: 1;
 	}
 
-	/* Applies styles when Reduced Motion is enabled */
+	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
 		animation: none;
 		opacity: 1;

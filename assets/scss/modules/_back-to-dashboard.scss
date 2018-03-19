@@ -8,7 +8,7 @@
 	text-decoration: none;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(.694, 0, .335, 1) 150ms;
 
-	/* Applies styles when Reduced Motion is enabled */
+	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
 		opacity: 1 !important;
 	}
