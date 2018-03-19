@@ -821,14 +821,21 @@ class Merlin {
 			<p id="license-text"><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
 
 			<?php if ( ! $is_theme_registered ) : ?>
-				<p class="merlin__content--license-key">
+				<div class="merlin__content--license-key">
 					<label for="license-key"><?php echo esc_html( $label ); ?></label>
-					<input type="text" id="license-key" class="js-license-key">
-				</p>
 
-				<?php if ( ! empty( $action_url ) ) : ?>
-					<a class="merlin__button merlin__button--knockout merlin__button--no-chevron merlin__button--external" href="<?php echo esc_url( $action_url ); ?>" target="_blank"><?php echo esc_html( $action ); ?></a>
-				<?php endif ?>
+					<div class="merlin__content--license-key-wrapper">
+						<input type="text" id="license-key" class="js-license-key" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+						<?php if ( ! empty( $action_url ) ) : ?>
+							<a href="<?php echo esc_url( $action_url ); ?>" alt="<?php echo esc_attr( $action ); ?>" target="_blank">
+								<span class="hint--top" aria-label="<?php echo esc_attr( $action ); ?>">
+									<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
+								</span>
+							</a>
+						<?php endif ?>
+					</div>
+
+				</div>
 			<?php endif; ?>
 
 		</div>
