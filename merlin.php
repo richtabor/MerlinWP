@@ -157,25 +157,11 @@ class Merlin {
 	protected $edd_remote_api_url = null;
 
 	/**
-	 * Turn on help mode to get some help.
-	 *
-	 * @var string $help_mode
-	 */
-	protected $help_mode = false;
-
-	/**
 	 * Turn on dev mode if you're developing.
 	 *
 	 * @var string $dev_mode
 	 */
 	protected $dev_mode = false;
-
-	/**
-	 * The URL for the "Learn more about child themes" link.
-	 *
-	 * @var string $branding
-	 */
-	protected $branding = false;
 
 	/**
 	 * Setup plugin version.
@@ -205,9 +191,7 @@ class Merlin {
 			'directory'            => 'merlin',
 			'merlin_url'           => 'merlin',
 			'child_action_btn_url' => '',
-			'help_mode'            => '',
 			'dev_mode'             => '',
-			'branding'             => '',
 		) );
 
 		// Set config arguments.
@@ -219,9 +203,7 @@ class Merlin {
 		$this->edd_item_name                = $config['edd_item_name'];
 		$this->edd_theme_slug               = $config['edd_theme_slug'];
 		$this->edd_remote_api_url           = $config['edd_remote_api_url'];
-		$this->help_mode                    = $config['help_mode'];
 		$this->dev_mode                     = $config['dev_mode'];
-		$this->branding                     = $config['branding'];
 
 		// Strings passed in from the config file.
 		$this->strings = $strings;
@@ -298,11 +280,6 @@ class Merlin {
 
 		if ( class_exists( 'EDD_Theme_Updater_Admin' ) ) {
 			$this->updater = new EDD_Theme_Updater_Admin();
-		}
-
-		if ( true === $this->help_mode ) {
-			require get_parent_theme_file_path( $this->directory . '/includes/class-merlin-helper.php' );
-			$this->helper = new Merlin_Helper();
 		}
 	}
 
@@ -493,20 +470,7 @@ class Merlin {
 	 * Output the footer.
 	 */
 	protected function footer() {
-
-		// Is help_mode set in the merlin-config.php file?
-		if ( true === $this->help_mode ) :
-			$current_step = strtolower( $this->steps[ $this->step ]['name'] );
-			$this->helper->helper_wizard( $current_step );
-		endif;
-
-		if ( true === $this->help_mode || true === $this->branding ) :
-			?>
-			<a class="merlin--icon" target="_blank" href="https://merlinwp.com">
-				<?php echo wp_kses( $this->svg( array( 'icon' => 'merlin' ) ), $this->svg_allowed_html() ); ?>
-			</a>
-		<?php endif; ?>
-
+		?>
 		</body>
 		<?php do_action( 'admin_footer' ); ?>
 		<?php do_action( 'admin_print_footer_scripts' ); ?>
