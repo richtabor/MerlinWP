@@ -171,8 +171,8 @@ var Merlin = (function($){
 
 
     function ActivateLicense() {
-    	var body 		= $('.merlin__body');
-        var complete, notice 	= $("#theme-license-text");
+    	var body 		= $( '.merlin__body' );
+        var complete, notice 	= $( '#license-text' );
 
         function ajax_callback(r) {
             if (typeof r.success !== "undefined" && r.success) {
@@ -188,7 +188,7 @@ var Merlin = (function($){
 
                 complete();
             } else {
-                $( '.js-merlin-theme-license-activate-button' )
+                $( '.js-merlin-license-activate-button' )
                   .removeClass( 'merlin__button--loading' )
                   .data( 'done-loading', 'no' );
 

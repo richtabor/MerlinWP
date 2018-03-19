@@ -40,11 +40,11 @@ The config file also let's you modify any of the text strings.
 * `merlin_url` — The admin url slug where Merlin WP will exist
 * `child_action_btn_url` — The url for the child theme generator's "Learn more" link
 * * `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files. This is on by default during the beta.
-* `theme_license_step` - Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
-* `theme_license_btn_url` - (only if theme_license_step is enabled) The url to a website explaining, where the user can get the EDD license key.
-* `edd_item_name` - (only if theme_license_step is enabled) The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
-* `edd_theme_slug` - (only if theme_license_step is enabled) The EDD theme slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
-* `edd_remote_api_url` - (only if theme_license_step is enabled) The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
+* `license_step` - Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
+* `license_action_btn_url` - (only if license_step is enabled) The url to a website explaining, where the user can get the EDD license key.
+* `edd_item_name` - (only if license_step is enabled) The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_theme_slug` - (only if license_step is enabled) The EDD theme slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_remote_api_url` - (only if license_step is enabled) The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
 
 ### 3. Define your demo content import files
 
