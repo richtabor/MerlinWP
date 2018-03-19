@@ -782,7 +782,7 @@ class Merlin {
 		$label     = $strings['theme-license-label'];
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
-		$paragraph = ! $is_theme_registered ? $strings['theme-license'] : $strings['theme-license-success%s'];
+		$paragraph = ! $is_theme_registered ? $strings['theme-license%s'] : $strings['theme-license-success%s'];
 		$install   = $strings['btn-theme-license-install'];
 		?>
 

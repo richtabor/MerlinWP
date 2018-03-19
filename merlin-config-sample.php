@@ -45,14 +45,16 @@ $wizard = new Merlin(
 		'btn-import'                   => esc_html__( 'Import', '@@textdomain' ),
 		'btn-theme-license-install'    => esc_html__( 'Activate', '@@textdomain' ),
 
-		'theme-license-header'         => esc_html__( 'Activate', '@@textdomain' ),
+		/* translators: Theme Name */
+		'theme-license-header%s'       => esc_html__( 'Activate %s', '@@textdomain' ),
 		'theme-license-header-success' => esc_html__( 'You\'re good to go!', '@@textdomain' ),
-		'theme-license'                => esc_html__( 'Input the theme license key and activate it, to unlock the theme\'s full potential.', '@@textdomain' ),
+		/* translators: ThemeName */
+		'theme-license%s'              => esc_html__( 'Activate your license key to enable remote updates and theme support.', '@@textdomain' ),
 		'theme-license-label'          => esc_html__( 'License Key:', '@@textdomain' ),
 		'theme-license-success%s'      => esc_html__( 'The theme is already registered, so you can go to the next step!', '@@textdomain' ),
 		'theme-license-action-link'    => esc_html__( 'Need help?', '@@textdomain' ),
 
-		/* translators: ThemeName */
+		/* translators: Theme Name */
 		'welcome-header%s'             => esc_html__( 'Welcome to %s', '@@textdomain' ),
 		'welcome-header-success%s'     => esc_html__( 'Hi. Welcome back', '@@textdomain' ),
 		'welcome%s'                    => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.', '@@textdomain' ),
