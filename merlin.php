@@ -1299,14 +1299,14 @@ class Merlin {
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Access denied!', '@@textdomain' ),
+				'message' => esc_html__( 'Access denied. Please try again.', '@@textdomain' ),
 			) );
 		}
 
 		if ( empty( $_POST['license_key'] ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Please input your license key!', '@@textdomain' ),
+				'message' => esc_html__( 'Please add your license key.', '@@textdomain' ),
 			) );
 		}
 
@@ -1314,8 +1314,7 @@ class Merlin {
 
 		if ( ! has_filter( 'merlin_ajax_activate_license' ) ) {
 			$result = $this->edd_activate_license( $license_key );
-		}
-		else {
+		} else {
 			$result = apply_filters( 'merlin_ajax_activate_license', $license_key );
 		}
 
@@ -1328,19 +1327,19 @@ class Merlin {
 	 * This code was taken from the EDD licensing addon theme example code
 	 * (`activate_license` method of the `EDD_Theme_Updater_Admin` class).
 	 *
-	 * @param $license
+	 * @param string $license The license key.
 	 *
 	 * @return array
 	 */
-	private function edd_activate_license( $license ) {
+	protected function edd_activate_license( $license ) {
 		$success = false;
 
 		// Data to send in our API request.
 		$api_params = array(
 			'edd_action' => 'activate_license',
-			'license'    => $license,
-			'item_name'  => urlencode( $this->edd_item_name ),
-			'url'        => home_url()
+			'license'    => rawurlencode( $license ),
+			'item_name'  => rawurlencode( $this->edd_item_name ),
+			'url'        => esc_url( home_url() ),
 		);
 
 		$response = $this->edd_get_api_response( $api_params );
@@ -1353,59 +1352,51 @@ class Merlin {
 			} else {
 				$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
 			}
-
 		} else {
 
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 			if ( false === $license_data->success ) {
 
-				switch( $license_data->error ) {
+				switch ( $license_data->error ) {
 
-					case 'expired' :
-
+					case 'expired':
 						$message = sprintf(
+							/* translators: Expiration date */
 							esc_html__( 'Your license key expired on %s.', '@@textdomain' ),
 							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
 						);
 						break;
 
-					case 'revoked' :
-
+					case 'revoked':
 						$message = esc_html__( 'Your license key has been disabled.', '@@textdomain' );
 						break;
 
-					case 'missing' :
-
+					case 'missing':
 						$message = esc_html__( 'Invalid license.', '@@textdomain' );
 						break;
 
-					case 'invalid' :
-					case 'site_inactive' :
-
+					case 'invalid':
+					case 'site_inactive':
 						$message = esc_html__( 'Your license is not active for this URL.', '@@textdomain' );
 						break;
 
-					case 'item_name_mismatch' :
-
+					case 'item_name_mismatch':
+						/* translators: EDD Item Name */
 						$message = sprintf( esc_html__( 'This appears to be an invalid license key for %s.', '@@textdomain' ), $this->edd_item_name );
 						break;
 
 					case 'no_activations_left':
-
 						$message = esc_html__( 'Your license key has reached its activation limit.', '@@textdomain' );
 						break;
 
-					default :
-
+					default:
 						$message = esc_html__( 'An error occurred, please try again.', '@@textdomain' );
 						break;
 				}
 			} else {
-
-
 				if ( 'valid' === $license_data->license ) {
-					$message = esc_html__( 'The license was successfully activated!', '@@textdomain' );
+					$message = esc_html__( 'The license was successfully activated.', '@@textdomain' );
 					$success = true;
 
 					// Removes the default EDD hook for this option, which breaks the AJAX call.
@@ -1420,7 +1411,6 @@ class Merlin {
 		return compact( 'success', 'message' );
 	}
 
-
 	/**
 	 * Makes a call to the API.
 	 *
@@ -1431,8 +1421,17 @@ class Merlin {
 	 * @return array $response JSON response.
 	 */
 	private function edd_get_api_response( $api_params ) {
+
 		$verify_ssl = (bool) apply_filters( 'edd_sl_api_request_verify_ssl', true );
-		$response   = wp_remote_post( $this->edd_remote_api_url, array( 'timeout' => 15, 'sslverify' => $verify_ssl, 'body' => $api_params ) );
+
+		$response = wp_remote_post(
+			$this->edd_remote_api_url,
+			array(
+				'timeout'   => 15,
+				'sslverify' => $verify_ssl,
+				'body'      => $api_params,
+			)
+		);
 
 		return $response;
 	}
