@@ -124,9 +124,9 @@ class Merlin {
 	/**
 	 * The flag, to mark, if the theme license step should be enabled.
 	 *
-	 * @var boolean $theme_license_step_enabled
+	 * @var boolean $license_step_enabled
 	 */
-	protected $theme_license_step_enabled = false;
+	protected $license_step_enabled = false;
 
 	/**
 	 * The URL for the "Where can I find the license key?" link.
@@ -138,9 +138,9 @@ class Merlin {
 	/**
 	 * Remove the "Skip" button, if required.
 	 *
-	 * @var string $theme_license_required
+	 * @var string $license_required
 	 */
-	protected $theme_license_required = null;
+	protected $license_required = null;
 
 	/**
 	 * The item name of the EDD product (this theme).
@@ -205,9 +205,9 @@ class Merlin {
 		$this->directory                    = $config['directory'];
 		$this->merlin_url                   = $config['merlin_url'];
 		$this->child_action_btn_url         = $config['child_action_btn_url'];
-		$this->theme_license_step_enabled   = $config['theme_license_step'];
-		$this->theme_license_action_btn_url = $config['theme_license_btn_url'];
-		$this->theme_license_required       = $config['theme_license_required'];
+		$this->license_step_enabled         = $config['license_step'];
+		$this->theme_license_action_btn_url = $config['license_action_btn_url'];
+		$this->license_required             = $config['license_required'];
 		$this->edd_item_name                = $config['edd_item_name'];
 		$this->edd_theme_slug               = $config['edd_theme_slug'];
 		$this->edd_remote_api_url           = $config['edd_remote_api_url'];
@@ -279,9 +279,7 @@ class Merlin {
 
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-option.php' );
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-importer.php' );
-
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-redux-importer.php' );
-
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-hooks.php' );
 
 		$this->hooks = new Merlin_Hooks();
@@ -292,7 +290,7 @@ class Merlin {
 	}
 
 	/**
-	 * Set redirection transient.
+	 * Set redirection transient on theme switch.
 	 */
 	public function switch_theme() {
 		if ( ! is_child_theme() ) {
@@ -369,7 +367,7 @@ class Merlin {
 		$this->step = isset( $_GET['step'] ) ? sanitize_key( $_GET['step'] ) : current( array_keys( $this->steps ) );
 
 		// Use minified libraries if dev mode is turned on.
-		$suffix = ( ( true == $this->dev_mode ) ) ? '' : '.min';
+		$suffix = ( ( true === $this->dev_mode ) ) ? '' : '.min';
 
 		// Enqueue styles.
 		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
@@ -592,7 +590,6 @@ class Merlin {
 		);
 
 		return apply_filters( 'merlin_svg_allowed_html', $array );
-
 	}
 
 	/**
@@ -605,7 +602,6 @@ class Merlin {
 
 		// Retrieve the spinner.
 		get_template_part( apply_filters( 'merlin_loading_spinner', $spinner ) );
-
 	}
 
 	/**
@@ -623,13 +619,12 @@ class Merlin {
 		);
 
 		return apply_filters( 'merlin_loading_spinner_allowed_html', $array );
-
 	}
 
 	/**
 	 * Setup steps.
 	 */
-	function steps() {
+	public function steps() {
 
 		$this->steps = array(
 			'welcome' => array(
@@ -644,10 +639,10 @@ class Merlin {
 			'view' => array( $this, 'child' ),
 		);
 
-		if ( $this->theme_license_step_enabled ) {
-			$this->steps['edd-license'] = array(
-				'name' => esc_html__( 'license', '@@textdomain' ),
-				'view' => array( $this, 'theme_edd_license' ),
+		if ( $this->license_step_enabled ) {
+			$this->steps['license'] = array(
+				'name' => esc_html__( 'License', '@@textdomain' ),
+				'view' => array( $this, 'license' ),
 			);
 		}
 
@@ -789,10 +784,10 @@ class Merlin {
 	/**
 	 * Theme EDD license step.
 	 */
-	protected function theme_edd_license() {
+	protected function license() {
 		$is_theme_registered = $this->is_theme_registered();
 		$action_url          = $this->theme_license_action_btn_url;
-		$required            = $this->theme_license_required;
+		$required            = $this->license_required;
 
 		// Theme Name.
 		$theme = ucfirst( $this->theme );
@@ -804,13 +799,13 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Text strings.
-		$header    = ! $is_theme_registered ? $strings['theme-license-header%s'] : $strings['theme-license-header-success'];
-		$action    = $strings['theme-license-action-link'];
-		$label     = $strings['theme-license-label'];
-		$skip      = $strings['btn-theme-license-skip'];
+		$header    = ! $is_theme_registered ? $strings['license-header%s'] : $strings['license-header-success'];
+		$action    = $strings['license-action-link'];
+		$label     = $strings['license-label'];
+		$skip      = $strings['btn-license-skip'];
 		$next      = $strings['btn-next'];
-		$paragraph = ! $is_theme_registered ? $strings['theme-license%s'] : $strings['theme-license-success%s'];
-		$install   = $strings['btn-theme-license-install'];
+		$paragraph = ! $is_theme_registered ? $strings['license%s'] : $strings['license-success%s'];
+		$install   = $strings['btn-license-activate'];
 		?>
 
 		<div class="merlin__content--transition">
@@ -823,7 +818,7 @@ class Merlin {
 
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
-			<p id="theme-license-text"><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
+			<p id="license-text"><?php echo esc_html( sprintf( $paragraph, $theme ) ); ?></p>
 
 			<?php if ( ! $is_theme_registered ) : ?>
 				<div class="merlin__content--license-key">
@@ -853,7 +848,7 @@ class Merlin {
 					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 				<?php endif ?>
 
-				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-theme-license-activate-button" data-callback="activate_license">
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-license-activate-button" data-callback="activate_license">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
 					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
 				</a>
@@ -873,8 +868,7 @@ class Merlin {
 	 * @return boolean
 	 */
 	private function is_theme_registered() {
-		$is_registered = get_option( $this->edd_theme_slug . '_license_key_status', false ) == 'valid';
-
+		$is_registered = get_option( $this->edd_theme_slug . '_license_key_status', false ) === 'valid';
 		return apply_filters( 'merlin_is_theme_registered', $is_registered );
 	}
 
