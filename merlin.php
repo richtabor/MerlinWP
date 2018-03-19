@@ -1299,14 +1299,14 @@ class Merlin {
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Access denied!', '@@textdomain' ),
+				'message' => esc_html__( 'Access denied. Please try again.', '@@textdomain' ),
 			) );
 		}
 
 		if ( empty( $_POST['license_key'] ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Please input your license key!', '@@textdomain' ),
+				'message' => esc_html__( 'Please add your license key.', '@@textdomain' ),
 			) );
 		}
 
@@ -1331,7 +1331,7 @@ class Merlin {
 	 *
 	 * @return array
 	 */
-	private function edd_activate_license( $license ) {
+	protected function edd_activate_license( $license ) {
 		$success = false;
 
 		// Data to send in our API request.
@@ -1396,7 +1396,7 @@ class Merlin {
 				}
 			} else {
 				if ( 'valid' === $license_data->license ) {
-					$message = esc_html__( 'The license was successfully activated!', '@@textdomain' );
+					$message = esc_html__( 'The license was successfully activated.', '@@textdomain' );
 					$success = true;
 
 					// Removes the default EDD hook for this option, which breaks the AJAX call.
