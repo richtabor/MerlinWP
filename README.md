@@ -8,13 +8,11 @@ Merlin WP is currently in beta, it's not suggested to use Merlin WP in productio
 
 ## Usage
 
-### 1. Add Merlin WP to your theme
+### 1. Add Merlin WP to your WordPress theme
 
 First, [download the latest release](https://github.com/richtabor/MerlinWP/releases) from the Merlin WP GitHub reposity.  Next, add all of the files within the release into your theme.
 
-Now all you need to do is require the `merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`.
-
-Refer to the example below:
+Now all you need to do is require the `merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`, like this:
 
 ```php
 require_once get_parent_theme_file_path( '/inc/merlin/vendor/autoload.php' );
@@ -22,10 +20,7 @@ require_once get_parent_theme_file_path( '/inc/merlin/merlin.php' );
 require_once get_parent_theme_file_path( '/inc/merlin-config.php' );
 ```
 
-> Note: In the example above, the `/merlin/` directory and the `merlin-config.php` file are both placed within the theme's `/inc/` directory location.
->
-
-If you have TGMPA included within your theme, please ensure Merlin WP is included after it.
+In the example above, the `/merlin/` directory and the `merlin-config.php` file are both placed within the theme's `/inc/` directory location. Also, if you have TGMPA included within your theme, ensure Merlin WP is included after it.
 
 ### 2. Configure Merlin WP
 
@@ -92,10 +87,10 @@ function merlin_local_import_files() {
 add_filter( 'merlin_import_files', 'merlin_local_import_files' );
 ```
 
-#### Multiple demo imports?
+#### Multiple demo imports
 If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the `merlin-filters-sample.php` file.
 
-#### Redux framework import?
+#### Redux framework import
 If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters-sample.php` file for an example on how to define the Redux import files.
 
 ### 4. Easy Digital Downloads Software License activation
