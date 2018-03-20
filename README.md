@@ -31,12 +31,12 @@ The config file also let's you modify any of the text strings.
 * `directory` — The location in your theme where the merlin code directory is placed (example: `inc/merlin`, if you placed the `merlin` folder in your theme's `inc` folder)
 * `merlin_url` — The admin url slug where Merlin WP will exist
 * `child_action_btn_url` — The url for the child theme generator's "Learn more" link
-* * `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing. Also enables JS/CSS minified files. This is on by default during the beta.
-* `license_step` - Set to true to turn on the license activation step (compatible with Easy Digital Downloads Licensing addon)
-* `license_action_btn_url` - (only if license_step is enabled) The url to a website explaining, where the user can get the EDD license key.
-* `edd_item_name` - (only if license_step is enabled) The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
-* `edd_theme_slug` - (only if license_step is enabled) The EDD theme slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
-* `edd_remote_api_url` - (only if license_step is enabled) The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
+* `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing
+* `license_step` - Turn on license activation (compatible with Easy Digital Downloads Software Licensing)
+* `license_action_btn_url` - A custom help link regarding licensing
+* `edd_item_name` - The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_theme_slug` - The EDD slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
+* `edd_remote_api_url` - The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
 
 ### 3. Define your demo content import files
 
@@ -45,9 +45,7 @@ You'll need the following files:
 * `widgets.wie` — Exported widgets using [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/)
 * `customizer.dat` — Exported Customizer settings using [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/)
 
-Once you have those files, you can upload them to your server (recommeded), or include them somewhere in your theme.
-
-Next you have to define a filter in your theme, to let WP Merlin know, where these files are located. Depending on where you placed the import files, you have two ways to define the filter:
+Once you have those files, you can upload them to your server (recommeded), or include them somewhere in your theme. Next, define a filter in your theme to let WP Merlin know where these files are located. Depending on where you placed the import files, you have two ways to define the filter:
 
 1\. If you uploaded the import files to your server, then use this code example and edit it, to suit your file locations:
 
