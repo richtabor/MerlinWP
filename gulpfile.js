@@ -204,7 +204,7 @@ gulp.task('build-variables', ['build-clean-and-copy'], function () {
 });
 
 gulp.task( 'build-zip', ['build-variables'] , function() {
-    return gulp.src( buildDestination+'/**' )
+    return gulp.src( buildDestination+'/**' , { base: 'dist' } )
     .pipe( zip( 'merlin.zip' ) )
     .pipe( gulp.dest( './dist/' ) );
 });
