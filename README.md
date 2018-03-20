@@ -93,10 +93,10 @@ add_filter( 'merlin_import_files', 'merlin_local_import_files' );
 ```
 
 #### Multiple demo imports?
-If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the `merlin-filters.php` file.
+If you have multiple demo imports, then just define multiple arrays with appropriate data. For an example of two predefined demo imports, please look at the `merlin-filters-sample.php` file.
 
 #### Redux framework import?
-If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters.php` file for an example on how to define the Redux import files.
+If you are using the [Redux Framework](https://wordpress.org/plugins/redux-framework/) in your theme, then you can import it as well. Please look at the `merlin-filters-sample.php` file for an example on how to define the Redux import files.
 
 ### 4. Easy Digital Downloads Software License activation
 You will need to use the EDD and the EDD Software Licensing add-on to deploy this step within the setup wizard. By default this step is disabled, so you have to enabled it in the `merlin-config.php` file (look at the the _Configure Merlin WP_ step above).
@@ -107,7 +107,7 @@ The integration is done for the [EDD licensing theme example](https://docs.easyd
 
 ### 5. Add filters
 
-Inside the package download exists a `merlin-filters.php` file which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's `functions.php` file.
+Inside the package download exists a `merlin-filters-sample.php` file which includes examples of the different filters you may use to modify Merlin. A primary example would be to use to `merlin_generate_child_functions_php` filter to modify the contents of the generated child theme's `functions.php` file.
 
 You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done running.
 

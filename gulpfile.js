@@ -17,7 +17,7 @@ var bugReport               = pkg.author_uri;
 var lastTranslator          = pkg.author;
 var team                    = pkg.author_shop;
 var translatePath           = './languages/' + destFile;
-var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters.php' ];
+var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters-sample.php' ];
 
 // Styles.
 var merlinStyleSRC          = './assets/scss/merlin.scss'; // Path to main .scss file.
