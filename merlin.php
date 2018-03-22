@@ -789,6 +789,8 @@ class Merlin {
 		$action_url          = $this->theme_license_action_btn_url;
 		$required            = $this->license_required;
 
+		$is_theme_registered_class = ( $is_theme_registered ) ? ' is-registered' : null;
+
 		// Theme Name.
 		$theme = ucfirst( $this->theme );
 
@@ -799,7 +801,7 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Text strings.
-		$header    = ! $is_theme_registered ? $strings['license-header%s'] : $strings['license-header-success'];
+		$header    = ! $is_theme_registered ? $strings['license-header%s'] : $strings['license-header-success%s'];
 		$action    = $strings['license-action-link'];
 		$label     = $strings['license-label'];
 		$skip      = $strings['btn-license-skip'];
@@ -840,7 +842,7 @@ class Merlin {
 
 		</div>
 
-		<footer class="merlin__content__footer">
+		<footer class="merlin__content__footer <?php echo esc_attr( $is_theme_registered_class ); ?>">
 
 			<?php if ( ! $is_theme_registered ) : ?>
 
@@ -1299,14 +1301,14 @@ class Merlin {
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Access denied. Please try again.', '@@textdomain' ),
+				'message' => esc_html__( 'Yikes! The theme activation failed. Please try again or contact support.', '@@textdomain' ),
 			) );
 		}
 
 		if ( empty( $_POST['license_key'] ) ) {
 			wp_send_json( array(
 				'success' => false,
-				'message' => esc_html__( 'Please add your license key.', '@@textdomain' ),
+				'message' => esc_html__( 'Please add your license key before attempting to activate one.', '@@textdomain' ),
 			) );
 		}
 
