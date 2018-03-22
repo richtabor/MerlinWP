@@ -33,7 +33,7 @@ The config file also let's you modify any of the text strings.
 * `child_action_btn_url` — The url for the child theme generator's "Learn more" link
 * `dev_mode` — Retain the "Theme Setup" menu item under the WordPress Admin > Appearance section for testing
 * `license_step` — Turn on license activation (compatible with Easy Digital Downloads Software Licensing)
-* `license_action_btn_url` — A custom help link regarding licensing
+* `license_help_url` — A custom help link regarding licensing
 * `edd_item_name` — The EDD item name, has to be the same as item_name in the config parameter in the EDD_Theme_Updater_Admin class.
 * `edd_theme_slug` — The EDD slug, has to be the same as theme_slug in the config parameter in the EDD_Theme_Updater_Admin class.
 * `edd_remote_api_url` — The EDD remote API URL, has to be the same as remote_api_url in the config parameter in the EDD_Theme_Updater_Admin class.
