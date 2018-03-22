@@ -1385,7 +1385,7 @@ class Merlin {
 						break;
 
 					case 'missing':
-						$message = esc_html__( 'Invalid license.', '@@textdomain' );
+						$message = esc_html__( 'This appears to be an invalid license key. Please try again or contact support.', '@@textdomain' );
 						break;
 
 					case 'invalid':
