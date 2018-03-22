@@ -1334,6 +1334,18 @@ class Merlin {
 	protected function edd_activate_license( $license ) {
 		$success = false;
 
+		// Strings passed in from the config file.
+		$strings = $this->strings;
+
+		// Theme Name.
+		$theme = ucfirst( $this->theme );
+
+		// Remove "Child" from the current theme name, if it's installed.
+		$theme = str_replace( ' Child', '', $theme );
+
+		// Text strings.
+		$success_message = $strings['license-json-success%s'];
+
 		// Data to send in our API request.
 		$api_params = array(
 			'edd_action' => 'activate_license',
@@ -1396,7 +1408,7 @@ class Merlin {
 				}
 			} else {
 				if ( 'valid' === $license_data->license ) {
-					$message = esc_html__( 'The license was successfully activated.', '@@textdomain' );
+					$message = sprintf( esc_html( $success_message ), $theme );
 					$success = true;
 
 					// Removes the default EDD hook for this option, which breaks the AJAX call.

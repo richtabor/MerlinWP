@@ -51,9 +51,10 @@ $wizard = new Merlin(
 		'license-header%s'         => esc_html__( 'Activate %s', '@@textdomain' ),
 		'license-header-success'   => esc_html__( 'You\'re good to go!', '@@textdomain' ),
 		/* translators: Theme Name */
-		'license%s'                => esc_html__( 'Activate your license key to enable remote updates and theme support.', '@@textdomain' ),
+		'license%s'                => esc_html__( 'Enter your license key to enable remote updates and theme support.', '@@textdomain' ),
 		'license-label'            => esc_html__( 'License Key:', '@@textdomain' ),
 		'license-success%s'        => esc_html__( 'The theme is already registered, so you can go to the next step!', '@@textdomain' ),
+		'license-json-success%s'   => esc_html__( 'Your theme is activated! Remote updates and theme support are enabled.', '@@textdomain' ),
 		'license-action-link'      => esc_html__( 'Need help?', '@@textdomain' ),
 
 		/* translators: Theme Name */
