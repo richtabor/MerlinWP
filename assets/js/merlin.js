@@ -170,11 +170,13 @@ var Merlin = (function($){
 
 
 
-    function ActivateLicense() {
+function ActivateLicense() {
     	var body 		= $( '.merlin__body' );
+    	var wrapper 		= $( '.merlin__content--license-key' );
         var complete, notice 	= $( '#license-text' );
 
         function ajax_callback(r) {
+
             if (typeof r.success !== "undefined" && r.success) {
               notice.siblings( '.error-message' ).remove();
             	setTimeout(function(){
@@ -184,33 +186,33 @@ var Merlin = (function($){
 			        notice.addClass("success");
 			        notice.html(r.message);
 			    },600);
-
-
                 complete();
             } else {
-                $( '.js-merlin-license-activate-button' )
-                  .removeClass( 'merlin__button--loading' )
-                  .data( 'done-loading', 'no' );
-
+                $( '.js-merlin-license-activate-button' ).removeClass( 'merlin__button--loading' ).data( 'done-loading', 'no' );
                 notice.siblings( '.error-message' ).remove();
-                notice.after('<p class="error-message">' + r.message + '<p>');
+                wrapper.addClass('has-error');
+                notice.html(r.message);
                 notice.siblings( '.error-message' ).addClass("lead error");
             }
         }
 
+
         function do_ajax() {
+
+        	wrapper.removeClass('has-error');
+
             jQuery.post(merlin_params.ajaxurl, {
               action: "merlin_activate_license",
               wpnonce: merlin_params.wpnonce,
               license_key: $( '.js-license-key' ).val()
             }, ajax_callback).fail(ajax_callback);
+
+
         }
 
         return {
             init: function(btn) {
                 complete = function() {
-
-
                 	setTimeout(function(){
 				$(".merlin__body").addClass('js--finished');
 			},1500);
