@@ -21,7 +21,7 @@ $wizard = new Merlin(
 		'directory'              => 'merlin', // Location / directory where Merlin WP is placed in your theme.
 		'merlin_url'             => 'merlin',  // The wp-admin page slug where Merlin WP loads.
 		'child_action_btn_url'   => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
-		'dev_mode'               => false, // Enable development mode for testing.
+		'dev_mode'               => true, // Enable development mode for testing.
 		'license_step'           => false, // EDD license activation step.
 		'license_required'       => false, // Require the license activation step.
 		'license_action_btn_url' => '', // URL for the 'license-action-link'.
@@ -49,10 +49,11 @@ $wizard = new Merlin(
 
 		/* translators: Theme Name */
 		'license-header%s'         => esc_html__( 'Activate %s', '@@textdomain' ),
-		'license-header-success'   => esc_html__( 'You\'re good to go!', '@@textdomain' ),
+		/* translators: Theme Name */
+		'license-header-success%s' => esc_html__( '%s is Activated', '@@textdomain' ),
 		/* translators: Theme Name */
 		'license%s'                => esc_html__( 'Enter your license key to enable remote updates and theme support.', '@@textdomain' ),
-		'license-label'            => esc_html__( 'License Key:', '@@textdomain' ),
+		'license-label'            => esc_html__( 'License key', '@@textdomain' ),
 		'license-success%s'        => esc_html__( 'The theme is already registered, so you can go to the next step!', '@@textdomain' ),
 		'license-json-success%s'   => esc_html__( 'Your theme is activated! Remote updates and theme support are enabled.', '@@textdomain' ),
 		'license-action-link'      => esc_html__( 'Need help?', '@@textdomain' ),
