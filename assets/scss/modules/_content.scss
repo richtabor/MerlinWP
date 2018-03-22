@@ -47,6 +47,10 @@
 		padding-top: 39px;
 	}
 
+	&--license &__footer.is-registered {
+		padding-top: 87px;
+	}
+
 	&--license .merlin__button--knockout {
 		padding-top: 8px;
 		padding-bottom: 8px;
