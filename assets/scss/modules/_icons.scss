@@ -7,7 +7,7 @@ svg:not(:root) {
 	margin-bottom: 2.8em;
 	transform: translate3d(0, 0, 0);
 
-	.js--finished &:not(.icon--checkmark) {
+	.js--finished &:not(.icon--checkmark):not(.icon--help) {
 		filter: blur(10px);
 		opacity: 0;
 		transform: scale(.8);

@@ -119,7 +119,7 @@
 			background: transparent;
 		}
 
-		&__text {
+		& &__text {
 			transition: opacity 400ms cubic-bezier(.18, 1, .21, 1) 400ms, filter 4100ms cubic-bezier(.18, 1, .21, 1);
 		}
 

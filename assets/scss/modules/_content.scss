@@ -54,7 +54,13 @@
 	}
 
 	&--license-key {
-		margin-top: 15px;
+		margin-top: 17px;
+
+		&.has-error input {
+			border-color: $red;
+			box-shadow: 0 0 2px rgba($red, .8);
+			animation: errorShake 0.4s 1 linear;
+		}
 
 		label {
 			@include hide();
@@ -62,7 +68,7 @@
 
 		&-wrapper {
 			position: relative;
-			width: 89%;
+			width: 87%;
 			margin-left: auto;
 			margin-right: auto;
 		}
@@ -94,16 +100,16 @@
 			right: 1px;
 			height: 27px;
 			width: 27px;
-			top: 3px;
+			top: 2px;
 
 			&::after {
 				/* gradient on the right - to indicate it's possible to scroll */
 				content: '';
 				position: absolute;
 				z-index: 1;
-				top: -1px;
+				top: 0px;
 				right: 23px;
-				height: 29px;
+				height: 27px;
 				width: 20px;
 				background: transparent;
 				border-radius: 3px;
@@ -121,12 +127,12 @@
 		input {
 			display: inline-block;
 			width: 100%;
-			font-size: 12px;
+			font-size: 11px;
 			background: transparent;
 			font-family: Menlo, Consolas, monaco, monospace;
-			padding: 8px 27px 7px 9px;
-			border-radius: 4px;
-			box-shadow: inset 0 1px 2px rgba(0, 0, 0, .03);
+			padding: 8px 27px 6px 9px;
+			border-radius: 3px;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, .06);
 		}
 	}
 
@@ -203,4 +209,13 @@
 	100% {
 		transform: scale(1);
 	}
+}
+
+@keyframes errorShake {
+	0% { transform: translate(8px); }
+	20% { transform: translate(-8px); }
+	40% { transform: translate(4px); }
+	60% { transform: translate(-4px); }
+	80% { transform: translate(2px); }
+	100% { transform: translate(0px); }
 }

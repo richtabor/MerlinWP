@@ -25,10 +25,6 @@
 	opacity: 1;
 }
 
-[class*="hint--"]:hover:before, [class*="hint--"]:hover:after {
-	transition-delay: 100ms;
-}
-
 [class*="hint--"]:before {
 	content: '';
 	position: absolute;
@@ -40,7 +36,7 @@
 [class*="hint--"]:after {
 	background: #383838;
 	color: #fff;
-	padding: 7px 8px 7px 9px;
+	padding: 5px 8px 6px 9px;
 	font-size: 11px;
 	line-height: 11px;
 	white-space: nowrap;
