@@ -30,7 +30,7 @@
 	display: inline-block;
 	background: $dotsBackground;
 	border-radius: 999px;
-	margin: 0 1px;
+	margin: 0 .01em;
 	position: relative;
 	top: -.15em;
 	z-index: 9999;
@@ -58,11 +58,12 @@
 	content: '';
 	display: inline-block;
 	height: 8px;
-	left: 0;
+	left: -0.037778em;
 	position: absolute;
 	transition: box-shadow 300ms cubic-bezier(.694, 0, .335, 1);
 	width: 8px;
 	z-index: -1;
+	top: -.05em;
 
 	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
