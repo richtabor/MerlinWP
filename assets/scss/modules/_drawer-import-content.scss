@@ -87,15 +87,24 @@
 						background-color: $yellow;
 						border-color: $yellow;
 						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+						animation: colorchangeInstalling 800ms infinite alternate;
 					}
 				}
 
 				&.success {
 
 					i {
+						animation-fill-mode: both;
+						animation: popInSuccess 500ms forwards;
 						background-color: $green;
 						border-color: $green;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+
+						// Applies styles when Reduced Motion is enabled
+						@media screen and (prefers-reduced-motion: reduce) {
+							animation: none;
+							background: $green;
+						}
 					}
 				}
 
@@ -104,7 +113,7 @@
 					i {
 						background-color: $red;
 						border-color: $red;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+						transition: background-color 500ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
 					}
 				}
 
@@ -129,4 +138,39 @@
 		}
 	}
 }
+
+@keyframes colorchangeInstalling {
+	0% {
+		background: $green;
+		border-color: $green;
+	}
+	100% {
+		background: lighten( $green, 20% );
+		border-color: lighten( $green, 20% );
+	}
+}
+
+@keyframes popInSuccess {
+	0% {
+		background-color: $green;
+		border-color: $green;
+		transform: scale(1.2);
+	}
+	45% {
+		transform: scale(1.4);
+	}
+	65% {
+		transform: scale(1.0);
+	}
+	85% {
+		transform: scale(1.3);
+	}
+	95%,
+	100% {
+		background-color: $green;
+		border-color: $green;
+		transform: scale(1.2);
+	}
+}
+
 
