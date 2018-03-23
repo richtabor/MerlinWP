@@ -1240,8 +1240,8 @@ class Merlin {
 		$slug = sanitize_title( $name );
 
 		$path           = get_theme_root() . '/' . $slug;
-		$screenshot_png = get_parent_theme_file_path( '/screenshot.png' );
-		$screenshot_jpg = get_parent_theme_file_path( '/screenshot.jpg' );
+		$screenshot_png = apply_filters( 'merlin_generate_child_screenshot_png', get_parent_theme_file_path( '/screenshot.png' ) );
+		$screenshot_jpg = apply_filters( 'merlin_generate_child_screenshot_jpg', get_parent_theme_file_path( '/screenshot.jpg' ) );
 
 		if ( ! file_exists( $path ) ) {
 
