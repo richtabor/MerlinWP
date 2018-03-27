@@ -1240,8 +1240,6 @@ class Merlin {
 		$slug = sanitize_title( $name );
 
 		$path           = get_theme_root() . '/' . $slug;
-		$screenshot_png = apply_filters( 'merlin_generate_child_screenshot_png', get_parent_theme_file_path( '/screenshot.png' ) );
-		$screenshot_jpg = apply_filters( 'merlin_generate_child_screenshot_jpg', get_parent_theme_file_path( '/screenshot.jpg' ) );
 
 		if ( ! file_exists( $path ) ) {
 
@@ -1253,11 +1251,7 @@ class Merlin {
 			$wp_filesystem->put_contents( $path . '/style.css', $this->generate_child_style_css( $this->theme->template, $this->theme->name, $this->theme->author, $this->theme->version ) );
 			$wp_filesystem->put_contents( $path . '/functions.php', $this->generate_child_functions_php( $this->theme->template ) );
 
-			if ( file_exists( $screenshot_png ) ) {
-				copy( $screenshot_png, $path . '/screenshot.png' );
-			} elseif ( file_exists( $screenshot_jpg ) ) {
-				copy( $screenshot_png, $path . '/screenshot.jpg' );
-			}
+			$this->generate_child_screenshot( $path );
 
 			$allowed_themes          = get_option( 'allowedthemes' );
 			$allowed_themes[ $slug ] = true;
@@ -1525,6 +1519,41 @@ class Merlin {
 		$output = trim( preg_replace( '/\t+/', '', $output ) );
 
 		return apply_filters( 'merlin_generate_child_style_css', $output, $slug, $parent, $version );
+	}
+
+	/**
+	 * Generate child theme screenshot file.
+	 *
+	 * @param string $path    Child theme path.
+	 */
+	public function generate_child_screenshot( $path ) {
+
+		$screenshot = apply_filters( 'merlin_generate_child_screenshot', '' );
+
+		if ( $screenshot ) {
+			// Get custom screenshot file extension
+			if( '.png' === substr( $screenshot, -4 ) ) {
+				$screenshot_ext = 'png';
+			}
+			else {
+				$screenshot_ext = 'jpg';
+			}
+		}
+		else {
+			// Fallback to parent theme screenshot
+			if ( file_exists( get_parent_theme_file_path( '/screenshot.png' ) ) ) {
+				$screenshot = get_parent_theme_file_path( '/screenshot.png' );
+				$screenshot_ext = 'png';
+			}
+			elseif( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
+				$screenshot = get_parent_theme_file_path( '/screenshot.jpg' );
+				$screenshot_ext = 'jpg';
+			}
+		}
+
+		if ( $screenshot && file_exists( $screenshot ) ) {
+			copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
+		}
 	}
 
 	/**
