@@ -1530,7 +1530,7 @@ class Merlin {
 
 		$screenshot = apply_filters( 'merlin_generate_child_screenshot', '' );
 
-		if ( $screenshot ) {
+		if ( ! empty( $screenshot ) ) {
 			// Get custom screenshot file extension
 			if( '.png' === substr( $screenshot, -4 ) ) {
 				$screenshot_ext = 'png';
@@ -1551,7 +1551,7 @@ class Merlin {
 			}
 		}
 
-		if ( $screenshot && file_exists( $screenshot ) ) {
+		if ( ! empty( $screenshot ) && file_exists( $screenshot ) ) {
 			copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
 		}
 	}
