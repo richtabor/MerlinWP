@@ -7,7 +7,7 @@
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
- * @license   Licensed GPLv3 for open source use
+ * @license   Licensed GPLv3 for Open Source Use
  */
 
 /**
@@ -187,9 +187,11 @@ function prefix_merlin_after_import_setup() {
 	// Assign menus to their locations.
 	$main_menu = get_term_by( 'name', 'Main Menu', 'nav_menu' );
 
-	set_theme_mod( 'nav_menu_locations', array(
-		'main-menu' => $main_menu->term_id,
-	) );
+	set_theme_mod(
+		'nav_menu_locations', array(
+			'main-menu' => $main_menu->term_id,
+		)
+	);
 
 	// Assign front page and posts page (blog page).
 	$front_page_id = get_page_by_title( 'Home' );
