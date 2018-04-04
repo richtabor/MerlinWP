@@ -1,5 +1,6 @@
 <?php
 /**
+ * Merlin WP
  * Better WordPress Theme Onboarding
  *
  * The following code is a derivative work from the
@@ -8,6 +9,8 @@
  * @package   Merlin WP
  * @version   @@pkg.version
  * @link      https://merlinwp.com/
+ * @author    Rich Tabor, from ThemeBeans.com & the team at ProteusThemes.com
+ * @copyright Copyright (c) 2018, Merlin WP of Inventionn LLC
  * @license   Licensed GPLv3 for Open Source Use
  */
 
