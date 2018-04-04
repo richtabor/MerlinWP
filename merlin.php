@@ -11,7 +11,7 @@
  * @link      https://merlinwp.com/
  * @author    Richard Tabor, from ThemeBeans.com
  * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
- * @license   Licensed GPLv3 for open source use
+ * @license   Licensed GPLv3 for Open Source Use
  */
 
 // Exit if accessed directly.
@@ -194,24 +194,26 @@ class Merlin {
 
 		$this->version();
 
-		$config = wp_parse_args( $config, array(
-			'directory'            => 'merlin',
-			'merlin_url'           => 'merlin',
-			'child_action_btn_url' => '',
-			'dev_mode'             => '',
-		) );
+		$config = wp_parse_args(
+			$config, array(
+				'directory'            => 'merlin',
+				'merlin_url'           => 'merlin',
+				'child_action_btn_url' => '',
+				'dev_mode'             => '',
+			)
+		);
 
 		// Set config arguments.
-		$this->directory                    = $config['directory'];
-		$this->merlin_url                   = $config['merlin_url'];
-		$this->child_action_btn_url         = $config['child_action_btn_url'];
-		$this->license_step_enabled         = $config['license_step'];
+		$this->directory              = $config['directory'];
+		$this->merlin_url             = $config['merlin_url'];
+		$this->child_action_btn_url   = $config['child_action_btn_url'];
+		$this->license_step_enabled   = $config['license_step'];
 		$this->theme_license_help_url = $config['license_help_url'];
-		$this->license_required             = $config['license_required'];
-		$this->edd_item_name                = $config['edd_item_name'];
-		$this->edd_theme_slug               = $config['edd_theme_slug'];
-		$this->edd_remote_api_url           = $config['edd_remote_api_url'];
-		$this->dev_mode                     = $config['dev_mode'];
+		$this->license_required       = $config['license_required'];
+		$this->edd_item_name          = $config['edd_item_name'];
+		$this->edd_theme_slug         = $config['edd_theme_slug'];
+		$this->edd_remote_api_url     = $config['edd_remote_api_url'];
+		$this->dev_mode               = $config['dev_mode'];
 
 		// Strings passed in from the config file.
 		$this->strings = $strings;
@@ -382,23 +384,27 @@ class Merlin {
 		// Localize the javascript.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Check first if TMGPA is included.
-			wp_localize_script( 'merlin', 'merlin_params', array(
-				'tgm_plugin_nonce' => array(
-					'update'  => wp_create_nonce( 'tgmpa-update' ),
-					'install' => wp_create_nonce( 'tgmpa-install' ),
-				),
-				'tgm_bulk_url'     => $this->tgmpa->get_tgmpa_url(),
-				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
-				'wpnonce'          => wp_create_nonce( 'merlin_nonce' ),
-				'texts'            => $texts,
-			) );
+			wp_localize_script(
+				'merlin', 'merlin_params', array(
+					'tgm_plugin_nonce' => array(
+						'update'  => wp_create_nonce( 'tgmpa-update' ),
+						'install' => wp_create_nonce( 'tgmpa-install' ),
+					),
+					'tgm_bulk_url'     => $this->tgmpa->get_tgmpa_url(),
+					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+					'wpnonce'          => wp_create_nonce( 'merlin_nonce' ),
+					'texts'            => $texts,
+				)
+			);
 		} else {
 			// If TMGPA is not included.
-			wp_localize_script( 'merlin', 'merlin_params', array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
-				'texts'   => $texts,
-			) );
+			wp_localize_script(
+				'merlin', 'merlin_params', array(
+					'ajaxurl' => admin_url( 'admin-ajax.php' ),
+					'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
+					'texts'   => $texts,
+				)
+			);
 		}
 
 		ob_start();
@@ -1273,7 +1279,8 @@ class Merlin {
 			wp_send_json(
 				array(
 					'done'    => 1,
-					'message' => sprintf( esc_html( $success ), $slug
+					'message' => sprintf(
+						esc_html( $success ), $slug
 					),
 				)
 			);
@@ -1287,7 +1294,8 @@ class Merlin {
 		wp_send_json(
 			array(
 				'done'    => 1,
-				'message' => sprintf( esc_html( $already ), $name
+				'message' => sprintf(
+					esc_html( $already ), $name
 				),
 			)
 		);
@@ -1299,17 +1307,21 @@ class Merlin {
 	public function _ajax_activate_license() {
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) ) {
-			wp_send_json( array(
-				'success' => false,
-				'message' => esc_html__( 'Yikes! The theme activation failed. Please try again or contact support.', '@@textdomain' ),
-			) );
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Yikes! The theme activation failed. Please try again or contact support.', '@@textdomain' ),
+				)
+			);
 		}
 
 		if ( empty( $_POST['license_key'] ) ) {
-			wp_send_json( array(
-				'success' => false,
-				'message' => esc_html__( 'Please add your license key before attempting to activate one.', '@@textdomain' ),
-			) );
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Please add your license key before attempting to activate one.', '@@textdomain' ),
+				)
+			);
 		}
 
 		$license_key = sanitize_key( $_POST['license_key'] );
@@ -1594,7 +1606,12 @@ class Merlin {
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
-			wp_send_json( array( 'done' => 1, 'message' => esc_html__( 'Success', '@@textdomain' ) ) );
+			wp_send_json(
+				array(
+					'done'    => 1,
+					'message' => esc_html__( 'Success', '@@textdomain' ),
+				)
+			);
 		}
 
 		exit;
@@ -1615,7 +1632,12 @@ class Merlin {
 		}
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
-			wp_send_json_error( array( 'error' => 1, 'message' => esc_html__( 'Invalid content!', '@@textdomain' ) ) );
+			wp_send_json_error(
+				array(
+					'error'   => 1,
+					'message' => esc_html__( 'Invalid content!', '@@textdomain' ),
+				)
+			);
 		}
 
 		$json         = false;
@@ -1652,12 +1674,14 @@ class Merlin {
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
-			wp_send_json( array(
-				'error'   => 1,
-				'message' => esc_html__( 'Error', '@@textdomain' ),
-				'logs'    => '',
-				'errors'  => '',
-			) );
+			wp_send_json(
+				array(
+					'error'   => 1,
+					'message' => esc_html__( 'Error', '@@textdomain' ),
+					'logs'    => '',
+					'errors'  => '',
+				)
+			);
 		}
 	}
 
@@ -1741,14 +1765,14 @@ class Merlin {
 
 		if ( ! empty( $import_files['content'] ) ) {
 			$content['content'] = array(
-				'title'             => esc_html__( 'Content', '@@textdomain' ),
-				'description'       => esc_html__( 'Demo content data.', '@@textdomain' ),
-				'pending'           => esc_html__( 'Pending', '@@textdomain' ),
-				'installing'        => esc_html__( 'Installing', '@@textdomain' ),
-				'success'           => esc_html__( 'Success', '@@textdomain' ),
-				'checked'           => $this->is_possible_upgrade() ? 0 : 1,
-				'install_callback'  => array( $this->importer, 'import' ),
-				'data'              => $import_files['content'],
+				'title'            => esc_html__( 'Content', '@@textdomain' ),
+				'description'      => esc_html__( 'Demo content data.', '@@textdomain' ),
+				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
+				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
+				'success'          => esc_html__( 'Success', '@@textdomain' ),
+				'checked'          => $this->is_possible_upgrade() ? 0 : 1,
+				'install_callback' => array( $this->importer, 'import' ),
+				'data'             => $import_files['content'],
 			);
 		}
 
