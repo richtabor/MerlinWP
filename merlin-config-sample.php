@@ -37,6 +37,7 @@ $wizard = new Merlin(
 		/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */
 		'title%s%s%s%s'            => esc_html__( '%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s', '@@textdomain' ),
 		'return-to-dashboard'      => esc_html__( 'Return to the dashboard', '@@textdomain' ),
+		'ignore'                   => esc_html__( 'Disable this wizard', '@@textdomain' ),
 
 		'btn-skip'                 => esc_html__( 'Skip', '@@textdomain' ),
 		'btn-next'                 => esc_html__( 'Next', '@@textdomain' ),
