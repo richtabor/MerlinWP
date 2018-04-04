@@ -2,10 +2,12 @@
 /**
  * Merlin WP configuration file.
  *
- * @package @@pkg.name
- * @version @@pkg.version
- * @author  @@pkg.author
- * @license @@pkg.license
+ * @package   Merlin WP
+ * @version   @@pkg.version
+ * @link      https://merlinwp.com/
+ * @author    Richard Tabor, from ThemeBeans.com
+ * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
+ * @license   Licensed GPLv3 for Open Source Use
  */
 
 if ( ! class_exists( 'Merlin' ) ) {
