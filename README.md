@@ -12,11 +12,11 @@ Merlin WP is currently in beta, it's not suggested to use Merlin WP in productio
 
 First, [download the latest release](https://github.com/richtabor/MerlinWP/releases) from the Merlin WP GitHub reposity.  Next, add all of the files within the release into your theme.
 
-Now all you need to do is require the `merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`, like this:
+Now all you need to do is require the `class-merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`, like this:
 
 ```php
 require_once get_parent_theme_file_path( '/inc/merlin/vendor/autoload.php' );
-require_once get_parent_theme_file_path( '/inc/merlin/merlin.php' );
+require_once get_parent_theme_file_path( '/inc/merlin/class-merlin.php' );
 require_once get_parent_theme_file_path( '/inc/merlin-config.php' );
 ```
 
