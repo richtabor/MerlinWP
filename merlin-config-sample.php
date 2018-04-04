@@ -5,8 +5,8 @@
  * @package   Merlin WP
  * @version   @@pkg.version
  * @link      https://merlinwp.com/
- * @author    Richard Tabor, from ThemeBeans.com
- * @copyright Copyright (c) 2017, Merlin WP of Inventionn LLC
+ * @author    Rich Tabor, from ThemeBeans.com & the team at ProteusThemes.com
+ * @copyright Copyright (c) 2018, Merlin WP of Inventionn LLC
  * @license   Licensed GPLv3 for Open Source Use
  */
 
