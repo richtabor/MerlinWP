@@ -1084,7 +1084,7 @@ class Merlin {
 
 			<?php if ( 1 < count( $this->import_files ) ) : ?>
 				<p><?php esc_html_e( 'Select which demo data you want to import:', '@@textdomain' ); ?></p>
-				<select class="js-merlin-demo-import-select">
+				<select class="merlin__select-control js-merlin-demo-import-select">
 					<?php foreach ( $this->import_files as $index => $import_file ) : ?>
 						<?php
 						$img_src          = isset( $import_file['import_preview_image_url'] ) ? $import_file['import_preview_image_url'] : '';

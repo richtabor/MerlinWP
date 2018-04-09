@@ -39,6 +39,15 @@ p {
 	margin: 14px auto 0;
 }
 
+.merlin__select-control{
+	display: block;
+	width: 100%;
+	margin: 20px auto 0;
+	font-size: 14px;
+	border-radius: 3px;
+	padding: 4px 8px;
+}
+
 .lead + .merlin__button--knockout {
 	z-index: -1;
 }
