@@ -85,11 +85,7 @@ var Merlin = (function($){
         });
 
 				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
-					var selectedIndex  = $( this ).val(),
-						$selectedOption  = $( this ).children( ':selected' ),
-						optionImgSrc     = $selectedOption.data( 'img-src' ),
-						optionNotice     = $selectedOption.data( 'notice' ),
-						optionPreviewUrl = $selectedOption.data( 'preview-url' );
+					var selectedIndex  = $( this ).val();
 
 					$.post( merlin_params.ajaxurl, {
 						action: 'merlin_update_selected_import_data_info',
@@ -98,6 +94,21 @@ var Merlin = (function($){
 					}, function( response ) {
 						if ( response.success ) {
 							$( '.js-merlin-drawer-import-content' ).html( response.data );
+						}
+						else {
+							alert( merlin_params.texts.something_went_wrong );
+						}
+					} )
+						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
+
+					$.post( merlin_params.ajaxurl, {
+						action: 'merlin_update_selected_import_preview_data',
+						wpnonce: merlin_params.wpnonce,
+						selected_index: selectedIndex,
+					}, function( response ) {
+						if ( response.success ) {
+							$( '.js-merlin-demo-import-select-preview' ).remove();
+							$( '.js-merlin-demo-import-select' ).after( response.data );
 						}
 						else {
 							alert( merlin_params.texts.something_went_wrong );

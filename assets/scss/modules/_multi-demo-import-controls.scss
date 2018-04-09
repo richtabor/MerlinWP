@@ -1,0 +1,23 @@
+.merlin {
+	&__select-control{
+		display: block;
+		width: 100%;
+		margin: 20px auto 0;
+		font-size: 14px;
+		border-radius: 3px;
+		padding: 4px 8px;
+	}
+
+	&__demo-import-preview {
+		width: calc( 100% - 20px );
+		margin: 20px 0;
+		background-color: #f1f1f1;
+		padding: 10px;
+		border-radius: 5px;
+	}
+
+	&__demo-import-preview-image {
+		width: 100%;
+	}
+}
+
