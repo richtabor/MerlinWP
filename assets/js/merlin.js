@@ -252,19 +252,19 @@ function ActivateLicense() {
         var current_item_hash 	= "";
 
         function ajax_callback(response){
+            var currentSpan = $current_node.find("label");
             if(typeof response === "object" && typeof response.message !== "undefined"){
-
+                currentSpan.addClass(response.message.toLowerCase());
                 if(typeof response.url != "undefined"){
                     // we have an ajax url action to perform.
 
                     if(response.hash == current_item_hash){
-
+                        currentSpan.addClass("error");
                         find_next();
                     }else {
+                        currentSpan.addClass("success");
                         current_item_hash = response.hash;
-                        jQuery.post(response.url, response, function(response2) {
-                            process_current();
-                        }).fail(ajax_callback);
+                        jQuery.post(response.url, response, ajax_callback).fail(ajax_callback);
                     }
 
                 }else if(typeof response.done != "undefined"){
@@ -275,22 +275,27 @@ function ActivateLicense() {
                     find_next();
                 }
             }else{
-                // error - try again with next plugin
-
+                // The TGMPA returns a whole page as response, so go to the next plugin.
                 find_next();
             }
         }
+
         function process_current(){
             if(current_item){
-                // query our ajax handler to get the ajax to send to TGM
-                // if we don"t get a reply we can assume everything worked and continue onto the next one.
-                jQuery.post(merlin_params.ajaxurl, {
-                    action: "merlin_plugins",
-                    wpnonce: merlin_params.wpnonce,
-                    slug: current_item
-                }, ajax_callback).fail(ajax_callback);
+                var $check = $current_node.find("input:checkbox");
+                if($check.is(":checked")) {
+                    jQuery.post(merlin_params.ajaxurl, {
+                        action: "merlin_plugins",
+                        wpnonce: merlin_params.wpnonce,
+                        slug: current_item,
+                    }, ajax_callback).fail(ajax_callback);
+                }else{
+                    $current_node.addClass("skipping");
+                    setTimeout(find_next,300);
+                }
             }
         }
+
         function find_next(){
             var do_next = false;
             if($current_node){
@@ -320,6 +325,7 @@ function ActivateLicense() {
         return {
             init: function(btn){
                 $(".merlin__drawer--install-plugins").addClass("installing");
+                $(".merlin__drawer--install-plugins").find("input").prop("disabled", true);
                 complete = function(){
 
                 	setTimeout(function(){

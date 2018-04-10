@@ -1645,7 +1645,8 @@ class Merlin {
 			wp_send_json(
 				array(
 					'done'    => 1,
-					'message' => esc_html__( 'Success', '@@textdomain' ),
+					'error'   => 1,
+					'message' => esc_html__( 'Error', '@@textdomain' ),
 				)
 			);
 		}
