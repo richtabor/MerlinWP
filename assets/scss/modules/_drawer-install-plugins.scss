@@ -8,30 +8,140 @@
 	li {
 		color: $gray;
 		text-align: left;
+		padding: 2px 25px;
 
-		span {
-			display: none;
+		&:hover {
+			span {
+				color: $blue;
+			}
 		}
 
-		.spinner {
-			display: inline-block;
-			position: absolute;
-			margin-top: 2px;
-			right: 10px;
-			opacity:0;
-			visibility: visible;
-			transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
+		.merlin__status-class {
+			display: none;
 		}
 	}
 
-	&.installing li {
-
-		.spinner {
-			opacity:1;
-		}
+	label {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		width: 100%;
 
 		span {
-			opacity: 0;
+			transition: color 100ms;
+		}
+
+		i {
+			background-color: transparent;
+			border-radius: 50%;
+			border: 2px solid #b2b7ba;
+			display: inline-block;
+			float: right;
+			height: 13px;
+			margin-top: 3px;
+			position: relative;
+			text-align: left;
+			transform-origin: center;
+			transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89);
+			width: 13px;
+
+			&:before {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 0.2em;
+				position: absolute;
+				top: 0.4em;
+				transform-origin: 0% 0%;
+				transform: rotate(45deg);
+				transition: width 50ms ease 50ms;
+				width: 0px;
+			}
+
+			&:after {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 4px;
+				position: absolute;
+				top: 0.67em;
+				transform-origin: 0% 0%;
+				transform: rotate(310deg);
+				transition: width 50ms ease;
+				width: 0;
+			}
+		}
+
+		&:hover {
+			i {
+				border-color: $blue;
+			}
+		}
+	}
+
+	.checkbox {
+		display: none !important;
+
+		&:checked {
+
+			+ label {
+
+				&.installing {
+
+					i {
+						background-color: $yellow;
+						border-color: $yellow;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+						animation: colorchangeInstalling 800ms infinite alternate;
+					}
+				}
+
+				&.success {
+
+					i {
+						animation-fill-mode: both;
+						animation: popInSuccess 500ms forwards;
+						background-color: $green;
+						border-color: $green;
+						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+
+						// Applies styles when Reduced Motion is enabled
+						@media screen and (prefers-reduced-motion: reduce) {
+							animation: none;
+							background: $green;
+						}
+					}
+				}
+
+				&.error {
+
+					i {
+						background-color: $red;
+						border-color: $red;
+						transition: background-color 500ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+					}
+				}
+
+				i {
+					background-color: $blue;
+					border-color: $blue;
+					transform: scale(1.2);
+
+					&:after {
+						width: 9px;
+						background: $white;
+						transition: width 50ms ease 100ms;
+					}
+
+					&:before {
+						width: 5px;
+						background: $white;
+						transition: width 50ms ease 100ms;
+					}
+				}
+			}
 		}
 	}
 }

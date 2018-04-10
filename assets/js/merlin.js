@@ -253,12 +253,12 @@ function ActivateLicense() {
 
         function ajax_callback(response){
             if(typeof response === "object" && typeof response.message !== "undefined"){
-                $current_node.find("span").text(response.message);
+
                 if(typeof response.url != "undefined"){
                     // we have an ajax url action to perform.
 
                     if(response.hash == current_item_hash){
-                        $current_node.find("span").text("failed");
+
                         find_next();
                     }else {
                         current_item_hash = response.hash;
@@ -276,7 +276,7 @@ function ActivateLicense() {
                 }
             }else{
                 // error - try again with next plugin
-                $current_node.find("span").text("Success");
+
                 find_next();
             }
         }
