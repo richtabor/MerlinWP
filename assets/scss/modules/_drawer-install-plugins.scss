@@ -1,4 +1,5 @@
 .merlin__drawer--install-plugins {
+	text-align: left;
 
 	.merlin__drawer--open & {
 		padding-bottom: 1px;
@@ -6,6 +7,7 @@
 
 	li {
 		color: $gray;
+		text-align: left;
 
 		span {
 			display: none;

@@ -962,8 +962,18 @@ class Merlin {
 
 		// Are there plugins that need installing/activating?
 		$plugins = $this->get_tgmpa_plugins();
+		$required_plugins = $recommended_plugins = array();
 		$count   = count( $plugins['all'] );
 		$class   = $count ? null : 'no-plugins';
+
+		// Split the plugins into required and recommended.
+		foreach ( $plugins['all'] as $slug => $plugin ) {
+			if ( ! empty( $plugin['required'] ) ) {
+				$required_plugins[ $slug ] = $plugin;
+			} else {
+				$recommended_plugins[ $slug ] = $plugin;
+			}
+		}
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -1001,13 +1011,15 @@ class Merlin {
 
 				<ul class="merlin__drawer merlin__drawer--install-plugins">
 
-				<?php foreach ( $plugins['all'] as $slug => $plugin ) : ?>
+				<?php if ( ! empty( $required_plugins ) ) : ?>
+					<p><?php esc_html_e( 'Required plugins:', '@@textdomain' ); ?></p>
+					<?php foreach ( $required_plugins as $slug => $plugin ) : ?>
 
-					<li data-slug="<?php echo esc_attr( $slug ); ?>">
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
 
-						<?php echo esc_html( $plugin['name'] ); ?>
+							<?php echo esc_html( $plugin['name'] ); ?>
 
-						<span>
+							<span>
 							<?php
 							$keys = array();
 
@@ -1025,10 +1037,43 @@ class Merlin {
 
 						</span>
 
-						<div class="spinner"></div>
+							<div class="spinner"></div>
 
-					</li>
-				<?php endforeach; ?>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $recommended_plugins ) ) : ?>
+					<p><?php esc_html_e( 'Recommended plugins:', '@@textdomain' ); ?></p>
+					<?php foreach ( $recommended_plugins as $slug => $plugin ) : ?>
+
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
+
+							<?php echo esc_html( $plugin['name'] ); ?>
+
+							<span>
+								<?php
+								$keys = array();
+
+								if ( isset( $plugins['install'][ $slug ] ) ) {
+									$keys[] = esc_html__( 'Install', '@@textdomain' );
+								}
+								if ( isset( $plugins['update'][ $slug ] ) ) {
+									$keys[] = esc_html__( 'Update', '@@textdomain' );
+								}
+								if ( isset( $plugins['activate'][ $slug ] ) ) {
+									$keys[] = esc_html__( 'Activate', '@@textdomain' );
+								}
+								echo implode( esc_html__( 'and', '@@textdomain' ), $keys );
+								?>
+
+							</span>
+
+							<div class="spinner"></div>
+
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
 				</ul>
 
