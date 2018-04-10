@@ -94,7 +94,7 @@
 						background-color: $yellow;
 						border-color: $yellow;
 						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
-						animation: colorchangeInstalling 800ms infinite alternate;
+						animation: colorchangeInstallingPlugin 800ms infinite alternate;
 					}
 				}
 
@@ -143,5 +143,16 @@
 				}
 			}
 		}
+	}
+}
+
+@keyframes colorchangeInstallingPlugin {
+	0% {
+		background: lighten( $blue, 10% );;
+		border-color: lighten( $blue, 10% );
+	}
+	100% {
+		background: lighten( $blue, 30% );
+		border-color: lighten( $blue, 30% );
 	}
 }

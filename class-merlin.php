@@ -1640,13 +1640,13 @@ class Merlin {
 
 		if ( $json ) {
 			$json['hash'] = md5( serialize( $json ) );
+			$json['message'] = esc_html__( 'Installing', '@@textdomain' );
 			wp_send_json( $json );
 		} else {
 			wp_send_json(
 				array(
 					'done'    => 1,
-					'error'   => 1,
-					'message' => esc_html__( 'Error', '@@textdomain' ),
+					'message' => esc_html__( 'Success', '@@textdomain' ),
 				)
 			);
 		}
