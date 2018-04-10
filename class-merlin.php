@@ -171,6 +171,13 @@ class Merlin {
 	protected $dev_mode = false;
 
 	/**
+	 * Ignore.
+	 *
+	 * @var string $ignore
+	 */
+	public $ignore = null;
+
+	/**
 	 * Setup plugin version.
 	 *
 	 * @access private
@@ -222,6 +229,9 @@ class Merlin {
 		$this->theme = wp_get_theme();
 		$this->slug  = strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->template ) );
 
+		// Set the ignore option.
+		$this->ignore = $this->slug . '_ignore';
+
 		// Is Dev Mode turned on?
 		if ( true !== $this->dev_mode ) {
 
@@ -245,6 +255,7 @@ class Merlin {
 		add_action( 'admin_init', array( $this, 'steps' ), 30, 0 );
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_page' ), 30, 0 );
+		add_action( 'admin_init', array( $this, 'ignore' ), 5 );
 		add_action( 'admin_footer', array( $this, 'svg_sprite' ) );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
@@ -314,6 +325,19 @@ class Merlin {
 		wp_safe_redirect( admin_url( 'themes.php?page= ' . $this->merlin_url ) );
 
 		exit;
+	}
+
+	/**
+	 * Give the user the ability to ignore Merlin WP.
+	 */
+	public function ignore() {
+
+		// Bail out if not on correct page.
+		if ( ! isset( $_GET['_wpnonce'] ) || ( ! wp_verify_nonce( $_GET['_wpnonce'], 'merlinwp-ignore-nounce' ) || ! is_admin() || ! isset( $_GET[ $this->ignore ] ) || ! current_user_can( 'manage_options' ) ) ) {
+			return;
+		}
+
+		update_option( 'merlin_' . $this->slug . '_completed', 'ignored' );
 	}
 
 	/**
@@ -436,6 +460,10 @@ class Merlin {
 			</div>
 
 			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( '/' ) ), esc_html( $strings['return-to-dashboard'] ) ); ?>
+
+			<?php $ignore_url = wp_nonce_url( admin_url( '?' . $this->ignore . '=true' ), 'merlinwp-ignore-nounce' ); ?>
+
+			<?php echo sprintf( '<a class="return-to-dashboard ignore" href="%s">%s</a>', esc_url( $ignore_url ), esc_html( $strings['ignore'] ) ); ?>
 
 		</div>
 
