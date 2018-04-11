@@ -1018,6 +1018,7 @@ class Merlin {
 
 							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
 								<i></i><span><?php echo esc_html( $plugin['name'] ); ?></span>
+								<span class="badge"><?php esc_html_e( 'req', '@@textdomain' ); ?></span>
 							</label>
 						</li>
 					<?php endforeach; ?>
