@@ -178,6 +178,13 @@ class Merlin {
 	public $ignore = null;
 
 	/**
+	 * The object with logging functionality.
+	 *
+	 * @var Logger $logger
+	 */
+	public $logger;
+
+	/**
 	 * Setup plugin version.
 	 *
 	 * @access private
@@ -243,6 +250,10 @@ class Merlin {
 				return;
 			}
 		}
+
+		// Get the logger object, so it can be used in the whole class.
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-logger.php' );
+		$this->logger = Merlin_Logger::get_instance();
 
 		// Get TGMPA.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
