@@ -1012,7 +1012,6 @@ class Merlin {
 				<ul class="merlin__drawer merlin__drawer--install-plugins">
 
 				<?php if ( ! empty( $required_plugins ) ) : ?>
-					<p><?php esc_html_e( 'Required plugins:', '@@textdomain' ); ?></p>
 					<?php foreach ( $required_plugins as $slug => $plugin ) : ?>
 						<li data-slug="<?php echo esc_attr( $slug ); ?>">
 							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
@@ -1025,7 +1024,6 @@ class Merlin {
 				<?php endif; ?>
 
 				<?php if ( ! empty( $recommended_plugins ) ) : ?>
-					<p><?php esc_html_e( 'Recommended plugins:', '@@textdomain' ); ?></p>
 					<?php foreach ( $recommended_plugins as $slug => $plugin ) : ?>
 						<li data-slug="<?php echo esc_attr( $slug ); ?>">
 							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
