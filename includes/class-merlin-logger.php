@@ -56,7 +56,7 @@ class Merlin_Logger {
 	 * Protected constructor to prevent creating a new instance of the
 	 * *Singleton* via the `new` operator from outside of this class.
 	 */
-	protected function __construct( $log_path = null, $name = 'pp-edd-fs-logger' ) {
+	protected function __construct( $log_path = null, $name = 'merlin-logger' ) {
 		$this->log_path    = $log_path;
 		$this->logger_name = $name;
 
