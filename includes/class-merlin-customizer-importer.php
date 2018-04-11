@@ -21,10 +21,13 @@ class Merlin_Customizer_Importer {
 		$results = self::import_customizer_options( $customizer_import_file_path );
 
 		// Check for errors, else write the results to the log file.
-		if ( is_wp_error( $results ) || empty( $results ) ) {
+		if ( is_wp_error( $results ) ) {
+			Merlin_Logger::get_instance()->error( $results->get_error_message() );
+
 			return false;
 		}
 
+		Merlin_Logger::get_instance()->info( __( 'The customizer import has finished successfully', '@@textdomain' ) );
 		return true;
 	}
 
@@ -37,7 +40,7 @@ class Merlin_Customizer_Importer {
 	 *
 	 * @since 1.1.1
 	 * @param string $import_file_path Path to the import file.
-	 * @return WP_Error|boolean
+	 * @return WP_Error
 	 */
 	public static function import_customizer_options( $import_file_path ) {
 		// Setup global vars.
@@ -62,7 +65,10 @@ class Merlin_Customizer_Importer {
 
 		// Make sure we got the data.
 		if ( empty( $raw ) ) {
-			return false;
+			return new \WP_Error(
+				'customizer_import_data_missing_content',
+				esc_html__( 'Error: The customizer import file does not have any content in it. Please make sure to use the correct customizer import file.', '@@textdomain' )
+			);
 		}
 
 		$data = unserialize( $raw );
