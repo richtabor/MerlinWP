@@ -1623,8 +1623,9 @@ class Merlin {
 
 			$this->logger->debug( __( 'The child theme screenshot was copied to the child theme, with the following result', '@@textdomain' ), array( 'copied' => $copied ) );
 		}
-
-		$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
+		else {
+			$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
+		}
 	}
 
 	/**
@@ -1734,8 +1735,6 @@ class Merlin {
 			$content = $this->get_import_data( $selected_import );
 		}
 
-		$this->logger->info( __( 'The content import AJAX call will be run with this import data', '@@textdomain' ), $content );
-
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
 			$this->logger->error( __( 'The content importer AJAX call failed to start, because of incorrect data', '@@textdomain' ) );
 
@@ -1752,6 +1751,14 @@ class Merlin {
 
 		if ( isset( $_POST['proceed'] ) ) {
 			if ( is_callable( $this_content['install_callback'] ) ) {
+				$this->logger->info(
+					__( 'The content import AJAX call will be executed with this import data', '@@textdomain' ),
+					array(
+						'title' => $this_content['title'],
+						'data'  => $this_content['data'],
+					)
+				);
+
 				$logs = call_user_func( $this_content['install_callback'], $this_content['data'] );
 				if ( $logs ) {
 					$json = array(
@@ -1778,14 +1785,12 @@ class Merlin {
 		}
 
 		if ( $json ) {
-			$this->logger->debug( __( 'The content import AJAX call was run with this data', '@@textdomain' ), $json );
-
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
 			$this->logger->error(
 				__( 'The content import AJAX call failed with this passed data', '@@textdomain' ),
-				array_merge( array( 'selected_content_index' => $selected_import ), $this_content )
+				array_merge( array( 'selected_content_index' => $selected_import, 'importing_content' => $_POST['content'] ), $this_content )
 			);
 
 			wp_send_json(
