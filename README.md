@@ -104,7 +104,11 @@ Inside the package download exists a `merlin-filters-sample.php` file which incl
 
 You may also need to filter your theme demo's home page, so that Merlin WP knows which pages to set as the home page once it's done running.
 
-### 6. Testing
+### 6. Debugging/log file
+
+A log file is created in `.../wp-content/uploads/merlin-wp/main.log`. In the log file you will see, where something went wrong.
+
+### 7. Testing
 
 To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [Reset WP](https://wordpress.org/plugins/reset-wp/) plugin to reset and run through more tests.
 

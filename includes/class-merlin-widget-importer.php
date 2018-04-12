@@ -24,9 +24,17 @@ class Merlin_Widget_Importer {
 
 		$results = self::import_widgets( $widget_import_file_path );
 
-		if ( empty( $results ) || is_wp_error( $results ) ) {
+		if ( is_wp_error( $results ) ) {
+			Merlin_Logger::get_instance()->error( $results->get_error_message() );
+
 			return false;
 		}
+
+		ob_start();
+			self::format_results_for_log( $results );
+		$message = ob_get_clean();
+
+		Merlin_Logger::get_instance()->debug( $message );
 
 		return true;
 	}
@@ -42,7 +50,7 @@ class Merlin_Widget_Importer {
 		$data = self::process_import_file( $data_file );
 
 		// Return from this function if there was an error.
-		if ( is_wp_error( $data ) || empty( $data ) ) {
+		if ( is_wp_error( $data ) ) {
 			return $data;
 		}
 
@@ -54,7 +62,7 @@ class Merlin_Widget_Importer {
 	 * Process import file - this parses the widget data and returns it.
 	 *
 	 * @param string $file path to json file.
-	 * @return object $data decoded JSON string
+	 * @return WP_Error|object
 	 */
 	private static function process_import_file( $file ) {
 		// File exists?
@@ -70,7 +78,10 @@ class Merlin_Widget_Importer {
 
 		// Return from this function if there was an error.
 		if ( empty( $data ) ) {
-			return false;
+			return new \WP_Error(
+				'widget_import_file_missing_content',
+				__( 'Error: Widget import file does not have any content in it.', '@@textdomain' )
+			);
 		}
 
 		return json_decode( $data );
