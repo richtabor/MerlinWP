@@ -291,9 +291,7 @@ class Merlin {
 
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-downloader.php' );
 
-		$logger = new ProteusThemes\WPContentImporter2\WPImporterLogger();
-
-		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $logger );
+		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $this->logger );
 
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-widget-importer.php' );
 
