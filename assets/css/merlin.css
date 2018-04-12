@@ -2469,6 +2469,10 @@ body.loaded .merlin__content__footer--fullwidth {
 	filter: blur(0);
 }
 
+.merlin__content__footer--nolinks {
+	margin-bottom: 1.9em;
+}
+
 .merlin__content--license .merlin__content__footer {
 	margin-top: -0.24em;
 }
