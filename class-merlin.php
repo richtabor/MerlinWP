@@ -1788,7 +1788,11 @@ class Merlin {
 		} else {
 			$this->logger->error(
 				__( 'The content import AJAX call failed with this passed data', '@@textdomain' ),
-				array_merge( array( 'selected_content_index' => $selected_import, 'importing_content' => $_POST['content'] ), $this_content )
+				array(
+					'selected_content_index' => $selected_import,
+					'importing_content'      => $_POST['content'],
+					'importing_data'         => $this_content['data'],
+				)
 			);
 
 			wp_send_json(
@@ -2014,7 +2018,7 @@ class Merlin {
 			update_option( 'page_on_front', $homepage->ID );
 			update_option( 'show_on_front', 'page' );
 
-			$this->logger->debug( __( 'The home page was set', '@@textdomain' ), array( 'set_homepage_title' => $homepage ) );
+			$this->logger->debug( __( 'The home page was set', '@@textdomain' ), array( 'homepage_id' => $homepage ) );
 		}
 
 		// Set static blog page.
@@ -2024,7 +2028,7 @@ class Merlin {
 			update_option( 'page_for_posts', $blogpage->ID );
 			update_option( 'show_on_front', 'page' );
 
-			$this->logger->debug( __( 'The blog page was set', '@@textdomain' ), array( 'set_blog_title' => $blogpage ) );
+			$this->logger->debug( __( 'The blog page was set', '@@textdomain' ), array( 'blog_page_id' => $blogpage ) );
 		}
 	}
 
