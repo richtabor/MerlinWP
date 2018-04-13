@@ -1150,6 +1150,10 @@ class Merlin {
 				<?php echo $this->get_import_steps_html( $import_info ); ?>
 			</ul>
 
+			<div class="merlin__progress-bar">
+				<span class="js-merlin-progress-bar"></span>
+			</div>
+
 			<footer class="merlin__content__footer">
 
 				<a id="close" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--closer merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
