@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0508241c889185977eb3b463c4446a07",
+    "content-hash": "4053d754715459ef8ebcad5eac9b5ecc",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -86,16 +86,16 @@
         },
         {
             "name": "proteusthemes/wp-content-importer-v2",
-            "version": "v2.0.4",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/proteusthemes/WordPress-Importer.git",
-                "reference": "d1e61025f0a662437607d05f4463f6a6a3fb88c5"
+                "reference": "7414ce1bfb56a8be780c520ed63e99cac7ac403b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/d1e61025f0a662437607d05f4463f6a6a3fb88c5",
-                "reference": "d1e61025f0a662437607d05f4463f6a6a3fb88c5",
+                "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/7414ce1bfb56a8be780c520ed63e99cac7ac403b",
+                "reference": "7414ce1bfb56a8be780c520ed63e99cac7ac403b",
                 "shasum": ""
             },
             "type": "library",
@@ -131,7 +131,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2018-03-19T10:00:06+00:00"
+            "time": "2018-04-13T07:31:18+00:00"
         },
         {
             "name": "psr/log",
