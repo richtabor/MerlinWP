@@ -2324,7 +2324,7 @@ class Merlin {
 				?>
 
 				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
-					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
+					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox checkbox-<?php echo esc_attr( $slug ); ?>" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
 						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
 					</label>
