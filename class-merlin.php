@@ -270,6 +270,7 @@ class Merlin {
 		add_action( 'admin_footer', array( $this, 'svg_sprite' ) );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_get_total_content_import_items', array( $this, '_ajax_get_total_content_import_items' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
@@ -1804,6 +1805,28 @@ class Merlin {
 				)
 			);
 		}
+	}
+
+
+	/**
+	 * AJAX call to retrieve total items (posts, pages, CPT, attachments) for the content import.
+	 */
+	public function _ajax_get_total_content_import_items() {
+		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) && empty( $_POST['selected_index'] ) ) {
+			$this->logger->error( __( 'The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data.', '@@textdomain' ) );
+
+			wp_send_json_error(
+				array(
+					'error'   => 1,
+					'message' => esc_html__( 'Invalid data!', '@@textdomain' ),
+				)
+			);
+		}
+
+		$selected_import = intval( $_POST['selected_index'] );
+		$import_files    = $this->get_import_files_paths( $selected_import );
+
+		wp_send_json_success( $this->importer->get_number_of_posts_to_import( $import_files['content'] ) );
 	}
 
 
