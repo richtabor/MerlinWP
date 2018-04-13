@@ -1767,6 +1767,11 @@ class Merlin {
 						'logs'    => $logs,
 						'errors'  => '',
 					);
+
+					// The content import ended, so we should mark that all posts were imported.
+					if ( 'content' === $_POST['content'] ) {
+						$json['num_of_imported_posts'] = 'all';
+					}
 				}
 			}
 		} else {
