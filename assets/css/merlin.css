@@ -2515,26 +2515,26 @@ body.exiting .merlin__content--content .merlin__content__footer {
 .merlin__select-control-help {
 	height: 26px;
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 2px;
+	top: 1px;
 }
 
 .merlin__select-control {
-	background: #f7f7f7;
+	background: #f9f9f9;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+	-webkit-box-shadow: 0 1px 0 #eee;
+	box-shadow: 0 1px 0 #eee;
 	color: #555d66;
 	cursor: pointer;
 	display: block;
 	font-size: 14px;
 	font-weight: normal;
-	height: 26px;
+	height: 28px;
 	line-height: 22px;
 	margin: 0;
 	padding: 0;
-	padding-left: 10px;
+	padding-left: 8px;
 	width: 100%;
 
 	-webkit-appearance: none;

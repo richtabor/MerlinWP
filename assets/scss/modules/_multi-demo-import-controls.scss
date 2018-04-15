@@ -23,25 +23,25 @@
 	&__select-control-help {
 		height: 26px;
 		position: absolute;
-		right: 0;
-		top: 0;
+		right: 2px;
+		top: 1px;
 	}
 
 	&__select-control{
 		appearance: none;
-		background: #f7f7f7;
+		background: #f9f9f9;
 		border-radius: 3px;
 		border: 1px solid #ccc;
-		box-shadow: none;
+		box-shadow: 0 1px 0 #eee;
 		color: #555d66;
 		cursor: pointer;
 		display: block;
 		font-size: 14px;
 		font-weight: normal;
-		height: 26px;
+		height: 28px;
 		line-height: 22px;
 		margin: 0;
-		padding-left: 10px;
+		padding-left: 8px;
 		padding: 0;
 		width: 100%;
 
