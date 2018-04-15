@@ -2489,3 +2489,21 @@ body.loaded .merlin__content__footer--fullwidth {
 body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
 }
+
+.merlin__progress-bar {
+	height: 3px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.merlin__progress-bar > span {
+	background-color: #46b450;
+	border-radius: 10px;
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	width: 0;
+}
