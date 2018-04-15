@@ -2491,7 +2491,7 @@ body.exiting .merlin__content--content .merlin__content__footer {
 }
 
 .merlin__select-control-wrapper {
-	margin: 12px auto -5px;
+	margin: 8px auto -5px;
 	max-width: 210px;
 	position: relative;
 }
@@ -2563,5 +2563,5 @@ body.exiting .merlin__content--content .merlin__content__footer {
 }
 
 .is-multi-import .merlin__content__footer {
-	margin-top: 6px;
+	margin-top: 10px;
 }
