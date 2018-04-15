@@ -1110,6 +1110,8 @@ class Merlin {
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
 		$import    = $strings['btn-import'];
+
+		$multi_import = ( 1 < count( $this->import_files ) ) ? 'is-multi-import' : null;
 		?>
 
 		<div class="merlin__content--transition">
@@ -1125,12 +1127,22 @@ class Merlin {
 			<p><?php echo esc_html( $paragraph ); ?></p>
 
 			<?php if ( 1 < count( $this->import_files ) ) : ?>
-				<p><?php esc_html_e( 'Select which demo data you want to import:', '@@textdomain' ); ?></p>
-				<select class="merlin__select-control js-merlin-demo-import-select">
-					<?php foreach ( $this->import_files as $index => $import_file ) : ?>
-						<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
-					<?php endforeach; ?>
-				</select>
+
+				<div class="merlin__select-control-wrapper">
+
+					<select class="merlin__select-control js-merlin-demo-import-select">
+						<?php foreach ( $this->import_files as $index => $import_file ) : ?>
+							<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+						<?php endforeach; ?>
+					</select>
+
+					<div class="merlin__select-control-help">
+						<span class="hint--top" aria-label="<?php echo esc_attr__( 'Select Demo', '@@textdomain' ); ?>">
+							<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
+						</span>
+					</div>
+				</div>
+
 				<?php echo $this->get_import_preview_html( 0 ); ?>
 			<?php endif; ?>
 
@@ -1138,7 +1150,7 @@ class Merlin {
 
 		</div>
 
-		<form action="" method="post">
+		<form action="" method="post" class="<?php echo esc_attr( $multi_import ); ?>">
 
 			<ul class="merlin__drawer merlin__drawer--import-content js-merlin-drawer-import-content">
 				<?php echo $this->get_import_steps_html( $import_info ); ?>
@@ -1172,17 +1184,19 @@ class Merlin {
 	 */
 	public function get_import_preview_html( $index ) {
 		ob_start();
-		 if ( ! empty( $this->import_files[ $index ]['import_preview_image_url'] ) ) : ?>
+		if ( ! empty( $this->import_files[ $index ]['import_preview_image_url'] ) ) :
+			?>
 			<div class="merlin__demo-import-preview js-merlin-demo-import-select-preview">
 				<img class="merlin__demo-import-preview-image" src="<?php echo esc_url( $this->import_files[ $index ]['import_preview_image_url'] ); ?>" alt="<?php echo esc_html( $this->import_files[ $index ]['import_file_name'] ); ?>">
 				<?php if ( ! empty( $this->import_files[ $index ]['import_notice'] ) ) : ?>
 					<p class="merlin__demo-import-preview-notice"><?php echo wp_kses_post( $this->import_files[ $index ]['import_notice'] ); ?></p>
 				<?php endif; ?>
 				<?php if ( ! empty( $this->import_files[ $index ]['preview_url'] ) ) : ?>
-					<a href="<?php echo esc_url( $this->import_files[ $index ]['preview_url'] ); ?>" target="_blank"><?php esc_html_e( 'Demo preview', '@@textdomain' ) ?></a>
+					<a href="<?php echo esc_url( $this->import_files[ $index ]['preview_url'] ); ?>" target="_blank"><?php esc_html_e( 'Demo preview', '@@textdomain' ); ?></a>
 				<?php endif; ?>
 			</div>
-		<?php endif;
+		<?php
+		endif;
 
 		return ob_get_clean();
 	}
@@ -1324,7 +1338,7 @@ class Merlin {
 		$name = $this->theme . ' Child';
 		$slug = sanitize_title( $name );
 
-		$path           = get_theme_root() . '/' . $slug;
+		$path = get_theme_root() . '/' . $slug;
 
 		if ( ! file_exists( $path ) ) {
 
@@ -1633,21 +1647,18 @@ class Merlin {
 
 		if ( ! empty( $screenshot ) ) {
 			// Get custom screenshot file extension
-			if( '.png' === substr( $screenshot, -4 ) ) {
+			if ( '.png' === substr( $screenshot, -4 ) ) {
 				$screenshot_ext = 'png';
-			}
-			else {
+			} else {
 				$screenshot_ext = 'jpg';
 			}
-		}
-		else {
+		} else {
 			// Fallback to parent theme screenshot
 			if ( file_exists( get_parent_theme_file_path( '/screenshot.png' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.png' );
+				$screenshot     = get_parent_theme_file_path( '/screenshot.png' );
 				$screenshot_ext = 'png';
-			}
-			elseif( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.jpg' );
+			} elseif ( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
+				$screenshot     = get_parent_theme_file_path( '/screenshot.jpg' );
 				$screenshot_ext = 'jpg';
 			}
 		}
@@ -1656,8 +1667,7 @@ class Merlin {
 			$copied = copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
 
 			$this->logger->debug( __( 'The child theme screenshot was copied to the child theme, with the following result', '@@textdomain' ), array( 'copied' => $copied ) );
-		}
-		else {
+		} else {
 			$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
 		}
 	}
@@ -2102,8 +2112,7 @@ class Merlin {
 		foreach ( $import_files as $import_file ) {
 			if ( ! empty( $import_file['import_file_name'] ) ) {
 				$filtered_import_file_info[] = $import_file;
-			}
-			else {
+			} else {
 				$this->logger->warning( __( 'This predefined demo import does not have the name parameter: import_file_name', '@@textdomain' ), $import_file );
 			}
 		}
