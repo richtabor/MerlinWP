@@ -108,7 +108,7 @@ var Merlin = (function($){
 					}, function( response ) {
 						if ( response.success ) {
 							$( '.js-merlin-demo-import-select-preview' ).remove();
-							$( '.js-merlin-demo-import-select' ).after( response.data );
+							$( '.merlin__select-control-wrapper' ).after( response.data );
 						}
 						else {
 							alert( merlin_params.texts.something_went_wrong );
