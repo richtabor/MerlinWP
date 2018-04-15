@@ -1,5 +1,6 @@
 .merlin__drawer--install-plugins {
 	text-align: left;
+	overflow: visible;
 
 	.merlin__drawer--open & {
 		padding-bottom: 1px;
@@ -8,7 +9,7 @@
 	li {
 		color: $gray;
 		text-align: left;
-		padding: 2px 25px;
+		padding: 2px 30px;
 
 		&:hover {
 			span {
@@ -18,6 +19,19 @@
 
 		.merlin__status-class {
 			display: none;
+		}
+
+		.badge {
+			background: #e6f3fa;
+			color: $blue !important;
+			padding: 3px 5px;
+			font-weight: 500;
+			position: relative;
+			top: -1px;
+			margin-left: 1px;
+			font-size: 11px;
+			border-radius: 3px;
+			text-transform: uppercase;
 		}
 	}
 
@@ -79,80 +93,5 @@
 				border-color: $blue;
 			}
 		}
-	}
-
-	.checkbox {
-		display: none !important;
-
-		&:checked {
-
-			+ label {
-
-				&.installing {
-
-					i {
-						background-color: $yellow;
-						border-color: $yellow;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
-						animation: colorchangeInstallingPlugin 800ms infinite alternate;
-					}
-				}
-
-				&.success {
-
-					i {
-						animation-fill-mode: both;
-						animation: popInSuccess 500ms forwards;
-						background-color: $green;
-						border-color: $green;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
-
-						// Applies styles when Reduced Motion is enabled
-						@media screen and (prefers-reduced-motion: reduce) {
-							animation: none;
-							background: $green;
-						}
-					}
-				}
-
-				&.error {
-
-					i {
-						background-color: $red;
-						border-color: $red;
-						transition: background-color 500ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
-					}
-				}
-
-				i {
-					background-color: $blue;
-					border-color: $blue;
-					transform: scale(1.2);
-
-					&:after {
-						width: 9px;
-						background: $white;
-						transition: width 50ms ease 100ms;
-					}
-
-					&:before {
-						width: 5px;
-						background: $white;
-						transition: width 50ms ease 100ms;
-					}
-				}
-			}
-		}
-	}
-}
-
-@keyframes colorchangeInstallingPlugin {
-	0% {
-		background: lighten( $blue, 10% );;
-		border-color: lighten( $blue, 10% );
-	}
-	100% {
-		background: lighten( $blue, 30% );
-		border-color: lighten( $blue, 30% );
 	}
 }

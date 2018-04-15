@@ -1001,10 +1001,10 @@ class Merlin {
 		}
 
 		// Are there plugins that need installing/activating?
-		$plugins = $this->get_tgmpa_plugins();
+		$plugins          = $this->get_tgmpa_plugins();
 		$required_plugins = $recommended_plugins = array();
-		$count   = count( $plugins['all'] );
-		$class   = $count ? null : 'no-plugins';
+		$count            = count( $plugins['all'] );
+		$class            = $count ? null : 'no-plugins';
 
 		// Split the plugins into required and recommended.
 		foreach ( $plugins['all'] as $slug => $plugin ) {
@@ -1057,8 +1057,15 @@ class Merlin {
 							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
 							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
-								<i></i><span><?php echo esc_html( $plugin['name'] ); ?></span>
-								<span class="badge"><?php esc_html_e( 'req', '@@textdomain' ); ?></span>
+								<i></i>
+
+								<span><?php echo esc_html( $plugin['name'] ); ?></span>
+
+								<span class="badge">
+									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', '@@textdomain' ); ?>">
+										<?php esc_html_e( 'req', '@@textdomain' ); ?>
+									</span>
+								</span>
 							</label>
 						</li>
 					<?php endforeach; ?>
@@ -1294,7 +1301,7 @@ class Merlin {
 		$name = $this->theme . ' Child';
 		$slug = sanitize_title( $name );
 
-		$path           = get_theme_root() . '/' . $slug;
+		$path = get_theme_root() . '/' . $slug;
 
 		if ( ! file_exists( $path ) ) {
 
@@ -1603,21 +1610,18 @@ class Merlin {
 
 		if ( ! empty( $screenshot ) ) {
 			// Get custom screenshot file extension
-			if( '.png' === substr( $screenshot, -4 ) ) {
+			if ( '.png' === substr( $screenshot, -4 ) ) {
 				$screenshot_ext = 'png';
-			}
-			else {
+			} else {
 				$screenshot_ext = 'jpg';
 			}
-		}
-		else {
+		} else {
 			// Fallback to parent theme screenshot
 			if ( file_exists( get_parent_theme_file_path( '/screenshot.png' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.png' );
+				$screenshot     = get_parent_theme_file_path( '/screenshot.png' );
 				$screenshot_ext = 'png';
-			}
-			elseif( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.jpg' );
+			} elseif ( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
+				$screenshot     = get_parent_theme_file_path( '/screenshot.jpg' );
 				$screenshot_ext = 'jpg';
 			}
 		}
@@ -1626,8 +1630,7 @@ class Merlin {
 			$copied = copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
 
 			$this->logger->debug( __( 'The child theme screenshot was copied to the child theme, with the following result', '@@textdomain' ), array( 'copied' => $copied ) );
-		}
-		else {
+		} else {
 			$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
 		}
 	}
@@ -1704,7 +1707,7 @@ class Merlin {
 				)
 			);
 
-			$json['hash'] = md5( serialize( $json ) );
+			$json['hash']    = md5( serialize( $json ) );
 			$json['message'] = esc_html__( 'Installing', '@@textdomain' );
 			wp_send_json( $json );
 		} else {
@@ -2073,8 +2076,7 @@ class Merlin {
 		foreach ( $import_files as $import_file ) {
 			if ( ! empty( $import_file['import_file_name'] ) ) {
 				$filtered_import_file_info[] = $import_file;
-			}
-			else {
+			} else {
 				$this->logger->warning( __( 'This predefined demo import does not have the name parameter: import_file_name', '@@textdomain' ), $import_file );
 			}
 		}
