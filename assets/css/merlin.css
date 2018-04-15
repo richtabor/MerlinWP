@@ -2489,3 +2489,79 @@ body.loaded .merlin__content__footer--fullwidth {
 body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
 }
+
+.merlin__select-control-wrapper {
+	margin: 12px auto -5px;
+	max-width: 210px;
+	position: relative;
+}
+
+.merlin__select-control-wrapper .icon {
+	height: 26px;
+	opacity: 0.6;
+	position: relative;
+	top: 0;
+	width: 26px;
+
+	fill: #7d8183;
+}
+
+.merlin__select-control-wrapper .icon:hover {
+	opacity: 1;
+
+	fill: #0073aa;
+}
+
+.merlin__select-control-help {
+	height: 26px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.merlin__select-control {
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #555d66;
+	cursor: pointer;
+	display: block;
+	font-size: 14px;
+	font-weight: normal;
+	height: 26px;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	width: 100%;
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.merlin__select-control:hover {
+	border-color: #999;
+}
+
+.merlin__select-control select::-ms-expand {
+	display: none;
+}
+
+.merlin__demo-import-preview {
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	margin: 20px 0;
+	padding: 10px;
+	width: calc( 100% - 20px);
+}
+
+.merlin__demo-import-preview-image {
+	width: 100%;
+}
+
+.is-multi-import .merlin__content__footer {
+	margin-top: 6px;
+}

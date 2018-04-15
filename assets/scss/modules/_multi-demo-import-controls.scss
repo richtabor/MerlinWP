@@ -1,11 +1,57 @@
 .merlin {
+
+	&__select-control-wrapper {
+		position: relative;
+		max-width: 210px;
+		margin: 12px auto -5px;
+
+		.icon {
+			opacity: .6;
+			fill: $gray;
+			width: 26px;
+			position: relative;
+			top: 0;
+			height: 26px;
+
+			&:hover {
+				opacity: 1;
+				fill: $blue;
+			}
+		}
+	}
+
+	&__select-control-help {
+		height: 26px;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
 	&__select-control{
-		display: block;
-		width: 100%;
-		margin: 20px auto 0;
-		font-size: 14px;
+		appearance: none;
+		background: #f7f7f7;
 		border-radius: 3px;
-		padding: 4px 8px;
+		border: 1px solid #ccc;
+		box-shadow: none;
+		color: #555d66;
+		cursor: pointer;
+		display: block;
+		font-size: 14px;
+		font-weight: normal;
+		height: 26px;
+		line-height: 22px;
+		margin: 0;
+		padding-left: 10px;
+		padding: 0;
+		width: 100%;
+
+		&:hover {
+			border-color: #999;
+		}
+
+		select::-ms-expand {
+			display: none;
+		}
 	}
 
 	&__demo-import-preview {
@@ -21,3 +67,9 @@
 	}
 }
 
+.is-multi-import {
+
+	.merlin__content__footer {
+		margin-top: 6px;
+	}
+}
