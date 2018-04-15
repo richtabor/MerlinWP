@@ -35,6 +35,8 @@ class Merlin_Downloader {
 
 		// Check if there was an error and break out.
 		if ( is_wp_error( $content ) ) {
+			Merlin_Logger::get_instance()->error( $content->get_error_message(), array( 'url' => $url, 'filename' => $filename ) );
+
 			return $content;
 		}
 
@@ -43,6 +45,8 @@ class Merlin_Downloader {
 		if ( ! empty( $saved_file ) ) {
 			return $this->download_directory_path . $filename;
 		}
+
+		Merlin_Logger::get_instance()->error( __( 'The file was not able to save to disk, while trying to download it', '@@textdomain' ), array( 'url' => $url, 'filename' => $filename ) );
 
 		return false;
 	}

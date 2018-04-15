@@ -1,9 +1,10 @@
 .return-to-dashboard {
 	color: $gray;
 	display: block;
-	padding: 1em;
 	font-size: 13px;
 	margin-top: 1em;
+	padding: 1em;
+	padding-bottom: 0;
 	text-align: center;
 	text-decoration: none;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(.694, 0, .335, 1) 150ms;
@@ -20,8 +21,18 @@
 	.merlin__body--welcome.loaded & {
 		opacity: 1;
 	}
+
+	&.ignore {
+		margin-top: .3em;
+		padding: 0;
+	}
+
+	body:not(.merlin__body--welcome) &.ignore {
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 .return-to-dashboard:hover {
-	color: #0073aa;
+	color: $blue;
 }

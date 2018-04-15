@@ -28,6 +28,8 @@ class Merlin_Redux_Importer {
 
 			if ( isset( $redux_framework->args['opt_name'] ) ) {
 				$redux_framework->set_options( $redux_options_data );
+
+				Merlin_Logger::get_instance()->debug( __( 'The Redux Framework data was imported' , '@@textdomain'), $redux_item );
 			}
 		}
 
