@@ -171,6 +171,20 @@ class Merlin {
 	protected $dev_mode = false;
 
 	/**
+	 * Ignore.
+	 *
+	 * @var string $ignore
+	 */
+	public $ignore = null;
+
+	/**
+	 * The object with logging functionality.
+	 *
+	 * @var Logger $logger
+	 */
+	public $logger;
+
+	/**
 	 * Setup plugin version.
 	 *
 	 * @access private
@@ -222,6 +236,9 @@ class Merlin {
 		$this->theme = wp_get_theme();
 		$this->slug  = strtolower( preg_replace( '#[^a-zA-Z]#', '', $this->theme->template ) );
 
+		// Set the ignore option.
+		$this->ignore = $this->slug . '_ignore';
+
 		// Is Dev Mode turned on?
 		if ( true !== $this->dev_mode ) {
 
@@ -234,6 +251,10 @@ class Merlin {
 			}
 		}
 
+		// Get the logger object, so it can be used in the whole class.
+		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-logger.php' );
+		$this->logger = Merlin_Logger::get_instance();
+
 		// Get TGMPA.
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->tgmpa = isset( $GLOBALS['tgmpa'] ) ? $GLOBALS['tgmpa'] : TGM_Plugin_Activation::get_instance();
@@ -245,6 +266,7 @@ class Merlin {
 		add_action( 'admin_init', array( $this, 'steps' ), 30, 0 );
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_page' ), 30, 0 );
+		add_action( 'admin_init', array( $this, 'ignore' ), 5 );
 		add_action( 'admin_footer', array( $this, 'svg_sprite' ) );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
@@ -270,9 +292,7 @@ class Merlin {
 
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-downloader.php' );
 
-		$logger = new ProteusThemes\WPContentImporter2\WPImporterLogger();
-
-		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $logger );
+		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $this->logger );
 
 		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-widget-importer.php' );
 
@@ -315,6 +335,19 @@ class Merlin {
 		wp_safe_redirect( admin_url( 'themes.php?page= ' . $this->merlin_url ) );
 
 		exit;
+	}
+
+	/**
+	 * Give the user the ability to ignore Merlin WP.
+	 */
+	public function ignore() {
+
+		// Bail out if not on correct page.
+		if ( ! isset( $_GET['_wpnonce'] ) || ( ! wp_verify_nonce( $_GET['_wpnonce'], 'merlinwp-ignore-nounce' ) || ! is_admin() || ! isset( $_GET[ $this->ignore ] ) || ! current_user_can( 'manage_options' ) ) ) {
+			return;
+		}
+
+		update_option( 'merlin_' . $this->slug . '_completed', 'ignored' );
 	}
 
 	/**
@@ -437,6 +470,10 @@ class Merlin {
 			</div>
 
 			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( '/' ) ), esc_html( $strings['return-to-dashboard'] ) ); ?>
+
+			<?php $ignore_url = wp_nonce_url( admin_url( '?' . $this->ignore . '=true' ), 'merlinwp-ignore-nounce' ); ?>
+
+			<?php echo sprintf( '<a class="return-to-dashboard ignore" href="%s">%s</a>', esc_url( $ignore_url ), esc_html( $strings['ignore'] ) ); ?>
 
 		</div>
 
@@ -775,6 +812,7 @@ class Merlin {
 		</footer>
 
 	<?php
+		$this->logger->debug( __( 'The welcome step has been displayed', '@@textdomain' ) );
 	}
 
 	/**
@@ -868,6 +906,7 @@ class Merlin {
 			<?php wp_nonce_field( 'merlin' ); ?>
 		</footer>
 		<?php
+		$this->logger->debug( __( 'The license activation step has been displayed', '@@textdomain' ) );
 	}
 
 
@@ -937,6 +976,7 @@ class Merlin {
 			<?php wp_nonce_field( 'merlin' ); ?>
 		</footer>
 	<?php
+		$this->logger->debug( __( 'The child theme installation step has been displayed', '@@textdomain' ) );
 	}
 
 	/**
@@ -1051,6 +1091,7 @@ class Merlin {
 		</form>
 
 	<?php
+		$this->logger->debug( __( 'The plugin installation step has been displayed', '@@textdomain' ) );
 	}
 
 	/**
@@ -1119,6 +1160,7 @@ class Merlin {
 		</form>
 
 	<?php
+		$this->logger->debug( __( 'The content import step has been displayed', '@@textdomain' ) );
 	}
 
 	/**
@@ -1230,6 +1272,7 @@ class Merlin {
 		</footer>
 
 	<?php
+		$this->logger->debug( __( 'The final step has been displayed', '@@textdomain' ) );
 	}
 
 	/**
@@ -1306,6 +1349,8 @@ class Merlin {
 				switch_theme( $slug );
 			endif;
 
+			$this->logger->debug( __( 'The existing child theme was activated', '@@textdomain' ) );
+
 			wp_send_json(
 				array(
 					'done'    => 1,
@@ -1320,6 +1365,8 @@ class Merlin {
 			update_option( 'merlin_' . $this->slug . '_child', $name );
 			switch_theme( $slug );
 		endif;
+
+		$this->logger->debug( __( 'The newly generated child theme was activated', '@@textdomain' ) );
 
 		wp_send_json(
 			array(
@@ -1361,6 +1408,8 @@ class Merlin {
 		} else {
 			$result = apply_filters( 'merlin_ajax_activate_license', $license_key );
 		}
+
+		$this->logger->debug( __( 'The license activation was performed with the following results', '@@textdomain' ), $result );
 
 		wp_send_json( array_merge( array( 'done' => 1 ), $result ) );
 	}
@@ -1537,6 +1586,8 @@ class Merlin {
 		// Let's remove the tabs so that it displays nicely.
 		$output = trim( preg_replace( '/\t+/', '', $output ) );
 
+		$this->logger->debug( __( 'The child theme functions.php content was generated', '@@textdomain' ) );
+
 		// Filterable return.
 		return apply_filters( 'merlin_generate_child_functions_php', $output, $slug );
 	}
@@ -1565,6 +1616,8 @@ class Merlin {
 
 		// Let's remove the tabs so that it displays nicely.
 		$output = trim( preg_replace( '/\t+/', '', $output ) );
+
+		$this->logger->debug( __( 'The child theme style.css content was generated', '@@textdomain' ) );
 
 		return apply_filters( 'merlin_generate_child_style_css', $output, $slug, $parent, $version );
 	}
@@ -1600,7 +1653,12 @@ class Merlin {
 		}
 
 		if ( ! empty( $screenshot ) && file_exists( $screenshot ) ) {
-			copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
+			$copied = copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
+
+			$this->logger->debug( __( 'The child theme screenshot was copied to the child theme, with the following result', '@@textdomain' ), array( 'copied' => $copied ) );
+		}
+		else {
+			$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
 		}
 	}
 
@@ -1668,9 +1726,24 @@ class Merlin {
 		}
 
 		if ( $json ) {
+			$this->logger->debug(
+				__( 'A plugin with the following data will be processed', '@@textdomain' ),
+				array(
+					'plugin_slug' => $_POST['slug'],
+					'message'     => $json['message'],
+				)
+			);
+
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
+			$this->logger->debug(
+				__( 'A plugin with the following data was processed', '@@textdomain' ),
+				array(
+					'plugin_slug' => $_POST['slug'],
+				)
+			);
+
 			wp_send_json(
 				array(
 					'done'    => 1,
@@ -1697,6 +1770,8 @@ class Merlin {
 		}
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['content'] ) && isset( $content[ $_POST['content'] ] ) ) {
+			$this->logger->error( __( 'The content importer AJAX call failed to start, because of incorrect data', '@@textdomain' ) );
+
 			wp_send_json_error(
 				array(
 					'error'   => 1,
@@ -1710,6 +1785,14 @@ class Merlin {
 
 		if ( isset( $_POST['proceed'] ) ) {
 			if ( is_callable( $this_content['install_callback'] ) ) {
+				$this->logger->info(
+					__( 'The content import AJAX call will be executed with this import data', '@@textdomain' ),
+					array(
+						'title' => $this_content['title'],
+						'data'  => $this_content['data'],
+					)
+				);
+
 				$logs = call_user_func( $this_content['install_callback'], $this_content['data'] );
 				if ( $logs ) {
 					$json = array(
@@ -1739,6 +1822,15 @@ class Merlin {
 			$json['hash'] = md5( serialize( $json ) );
 			wp_send_json( $json );
 		} else {
+			$this->logger->error(
+				__( 'The content import AJAX call failed with this passed data', '@@textdomain' ),
+				array(
+					'selected_content_index' => $selected_import,
+					'importing_content'      => $_POST['content'],
+					'importing_data'         => $this_content['data'],
+				)
+			);
+
 			wp_send_json(
 				array(
 					'error'   => 1,
@@ -1925,6 +2017,8 @@ class Merlin {
 
 		$response = $importer->importSliderFromPost( true, true, $file );
 
+		$this->logger->info( __( 'The revolution slider import was executed', '@@textdomain' ) );
+
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			return 'true';
 		}
@@ -1959,6 +2053,8 @@ class Merlin {
 		if ( $homepage ) {
 			update_option( 'page_on_front', $homepage->ID );
 			update_option( 'show_on_front', 'page' );
+
+			$this->logger->debug( __( 'The home page was set', '@@textdomain' ), array( 'homepage_id' => $homepage ) );
 		}
 
 		// Set static blog page.
@@ -1967,6 +2063,8 @@ class Merlin {
 		if ( $blogpage ) {
 			update_option( 'page_for_posts', $blogpage->ID );
 			update_option( 'show_on_front', 'page' );
+
+			$this->logger->debug( __( 'The blog page was set', '@@textdomain' ), array( 'blog_page_id' => $blogpage ) );
 		}
 	}
 
@@ -1980,6 +2078,8 @@ class Merlin {
 		if ( ! empty( $hello_world ) ) {
 			$hello_world->post_status = 'draft';
 			wp_update_post( $hello_world );
+
+			$this->logger->debug( __( 'The Hello world post status was set to draft', '@@textdomain' ) );
 		}
 	}
 
@@ -2002,6 +2102,9 @@ class Merlin {
 		foreach ( $import_files as $import_file ) {
 			if ( ! empty( $import_file['import_file_name'] ) ) {
 				$filtered_import_file_info[] = $import_file;
+			}
+			else {
+				$this->logger->warning( __( 'This predefined demo import does not have the name parameter: import_file_name', '@@textdomain' ), $import_file );
 			}
 		}
 

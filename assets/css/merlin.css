@@ -109,7 +109,6 @@ p.success {
 	}
 }
 
-/* Applies styles when Reduced Motion is enabled */
 @media screen and (prefers-reduced-motion: reduce) {
 	@-webkit-keyframes vanishIn {
 		0% {
@@ -175,7 +174,6 @@ p.success {
 	}
 }
 
-/* Applies styles when Reduced Motion is enabled */
 @media screen and (prefers-reduced-motion: reduce) {
 	@-webkit-keyframes vanishOut {
 		0% {
@@ -635,11 +633,11 @@ body.exiting .merlin__content--content .dots {
 }
 
 .dots li {
-	background: #eee;
+	background: #e9e9e9;
 	border-radius: 999px;
 	display: inline-block;
 	height: 7px;
-	margin: 0 1px;
+	margin: 0 0.01em;
 	padding: 0;
 	position: relative;
 	top: -0.15em;
@@ -659,7 +657,6 @@ body.exiting .merlin__content--content .dots {
 
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -677,15 +674,15 @@ body.exiting .merlin__content--content .dots {
 	content: "";
 	display: inline-block;
 	height: 8px;
-	left: 0;
+	left: -0.037778em;
 	position: absolute;
+	top: -0.05em;
 	-webkit-transition: -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	width: 8px;
 	z-index: -1;
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -808,7 +805,7 @@ svg:not(:root) {
 	transform: translate3d(0, 0, 0);
 }
 
-.js--finished .icon:not(.icon--checkmark) {
+.js--finished .icon:not(.icon--checkmark):not(.icon--help) {
 	opacity: 0;
 	-webkit-transform: scale(0.8);
 	-ms-transform: scale(0.8);
@@ -855,7 +852,6 @@ svg:not(:root) {
 
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -893,26 +889,124 @@ svg:not(:root) {
 }
 
 .merlin__content--license .merlin__content__footer {
-	padding-top: 5px;
+	padding-top: 30px;
+}
+
+.merlin__content--license .merlin__content__footer.is-registered {
+	padding-top: 87px;
+}
+
+.merlin__content--license .merlin__button--knockout {
+	margin-top: 0;
+	padding-bottom: 8px;
+	padding-top: 8px;
 }
 
 .merlin__content--license-key {
-	margin-top: 20px;
+	margin-top: 22px;
+}
+
+.merlin__content--license-key.has-error input {
+	-webkit-animation: errorShake 0.4s 1 linear;
+	animation: errorShake 0.4s 1 linear;
+	border-color: #d54e21;
+	-webkit-box-shadow: 0 0 2px rgba(213, 78, 33, 0.8);
+	box-shadow: 0 0 2px rgba(213, 78, 33, 0.8);
 }
 
 .merlin__content--license-key label {
-	font-size: 16px;
-	font-weight: bold;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+
+	-webkit-clip-path: circle(1% at 1% 1%);
+	clip-path: circle(1% at 1% 1%);
+}
+
+.merlin__content--license-key-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	width: 87%;
+}
+
+.merlin__content--license-key .icon {
+	height: 27px;
+	margin-bottom: 0;
+	opacity: 0.6;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: fill 150ms cubic-bezier(0.694, 0, 0.335, 1), opacity 150ms cubic-bezier(0.694, 0, 0.335, 1);
+	transition: fill 150ms cubic-bezier(0.694, 0, 0.335, 1), opacity 150ms cubic-bezier(0.694, 0, 0.335, 1);
+	width: 27px;
+	z-index: 9999;
+
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	fill: #7d8183;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	.merlin__content--license-key .icon {
+		-webkit-transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
+		transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
+	}
+}
+
+.merlin__content--license-key .icon:hover {
+	opacity: 1;
+
+	fill: #0073aa;
+}
+
+.merlin__content--license-key a {
+	height: 27px;
+	position: absolute;
+	right: 3px;
+	top: 4px;
+	width: 27px;
+}
+
+.merlin__content--license-key a::after {
+	background: transparent;
+	background: -webkit-gradient(linear, right top, left top, color-stop(40%, #fff), to(rgba(255, 255, 255, 0)));
+	background: -webkit-linear-gradient(right, #fff 40%, rgba(255, 255, 255, 0));
+	background: linear-gradient(to left, #fff 40%, rgba(255, 255, 255, 0));
+	border-radius: 3px;
+	/* gradient on the right - to indicate it's possible to scroll */
+	content: "";
+	height: 27px;
+	pointer-events: none;
+	position: absolute;
+	right: 23px;
+	top: 0;
+	width: 20px;
+	z-index: 1;
+}
+
+.merlin__content--license-key a:active svg {
+	-webkit-animation: small_pulse 200ms;
+	animation: small_pulse 200ms;
+	-webkit-animation-timing-function: cubic-bezier(0.694, 0, 0.335, 1);
+	animation-timing-function: cubic-bezier(0.694, 0, 0.335, 1);
+
+	-webkit-animation-fill-mode: none;
+	animation-fill-mode: none;
 }
 
 .merlin__content--license-key input {
-	background-color: #fff;
-	border: solid 1px #ddd;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-	box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-	margin-top: 8px;
-	padding: 15px;
+	background: transparent;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+	display: inline-block;
+	font-family: Menlo, Consolas, monaco, monospace;
+	font-size: 11px;
+	padding: 10px 27px 8px 9px;
 	width: 100%;
 }
 
@@ -942,7 +1036,6 @@ body.exiting .merlin__content--transition {
 
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -966,7 +1059,6 @@ body.exiting .merlin__content--transition {
 	opacity: 0;
 	-webkit-transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 body.loaded .merlin__content--welcome {
@@ -981,7 +1073,6 @@ body.loaded .merlin__content--welcome {
 	}
 }
 
-/* Generated with Bounce.js. Edit at https://goo.gl/iTptLG */
 @-webkit-keyframes animation {
 	0% {
 		-webkit-transform: matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
@@ -1056,6 +1147,7 @@ body.loaded .merlin__content--welcome {
 		transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 	}
 }
+
 @keyframes animation {
 	0% {
 		-webkit-transform: matrix3d(0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
@@ -1131,6 +1223,90 @@ body.loaded .merlin__content--welcome {
 	}
 }
 
+@-webkit-keyframes small_pulse {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	15% {
+		-webkit-transform: scale(0.95);
+		transform: scale(0.95);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+@keyframes small_pulse {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	15% {
+		-webkit-transform: scale(0.95);
+		transform: scale(0.95);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes errorShake {
+	0% {
+		-webkit-transform: translate(8px);
+		transform: translate(8px);
+	}
+	20% {
+		-webkit-transform: translate(-8px);
+		transform: translate(-8px);
+	}
+	40% {
+		-webkit-transform: translate(4px);
+		transform: translate(4px);
+	}
+	60% {
+		-webkit-transform: translate(-4px);
+		transform: translate(-4px);
+	}
+	80% {
+		-webkit-transform: translate(2px);
+		transform: translate(2px);
+	}
+	100% {
+		-webkit-transform: translate(0px);
+		transform: translate(0px);
+	}
+}
+
+@keyframes errorShake {
+	0% {
+		-webkit-transform: translate(8px);
+		transform: translate(8px);
+	}
+	20% {
+		-webkit-transform: translate(-8px);
+		transform: translate(-8px);
+	}
+	40% {
+		-webkit-transform: translate(4px);
+		transform: translate(4px);
+	}
+	60% {
+		-webkit-transform: translate(-4px);
+		transform: translate(-4px);
+	}
+	80% {
+		-webkit-transform: translate(2px);
+		transform: translate(2px);
+	}
+	100% {
+		-webkit-transform: translate(0px);
+		transform: translate(0px);
+	}
+}
+
 .merlin__button {
 	background: #fff;
 	border: 0;
@@ -1145,9 +1321,10 @@ body.loaded .merlin__content--welcome {
 	position: relative;
 	text-align: center;
 	text-decoration: none;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 	-webkit-transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -1254,7 +1431,7 @@ body.loaded .merlin__content--welcome {
 	background: transparent;
 }
 
-.merlin__button--loading__text {
+.merlin__button--loading .merlin__button--loading__text {
 	-webkit-transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
@@ -1263,16 +1440,18 @@ body.loaded .merlin__content--welcome {
 
 .merlin__button--loading__spinner {
 	left: 50%;
+	margin-left: -12px;
+	margin-top: -11px;
 	opacity: 0;
 	position: absolute;
 	top: 50%;
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
-	-webkit-transition: opacity 100ms ease, -webkit-transform 800ms cubic-bezier(0.18, 1, 0.21, 1) 300ms;
-	transition: opacity 100ms ease, -webkit-transform 800ms cubic-bezier(0.18, 1, 0.21, 1) 300ms;
-	transition: opacity 100ms ease, transform 800ms cubic-bezier(0.18, 1, 0.21, 1) 300ms;
-	transition: opacity 100ms ease, transform 800ms cubic-bezier(0.18, 1, 0.21, 1) 300ms, -webkit-transform 800ms cubic-bezier(0.18, 1, 0.21, 1) 300ms;
+	-webkit-transition: opacity 100ms ease, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
+	transition: opacity 100ms ease, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
+	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
+	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 }
 
 .merlin__button--loading .merlin__button--loading__text {
@@ -1423,412 +1602,238 @@ body.loaded .merlin__content--welcome {
 }
 
 .merlin-spinner {
-	-webkit-animation: container-rotate 1600ms linear infinite;
-	animation: container-rotate 1600ms linear infinite;
-	display: block;
-	height: 20px;
-	left: calc( 50% - 10px);
-	position: absolute;
-	top: calc( 50% - 10px);
 	-webkit-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
-	width: 20px;
+	width: 23px;
+}
+
+.merlin-spinner:before {
+	content: "";
+	display: block;
+	padding-top: 100%;
 }
 
 .exiting .merlin-spinner {
 	opacity: 0;
 }
 
-.merlin-spinner-line {
-	display: block;
-	height: 100%;
-	opacity: 0;
-	position: absolute;
-	-webkit-transition: border-color 300ms cubic-bezier(0.694, 0, 0.335, 1);
-	transition: border-color 300ms cubic-bezier(0.694, 0, 0.335, 1);
-	width: 100%;
-}
-
-.merlin-spinner-line--1 {
-	-webkit-animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-1-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-1-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-color: #00ace1;
-}
-
-.merlin-spinner-line--2 {
-	-webkit-animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-2-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-2-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-color: #0073aa;
-}
-
-.merlin-spinner-line--3 {
-	-webkit-animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-3-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-3-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-color: #00ace1;
-}
-
-.merlin-spinner-line--4 {
-	-webkit-animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-4-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: fill-unfill-rotate 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, line-4-fade-in-out 4800ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-color: #0073aa;
-}
-
-.merlin-spinner-line-ticker {
-	border-color: inherit;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	height: 100%;
-	left: 0;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	width: 0;
-}
-
-.merlin-spinner-line-cog {
-	border-color: inherit;
-	display: inline-block;
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	width: 50%;
-}
-
-.merlin-spinner-line-cog-inner {
-	-webkit-animation: none;
-	animation: none;
-	border-bottom-color: transparent;
-	border-color: inherit;
-	border-radius: 50%;
-	border-style: solid;
-	border-width: 3px;
+.merlin-spinner__svg {
+	-webkit-animation: spinnerRotate 2s linear infinite;
+	animation: spinnerRotate 2s linear infinite;
 	bottom: 0;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
 	height: 100%;
 	left: 0;
+	margin: auto;
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 200%;
+	-webkit-transform-origin: center center;
+	-ms-transform-origin: center center;
+	transform-origin: center center;
+	width: 100%;
 }
 
-.merlin-spinner-line-cog-inner--left {
-	-webkit-animation: left-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: left-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-right-color: transparent;
-	-webkit-transform: rotate(129deg);
-	-ms-transform: rotate(129deg);
-	transform: rotate(129deg);
+.merlin-spinner__svg .path {
+	-webkit-animation: spinnerDash 1.5s ease-in-out infinite, spinnerColor 6s ease-in-out infinite;
+	animation: spinnerDash 1.5s ease-in-out infinite, spinnerColor 6s ease-in-out infinite;
+
+	stroke-dasharray: 1,200;
+	stroke-dashoffset: 0;
+	stroke-linecap: round;
 }
 
-.merlin-spinner-line-cog-inner--right {
-	-webkit-animation: right-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	animation: right-spin 1200ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-	border-left-color: transparent;
-	left: -100%;
-	-webkit-transform: rotate(-129deg);
-	-ms-transform: rotate(-129deg);
-	transform: rotate(-129deg);
-}
-
-.merlin-spinner-line-cog-inner--center {
-	left: -450%;
-	width: 1000%;
-}
-
-@-webkit-keyframes container-rotate {
-	to {
+@-webkit-keyframes spinnerRotate {
+	100% {
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
 }
 
-@keyframes container-rotate {
-	to {
+@keyframes spinnerRotate {
+	100% {
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
 }
 
-@-webkit-keyframes fill-unfill-rotate {
-	12.5% {
-		-webkit-transform: rotate(135deg);
-		transform: rotate(135deg);
-	}
-	25% {
-		-webkit-transform: rotate(270deg);
-		transform: rotate(270deg);
-	}
-	37.5% {
-		-webkit-transform: rotate(405deg);
-		transform: rotate(405deg);
+@-webkit-keyframes spinnerDash {
+	0% {
+		stroke-dasharray: 1,200;
+		stroke-dashoffset: 0;
 	}
 	50% {
-		-webkit-transform: rotate(540deg);
-		transform: rotate(540deg);
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -35px;
 	}
-	62.5% {
-		-webkit-transform: rotate(675deg);
-		transform: rotate(675deg);
-	}
-	75% {
-		-webkit-transform: rotate(810deg);
-		transform: rotate(810deg);
-	}
-	87.5% {
-		-webkit-transform: rotate(945deg);
-		transform: rotate(945deg);
-	}
-	to {
-		-webkit-transform: rotate(1080deg);
-		transform: rotate(1080deg);
+	100% {
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -124px;
 	}
 }
 
-@keyframes fill-unfill-rotate {
-	12.5% {
-		-webkit-transform: rotate(135deg);
-		transform: rotate(135deg);
-	}
-	25% {
-		-webkit-transform: rotate(270deg);
-		transform: rotate(270deg);
-	}
-	37.5% {
-		-webkit-transform: rotate(405deg);
-		transform: rotate(405deg);
+@keyframes spinnerDash {
+	0% {
+		stroke-dasharray: 1,200;
+		stroke-dashoffset: 0;
 	}
 	50% {
-		-webkit-transform: rotate(540deg);
-		transform: rotate(540deg);
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -35px;
 	}
-	62.5% {
-		-webkit-transform: rotate(675deg);
-		transform: rotate(675deg);
-	}
-	75% {
-		-webkit-transform: rotate(810deg);
-		transform: rotate(810deg);
-	}
-	87.5% {
-		-webkit-transform: rotate(945deg);
-		transform: rotate(945deg);
-	}
-	to {
-		-webkit-transform: rotate(1080deg);
-		transform: rotate(1080deg);
+	100% {
+		stroke-dasharray: 89,200;
+		stroke-dashoffset: -124px;
 	}
 }
 
-@-webkit-keyframes left-spin {
+@-webkit-keyframes spinnerColor {
+	100%,
 	0% {
-		-webkit-transform: rotate(130deg);
-		transform: rotate(130deg);
-	}
-	50% {
-		-webkit-transform: rotate(-5deg);
-		transform: rotate(-5deg);
-	}
-	to {
-		-webkit-transform: rotate(130deg);
-		transform: rotate(130deg);
-	}
-}
-
-@keyframes left-spin {
-	0% {
-		-webkit-transform: rotate(130deg);
-		transform: rotate(130deg);
-	}
-	50% {
-		-webkit-transform: rotate(-5deg);
-		transform: rotate(-5deg);
-	}
-	to {
-		-webkit-transform: rotate(130deg);
-		transform: rotate(130deg);
-	}
-}
-
-@-webkit-keyframes right-spin {
-	0% {
-		-webkit-transform: rotate(-130deg);
-		transform: rotate(-130deg);
-	}
-	50% {
-		-webkit-transform: rotate(5deg);
-		transform: rotate(5deg);
-	}
-	to {
-		-webkit-transform: rotate(-130deg);
-		transform: rotate(-130deg);
-	}
-}
-
-@keyframes right-spin {
-	0% {
-		-webkit-transform: rotate(-130deg);
-		transform: rotate(-130deg);
-	}
-	50% {
-		-webkit-transform: rotate(5deg);
-		transform: rotate(5deg);
-	}
-	to {
-		-webkit-transform: rotate(-130deg);
-		transform: rotate(-130deg);
-	}
-}
-
-@-webkit-keyframes line-1-fade-in-out {
-	0% {
-		opacity: 1;
-	}
-	25% {
-		opacity: 1;
-	}
-	26% {
-		opacity: 0;
-	}
-	89% {
-		opacity: 0;
-	}
-	90% {
-		opacity: 1;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes line-1-fade-in-out {
-	0% {
-		opacity: 1;
-	}
-	25% {
-		opacity: 1;
-	}
-	26% {
-		opacity: 0;
-	}
-	89% {
-		opacity: 0;
-	}
-	90% {
-		opacity: 1;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@-webkit-keyframes line-2-fade-in-out {
-	0% {
-		opacity: 0;
-	}
-	15% {
-		opacity: 0;
-	}
-	25% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 1;
-	}
-	51% {
-		opacity: 0;
-	}
-}
-
-@keyframes line-2-fade-in-out {
-	0% {
-		opacity: 0;
-	}
-	15% {
-		opacity: 0;
-	}
-	25% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 1;
-	}
-	51% {
-		opacity: 0;
-	}
-}
-
-@-webkit-keyframes line-3-fade-in-out {
-	0% {
-		opacity: 0;
+		stroke: #0073aa;
 	}
 	40% {
-		opacity: 0;
+		stroke: #00ace1;
 	}
-	50% {
-		opacity: 1;
+	66% {
+		stroke: #0073aa;
 	}
-	75% {
-		opacity: 1;
-	}
-	76% {
-		opacity: 0;
+	80%,
+	90% {
+		stroke: #00ace1;
 	}
 }
 
-@keyframes line-3-fade-in-out {
+@keyframes spinnerColor {
+	100%,
 	0% {
-		opacity: 0;
+		stroke: #0073aa;
 	}
 	40% {
-		opacity: 0;
+		stroke: #00ace1;
 	}
-	50% {
-		opacity: 1;
+	66% {
+		stroke: #0073aa;
 	}
-	75% {
-		opacity: 1;
-	}
-	76% {
-		opacity: 0;
+	80%,
+	90% {
+		stroke: #00ace1;
 	}
 }
 
-@-webkit-keyframes line-4-fade-in-out {
-	0% {
-		opacity: 0;
-	}
-	65% {
-		opacity: 0;
-	}
-	75% {
-		opacity: 1;
-	}
-	90% {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
+[class*="hint--"] {
+	display: inline-block;
+	position: relative;
 }
 
-@keyframes line-4-fade-in-out {
-	0% {
-		opacity: 0;
-	}
-	65% {
-		opacity: 0;
-	}
-	75% {
-		opacity: 1;
-	}
-	90% {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
+[class*="hint--"]:before,
+[class*="hint--"]:after {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: 100ms ease;
+	transition: 100ms ease;
+	-webkit-transition-delay: 0ms;
+	transition-delay: 0ms;
+	visibility: hidden;
+	z-index: 1000000;
+}
+
+[class*="hint--"]:hover:before,
+[class*="hint--"]:hover:after {
+	opacity: 1;
+	visibility: visible;
+}
+
+[class*="hint--"]:before {
+	background: transparent;
+	border: 6px solid transparent;
+	content: "";
+	position: absolute;
+	z-index: 1000001;
+}
+
+[class*="hint--"]:after {
+	background: #383838;
+	border-radius: 2px;
+	-webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+	color: #fff;
+	font-size: 11px;
+	line-height: 11px;
+	padding: 5px 8px 6px 9px;
+	white-space: nowrap;
+}
+
+[class*="hint--"][aria-label]:after {
+	content: attr(aria-label);
+}
+
+[class*="hint--"][data-hint]:after {
+	content: attr(data-hint);
+}
+
+[aria-label=""]:before,
+[aria-label=""]:after,
+[data-hint=""]:before,
+[data-hint=""]:after {
+	display: none !important;
+}
+
+.hint--top:before {
+	border-top-color: #383838;
+	margin-bottom: -11px;
+}
+
+.hint--top:before,
+.hint--top:after {
+	bottom: 103%;
+	left: 50%;
+}
+
+.hint--top:before {
+	left: calc(50% - 6px);
+}
+
+.hint--top:after {
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.hint--top:hover:after {
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.hint--right:before {
+	border-right-color: #383838;
+	margin-bottom: -6px;
+	margin-left: -11px;
+}
+
+.hint--right:after {
+	margin-bottom: -14px;
+}
+
+.hint--right:before,
+.hint--right:after {
+	bottom: 50%;
+	left: 100%;
+}
+
+.hint--right:hover:before {
+	-webkit-transform: translateX(8px);
+	-ms-transform: translateX(8px);
+	transform: translateX(8px);
+}
+
+.hint--right:hover:after {
+	-webkit-transform: translateX(8px);
+	-ms-transform: translateX(8px);
+	transform: translateX(8px);
 }
 
 .return-to-dashboard {
@@ -1837,11 +1842,11 @@ body.loaded .merlin__content--welcome {
 	font-size: 13px;
 	margin-top: 1em;
 	padding: 1em;
+	padding-bottom: 0;
 	text-align: center;
 	text-decoration: none;
 	-webkit-transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -1856,6 +1861,16 @@ body.loaded .merlin__content--welcome {
 
 .merlin__body--welcome.loaded .return-to-dashboard {
 	opacity: 1;
+}
+
+.return-to-dashboard.ignore {
+	margin-top: 0.3em;
+	padding: 0;
+}
+
+body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
+	opacity: 0;
+	pointer-events: none;
 }
 
 .return-to-dashboard:hover {
@@ -2041,7 +2056,7 @@ body.loaded .merlin__content--welcome {
 
 .merlin__drawer--import-content li {
 	color: #7d8183;
-	padding: 2px 25px;
+	padding: 2px 45px;
 	text-align: left;
 }
 
@@ -2128,6 +2143,8 @@ body.loaded .merlin__content--welcome {
 }
 
 .merlin__drawer--import-content .checkbox:checked + label.installing i {
+	-webkit-animation: colorchangeInstalling 800ms infinite alternate;
+	animation: colorchangeInstalling 800ms infinite alternate;
 	background-color: #ffb900;
 	border-color: #ffb900;
 	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
@@ -2135,17 +2152,30 @@ body.loaded .merlin__content--welcome {
 }
 
 .merlin__drawer--import-content .checkbox:checked + label.success i {
+	-webkit-animation: popInSuccess 500ms forwards;
+	animation: popInSuccess 500ms forwards;
 	background-color: #46b450;
 	border-color: #46b450;
-	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
-	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
+	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
+	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
+
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	.merlin__drawer--import-content .checkbox:checked + label.success i {
+		-webkit-animation: none;
+		animation: none;
+		background: #46b450;
+	}
 }
 
 .merlin__drawer--import-content .checkbox:checked + label.error i {
 	background-color: #d54e21;
 	border-color: #d54e21;
-	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
-	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
+	-webkit-transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
+	transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 }
 
 .merlin__drawer--import-content .checkbox:checked + label i {
@@ -2168,6 +2198,84 @@ body.loaded .merlin__content--welcome {
 	-webkit-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
 	width: 5px;
+}
+
+@-webkit-keyframes colorchangeInstalling {
+	0% {
+		background: #46b450;
+		border-color: #46b450;
+	}
+	100% {
+		background: #8dd394;
+		border-color: #8dd394;
+	}
+}
+
+@keyframes colorchangeInstalling {
+	0% {
+		background: #46b450;
+		border-color: #46b450;
+	}
+	100% {
+		background: #8dd394;
+		border-color: #8dd394;
+	}
+}
+
+@-webkit-keyframes popInSuccess {
+	0% {
+		background-color: #46b450;
+		border-color: #46b450;
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+	45% {
+		-webkit-transform: scale(1.4);
+		transform: scale(1.4);
+	}
+	65% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	85% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3);
+	}
+	95%,
+	100% {
+		background-color: #46b450;
+		border-color: #46b450;
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+}
+
+@keyframes popInSuccess {
+	0% {
+		background-color: #46b450;
+		border-color: #46b450;
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
+	45% {
+		-webkit-transform: scale(1.4);
+		transform: scale(1.4);
+	}
+	65% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	85% {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3);
+	}
+	95%,
+	100% {
+		background-color: #46b450;
+		border-color: #46b450;
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+	}
 }
 
 .merlin__drawer--open .merlin__drawer--install-plugins {
@@ -2334,7 +2442,6 @@ body.loaded .merlin__content--welcome {
 
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
-	/* Applies styles when Reduced Motion is enabled */
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

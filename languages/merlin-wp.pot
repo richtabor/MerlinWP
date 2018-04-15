@@ -16,172 +16,188 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: merlin.php:373
+#: class-merlin.php:405
 msgid "Something went wrong. Please refresh the page and try again!"
 msgstr ""
 
-#: merlin.php:511
+#: class-merlin.php:551
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: merlin.php:516
+#: class-merlin.php:556
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: merlin.php:610
+#: class-merlin.php:665
 msgid "Welcome"
 msgstr ""
 
-#: merlin.php:617
+#: class-merlin.php:672
 msgid "Child"
 msgstr ""
 
-#: merlin.php:623
-msgid "Theme license"
+#: class-merlin.php:678
+msgid "License"
 msgstr ""
 
-#: merlin.php:631
+#: class-merlin.php:686
 msgid "Plugins"
 msgstr ""
 
-#: merlin.php:639, merlin.php:1689
+#: class-merlin.php:694, class-merlin.php:1825
 msgid "Content"
 msgstr ""
 
-#: merlin.php:645
+#: class-merlin.php:700
 msgid "Ready"
 msgstr ""
 
-#: merlin.php:967
+#: class-merlin.php:1043
 msgid "Install"
 msgstr ""
 
-#: merlin.php:970
+#: class-merlin.php:1046
 msgid "Update"
 msgstr ""
 
-#: merlin.php:973
+#: class-merlin.php:1049
 msgid "Activate"
 msgstr ""
 
-#: merlin.php:975
+#: class-merlin.php:1051
 msgid "and"
 msgstr ""
 
-#: merlin.php:1037
+#: class-merlin.php:1114
 msgid "Select which demo data you want to import:"
 msgstr ""
 
-#: merlin.php:1260
-msgid "Access denied!"
+#: class-merlin.php:1335
+msgid "Yikes! The theme activation failed. Please try again or contact support."
 msgstr ""
 
-#: merlin.php:1267
-msgid "Please input your license key!"
+#: class-merlin.php:1344
+msgid "Please add your license key before attempting to activate one."
 msgstr ""
 
-#: merlin.php:1312, merlin.php:1359
+#: class-merlin.php:1401, class-merlin.php:1442
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: merlin.php:1326
+#: class-merlin.php:1414
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: merlin.php:1333
+#: class-merlin.php:1420
 msgid "Your license key has been disabled."
 msgstr ""
 
-#: merlin.php:1338
-msgid "Invalid license."
+#: class-merlin.php:1424
+msgid "This appears to be an invalid license key. Please try again or contact support."
 msgstr ""
 
-#: merlin.php:1344
+#: class-merlin.php:1429
 msgid "Your license is not active for this URL."
 msgstr ""
 
-#: merlin.php:1349
+#: class-merlin.php:1434
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: merlin.php:1354
+#: class-merlin.php:1438
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: merlin.php:1366
-msgid "The license was successfully activated!"
-msgstr ""
-
-#: merlin.php:1500
+#: class-merlin.php:1624
 msgid "Activating"
 msgstr ""
 
-#: merlin.php:1516
+#: class-merlin.php:1640
 msgid "Updating"
 msgstr ""
 
-#: merlin.php:1532, merlin.php:1692, merlin.php:1705, merlin.php:1718, merlin.php:1731, merlin.php:1744, merlin.php:1757, merlin.php:1798
+#: class-merlin.php:1656, class-merlin.php:1828, class-merlin.php:1841, class-merlin.php:1854, class-merlin.php:1867, class-merlin.php:1880, class-merlin.php:1893, class-merlin.php:1934
 msgid "Installing"
 msgstr ""
 
-#: merlin.php:1542, merlin.php:1693, merlin.php:1706, merlin.php:1719, merlin.php:1732, merlin.php:1745, merlin.php:1758
+#: class-merlin.php:1669, class-merlin.php:1829, class-merlin.php:1842, class-merlin.php:1855, class-merlin.php:1868, class-merlin.php:1881, class-merlin.php:1894
 msgid "Success"
 msgstr ""
 
-#: merlin.php:1563
+#: class-merlin.php:1695
 msgid "Invalid content!"
 msgstr ""
 
-#: merlin.php:1602
+#: class-merlin.php:1737
 msgid "Error"
 msgstr ""
 
-#: merlin.php:1690
+#: class-merlin.php:1826
 msgid "Demo content data."
 msgstr ""
 
-#: merlin.php:1691, merlin.php:1704, merlin.php:1717, merlin.php:1730, merlin.php:1743, merlin.php:1756
+#: class-merlin.php:1827, class-merlin.php:1840, class-merlin.php:1853, class-merlin.php:1866, class-merlin.php:1879, class-merlin.php:1892
 msgid "Pending"
 msgstr ""
 
-#: merlin.php:1702
+#: class-merlin.php:1838
 msgid "Widgets"
 msgstr ""
 
-#: merlin.php:1703
+#: class-merlin.php:1839
 msgid "Sample widgets data."
 msgstr ""
 
-#: merlin.php:1715
+#: class-merlin.php:1851
 msgid "Revolution Slider"
 msgstr ""
 
-#: merlin.php:1716
+#: class-merlin.php:1852
 msgid "Sample Revolution sliders data."
 msgstr ""
 
-#: merlin.php:1728
+#: class-merlin.php:1864
 msgid "Options"
 msgstr ""
 
-#: merlin.php:1729
+#: class-merlin.php:1865
 msgid "Sample theme options data."
 msgstr ""
 
-#: merlin.php:1741
+#: class-merlin.php:1877
 msgid "Redux Options"
 msgstr ""
 
-#: merlin.php:1742
+#: class-merlin.php:1878
 msgid "Redux framework options."
 msgstr ""
 
-#: merlin.php:1754
+#: class-merlin.php:1890
 msgid "After import setup"
 msgstr ""
 
-#: merlin.php:1755
+#: class-merlin.php:1891
 msgid "After import setup."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:54
+msgid "Error: The customizer import file is missing! File path: %s"
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:74
+msgid "Error: The customizer import file is not in a correct format. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:80
+msgid "Error: The customizer import file is not suitable for current theme. You can only import customizer settings for the same theme or a child theme."
+msgstr ""
+
+#: includes/class-merlin-downloader.php:62
+msgid "Missing URL for downloading a file!"
+msgstr ""
+
+#: includes/class-merlin-downloader.php:80
+msgid "An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s."
 msgstr ""
 
 #: includes/class-merlin-widget-importer.php:64
