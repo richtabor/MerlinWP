@@ -252,47 +252,49 @@ function ActivateLicense() {
         var current_item_hash 	= "";
 
         function ajax_callback(response){
+            var currentSpan = $current_node.find("label");
             if(typeof response === "object" && typeof response.message !== "undefined"){
-                $current_node.find("span").text(response.message);
-                if(typeof response.url != "undefined"){
-                    // we have an ajax url action to perform.
+                currentSpan.removeClass( 'installing success error' ).addClass(response.message.toLowerCase());
 
+                // The plugin is done (installed, updated and activated).
+                if(typeof response.done != "undefined" && response.done){
+                    find_next();
+                }else if(typeof response.url != "undefined"){
+                    // we have an ajax url action to perform.
                     if(response.hash == current_item_hash){
-                        $current_node.find("span").text("failed");
+                        currentSpan.removeClass( 'installing success' ).addClass("error");
                         find_next();
                     }else {
                         current_item_hash = response.hash;
-                        jQuery.post(response.url, response, function(response2) {
-                            process_current();
-                        }).fail(ajax_callback);
+                        jQuery.post(response.url, response, ajax_callback).fail(ajax_callback);
                     }
-
-                }else if(typeof response.done != "undefined"){
-                    // finished processing this plugin, move onto next
-                    find_next();
                 }else{
                     // error processing this plugin
                     find_next();
                 }
             }else{
-                // error - try again with next plugin
-                $current_node.find("span").text("Success");
-                find_next();
+                // The TGMPA returns a whole page as response, so check, if this plugin is done.
+                process_current();
             }
         }
+
         function process_current(){
             if(current_item){
-                // query our ajax handler to get the ajax to send to TGM
-                // if we don"t get a reply we can assume everything worked and continue onto the next one.
-                jQuery.post(merlin_params.ajaxurl, {
-                    action: "merlin_plugins",
-                    wpnonce: merlin_params.wpnonce,
-                    slug: current_item
-                }, ajax_callback).fail(ajax_callback);
+                var $check = $current_node.find("input:checkbox");
+                if($check.is(":checked")) {
+                    jQuery.post(merlin_params.ajaxurl, {
+                        action: "merlin_plugins",
+                        wpnonce: merlin_params.wpnonce,
+                        slug: current_item,
+                    }, ajax_callback).fail(ajax_callback);
+                }else{
+                    $current_node.addClass("skipping");
+                    setTimeout(find_next,300);
+                }
             }
         }
+
         function find_next(){
-            var do_next = false;
             if($current_node){
                 if(!$current_node.data("done_item")){
                     items_completed++;
@@ -302,14 +304,16 @@ function ActivateLicense() {
             }
             var $li = $(".merlin__drawer--install-plugins li");
             $li.each(function(){
-                if(current_item == "" || do_next){
-                    current_item = $(this).data("slug");
-                    $current_node = $(this);
-                    process_current();
-                    do_next = false;
-                }else if($(this).data("slug") == current_item){
-                    do_next = true;
+                var $item = $(this);
+
+                if ( $item.data("done_item") ) {
+                    return true;
                 }
+
+                current_item = $item.data("slug");
+                $current_node = $item;
+                process_current();
+                return false;
             });
             if(items_completed >= $li.length){
                 // finished all plugins!
@@ -320,6 +324,7 @@ function ActivateLicense() {
         return {
             init: function(btn){
                 $(".merlin__drawer--install-plugins").addClass("installing");
+                $(".merlin__drawer--install-plugins").find("input").prop("disabled", true);
                 complete = function(){
 
                 	setTimeout(function(){
@@ -378,7 +383,6 @@ function ActivateLicense() {
                     find_next();
                 }
             }else{
-                console.log(response);
                 // error - try again with next plugin
                 currentSpan.addClass("status--error");
                 find_next();

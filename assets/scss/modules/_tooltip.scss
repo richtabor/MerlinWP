@@ -17,6 +17,8 @@
 	pointer-events: none;
 	transition: 100ms ease;
 	transition-delay: 0ms;
+	text-transform: none;
+	font-weight: normal;
 }
 
 [class*="hint--"]:hover:before,
