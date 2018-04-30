@@ -2550,6 +2550,14 @@ body.loaded .merlin__content__footer--fullwidth {
 	filter: blur(0);
 }
 
+.merlin__content__footer--nolinks {
+	margin-bottom: 3.14em;
+}
+
+.merlin__content__footer--nolinks .merlin__button {
+	margin-top: 0.57em;
+}
+
 .merlin__content--license .merlin__content__footer {
 	margin-top: -0.24em;
 }

@@ -1208,11 +1208,14 @@ class Merlin {
 
 		// Links.
 		$links = array();
+
 		for ( $i = 1; $i < 4; $i++ ) {
 			if ( ! empty( $strings[ "ready-link-$i" ] ) ) {
 				$links[] = $strings[ "ready-link-$i" ];
 			}
 		}
+
+		$links_class = empty( $links ) ? 'merlin__content__footer--nolinks' : null;
 
 		$allowed_html_array = array(
 			'a' => array(
@@ -1235,7 +1238,7 @@ class Merlin {
 
 		</div>
 
-		<footer class="merlin__content__footer merlin__content__footer--fullwidth<?php if ( empty( $links ) ) { ?> merlin__content__footer--nolinks<?php } ?>">
+		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
