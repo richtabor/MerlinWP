@@ -1429,7 +1429,7 @@ class Merlin {
 			'edd_action' => 'activate_license',
 			'license'    => rawurlencode( $license ),
 			'item_name'  => rawurlencode( $this->edd_item_name ),
-			'url'        => esc_url( home_url() ),
+			'url'        => esc_url( home_url( '/' ) ),
 		);
 
 		$response = $this->edd_get_api_response( $api_params );
