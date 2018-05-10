@@ -412,6 +412,7 @@ class Merlin {
 
 		$texts = array(
 			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
+			'timeout_alert' => esc_html__( 'There were some server errors during the import. There might be missing items.', '@@textdomain' ),
 		);
 
 		// Localize the javascript.
