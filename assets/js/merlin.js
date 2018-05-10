@@ -385,7 +385,12 @@ function ActivateLicense() {
             }else{
                 // error - try again with next plugin
                 currentSpan.addClass("status--error");
-                find_next();
+                if ( response.status == 500 || response.status == 408 ) {
+                    var r = confirm(merlin_params.texts.timeout_alert);
+                    if ( r || ! r ) {
+                        find_next();
+                    }
+                } 
             }
         }
 
