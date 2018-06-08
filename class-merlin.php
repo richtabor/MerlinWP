@@ -1163,10 +1163,6 @@ class Merlin {
 				<?php echo $this->get_import_steps_html( $import_info ); ?>
 			</ul>
 
-			<div class="merlin__progress-bar">
-				<span class="js-merlin-progress-bar"></span>
-			</div>
-
 			<footer class="merlin__content__footer">
 
 				<a id="close" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--closer merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
@@ -1175,7 +1171,12 @@ class Merlin {
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $import ); ?></span>
-					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
+
+					<div class="merlin__progress-bar">
+						<span class="js-merlin-progress-bar"></span>
+					</div>
+
+					<span class="js-merlin-progress-bar-percentage">0%</span>
 				</a>
 
 				<?php wp_nonce_field( 'merlin' ); ?>

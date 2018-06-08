@@ -2580,19 +2580,39 @@ body.exiting .merlin__content--content .merlin__content__footer {
 }
 
 .merlin__progress-bar {
-	height: 3px;
+	cursor: default;
+	height: 100%;
+}
+
+.merlin__progress-bar .js-merlin-progress-bar {
+	background-color: #daf1dc;
+	border-radius: 0;
+	bottom: 0;
+	display: block;
+	height: 100%;
 	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 0;
+}
+
+.js-merlin-progress-bar-percentage {
+	bottom: 0;
+	color: #46b450;
+	display: none !important;
+	left: 0;
+	line-height: 38px;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 
-.merlin__progress-bar > span {
-	background-color: #46b450;
-	border-radius: 10px;
-	display: block;
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	width: 0;
+.merlin__button--loading .js-merlin-progress-bar-percentage {
+	display: block !important;
+}
+
+.merlin__button--next[data-callback="install_content"] {
+	background: #f1f1f1;
 }
