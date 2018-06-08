@@ -1,4 +1,6 @@
 .merlin__drawer--install-plugins {
+	text-align: left;
+	overflow: visible;
 
 	.merlin__drawer--open & {
 		padding-bottom: 1px;
@@ -6,30 +8,90 @@
 
 	li {
 		color: $gray;
+		text-align: left;
+		padding: 2px 30px;
 
-		span {
+		&:hover {
+			span {
+				color: $blue;
+			}
+		}
+
+		.merlin__status-class {
 			display: none;
 		}
 
-		.spinner {
-			display: inline-block;
-			position: absolute;
-			margin-top: 2px;
-			right: 10px;
-			opacity:0;
-			visibility: visible;
-			transition: opacity 200ms cubic-bezier(.694, 0, .335, 1);
+		.badge {
+			background: #e6f3fa;
+			color: $blue !important;
+			padding: 3px 5px;
+			font-weight: 500;
+			position: relative;
+			top: -1px;
+			margin-left: 1px;
+			font-size: 11px;
+			border-radius: 3px;
+			text-transform: uppercase;
 		}
 	}
 
-	&.installing li {
-
-		.spinner {
-			opacity:1;
-		}
+	label {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		width: 100%;
 
 		span {
-			opacity: 0;
+			transition: color 100ms;
+		}
+
+		i {
+			background-color: transparent;
+			border-radius: 50%;
+			border: 2px solid #b2b7ba;
+			display: inline-block;
+			float: right;
+			height: 13px;
+			margin-top: 3px;
+			position: relative;
+			text-align: left;
+			transform-origin: center;
+			transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89);
+			width: 13px;
+
+			&:before {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 0.2em;
+				position: absolute;
+				top: 0.4em;
+				transform-origin: 0% 0%;
+				transform: rotate(45deg);
+				transition: width 50ms ease 50ms;
+				width: 0px;
+			}
+
+			&:after {
+				background: $blue;
+				border-radius: 2px;
+				content: "";
+				height: 2px;
+				left: 4px;
+				position: absolute;
+				top: 0.67em;
+				transform-origin: 0% 0%;
+				transform: rotate(310deg);
+				transition: width 50ms ease;
+				width: 0;
+			}
+		}
+
+		&:hover {
+			i {
+				border-color: $blue;
+			}
 		}
 	}
 }

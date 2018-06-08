@@ -1002,9 +1002,19 @@ class Merlin {
 		}
 
 		// Are there plugins that need installing/activating?
-		$plugins = $this->get_tgmpa_plugins();
-		$count   = count( $plugins['all'] );
-		$class   = $count ? null : 'no-plugins';
+		$plugins          = $this->get_tgmpa_plugins();
+		$required_plugins = $recommended_plugins = array();
+		$count            = count( $plugins['all'] );
+		$class            = $count ? null : 'no-plugins';
+
+		// Split the plugins into required and recommended.
+		foreach ( $plugins['all'] as $slug => $plugin ) {
+			if ( ! empty( $plugin['required'] ) ) {
+				$required_plugins[ $slug ] = $plugin;
+			} else {
+				$recommended_plugins[ $slug ] = $plugin;
+			}
+		}
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -1042,34 +1052,37 @@ class Merlin {
 
 				<ul class="merlin__drawer merlin__drawer--install-plugins">
 
-				<?php foreach ( $plugins['all'] as $slug => $plugin ) : ?>
+				<?php if ( ! empty( $required_plugins ) ) : ?>
+					<?php foreach ( $required_plugins as $slug => $plugin ) : ?>
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
-					<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
+								<i></i>
 
-						<?php echo esc_html( $plugin['name'] ); ?>
+								<span><?php echo esc_html( $plugin['name'] ); ?></span>
 
-						<span>
-							<?php
-							$keys = array();
+								<span class="badge">
+									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', '@@textdomain' ); ?>">
+										<?php esc_html_e( 'req', '@@textdomain' ); ?>
+									</span>
+								</span>
+							</label>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
-							if ( isset( $plugins['install'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Install', '@@textdomain' );
-							}
-							if ( isset( $plugins['update'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Update', '@@textdomain' );
-							}
-							if ( isset( $plugins['activate'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Activate', '@@textdomain' );
-							}
-							echo implode( esc_html__( 'and', '@@textdomain' ), $keys );
-							?>
+				<?php if ( ! empty( $recommended_plugins ) ) : ?>
+					<?php foreach ( $recommended_plugins as $slug => $plugin ) : ?>
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
-						</span>
-
-						<div class="spinner"></div>
-
-					</li>
-				<?php endforeach; ?>
+							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
+								<i></i><span><?php echo esc_html( $plugin['name'] ); ?></span>
+							</label>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
 				</ul>
 
@@ -1199,9 +1212,15 @@ class Merlin {
 		$big_btn   = $strings['ready-big-button'];
 
 		// Links.
-		$link_1 = $strings['ready-link-1'];
-		$link_2 = $strings['ready-link-2'];
-		$link_3 = $strings['ready-link-3'];
+		$links = array();
+
+		for ( $i = 1; $i < 4; $i++ ) {
+			if ( ! empty( $strings[ "ready-link-$i" ] ) ) {
+				$links[] = $strings[ "ready-link-$i" ];
+			}
+		}
+
+		$links_class = empty( $links ) ? 'merlin__content__footer--nolinks' : null;
 
 		$allowed_html_array = array(
 			'a' => array(
@@ -1224,19 +1243,21 @@ class Merlin {
 
 		</div>
 
-		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
+		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
-			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
+			<?php if ( ! empty( $links ) ) : ?>
+				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
-			<ul class="merlin__drawer merlin__drawer--extras">
+				<ul class="merlin__drawer merlin__drawer--extras">
 
-				<li><?php echo wp_kses( $link_1, $allowed_html_array ); ?></li>
-				<li><?php echo wp_kses( $link_2, $allowed_html_array ); ?></li>
-				<li><?php echo wp_kses( $link_3, $allowed_html_array ); ?></li>
+					<?php foreach ( $links as $link ) : ?>
+						<li><?php echo wp_kses( $link, $allowed_html_array ); ?></li>
+					<?php endforeach; ?>
 
-			</ul>
+				</ul>
+			<?php endif; ?>
 
 		</footer>
 
@@ -1293,7 +1314,7 @@ class Merlin {
 		$name = $this->theme . ' Child';
 		$slug = sanitize_title( $name );
 
-		$path           = get_theme_root() . '/' . $slug;
+		$path = get_theme_root() . '/' . $slug;
 
 		if ( ! file_exists( $path ) ) {
 
@@ -1413,7 +1434,7 @@ class Merlin {
 			'edd_action' => 'activate_license',
 			'license'    => rawurlencode( $license ),
 			'item_name'  => rawurlencode( $this->edd_item_name ),
-			'url'        => esc_url( home_url() ),
+			'url'        => esc_url( home_url( '/' ) ),
 		);
 
 		$response = $this->edd_get_api_response( $api_params );
@@ -1602,21 +1623,18 @@ class Merlin {
 
 		if ( ! empty( $screenshot ) ) {
 			// Get custom screenshot file extension
-			if( '.png' === substr( $screenshot, -4 ) ) {
+			if ( '.png' === substr( $screenshot, -4 ) ) {
 				$screenshot_ext = 'png';
-			}
-			else {
+			} else {
 				$screenshot_ext = 'jpg';
 			}
-		}
-		else {
+		} else {
 			// Fallback to parent theme screenshot
 			if ( file_exists( get_parent_theme_file_path( '/screenshot.png' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.png' );
+				$screenshot     = get_parent_theme_file_path( '/screenshot.png' );
 				$screenshot_ext = 'png';
-			}
-			elseif( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
-				$screenshot = get_parent_theme_file_path( '/screenshot.jpg' );
+			} elseif ( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
+				$screenshot     = get_parent_theme_file_path( '/screenshot.jpg' );
 				$screenshot_ext = 'jpg';
 			}
 		}
@@ -1625,8 +1643,7 @@ class Merlin {
 			$copied = copy( $screenshot, $path . '/screenshot.' . $screenshot_ext );
 
 			$this->logger->debug( __( 'The child theme screenshot was copied to the child theme, with the following result', '@@textdomain' ), array( 'copied' => $copied ) );
-		}
-		else {
+		} else {
 			$this->logger->debug( __( 'The child theme screenshot was not generated, because of these results', '@@textdomain' ), array( 'screenshot' => $screenshot ) );
 		}
 	}
@@ -1703,7 +1720,8 @@ class Merlin {
 				)
 			);
 
-			$json['hash'] = md5( serialize( $json ) );
+			$json['hash']    = md5( serialize( $json ) );
+			$json['message'] = esc_html__( 'Installing', '@@textdomain' );
 			wp_send_json( $json );
 		} else {
 			$this->logger->debug(
@@ -2098,8 +2116,7 @@ class Merlin {
 		foreach ( $import_files as $import_file ) {
 			if ( ! empty( $import_file['import_file_name'] ) ) {
 				$filtered_import_file_info[] = $import_file;
-			}
-			else {
+			} else {
 				$this->logger->warning( __( 'This predefined demo import does not have the name parameter: import_file_name', '@@textdomain' ), $import_file );
 			}
 		}

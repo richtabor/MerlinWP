@@ -4,7 +4,7 @@
 	li {
 		color: $gray;
 		text-align: left;
-		padding: 2px 45px;
+		padding: 2px 50px;
 
 		&:hover {
 
@@ -73,66 +73,66 @@
 			}
 		}
 	}
+}
 
-	.checkbox {
-		display: none !important;
+.checkbox {
+	display: none !important;
 
-		&:checked {
+	&:checked {
 
-			+ label {
+		+ label {
 
-				&.installing {
-
-					i {
-						background-color: $yellow;
-						border-color: $yellow;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
-						animation: colorchangeInstalling 800ms infinite alternate;
-					}
-				}
-
-				&.success {
-
-					i {
-						animation-fill-mode: both;
-						animation: popInSuccess 500ms forwards;
-						background-color: $green;
-						border-color: $green;
-						transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
-
-						// Applies styles when Reduced Motion is enabled
-						@media screen and (prefers-reduced-motion: reduce) {
-							animation: none;
-							background: $green;
-						}
-					}
-				}
-
-				&.error {
-
-					i {
-						background-color: $red;
-						border-color: $red;
-						transition: background-color 500ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
-					}
-				}
+			&.installing {
 
 				i {
-					background-color: $blue;
-					border-color: $blue;
-					transform: scale(1.2);
+					background-color: $yellow;
+					border-color: $yellow;
+					transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+					animation: colorchangeInstalling 800ms infinite alternate;
+				}
+			}
 
-					&:after {
-						width: 9px;
-						background: $white;
-						transition: width 50ms ease 100ms;
-					}
+			&.success {
 
-					&:before {
-						width: 5px;
-						background: $white;
-						transition: width 50ms ease 100ms;
+				i {
+					animation-fill-mode: both;
+					animation: popInSuccess 500ms forwards;
+					background-color: $green;
+					border-color: $green;
+					transition: background-color 400ms cubic-bezier(.18, 1, .21, 1), border-color 400ms cubic-bezier(.18, 1, .21, 1);
+
+					// Applies styles when Reduced Motion is enabled
+					@media screen and (prefers-reduced-motion: reduce) {
+						animation: none;
+						background: $green;
 					}
+				}
+			}
+
+			&.error {
+
+				i {
+					background-color: $red;
+					border-color: $red;
+					transition: background-color 500ms cubic-bezier(.18, 1, .21, 1) 220ms, border-color 400ms cubic-bezier(.18, 1, .21, 1) 220ms;
+				}
+			}
+
+			i {
+				background-color: $blue;
+				border-color: $blue;
+				transform: scale(1.2);
+
+				&:after {
+					width: 9px;
+					background: $white;
+					transition: width 50ms ease 100ms;
+				}
+
+				&:before {
+					width: 5px;
+					background: $white;
+					transition: width 50ms ease 100ms;
 				}
 			}
 		}
