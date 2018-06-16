@@ -466,11 +466,18 @@ function ActivateLicense() {
 
             	var $percentage = (current_content_import_items/total_content_import_items) * 100;
 
-             $('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
+            	function valBetween(v, min, max) {
+			return (Math.min(max, Math.max(min, v)));
+		}
 
-            if ( 1 === current_content_import_items/total_content_import_items ) {
-                clearInterval( progress_bar_interval );
-            }
+            	var $percentage = valBetween($percentage, 0, 99);
+
+        	$('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
+
+        	if ( 1 === current_content_import_items/total_content_import_items ) {
+        		clearInterval( progress_bar_interval );
+
+        	}
         }
 
         return {
@@ -479,11 +486,15 @@ function ActivateLicense() {
                 $(".merlin__drawer--import-content").find("input").prop("disabled", true);
                 complete = function(){
 
-									$.post(merlin_params.ajaxurl, {
-										action: "merlin_import_finished",
-										wpnonce: merlin_params.wpnonce,
-										selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
-									});
+			$.post(merlin_params.ajaxurl, {
+				action: "merlin_import_finished",
+				wpnonce: merlin_params.wpnonce,
+				selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
+			});
+
+			setTimeout(function(){
+				$('.js-merlin-progress-bar-percentage').html( '100%' );
+			},100);
 
                 	setTimeout(function(){
 				       body.removeClass( drawer_opened );
