@@ -233,15 +233,6 @@ function ActivateLicense() {
         }
     }
 
-
-
-
-
-
-
-
-
-
     function PluginManager(){
 
     	var body 				= $('.merlin__body');
@@ -252,13 +243,15 @@ function ActivateLicense() {
         var current_item_hash 	= "";
 
         function ajax_callback(response){
+        	var currentSpan = $current_node.find("label");
             if(typeof response === "object" && typeof response.message !== "undefined"){
-                $current_node.find("span").text(response.message);
+            	 currentSpan.removeClass( 'installing success error' ).addClass(response.message.toLowerCase());
+                // $current_node.find("span").text(response.message);
                 if(typeof response.url != "undefined"){
                     // we have an ajax url action to perform.
 
                     if(response.hash == current_item_hash){
-                        $current_node.find("span").text("failed");
+                        currentSpan.removeClass( 'installing success' ).addClass("error");
                         find_next();
                     }else {
                         current_item_hash = response.hash;
@@ -275,11 +268,10 @@ function ActivateLicense() {
                     find_next();
                 }
             }else{
-                // error - try again with next plugin
-                $current_node.find("span").text("Success");
                 find_next();
             }
         }
+
         function process_current(){
             if(current_item){
                 // query our ajax handler to get the ajax to send to TGM
