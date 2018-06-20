@@ -107,21 +107,6 @@ var Merlin = (function($){
 							$( '.js-merlin-select-spinner' ).hide();
 							alert( merlin_params.texts.something_went_wrong )
 						} );
-
-					$.post( merlin_params.ajaxurl, {
-						action: 'merlin_update_selected_import_preview_data',
-						wpnonce: merlin_params.wpnonce,
-						selected_index: selectedIndex,
-					}, function( response ) {
-						if ( response.success ) {
-							$( '.js-merlin-demo-import-select-preview' ).remove();
-							$( '.merlin__select-control-wrapper' ).after( response.data );
-						}
-						else {
-							alert( merlin_params.texts.something_went_wrong );
-						}
-					} )
-						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
 				} );
     }
 

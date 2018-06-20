@@ -274,7 +274,6 @@ class Merlin {
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
-		add_action( 'wp_ajax_merlin_update_selected_import_preview_data', array( $this, 'update_selected_import_preview_data' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_import_finished', array( $this, 'import_finished' ), 10, 0 );
 		add_filter( 'pt-importer/new_ajax_request_response_data', array( $this, 'pt_importer_new_ajax_request_response_data' ) );
 		add_action( 'import_end', array( $this, 'after_content_import_setup' ) );
@@ -1146,8 +1145,6 @@ class Merlin {
 						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="10"></circle>
 					</svg>
 				</div>
-
-				<?php echo $this->get_import_preview_html( 0 ); ?>
 			<?php endif; ?>
 
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
@@ -1177,48 +1174,6 @@ class Merlin {
 
 	<?php
 		$this->logger->debug( __( 'The content import step has been displayed', '@@textdomain' ) );
-	}
-
-	/**
-	 * The preview HTML output of a predefined demo import.
-	 *
-	 * @param int $index The index of the predefined demo import.
-	 *
-	 * @return string The HTML output.
-	 */
-	public function get_import_preview_html( $index ) {
-		ob_start();
-		if ( ! empty( $this->import_files[ $index ]['import_preview_image_url'] ) ) :
-			?>
-			<div class="merlin__demo-import-preview js-merlin-demo-import-select-preview">
-				<img class="merlin__demo-import-preview-image" src="<?php echo esc_url( $this->import_files[ $index ]['import_preview_image_url'] ); ?>" alt="<?php echo esc_html( $this->import_files[ $index ]['import_file_name'] ); ?>">
-				<?php if ( ! empty( $this->import_files[ $index ]['import_notice'] ) ) : ?>
-					<p class="merlin__demo-import-preview-notice"><?php echo wp_kses_post( $this->import_files[ $index ]['import_notice'] ); ?></p>
-				<?php endif; ?>
-				<?php if ( ! empty( $this->import_files[ $index ]['preview_url'] ) ) : ?>
-					<a href="<?php echo esc_url( $this->import_files[ $index ]['preview_url'] ); ?>" target="_blank"><?php esc_html_e( 'Demo preview', '@@textdomain' ); ?></a>
-				<?php endif; ?>
-			</div>
-		<?php
-		endif;
-
-		return ob_get_clean();
-	}
-
-
-	/**
-	 * AJAX callback for the 'merlin_update_selected_import_preview_data' action.
-	 */
-	public function update_selected_import_preview_data() {
-		$selected_index = ! isset( $_POST['selected_index'] ) ? false : intval( $_POST['selected_index'] );
-
-		if ( false === $selected_index ) {
-			wp_send_json_error();
-		}
-
-		$output_html = $this->get_import_preview_html( $selected_index );
-
-		wp_send_json_success( $output_html );
 	}
 
 
