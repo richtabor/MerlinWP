@@ -1642,6 +1642,15 @@ body.loaded .merlin__content--welcome {
 	stroke-linecap: round;
 }
 
+.merlin__select-spinner {
+	display: none;
+	height: 26px;
+	left: auto;
+	right: -29px;
+	top: 0;
+	width: 26px;
+}
+
 @-webkit-keyframes spinnerRotate {
 	100% {
 		-webkit-transform: rotate(360deg);

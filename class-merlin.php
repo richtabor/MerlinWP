@@ -1141,6 +1141,10 @@ class Merlin {
 							<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
 						</span>
 					</div>
+
+					<svg class="merlin-spinner__svg merlin__select-spinner js-merlin-select-spinner" viewbox="25 25 50 50">
+						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="6" stroke-miterlimit="10"></circle>
+					</svg>
 				</div>
 
 				<?php echo $this->get_import_preview_html( 0 ); ?>

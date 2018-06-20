@@ -87,6 +87,8 @@ var Merlin = (function($){
 				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
 					var selectedIndex  = $( this ).val();
 
+					$( '.js-merlin-select-spinner' ).show();
+
 					$.post( merlin_params.ajaxurl, {
 						action: 'merlin_update_selected_import_data_info',
 						wpnonce: merlin_params.wpnonce,
@@ -98,8 +100,13 @@ var Merlin = (function($){
 						else {
 							alert( merlin_params.texts.something_went_wrong );
 						}
+
+						$( '.js-merlin-select-spinner' ).hide();
 					} )
-						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
+						.fail( function() {
+							$( '.js-merlin-select-spinner' ).hide();
+							alert( merlin_params.texts.something_went_wrong )
+						} );
 
 					$.post( merlin_params.ajaxurl, {
 						action: 'merlin_update_selected_import_preview_data',
