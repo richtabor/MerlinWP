@@ -453,23 +453,20 @@ function ActivateLicense() {
             } );
         }
 
+        function valBetween(v, min, max) {
+            return (Math.min(max, Math.max(min, v)));
+        }
+
         function update_progress_bar() {
             $('.js-merlin-progress-bar').css( 'width', (current_content_import_items/total_content_import_items) * 100 + '%' );
 
-            	var $percentage = (current_content_import_items/total_content_import_items) * 100;
+            var $percentage = valBetween( ((current_content_import_items/total_content_import_items) * 100) , 0, 99);
 
-            	function valBetween(v, min, max) {
-			return (Math.min(max, Math.max(min, v)));
-		}
+            $('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
 
-            	var $percentage = valBetween($percentage, 0, 99);
-
-        	$('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
-
-        	if ( 1 === current_content_import_items/total_content_import_items ) {
-        		clearInterval( progress_bar_interval );
-
-        	}
+            if ( 1 === current_content_import_items/total_content_import_items ) {
+                clearInterval( progress_bar_interval );
+            }
         }
 
         return {
