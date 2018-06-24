@@ -235,7 +235,7 @@ function ActivateLicense() {
 
 function PluginManager(){
 
-    	var body 				= $('.merlin__body');
+    	var body = $('.merlin__body');
         var complete;
         var items_completed 	= 0;
         var current_item 		= "";
