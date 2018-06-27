@@ -1,0 +1,41 @@
+.merlin {
+
+	&__progress-bar {
+		height: 100%;
+		cursor: default;
+
+		.js-merlin-progress-bar {
+			border-radius: 0;
+			display: block;
+			height: 100%;
+			width: 0%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: lighten( $green, 41% );
+			overflow: hidden;
+		}
+	}
+}
+
+.js-merlin-progress-bar-percentage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	line-height: 38px;
+	color: $green;
+	display: none !important;
+
+	.merlin__button--loading & {
+		display: block !important;
+	}
+}
+
+
+.merlin__button--next[data-callback="install_content"] {
+	background: $background;
+}
