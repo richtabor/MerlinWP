@@ -1205,12 +1205,13 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Text strings.
-		$header    = $strings['ready-header'];
-		$paragraph = $strings['ready%s'];
-		$action    = $strings['ready-action-link'];
-		$skip      = $strings['btn-skip'];
-		$next      = $strings['btn-next'];
-		$big_btn   = $strings['ready-big-button'];
+		$header       = $strings['ready-header'];
+		$paragraph    = $strings['ready%s'];
+		$action       = $strings['ready-action-link'];
+		$skip         = $strings['btn-skip'];
+		$next         = $strings['btn-next'];
+		$big_btn      = $strings['ready-big-button'];
+		$big_btn_link = !empty($strings['ready-big-button-link']) ? $strings['ready-big-button-link'] : home_url( '/' );
 
 		// Links.
 		$links = array();
@@ -1246,7 +1247,7 @@ class Merlin {
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
+			<a href="<?php echo esc_url( $big_btn_link ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
 			<?php if ( ! empty( $links ) ) : ?>
 				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
