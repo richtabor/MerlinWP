@@ -270,7 +270,7 @@ class Merlin {
 		}
 
 		// Get the logger object, so it can be used in the whole class.
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-logger.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-logger.php';
 		$this->logger = Merlin_Logger::get_instance();
 
 		// Get TGMPA.
@@ -308,20 +308,20 @@ class Merlin {
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
 
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-downloader.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-downloader.php';
 
 		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $this->logger );
 
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-widget-importer.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-widget-importer.php';
 
 		if ( ! class_exists( 'WP_Customize_Setting' ) ) {
 			require_once ABSPATH . 'wp-includes/class-wp-customize-setting.php';
 		}
 
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-customizer-option.php';
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-customizer-importer.php';
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-redux-importer.php';
-		require_once $this->base_path . $this->directory . '/includes/class-merlin-hooks.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-customizer-option.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-customizer-importer.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-redux-importer.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-hooks.php';
 
 		$this->hooks = new Merlin_Hooks();
 
@@ -424,10 +424,10 @@ class Merlin {
 		$suffix = ( ( true === $this->dev_mode ) ) ? '' : '.min';
 
 		// Enqueue styles.
-		wp_enqueue_style( 'merlin', $this->base_url . $this->directory . '/assets/css/merlin' . $suffix . '.css', array( 'wp-admin' ), MERLIN_VERSION );
+		wp_enqueue_style( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/css/merlin' . $suffix . '.css', array( 'wp-admin' ), MERLIN_VERSION );
 
 		// Enqueue javascript.
-		wp_enqueue_script( 'merlin', $this->base_url . $this->directory . '/assets/js/merlin' . $suffix . '.js', array( 'jquery-core' ), MERLIN_VERSION );
+		wp_enqueue_script( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/js/merlin' . $suffix . '.js', array( 'jquery-core' ), MERLIN_VERSION );
 
 		$texts = array(
 			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
@@ -552,7 +552,7 @@ class Merlin {
 	public function svg_sprite() {
 
 		// Define SVG sprite file.
-		$svg = $this->base_path . $this->directory . '/assets/images/sprite.svg';
+		$svg = trailingslashit( $this->base_path ) . $this->directory . '/assets/images/sprite.svg';
 
 		// If it exists, include it.
 		if ( file_exists( $svg ) ) {
