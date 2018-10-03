@@ -415,7 +415,7 @@ class Merlin {
 		$strings = $this->strings;
 
 		$this->hook_suffix = add_submenu_page(
-			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capablility ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
+			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
 	}
 
