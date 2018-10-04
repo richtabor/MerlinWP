@@ -2588,7 +2588,6 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
 }
 
-
 .merlin__progress-bar {
 	cursor: default;
 	height: 100%;
@@ -2625,19 +2624,20 @@ body.exiting .merlin__content--content .merlin__content__footer {
 
 .merlin__button--next[data-callback="install_content"] {
 	background: #f1f1f1;
+}
 
 .merlin__select-control-wrapper {
-	margin: 8px auto -5px;
-	max-width: 210px;
+	margin: 9px auto -4px;
+	max-width: 200px;
 	position: relative;
 }
 
 .merlin__select-control-wrapper .icon {
-	height: 26px;
-	opacity: 0.6;
+	height: 15px;
+	opacity: 0.5;
 	position: relative;
-	top: 0;
-	width: 26px;
+	top: 6px;
+	width: 15px;
 
 	fill: #7d8183;
 }
@@ -2651,8 +2651,8 @@ body.exiting .merlin__content--content .merlin__content__footer {
 .merlin__select-control-help {
 	height: 26px;
 	position: absolute;
-	right: 2px;
-	top: 1px;
+	right: 7px;
+	top: 0;
 }
 
 .merlin__select-control {
@@ -2664,10 +2664,10 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	color: #555d66;
 	cursor: pointer;
 	display: block;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: normal;
-	height: 28px;
-	line-height: 22px;
+	height: 27px;
+	line-height: 1;
 	margin: 0;
 	padding: 0;
 	padding-left: 8px;
@@ -2680,6 +2680,10 @@ body.exiting .merlin__content--content .merlin__content__footer {
 
 .merlin__select-control:hover {
 	border-color: #999;
+}
+
+.merlin__select-control:focus {
+	border-color: #5b9dd9;
 }
 
 .merlin__select-control select::-ms-expand {
@@ -2698,7 +2702,17 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	width: 100%;
 }
 
-.is-multi-import .merlin__content__footer {
-	margin-top: 10px;
+.merlin__drawer--open .is-multi-import {
+	padding-bottom: 30px;
+	-webkit-transition: padding 300ms cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+	transition: padding 300ms cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+}
 
+.is-multi-import {
+	-webkit-transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
+	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
+}
+
+.is-multi-import .merlin__content__footer {
+	margin-top: 7px;
 }
