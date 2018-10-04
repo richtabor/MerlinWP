@@ -19,9 +19,11 @@ if ( ! class_exists( 'Merlin' ) ) {
  */
 $wizard = new Merlin(
 
-	$config  = array(
+	$config = array(
 		'directory'            => 'merlin', // Location / directory where Merlin WP is placed in your theme.
-		'merlin_url'           => 'merlin',  // The wp-admin page slug where Merlin WP loads.
+		'merlin_url'           => 'merlin', // The wp-admin page slug where Merlin WP loads.
+		'parent_slug'          => 'themes.php', // The wp-admin parent page slug for the admin menu item.
+		'capability'           => 'manage_options', // The capability required for this menu to be displayed to the user.
 		'child_action_btn_url' => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
 		'dev_mode'             => true, // Enable development mode for testing.
 		'license_step'         => false, // EDD license activation step.

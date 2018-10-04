@@ -129,6 +129,20 @@ class Merlin {
 	protected $merlin_url = null;
 
 	/**
+	 * The wp-admin parent page slug for the admin menu item.
+	 *
+	 * @var string $parent_slug
+	 */
+	protected $parent_slug = null;
+
+	/**
+	 * The capability required for this menu to be displayed to the user.
+	 *
+	 * @var string $capability
+	 */
+	protected $capability = null;
+
+	/**
 	 * The URL for the "Learn more about child themes" link.
 	 *
 	 * @var string $child_action_btn_url
@@ -228,6 +242,8 @@ class Merlin {
 				'base_url'             => get_parent_theme_file_uri(),
 				'directory'            => 'merlin',
 				'merlin_url'           => 'merlin',
+				'parent_slug'          => 'themes.php',
+				'capability'           => 'manage_options',
 				'child_action_btn_url' => '',
 				'dev_mode'             => '',
 			)
@@ -238,6 +254,8 @@ class Merlin {
 		$this->base_url               = $config['base_url'];
 		$this->directory              = $config['directory'];
 		$this->merlin_url             = $config['merlin_url'];
+		$this->parent_slug            = $config['parent_slug'];
+		$this->capability             = $config['capability'];
 		$this->child_action_btn_url   = $config['child_action_btn_url'];
 		$this->license_step_enabled   = $config['license_step'];
 		$this->theme_license_help_url = $config['license_help_url'];
@@ -396,8 +414,8 @@ class Merlin {
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
-		$this->hook_suffix = add_theme_page(
-			esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), 'manage_options', $this->merlin_url, array( $this, 'admin_page' )
+		$this->hook_suffix = add_submenu_page(
+			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
 	}
 
