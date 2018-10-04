@@ -1642,6 +1642,15 @@ body.loaded .merlin__content--welcome {
 	stroke-linecap: round;
 }
 
+.merlin__select-spinner {
+	display: none;
+	height: 26px;
+	left: auto;
+	right: -29px;
+	top: 0;
+	width: 26px;
+}
+
 @-webkit-keyframes spinnerRotate {
 	100% {
 		-webkit-transform: rotate(360deg);
@@ -2579,6 +2588,7 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
 }
 
+
 .merlin__progress-bar {
 	cursor: default;
 	height: 100%;
@@ -2615,4 +2625,80 @@ body.exiting .merlin__content--content .merlin__content__footer {
 
 .merlin__button--next[data-callback="install_content"] {
 	background: #f1f1f1;
+
+.merlin__select-control-wrapper {
+	margin: 8px auto -5px;
+	max-width: 210px;
+	position: relative;
+}
+
+.merlin__select-control-wrapper .icon {
+	height: 26px;
+	opacity: 0.6;
+	position: relative;
+	top: 0;
+	width: 26px;
+
+	fill: #7d8183;
+}
+
+.merlin__select-control-wrapper .icon:hover {
+	opacity: 1;
+
+	fill: #0073aa;
+}
+
+.merlin__select-control-help {
+	height: 26px;
+	position: absolute;
+	right: 2px;
+	top: 1px;
+}
+
+.merlin__select-control {
+	background: #f9f9f9;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0 #eee;
+	box-shadow: 0 1px 0 #eee;
+	color: #555d66;
+	cursor: pointer;
+	display: block;
+	font-size: 14px;
+	font-weight: normal;
+	height: 28px;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	padding-left: 8px;
+	width: 100%;
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.merlin__select-control:hover {
+	border-color: #999;
+}
+
+.merlin__select-control select::-ms-expand {
+	display: none;
+}
+
+.merlin__demo-import-preview {
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	margin: 20px 0;
+	padding: 10px;
+	width: calc( 100% - 20px);
+}
+
+.merlin__demo-import-preview-image {
+	width: 100%;
+}
+
+.is-multi-import .merlin__content__footer {
+	margin-top: 10px;
+
 }
