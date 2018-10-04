@@ -110,7 +110,7 @@ A log file is created in `.../wp-content/uploads/merlin-wp/main.log`. In the log
 
 ### 7. Testing
 
-To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [Reset WP](https://wordpress.org/plugins/reset-wp/) plugin to reset and run through more tests.
+To test, you'll want to create a new standard WordPress installation and add your theme build with Merlin WP integrated. You can then use the [WP Reset](https://wordpress.org/plugins/wp-reset/) plugin to reset and run through more tests.
 
 ## Contributions
 

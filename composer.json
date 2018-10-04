@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "proteusthemes/wp-content-importer-v2": "^2.0.4",
+    "proteusthemes/wp-content-importer-v2": "^2.1.0",
     "monolog/monolog": "^1.23"
   }
 }

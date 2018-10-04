@@ -101,7 +101,21 @@ class Merlin {
 	protected $strings = null;
 
 	/**
-	 * The location where Merlin is located within the theme.
+	 * The base path where Merlin is located.
+	 *
+	 * @var array $strings
+	 */
+	protected $base_path = null;
+
+	/**
+	 * The base url where Merlin is located.
+	 *
+	 * @var array $strings
+	 */
+	protected $base_url = null;
+
+	/**
+	 * The location where Merlin is located within the theme or plugin.
 	 *
 	 * @var string $directory
 	 */
@@ -113,6 +127,20 @@ class Merlin {
 	 * @var string $merlin_url
 	 */
 	protected $merlin_url = null;
+
+	/**
+	 * The wp-admin parent page slug for the admin menu item.
+	 *
+	 * @var string $parent_slug
+	 */
+	protected $parent_slug = null;
+
+	/**
+	 * The capability required for this menu to be displayed to the user.
+	 *
+	 * @var string $capability
+	 */
+	protected $capability = null;
 
 	/**
 	 * The URL for the "Learn more about child themes" link.
@@ -210,16 +238,24 @@ class Merlin {
 
 		$config = wp_parse_args(
 			$config, array(
+				'base_path'            => get_parent_theme_file_path(),
+				'base_url'             => get_parent_theme_file_uri(),
 				'directory'            => 'merlin',
 				'merlin_url'           => 'merlin',
+				'parent_slug'          => 'themes.php',
+				'capability'           => 'manage_options',
 				'child_action_btn_url' => '',
 				'dev_mode'             => '',
 			)
 		);
 
 		// Set config arguments.
+		$this->base_path              = $config['base_path'];
+		$this->base_url               = $config['base_url'];
 		$this->directory              = $config['directory'];
 		$this->merlin_url             = $config['merlin_url'];
+		$this->parent_slug            = $config['parent_slug'];
+		$this->capability             = $config['capability'];
 		$this->child_action_btn_url   = $config['child_action_btn_url'];
 		$this->license_step_enabled   = $config['license_step'];
 		$this->theme_license_help_url = $config['license_help_url'];
@@ -252,7 +288,7 @@ class Merlin {
 		}
 
 		// Get the logger object, so it can be used in the whole class.
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-logger.php' );
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-logger.php';
 		$this->logger = Merlin_Logger::get_instance();
 
 		// Get TGMPA.
@@ -270,6 +306,7 @@ class Merlin {
 		add_action( 'admin_footer', array( $this, 'svg_sprite' ) );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
 		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_get_total_content_import_items', array( $this, '_ajax_get_total_content_import_items' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
@@ -289,20 +326,20 @@ class Merlin {
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
 
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-downloader.php' );
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-downloader.php';
 
 		$this->importer = new ProteusThemes\WPContentImporter2\Importer( array( 'fetch_attachments' => true ), $this->logger );
 
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-widget-importer.php' );
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-widget-importer.php';
 
 		if ( ! class_exists( 'WP_Customize_Setting' ) ) {
 			require_once ABSPATH . 'wp-includes/class-wp-customize-setting.php';
 		}
 
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-option.php' );
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-customizer-importer.php' );
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-redux-importer.php' );
-		require_once get_parent_theme_file_path( $this->directory . '/includes/class-merlin-hooks.php' );
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-customizer-option.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-customizer-importer.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-redux-importer.php';
+		require_once trailingslashit( $this->base_path ) . $this->directory . '/includes/class-merlin-hooks.php';
 
 		$this->hooks = new Merlin_Hooks();
 
@@ -377,8 +414,8 @@ class Merlin {
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
-		$this->hook_suffix = add_theme_page(
-			esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), 'manage_options', $this->merlin_url, array( $this, 'admin_page' )
+		$this->hook_suffix = add_submenu_page(
+			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
 	}
 
@@ -405,10 +442,10 @@ class Merlin {
 		$suffix = ( ( true === $this->dev_mode ) ) ? '' : '.min';
 
 		// Enqueue styles.
-		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
+		wp_enqueue_style( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/css/merlin' . $suffix . '.css', array( 'wp-admin' ), MERLIN_VERSION );
 
 		// Enqueue javascript.
-		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
+		wp_enqueue_script( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/js/merlin' . $suffix . '.js', array( 'jquery-core' ), MERLIN_VERSION );
 
 		$texts = array(
 			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
@@ -533,7 +570,7 @@ class Merlin {
 	public function svg_sprite() {
 
 		// Define SVG sprite file.
-		$svg = get_parent_theme_file_path( $this->directory . '/assets/images/sprite.svg' );
+		$svg = trailingslashit( $this->base_path ) . $this->directory . '/assets/images/sprite.svg';
 
 		// If it exists, include it.
 		if ( file_exists( $svg ) ) {
@@ -1001,9 +1038,19 @@ class Merlin {
 		}
 
 		// Are there plugins that need installing/activating?
-		$plugins = $this->get_tgmpa_plugins();
-		$count   = count( $plugins['all'] );
-		$class   = $count ? null : 'no-plugins';
+		$plugins          = $this->get_tgmpa_plugins();
+		$required_plugins = $recommended_plugins = array();
+		$count            = count( $plugins['all'] );
+		$class            = $count ? null : 'no-plugins';
+
+		// Split the plugins into required and recommended.
+		foreach ( $plugins['all'] as $slug => $plugin ) {
+			if ( ! empty( $plugin['required'] ) ) {
+				$required_plugins[ $slug ] = $plugin;
+			} else {
+				$recommended_plugins[ $slug ] = $plugin;
+			}
+		}
 
 		// Strings passed in from the config file.
 		$strings = $this->strings;
@@ -1041,34 +1088,37 @@ class Merlin {
 
 				<ul class="merlin__drawer merlin__drawer--install-plugins">
 
-				<?php foreach ( $plugins['all'] as $slug => $plugin ) : ?>
+				<?php if ( ! empty( $required_plugins ) ) : ?>
+					<?php foreach ( $required_plugins as $slug => $plugin ) : ?>
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
-					<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
+								<i></i>
 
-						<?php echo esc_html( $plugin['name'] ); ?>
+								<span><?php echo esc_html( $plugin['name'] ); ?></span>
 
-						<span>
-							<?php
-							$keys = array();
+								<span class="badge">
+									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', '@@textdomain' ); ?>">
+										<?php esc_html_e( 'req', '@@textdomain' ); ?>
+									</span>
+								</span>
+							</label>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
-							if ( isset( $plugins['install'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Install', '@@textdomain' );
-							}
-							if ( isset( $plugins['update'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Update', '@@textdomain' );
-							}
-							if ( isset( $plugins['activate'][ $slug ] ) ) {
-								$keys[] = esc_html__( 'Activate', '@@textdomain' );
-							}
-							echo implode( esc_html__( 'and', '@@textdomain' ), $keys );
-							?>
+				<?php if ( ! empty( $recommended_plugins ) ) : ?>
+					<?php foreach ( $recommended_plugins as $slug => $plugin ) : ?>
+						<li data-slug="<?php echo esc_attr( $slug ); ?>">
+							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
-						</span>
-
-						<div class="spinner"></div>
-
-					</li>
-				<?php endforeach; ?>
+							<label for="default_plugins_<?php echo esc_attr( $slug ); ?>">
+								<i></i><span><?php echo esc_html( $plugin['name'] ); ?></span>
+							</label>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
 				</ul>
 
@@ -1165,7 +1215,12 @@ class Merlin {
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_content">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $import ); ?></span>
-					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
+
+					<div class="merlin__progress-bar">
+						<span class="js-merlin-progress-bar"></span>
+					</div>
+
+					<span class="js-merlin-progress-bar-percentage">0%</span>
 				</a>
 
 				<?php wp_nonce_field( 'merlin' ); ?>
@@ -1203,9 +1258,15 @@ class Merlin {
 		$big_btn   = $strings['ready-big-button'];
 
 		// Links.
-		$link_1 = $strings['ready-link-1'];
-		$link_2 = $strings['ready-link-2'];
-		$link_3 = $strings['ready-link-3'];
+		$links = array();
+
+		for ( $i = 1; $i < 4; $i++ ) {
+			if ( ! empty( $strings[ "ready-link-$i" ] ) ) {
+				$links[] = $strings[ "ready-link-$i" ];
+			}
+		}
+
+		$links_class = empty( $links ) ? 'merlin__content__footer--nolinks' : null;
 
 		$allowed_html_array = array(
 			'a' => array(
@@ -1228,19 +1289,21 @@ class Merlin {
 
 		</div>
 
-		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
+		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
-			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
+			<?php if ( ! empty( $links ) ) : ?>
+				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
-			<ul class="merlin__drawer merlin__drawer--extras">
+				<ul class="merlin__drawer merlin__drawer--extras">
 
-				<li><?php echo wp_kses( $link_1, $allowed_html_array ); ?></li>
-				<li><?php echo wp_kses( $link_2, $allowed_html_array ); ?></li>
-				<li><?php echo wp_kses( $link_3, $allowed_html_array ); ?></li>
+					<?php foreach ( $links as $link ) : ?>
+						<li><?php echo wp_kses( $link, $allowed_html_array ); ?></li>
+					<?php endforeach; ?>
 
-			</ul>
+				</ul>
+			<?php endif; ?>
 
 		</footer>
 
@@ -1417,7 +1480,7 @@ class Merlin {
 			'edd_action' => 'activate_license',
 			'license'    => rawurlencode( $license ),
 			'item_name'  => rawurlencode( $this->edd_item_name ),
-			'url'        => esc_url( home_url() ),
+			'url'        => esc_url( home_url( '/' ) ),
 		);
 
 		$response = $this->edd_get_api_response( $api_params );
@@ -1612,12 +1675,11 @@ class Merlin {
 				$screenshot_ext = 'jpg';
 			}
 		} else {
-			// Fallback to parent theme screenshot
-			if ( file_exists( get_parent_theme_file_path( '/screenshot.png' ) ) ) {
-				$screenshot     = get_parent_theme_file_path( '/screenshot.png' );
+			if ( file_exists( $this->base_path . '/screenshot.png' ) ) {
+				$screenshot     = $this->base_path . '/screenshot.png';
 				$screenshot_ext = 'png';
-			} elseif ( file_exists( get_parent_theme_file_path( '/screenshot.jpg' ) ) ) {
-				$screenshot     = get_parent_theme_file_path( '/screenshot.jpg' );
+			} elseif ( file_exists( $this->base_path . '/screenshot.jpg' ) ) {
+				$screenshot     = $this->base_path . '/screenshot.jpg';
 				$screenshot_ext = 'jpg';
 			}
 		}
@@ -1703,7 +1765,8 @@ class Merlin {
 				)
 			);
 
-			$json['hash'] = md5( serialize( $json ) );
+			$json['hash']    = md5( serialize( $json ) );
+			$json['message'] = esc_html__( 'Installing', '@@textdomain' );
 			wp_send_json( $json );
 		} else {
 			$this->logger->debug(
@@ -1771,6 +1834,11 @@ class Merlin {
 						'logs'    => $logs,
 						'errors'  => '',
 					);
+
+					// The content import ended, so we should mark that all posts were imported.
+					if ( 'content' === $_POST['content'] ) {
+						$json['num_of_imported_posts'] = 'all';
+					}
 				}
 			}
 		} else {
@@ -1809,6 +1877,28 @@ class Merlin {
 				)
 			);
 		}
+	}
+
+
+	/**
+	 * AJAX call to retrieve total items (posts, pages, CPT, attachments) for the content import.
+	 */
+	public function _ajax_get_total_content_import_items() {
+		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) && empty( $_POST['selected_index'] ) ) {
+			$this->logger->error( __( 'The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data.', '@@textdomain' ) );
+
+			wp_send_json_error(
+				array(
+					'error'   => 1,
+					'message' => esc_html__( 'Invalid data!', '@@textdomain' ),
+				)
+			);
+		}
+
+		$selected_import = intval( $_POST['selected_index'] );
+		$import_files    = $this->get_import_files_paths( $selected_import );
+
+		wp_send_json_success( $this->importer->get_number_of_posts_to_import( $import_files['content'] ) );
 	}
 
 
@@ -2296,7 +2386,7 @@ class Merlin {
 				?>
 
 				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
-					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
+					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox checkbox-<?php echo esc_attr( $slug ); ?>" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
 						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
 					</label>
