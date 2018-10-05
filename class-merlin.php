@@ -129,6 +129,20 @@ class Merlin {
 	protected $merlin_url = null;
 
 	/**
+	 * The wp-admin parent page slug for the admin menu item.
+	 *
+	 * @var string $parent_slug
+	 */
+	protected $parent_slug = null;
+
+	/**
+	 * The capability required for this menu to be displayed to the user.
+	 *
+	 * @var string $capability
+	 */
+	protected $capability = null;
+
+	/**
 	 * The URL for the "Learn more about child themes" link.
 	 *
 	 * @var string $child_action_btn_url
@@ -228,6 +242,8 @@ class Merlin {
 				'base_url'             => get_parent_theme_file_uri(),
 				'directory'            => 'merlin',
 				'merlin_url'           => 'merlin',
+				'parent_slug'          => 'themes.php',
+				'capability'           => 'manage_options',
 				'child_action_btn_url' => '',
 				'dev_mode'             => '',
 			)
@@ -238,6 +254,8 @@ class Merlin {
 		$this->base_url               = $config['base_url'];
 		$this->directory              = $config['directory'];
 		$this->merlin_url             = $config['merlin_url'];
+		$this->parent_slug            = $config['parent_slug'];
+		$this->capability             = $config['capability'];
 		$this->child_action_btn_url   = $config['child_action_btn_url'];
 		$this->license_step_enabled   = $config['license_step'];
 		$this->theme_license_help_url = $config['license_help_url'];
@@ -396,8 +414,8 @@ class Merlin {
 		// Strings passed in from the config file.
 		$strings = $this->strings;
 
-		$this->hook_suffix = add_theme_page(
-			esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), 'manage_options', $this->merlin_url, array( $this, 'admin_page' )
+		$this->hook_suffix = add_submenu_page(
+			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
 		);
 	}
 
@@ -1141,6 +1159,8 @@ class Merlin {
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
 		$import    = $strings['btn-import'];
+
+		$multi_import = ( 1 < count( $this->import_files ) ) ? 'is-multi-import' : null;
 		?>
 
 		<div class="merlin__content--transition">
@@ -1156,26 +1176,28 @@ class Merlin {
 			<p><?php echo esc_html( $paragraph ); ?></p>
 
 			<?php if ( 1 < count( $this->import_files ) ) : ?>
-				<p><?php esc_html_e( 'Select which demo data you want to import:', '@@textdomain' ); ?></p>
-				<select class="js-merlin-demo-import-select">
-					<?php foreach ( $this->import_files as $index => $import_file ) : ?>
-						<?php
-						$img_src          = isset( $import_file['import_preview_image_url'] ) ? $import_file['import_preview_image_url'] : '';
-						$import_notice    = isset( $import_file['import_notice'] ) ? $import_file['import_notice'] : '';
-						$demo_preview_url = isset( $import_file['preview_url'] ) ? $import_file['preview_url'] : '';
-						?>
 
-						<option value="<?php echo esc_attr( $index ); ?>" data-img-src="<?php echo esc_url( $img_src ); ?>" data-notice="<?php echo esc_html( $import_notice ); ?>" data-preview-url="<?php echo esc_url( $demo_preview_url ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+				<div class="merlin__select-control-wrapper">
 
-					<?php endforeach; ?>
-				</select>
+					<select class="merlin__select-control js-merlin-demo-import-select">
+						<?php foreach ( $this->import_files as $index => $import_file ) : ?>
+							<option value="<?php echo esc_attr( $index ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></option>
+						<?php endforeach; ?>
+					</select>
+
+					<div class="merlin__select-control-help">
+						<span class="hint--top" aria-label="<?php echo esc_attr__( 'Select Demo', '@@textdomain' ); ?>">
+							<?php echo wp_kses( $this->svg( array( 'icon' => 'downarrow' ) ), $this->svg_allowed_html() ); ?>
+						</span>
+					</div>
+				</div>
 			<?php endif; ?>
 
 			<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
 
 		</div>
 
-		<form action="" method="post">
+		<form action="" method="post" class="<?php echo esc_attr( $multi_import ); ?>">
 
 			<ul class="merlin__drawer merlin__drawer--import-content js-merlin-drawer-import-content">
 				<?php echo $this->get_import_steps_html( $import_info ); ?>
@@ -1204,6 +1226,7 @@ class Merlin {
 	<?php
 		$this->logger->debug( __( 'The content import step has been displayed', '@@textdomain' ) );
 	}
+
 
 	/**
 	 * Final step
@@ -1648,7 +1671,6 @@ class Merlin {
 				$screenshot_ext = 'jpg';
 			}
 		} else {
-			// Fallback to parent theme screenshot
 			if ( file_exists( $this->base_path . '/screenshot.png' ) ) {
 				$screenshot     = $this->base_path . '/screenshot.png';
 				$screenshot_ext = 'png';
