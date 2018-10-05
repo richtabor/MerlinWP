@@ -6,21 +6,17 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	display: -webkit-box;
-	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
 	font-size: 14px;
 	line-height: 1.7em;
 	margin: 0 auto;
 	padding: 0 !important;
-
-	-webkit-align-items: center;
 	align-items: center;
 	-webkit-box-align: center;
 	-webkit-box-pack: center;
 	-ms-flex-align: center;
 	-ms-flex-pack: center;
-	-webkit-justify-content: center;
 	justify-content: center;
 }
 
@@ -337,6 +333,7 @@ p.success {
 	transform: translateY(50px) translateX(10px) scale(0.1);
 	-webkit-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1);
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1);
+	-o-transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1), opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1), opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1), opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1);
 	width: 300px;
@@ -367,6 +364,7 @@ p.success {
 	transform-origin: right;
 	-webkit-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms;
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms;
+	-o-transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms;
 }
@@ -417,6 +415,7 @@ p.success {
 	transform: translateY(50px) translateX(10px) scale(0.1);
 	-webkit-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms;
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms;
+	-o-transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms;
 	width: 24px;
@@ -625,6 +624,7 @@ p.success {
 
 .merlin__content--content .dots {
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 }
 
@@ -642,6 +642,7 @@ body.exiting .merlin__content--content .dots {
 	position: relative;
 	top: -0.15em;
 	-webkit-transition: background 300ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: background 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: background 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	width: 7px;
 	z-index: 9999;
@@ -679,6 +680,7 @@ body.exiting .merlin__content--content .dots {
 	top: -0.05em;
 	-webkit-transition: -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	width: 8px;
@@ -812,6 +814,7 @@ svg:not(:root) {
 	transform: scale(0.8);
 	-webkit-transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1) 0ms, -webkit-transform 400ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 	transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1) 0ms, -webkit-transform 400ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
+	-o-transition: transform 400ms cubic-bezier(0.694, 0, 0.335, 1), opacity 400ms cubic-bezier(0.694, 0, 0.335, 1) 0ms, filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 	transition: transform 400ms cubic-bezier(0.694, 0, 0.335, 1), opacity 400ms cubic-bezier(0.694, 0, 0.335, 1) 0ms, filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 	transition: transform 400ms cubic-bezier(0.694, 0, 0.335, 1), opacity 400ms cubic-bezier(0.694, 0, 0.335, 1) 0ms, filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms, -webkit-transform 400ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms;
 
@@ -847,6 +850,7 @@ svg:not(:root) {
 	transform-origin: 50%;
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0;
+	-o-transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0, -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 
@@ -861,6 +865,7 @@ svg:not(:root) {
 		transform: translateX(0) scale(1);
 		-webkit-transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
+		-o-transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 
@@ -941,6 +946,7 @@ svg:not(:root) {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: fill 150ms cubic-bezier(0.694, 0, 0.335, 1), opacity 150ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: fill 150ms cubic-bezier(0.694, 0, 0.335, 1), opacity 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: fill 150ms cubic-bezier(0.694, 0, 0.335, 1), opacity 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	width: 27px;
 	z-index: 9999;
@@ -953,6 +959,7 @@ svg:not(:root) {
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__content--license-key .icon {
 		-webkit-transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
+		-o-transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
 		transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
 	}
 }
@@ -973,8 +980,8 @@ svg:not(:root) {
 
 .merlin__content--license-key a::after {
 	background: transparent;
+	background: -o-linear-gradient(right, #fff 40%, rgba(255, 255, 255, 0));
 	background: -webkit-gradient(linear, right top, left top, color-stop(40%, #fff), to(rgba(255, 255, 255, 0)));
-	background: -webkit-linear-gradient(right, #fff 40%, rgba(255, 255, 255, 0));
 	background: linear-gradient(to left, #fff 40%, rgba(255, 255, 255, 0));
 	border-radius: 3px;
 	/* gradient on the right - to indicate it's possible to scroll */
@@ -1031,6 +1038,7 @@ body.exiting .merlin__content--transition {
 	transform: translateX(-40%) scale(0.96);
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0;
+	-o-transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0, -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 700ms cubic-bezier(0.694, 0, 0.335, 1) 0;
 
@@ -1045,6 +1053,7 @@ body.exiting .merlin__content--transition {
 		transform: translateX(0) scale(1);
 		-webkit-transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
+		-o-transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 
@@ -1058,6 +1067,7 @@ body.exiting .merlin__content--transition {
 	animation: animation 1000ms linear both 200ms;
 	opacity: 0;
 	-webkit-transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
 }
 
@@ -1324,12 +1334,14 @@ body.loaded .merlin__content--welcome {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__button {
 		-webkit-transition: color 50ms ease-in-out, background 50ms ease-in-out;
+		-o-transition: color 50ms ease-in-out, background 50ms ease-in-out;
 		transition: color 50ms ease-in-out, background 50ms ease-in-out;
 	}
 }
@@ -1411,6 +1423,7 @@ body.loaded .merlin__content--welcome {
 	padding-right: 25px;
 	padding-top: 10px;
 	-webkit-transition: color 150ms ease;
+	-o-transition: color 150ms ease;
 	transition: color 150ms ease;
 }
 
@@ -1434,6 +1447,7 @@ body.loaded .merlin__content--welcome {
 .merlin__button--loading .merlin__button--loading__text {
 	-webkit-transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
+	-o-transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1), -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 }
@@ -1450,6 +1464,7 @@ body.loaded .merlin__content--welcome {
 	transform: scale(0);
 	-webkit-transition: opacity 100ms ease, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 	transition: opacity 100ms ease, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
+	-o-transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 }
@@ -1481,6 +1496,7 @@ body.loaded .merlin__content--welcome {
 	transform: translateX(-5px);
 	-webkit-transition: opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 	transition: opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.2s cubic-bezier(0, 0.25, 0.08, 1);
+	-o-transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 	transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 	transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 }
@@ -1531,6 +1547,7 @@ body.loaded .merlin__content--welcome {
 	top: 58%;
 	-webkit-transition: top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
 	transition: top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
+	-o-transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), -ms-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
 	z-index: 1;
@@ -1550,6 +1567,7 @@ body.loaded .merlin__content--welcome {
 	top: 50%;
 	-webkit-transition: top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
 	transition: top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
+	-o-transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 900ms cubic-bezier(0.86, 0, 0.07, 1), transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), top 900ms cubic-bezier(0.86, 0, 0.07, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 900ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1), -ms-transform-origin 900ms cubic-bezier(0.86, 0, 0.07, 1);
 	width: 10px;
@@ -1603,6 +1621,7 @@ body.loaded .merlin__content--welcome {
 
 .merlin-spinner {
 	-webkit-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
+	-o-transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
 	width: 23px;
 }
@@ -1744,9 +1763,11 @@ body.loaded .merlin__content--welcome {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: 100ms ease;
+	-o-transition: 100ms ease;
 	transition: 100ms ease;
 	-webkit-transition-delay: 0ms;
-	transition-delay: 0ms;
+	-o-transition-delay: 0ms;
+	   transition-delay: 0ms;
 	visibility: hidden;
 	z-index: 1000000;
 }
@@ -1857,6 +1878,7 @@ body.loaded .merlin__content--welcome {
 	text-align: center;
 	text-decoration: none;
 	-webkit-transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
+	-o-transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 }
 
@@ -1896,6 +1918,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	pointer-events: none;
 	-webkit-transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
+	-o-transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 }
@@ -1909,6 +1932,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-transform: translate3d(0, -15px, 0);
 	transform: translate3d(0, -15px, 0);
 	-webkit-transition: 0.25s ease;
+	-o-transition: 0.25s ease;
 	transition: 0.25s ease;
 }
 
@@ -1918,52 +1942,62 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 
 .merlin__drawer li:nth-of-type(10) {
 	-webkit-transition-delay: 0.2s;
-	transition-delay: 0.2s;
+	-o-transition-delay: 0.2s;
+	   transition-delay: 0.2s;
 }
 
 .merlin__drawer li:nth-of-type(9) {
 	-webkit-transition-delay: 0.18s;
-	transition-delay: 0.18s;
+	-o-transition-delay: 0.18s;
+	   transition-delay: 0.18s;
 }
 
 .merlin__drawer li:nth-of-type(8) {
 	-webkit-transition-delay: 0.16s;
-	transition-delay: 0.16s;
+	-o-transition-delay: 0.16s;
+	   transition-delay: 0.16s;
 }
 
 .merlin__drawer li:nth-of-type(7) {
 	-webkit-transition-delay: 0.14s;
-	transition-delay: 0.14s;
+	-o-transition-delay: 0.14s;
+	   transition-delay: 0.14s;
 }
 
 .merlin__drawer li:nth-of-type(6) {
 	-webkit-transition-delay: 0.12s;
-	transition-delay: 0.12s;
+	-o-transition-delay: 0.12s;
+	   transition-delay: 0.12s;
 }
 
 .merlin__drawer li:nth-of-type(5) {
 	-webkit-transition-delay: 0.1s;
-	transition-delay: 0.1s;
+	-o-transition-delay: 0.1s;
+	   transition-delay: 0.1s;
 }
 
 .merlin__drawer li:nth-of-type(4) {
 	-webkit-transition-delay: 0.08s;
-	transition-delay: 0.08s;
+	-o-transition-delay: 0.08s;
+	   transition-delay: 0.08s;
 }
 
 .merlin__drawer li:nth-of-type(3) {
 	-webkit-transition-delay: 0.06s;
-	transition-delay: 0.06s;
+	-o-transition-delay: 0.06s;
+	   transition-delay: 0.06s;
 }
 
 .merlin__drawer li:nth-of-type(2) {
 	-webkit-transition-delay: 0.04s;
-	transition-delay: 0.04s;
+	-o-transition-delay: 0.04s;
+	   transition-delay: 0.04s;
 }
 
 .merlin__drawer li:nth-of-type(1) {
 	-webkit-transition-delay: 0.02s;
-	transition-delay: 0.02s;
+	-o-transition-delay: 0.02s;
+	   transition-delay: 0.02s;
 }
 
 .merlin__drawer--open .merlin__drawer {
@@ -1975,6 +2009,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transform: translateY(0%);
 	-webkit-transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
+	-o-transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 }
@@ -1984,57 +2019,68 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: 0.4s ease;
+	-o-transition: 0.4s ease;
 	transition: 0.4s ease;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(1) {
 	-webkit-transition-delay: 0.15s;
-	transition-delay: 0.15s;
+	-o-transition-delay: 0.15s;
+	   transition-delay: 0.15s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(2) {
 	-webkit-transition-delay: 0.3s;
-	transition-delay: 0.3s;
+	-o-transition-delay: 0.3s;
+	   transition-delay: 0.3s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(3) {
 	-webkit-transition-delay: 0.45s;
-	transition-delay: 0.45s;
+	-o-transition-delay: 0.45s;
+	   transition-delay: 0.45s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(4) {
 	-webkit-transition-delay: 0.6s;
-	transition-delay: 0.6s;
+	-o-transition-delay: 0.6s;
+	   transition-delay: 0.6s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(5) {
 	-webkit-transition-delay: 0.75s;
-	transition-delay: 0.75s;
+	-o-transition-delay: 0.75s;
+	   transition-delay: 0.75s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(6) {
 	-webkit-transition-delay: 0.9s;
-	transition-delay: 0.9s;
+	-o-transition-delay: 0.9s;
+	   transition-delay: 0.9s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(7) {
 	-webkit-transition-delay: 1.05s;
-	transition-delay: 1.05s;
+	-o-transition-delay: 1.05s;
+	   transition-delay: 1.05s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(8) {
 	-webkit-transition-delay: 1.2s;
-	transition-delay: 1.2s;
+	-o-transition-delay: 1.2s;
+	   transition-delay: 1.2s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(9) {
 	-webkit-transition-delay: 1.35s;
-	transition-delay: 1.35s;
+	-o-transition-delay: 1.35s;
+	   transition-delay: 1.35s;
 }
 
 .merlin__drawer--open .merlin__drawer li:nth-of-type(10) {
 	-webkit-transition-delay: 1.5s;
-	transition-delay: 1.5s;
+	-o-transition-delay: 1.5s;
+	   transition-delay: 1.5s;
 }
 
 .merlin__drawer--open .merlin__button--next {
@@ -2084,6 +2130,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 
 .merlin__drawer--import-content label span {
 	-webkit-transition: color 100ms;
+	-o-transition: color 100ms;
 	transition: color 100ms;
 }
 
@@ -2102,6 +2149,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transform-origin: center;
 	-webkit-transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	-o-transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89), -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	width: 13px;
@@ -2122,6 +2170,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
 	-webkit-transition: width 50ms ease 50ms;
+	-o-transition: width 50ms ease 50ms;
 	transition: width 50ms ease 50ms;
 	width: 0;
 }
@@ -2141,6 +2190,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
 	-webkit-transition: width 50ms ease;
+	-o-transition: width 50ms ease;
 	transition: width 50ms ease;
 	width: 0;
 }
@@ -2159,6 +2209,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	background-color: #ffb900;
 	border-color: #ffb900;
 	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
+	-o-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 }
 
@@ -2168,6 +2219,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	background-color: #46b450;
 	border-color: #46b450;
 	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
+	-o-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 
 	-webkit-animation-fill-mode: both;
@@ -2186,6 +2238,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	background-color: #d54e21;
 	border-color: #d54e21;
 	-webkit-transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
+	-o-transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 	transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 }
 
@@ -2200,6 +2253,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 .checkbox:checked + label i:after {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
+	-o-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
 	width: 9px;
 }
@@ -2207,6 +2261,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 .checkbox:checked + label i:before {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
+	-o-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
 	width: 5px;
 }
@@ -2334,6 +2389,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 
 .merlin__drawer--install-plugins label span {
 	-webkit-transition: color 100ms;
+	-o-transition: color 100ms;
 	transition: color 100ms;
 }
 
@@ -2352,6 +2408,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transform-origin: center;
 	-webkit-transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	-o-transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89), -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	width: 13px;
@@ -2372,6 +2429,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
 	-webkit-transition: width 50ms ease 50ms;
+	-o-transition: width 50ms ease 50ms;
 	transition: width 50ms ease 50ms;
 	width: 0;
 }
@@ -2391,6 +2449,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
 	-webkit-transition: width 50ms ease;
+	-o-transition: width 50ms ease;
 	transition: width 50ms ease;
 	width: 0;
 }
@@ -2401,6 +2460,12 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 
 .merlin__drawer--open .merlin__drawer--extras {
 	padding-bottom: 30px;
+}
+
+.js-merlin-demo-import-select {
+	display: block;
+	width: 100%;
+	margin-top: 12px;
 }
 
 .icon--checkmark {
@@ -2527,6 +2592,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transform-origin: top;
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: transform 500ms cubic-bezier(0.694, 0, 0.335, 1), opacity 500ms cubic-bezier(0.694, 0, 0.335, 1), filter 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-transform 500ms cubic-bezier(0.694, 0, 0.335, 1), -webkit-filter 500ms cubic-bezier(0.694, 0, 0.335, 1);
 
@@ -2541,6 +2607,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		transform: translateX(0);
 		-webkit-transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
+		-o-transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out;
 		transition: opacity 300ms ease-in-out, filter 300ms ease-in-out, -webkit-filter 300ms ease-in-out;
 
@@ -2581,6 +2648,7 @@ body.loaded .merlin__content__footer--fullwidth {
 
 .merlin__content--content .merlin__content__footer {
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
+	-o-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 }
 
