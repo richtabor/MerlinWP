@@ -32,6 +32,7 @@ $wizard = new Merlin(
 		'edd_remote_api_url'   => '', // EDD_Theme_Updater_Admin remote_api_url.
 		'edd_item_name'        => '', // EDD_Theme_Updater_Admin item_name.
 		'edd_theme_slug'       => '', // EDD_Theme_Updater_Admin item_slug.
+		'ready_big_button_url' => '', // Link for the big button on the ready step.
 	),
 	$strings = array(
 		'admin-menu'               => esc_html__( 'Theme Setup', '@@textdomain' ),
