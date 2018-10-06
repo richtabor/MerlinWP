@@ -214,6 +214,7 @@ class Merlin {
 				'merlin_url'           => 'merlin',
 				'child_action_btn_url' => '',
 				'dev_mode'             => '',
+				'ready_big_button_url' => home_url( '/' ),
 			)
 		);
 
@@ -228,6 +229,7 @@ class Merlin {
 		$this->edd_theme_slug         = $config['edd_theme_slug'];
 		$this->edd_remote_api_url     = $config['edd_remote_api_url'];
 		$this->dev_mode               = $config['dev_mode'];
+		$this->ready_big_button_url   = $config['ready_big_button_url'];
 
 		// Strings passed in from the config file.
 		$this->strings = $strings;
@@ -1205,13 +1207,12 @@ class Merlin {
 		$strings = $this->strings;
 
 		// Text strings.
-		$header       = $strings['ready-header'];
-		$paragraph    = $strings['ready%s'];
-		$action       = $strings['ready-action-link'];
-		$skip         = $strings['btn-skip'];
-		$next         = $strings['btn-next'];
-		$big_btn      = $strings['ready-big-button'];
-		$big_btn_link = !empty($strings['ready-big-button-link']) ? $strings['ready-big-button-link'] : home_url( '/' );
+		$header    = $strings['ready-header'];
+		$paragraph = $strings['ready%s'];
+		$action    = $strings['ready-action-link'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$big_btn   = $strings['ready-big-button'];
 
 		// Links.
 		$links = array();
@@ -1247,7 +1248,7 @@ class Merlin {
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
-			<a href="<?php echo esc_url( $big_btn_link ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
+			<a href="<?php echo esc_url( $this->ready_big_button_url ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
 			<?php if ( ! empty( $links ) ) : ?>
 				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
