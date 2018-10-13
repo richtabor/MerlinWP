@@ -16,259 +16,259 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: class-merlin.php:451
+#: class-merlin.php:453
 msgid "Something went wrong. Please refresh the page and try again!"
 msgstr ""
 
-#: class-merlin.php:597
+#: class-merlin.php:599
 msgid "Please define default parameters in the form of an array."
 msgstr ""
 
-#: class-merlin.php:602
+#: class-merlin.php:604
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: class-merlin.php:711
+#: class-merlin.php:713
 msgid "Welcome"
 msgstr ""
 
-#: class-merlin.php:718
+#: class-merlin.php:720
 msgid "Child"
 msgstr ""
 
-#: class-merlin.php:724
+#: class-merlin.php:726
 msgid "License"
 msgstr ""
 
-#: class-merlin.php:732
+#: class-merlin.php:734
 msgid "Plugins"
 msgstr ""
 
-#: class-merlin.php:740, class-merlin.php:1980
+#: class-merlin.php:742, class-merlin.php:1982
 msgid "Content"
 msgstr ""
 
-#: class-merlin.php:746
+#: class-merlin.php:748
 msgid "Ready"
 msgstr ""
 
-#: class-merlin.php:851
+#: class-merlin.php:853
 msgid "The welcome step has been displayed"
 msgstr ""
 
-#: class-merlin.php:945
+#: class-merlin.php:947
 msgid "The license activation step has been displayed"
 msgstr ""
 
-#: class-merlin.php:1015
+#: class-merlin.php:1017
 msgid "The child theme installation step has been displayed"
 msgstr ""
 
-#: class-merlin.php:1102
+#: class-merlin.php:1104
 msgid "Required"
 msgstr ""
 
-#: class-merlin.php:1103
+#: class-merlin.php:1105
 msgid "req"
 msgstr ""
 
-#: class-merlin.php:1143
+#: class-merlin.php:1145
 msgid "The plugin installation step has been displayed"
 msgstr ""
 
-#: class-merlin.php:1189
+#: class-merlin.php:1191
 msgid "Select Demo"
 msgstr ""
 
-#: class-merlin.php:1227
+#: class-merlin.php:1229
 msgid "The content import step has been displayed"
 msgstr ""
 
-#: class-merlin.php:1307
+#: class-merlin.php:1309
 msgid "The final step has been displayed"
 msgstr ""
 
-#: class-merlin.php:1384
+#: class-merlin.php:1386
 msgid "The existing child theme was activated"
 msgstr ""
 
-#: class-merlin.php:1401
+#: class-merlin.php:1403
 msgid "The newly generated child theme was activated"
 msgstr ""
 
-#: class-merlin.php:1422
+#: class-merlin.php:1424
 msgid "Yikes! The theme activation failed. Please try again or contact support."
 msgstr ""
 
-#: class-merlin.php:1431
+#: class-merlin.php:1433
 msgid "Please add your license key before attempting to activate one."
 msgstr ""
 
-#: class-merlin.php:1444
+#: class-merlin.php:1446
 msgid "The license activation was performed with the following results"
 msgstr ""
 
-#: class-merlin.php:1490, class-merlin.php:1531
+#: class-merlin.php:1492, class-merlin.php:1533
 msgid "An error occurred, please try again."
 msgstr ""
 
-#: class-merlin.php:1503
+#: class-merlin.php:1505
 msgid "Your license key expired on %s."
 msgstr ""
 
-#: class-merlin.php:1509
+#: class-merlin.php:1511
 msgid "Your license key has been disabled."
 msgstr ""
 
-#: class-merlin.php:1513
+#: class-merlin.php:1515
 msgid "This appears to be an invalid license key. Please try again or contact support."
 msgstr ""
 
-#: class-merlin.php:1518
+#: class-merlin.php:1520
 msgid "Your license is not active for this URL."
 msgstr ""
 
-#: class-merlin.php:1523
+#: class-merlin.php:1525
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: class-merlin.php:1527
+#: class-merlin.php:1529
 msgid "Your license key has reached its activation limit."
 msgstr ""
 
-#: class-merlin.php:1621
+#: class-merlin.php:1623
 msgid "The child theme functions.php content was generated"
 msgstr ""
 
-#: class-merlin.php:1652
+#: class-merlin.php:1654
 msgid "The child theme style.css content was generated"
 msgstr ""
 
-#: class-merlin.php:1686
+#: class-merlin.php:1688
 msgid "The child theme screenshot was copied to the child theme, with the following result"
 msgstr ""
 
-#: class-merlin.php:1688
+#: class-merlin.php:1690
 msgid "The child theme screenshot was not generated, because of these results"
 msgstr ""
 
-#: class-merlin.php:1717
+#: class-merlin.php:1719
 msgid "Activating"
 msgstr ""
 
-#: class-merlin.php:1733
+#: class-merlin.php:1735
 msgid "Updating"
 msgstr ""
 
-#: class-merlin.php:1749, class-merlin.php:1765, class-merlin.php:1983, class-merlin.php:1996, class-merlin.php:2009, class-merlin.php:2022, class-merlin.php:2035, class-merlin.php:2048, class-merlin.php:2091
+#: class-merlin.php:1751, class-merlin.php:1767, class-merlin.php:1985, class-merlin.php:1998, class-merlin.php:2011, class-merlin.php:2024, class-merlin.php:2037, class-merlin.php:2050, class-merlin.php:2093
 msgid "Installing"
 msgstr ""
 
-#: class-merlin.php:1757
+#: class-merlin.php:1759
 msgid "A plugin with the following data will be processed"
 msgstr ""
 
-#: class-merlin.php:1769
+#: class-merlin.php:1771
 msgid "A plugin with the following data was processed"
 msgstr ""
 
-#: class-merlin.php:1778, class-merlin.php:1984, class-merlin.php:1997, class-merlin.php:2010, class-merlin.php:2023, class-merlin.php:2036, class-merlin.php:2049
+#: class-merlin.php:1780, class-merlin.php:1986, class-merlin.php:1999, class-merlin.php:2012, class-merlin.php:2025, class-merlin.php:2038, class-merlin.php:2051
 msgid "Success"
 msgstr ""
 
-#: class-merlin.php:1801
+#: class-merlin.php:1803
 msgid "The content importer AJAX call failed to start, because of incorrect data"
 msgstr ""
 
-#: class-merlin.php:1806
+#: class-merlin.php:1808
 msgid "Invalid content!"
 msgstr ""
 
-#: class-merlin.php:1817
+#: class-merlin.php:1819
 msgid "The content import AJAX call will be executed with this import data"
 msgstr ""
 
-#: class-merlin.php:1859
+#: class-merlin.php:1861
 msgid "The content import AJAX call failed with this passed data"
 msgstr ""
 
-#: class-merlin.php:1870
+#: class-merlin.php:1872
 msgid "Error"
 msgstr ""
 
-#: class-merlin.php:1884
+#: class-merlin.php:1886
 msgid "The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data."
 msgstr ""
 
-#: class-merlin.php:1889
+#: class-merlin.php:1891
 msgid "Invalid data!"
 msgstr ""
 
-#: class-merlin.php:1981
+#: class-merlin.php:1983
 msgid "Demo content data."
 msgstr ""
 
-#: class-merlin.php:1982, class-merlin.php:1995, class-merlin.php:2008, class-merlin.php:2021, class-merlin.php:2034, class-merlin.php:2047
+#: class-merlin.php:1984, class-merlin.php:1997, class-merlin.php:2010, class-merlin.php:2023, class-merlin.php:2036, class-merlin.php:2049
 msgid "Pending"
 msgstr ""
 
-#: class-merlin.php:1993
+#: class-merlin.php:1995
 msgid "Widgets"
 msgstr ""
 
-#: class-merlin.php:1994
+#: class-merlin.php:1996
 msgid "Sample widgets data."
 msgstr ""
 
-#: class-merlin.php:2006
+#: class-merlin.php:2008
 msgid "Revolution Slider"
 msgstr ""
 
-#: class-merlin.php:2007
+#: class-merlin.php:2009
 msgid "Sample Revolution sliders data."
 msgstr ""
 
-#: class-merlin.php:2019
+#: class-merlin.php:2021
 msgid "Options"
 msgstr ""
 
-#: class-merlin.php:2020
+#: class-merlin.php:2022
 msgid "Sample theme options data."
 msgstr ""
 
-#: class-merlin.php:2032
+#: class-merlin.php:2034
 msgid "Redux Options"
 msgstr ""
 
-#: class-merlin.php:2033
+#: class-merlin.php:2035
 msgid "Redux framework options."
 msgstr ""
 
-#: class-merlin.php:2045
+#: class-merlin.php:2047
 msgid "After import setup"
 msgstr ""
 
-#: class-merlin.php:2046
+#: class-merlin.php:2048
 msgid "After import setup."
 msgstr ""
 
-#: class-merlin.php:2075
+#: class-merlin.php:2077
 msgid "The revolution slider import was executed"
 msgstr ""
 
-#: class-merlin.php:2112
+#: class-merlin.php:2114
 msgid "The home page was set"
 msgstr ""
 
-#: class-merlin.php:2122
+#: class-merlin.php:2124
 msgid "The blog page was set"
 msgstr ""
 
-#: class-merlin.php:2137
+#: class-merlin.php:2139
 msgid "The Hello world post status was set to draft"
 msgstr ""
 
-#: class-merlin.php:2161
+#: class-merlin.php:2163
 msgid "This predefined demo import does not have the name parameter: import_file_name"
 msgstr ""
 
