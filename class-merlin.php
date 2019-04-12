@@ -407,6 +407,12 @@ class Merlin {
 		// Enqueue styles.
 		wp_enqueue_style( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/css/merlin' . $suffix . '.css' ), array( 'wp-admin' ), MERLIN_VERSION );
 
+		// Maybe enqueue additional styles.
+		$custom_stylesheet = apply_filters( 'merlin_custom_stylesheet', '' );
+		if ( ! empty( $custom_stylesheet ) ) {
+			wp_enqueue_style( 'merlin-additional', $custom_stylesheet, array( 'wp-admin', 'merlin' ), MERLIN_VERSION );
+		}
+
 		// Enqueue javascript.
 		wp_enqueue_script( 'merlin', get_parent_theme_file_uri( $this->directory . '/assets/js/merlin' . $suffix . '.js' ), array( 'jquery-core' ), MERLIN_VERSION );
 
