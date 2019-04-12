@@ -157,7 +157,7 @@ msgid "Sample Revolution sliders data."
 msgstr ""
 
 #: class-merlin.php:1864
-msgid "Options"
+msgid "Theme Options"
 msgstr ""
 
 #: class-merlin.php:1865

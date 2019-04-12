@@ -1930,7 +1930,7 @@ class Merlin {
 
 		if ( ! empty( $import_files['options'] ) ) {
 			$content['options'] = array(
-				'title'            => esc_html__( 'Options', '@@textdomain' ),
+				'title'            => esc_html__( 'Theme Options', '@@textdomain' ),
 				'description'      => esc_html__( 'Sample theme options data.', '@@textdomain' ),
 				'pending'          => esc_html__( 'Pending', '@@textdomain' ),
 				'installing'       => esc_html__( 'Installing', '@@textdomain' ),
