@@ -229,7 +229,7 @@ msgid "Sample Revolution sliders data."
 msgstr ""
 
 #: class-merlin.php:2021
-msgid "Options"
+msgid "Theme Options"
 msgstr ""
 
 #: class-merlin.php:2022
