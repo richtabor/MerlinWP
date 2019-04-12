@@ -3,7 +3,7 @@
 	"slug": "merlin-wp",
 	"textdomain": "merlin-wp",
 	"repository": "https://github.com/richtabor/MerlinWP",
-	"version": "1.0.0-rc.1",
+	"version": "1.0.0",
 	"theme_uri": "https://merlinwp.com",
 	"author": "Rich Tabor <hello@merlinwp.com>",
 	"author_uri": "https://merlinwp.com",

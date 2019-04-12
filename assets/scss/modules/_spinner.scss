@@ -35,6 +35,17 @@ $width: 23px;
 	}
 }
 
+.merlin {
+	&__select-spinner {
+		display: none;
+		top: 0;
+		right: -29px;
+		left: auto;
+		width: 26px;
+		height: 26px;
+	}
+}
+
 @keyframes spinnerRotate {
 	100%{
 		transform: rotate(360deg);

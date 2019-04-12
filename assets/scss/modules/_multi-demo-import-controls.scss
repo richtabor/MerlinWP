@@ -1,0 +1,88 @@
+.merlin {
+
+	&__select-control-wrapper {
+		position: relative;
+		max-width: 200px;
+		margin: 9px auto -4px;
+
+		.icon {
+			opacity: .5;
+			fill: $gray;
+			width: 15px;
+			position: relative;
+			top: 6px;
+			height: 15px;
+
+			&:hover {
+				opacity: 1;
+				fill: $blue;
+			}
+		}
+	}
+
+	&__select-control-help {
+		height: 26px;
+		position: absolute;
+		right: 7px;
+		top: 0px;
+	}
+
+	&__select-control {
+		appearance: none;
+		background: #f9f9f9;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+		box-shadow: 0 1px 0 #eee;
+		color: #555d66;
+		cursor: pointer;
+		display: block;
+		font-size: 13px;
+		font-weight: normal;
+		height: 27px;
+		line-height: 1;
+		margin: 0;
+		padding-left: 8px;
+		padding: 0;
+		width: 100%;
+
+		&:hover {
+			border-color: #999;
+		}
+
+		&:focus {
+			border-color: #5b9dd9;
+		}
+
+		select::-ms-expand {
+			display: none;
+		}
+	}
+
+	&__demo-import-preview {
+		width: calc( 100% - 20px );
+		margin: 20px 0;
+		background-color: #f1f1f1;
+		padding: 10px;
+		border-radius: 5px;
+	}
+
+	&__demo-import-preview-image {
+		width: 100%;
+	}
+}
+
+.merlin__drawer--open {
+
+	.is-multi-import {
+		transition: padding 300ms cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+		padding-bottom: 30px;
+	}
+}
+
+.is-multi-import {
+	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
+
+	.merlin__content__footer {
+		margin-top: 7px;
+	}
+}

@@ -85,11 +85,9 @@ var Merlin = (function($){
         });
 
 				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
-					var selectedIndex  = $( this ).val(),
-						$selectedOption  = $( this ).children( ':selected' ),
-						optionImgSrc     = $selectedOption.data( 'img-src' ),
-						optionNotice     = $selectedOption.data( 'notice' ),
-						optionPreviewUrl = $selectedOption.data( 'preview-url' );
+					var selectedIndex  = $( this ).val();
+
+					$( '.js-merlin-select-spinner' ).show();
 
 					$.post( merlin_params.ajaxurl, {
 						action: 'merlin_update_selected_import_data_info',
@@ -102,8 +100,13 @@ var Merlin = (function($){
 						else {
 							alert( merlin_params.texts.something_went_wrong );
 						}
+
+						$( '.js-merlin-select-spinner' ).hide();
 					} )
-						.fail( function() { alert( merlin_params.texts.something_went_wrong ) } );
+						.fail( function() {
+							$( '.js-merlin-select-spinner' ).hide();
+							alert( merlin_params.texts.something_went_wrong )
+						} );
 				} );
     }
 
@@ -233,18 +236,9 @@ function ActivateLicense() {
         }
     }
 
+function PluginManager(){
 
-
-
-
-
-
-
-
-
-    function PluginManager(){
-
-    	var body 				= $('.merlin__body');
+    	var body = $('.merlin__body');
         var complete;
         var items_completed 	= 0;
         var current_item 		= "";
@@ -252,47 +246,49 @@ function ActivateLicense() {
         var current_item_hash 	= "";
 
         function ajax_callback(response){
+            var currentSpan = $current_node.find("label");
             if(typeof response === "object" && typeof response.message !== "undefined"){
-                $current_node.find("span").text(response.message);
-                if(typeof response.url != "undefined"){
-                    // we have an ajax url action to perform.
+                currentSpan.removeClass( 'installing success error' ).addClass(response.message.toLowerCase());
 
+                // The plugin is done (installed, updated and activated).
+                if(typeof response.done != "undefined" && response.done){
+                    find_next();
+                }else if(typeof response.url != "undefined"){
+                    // we have an ajax url action to perform.
                     if(response.hash == current_item_hash){
-                        $current_node.find("span").text("failed");
+                        currentSpan.removeClass( 'installing success' ).addClass("error");
                         find_next();
                     }else {
                         current_item_hash = response.hash;
-                        jQuery.post(response.url, response, function(response2) {
-                            process_current();
-                        }).fail(ajax_callback);
+                        jQuery.post(response.url, response, ajax_callback).fail(ajax_callback);
                     }
-
-                }else if(typeof response.done != "undefined"){
-                    // finished processing this plugin, move onto next
-                    find_next();
                 }else{
                     // error processing this plugin
                     find_next();
                 }
             }else{
-                // error - try again with next plugin
-                $current_node.find("span").text("Success");
-                find_next();
+                // The TGMPA returns a whole page as response, so check, if this plugin is done.
+                process_current();
             }
         }
+
         function process_current(){
             if(current_item){
-                // query our ajax handler to get the ajax to send to TGM
-                // if we don"t get a reply we can assume everything worked and continue onto the next one.
-                jQuery.post(merlin_params.ajaxurl, {
-                    action: "merlin_plugins",
-                    wpnonce: merlin_params.wpnonce,
-                    slug: current_item
-                }, ajax_callback).fail(ajax_callback);
+                var $check = $current_node.find("input:checkbox");
+                if($check.is(":checked")) {
+                    jQuery.post(merlin_params.ajaxurl, {
+                        action: "merlin_plugins",
+                        wpnonce: merlin_params.wpnonce,
+                        slug: current_item,
+                    }, ajax_callback).fail(ajax_callback);
+                }else{
+                    $current_node.addClass("skipping");
+                    setTimeout(find_next,300);
+                }
             }
         }
+
         function find_next(){
-            var do_next = false;
             if($current_node){
                 if(!$current_node.data("done_item")){
                     items_completed++;
@@ -302,14 +298,16 @@ function ActivateLicense() {
             }
             var $li = $(".merlin__drawer--install-plugins li");
             $li.each(function(){
-                if(current_item == "" || do_next){
-                    current_item = $(this).data("slug");
-                    $current_node = $(this);
-                    process_current();
-                    do_next = false;
-                }else if($(this).data("slug") == current_item){
-                    do_next = true;
+                var $item = $(this);
+
+                if ( $item.data("done_item") ) {
+                    return true;
                 }
+
+                current_item = $item.data("slug");
+                $current_node = $item;
+                process_current();
+                return false;
             });
             if(items_completed >= $li.length){
                 // finished all plugins!
@@ -320,6 +318,7 @@ function ActivateLicense() {
         return {
             init: function(btn){
                 $(".merlin__drawer--install-plugins").addClass("installing");
+                $(".merlin__drawer--install-plugins").find("input").prop("disabled", true);
                 complete = function(){
 
                 	setTimeout(function(){
@@ -341,7 +340,6 @@ function ActivateLicense() {
             }
         }
     }
-
     function ContentManager(){
 
     	var body 				= $('.merlin__body');
@@ -350,11 +348,20 @@ function ActivateLicense() {
         var current_item 		= "";
         var $current_node;
         var current_item_hash 	= "";
+        var current_content_import_items = 1;
+        var total_content_import_items = 0;
+        var progress_bar_interval;
 
         function ajax_callback(response) {
             var currentSpan = $current_node.find("label");
             if(typeof response == "object" && typeof response.message !== "undefined"){
                 currentSpan.addClass(response.message.toLowerCase());
+
+                if( typeof response.num_of_imported_posts !== "undefined" && 0 < total_content_import_items ) {
+                    current_content_import_items = 'all' === response.num_of_imported_posts ? total_content_import_items : response.num_of_imported_posts;
+                    update_progress_bar();
+                }
+
                 if(typeof response.url !== "undefined"){
                     // we have an ajax url action to perform.
                     if(response.hash === current_item_hash){
@@ -428,17 +435,61 @@ function ActivateLicense() {
             }
         }
 
+        function init_content_import_progress_bar() {
+            if( ! $(".merlin__drawer--import-content__list-item .checkbox-content").is( ':checked' ) ) {
+                return false;
+            }
+
+            jQuery.post(merlin_params.ajaxurl, {
+                action: "merlin_get_total_content_import_items",
+                wpnonce: merlin_params.wpnonce,
+                selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
+            }, function( response ) {
+                total_content_import_items = response.data;
+
+                if ( 0 < total_content_import_items ) {
+                    update_progress_bar();
+
+                    // Change the value of the progress bar constantly for a small amount (0,2% per sec), to improve UX.
+                    progress_bar_interval = setInterval( function() {
+                        current_content_import_items = current_content_import_items + total_content_import_items/500;
+                        update_progress_bar();
+                    }, 1000 );
+                }
+            } );
+        }
+
+        function valBetween(v, min, max) {
+            return (Math.min(max, Math.max(min, v)));
+        }
+
+        function update_progress_bar() {
+            $('.js-merlin-progress-bar').css( 'width', (current_content_import_items/total_content_import_items) * 100 + '%' );
+
+            var $percentage = valBetween( ((current_content_import_items/total_content_import_items) * 100) , 0, 99);
+
+            $('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
+
+            if ( 1 === current_content_import_items/total_content_import_items ) {
+                clearInterval( progress_bar_interval );
+            }
+        }
+
         return {
             init: function(btn){
                 $(".merlin__drawer--import-content").addClass("installing");
                 $(".merlin__drawer--import-content").find("input").prop("disabled", true);
                 complete = function(){
 
-									$.post(merlin_params.ajaxurl, {
-										action: "merlin_import_finished",
-										wpnonce: merlin_params.wpnonce,
-										selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
-									});
+			$.post(merlin_params.ajaxurl, {
+				action: "merlin_import_finished",
+				wpnonce: merlin_params.wpnonce,
+				selected_index: $( '.js-merlin-demo-import-select' ).val() || 0
+			});
+
+			setTimeout(function(){
+				$('.js-merlin-progress-bar-percentage').html( '100%' );
+			},100);
 
                 	setTimeout(function(){
 				       body.removeClass( drawer_opened );
@@ -456,6 +507,7 @@ function ActivateLicense() {
 				        window.location.href=btn.href;
 				    },4000);
                 };
+                init_content_import_progress_bar();
                 find_next();
             }
         }

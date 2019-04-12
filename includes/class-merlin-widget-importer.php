@@ -107,7 +107,7 @@ class Merlin_Widget_Importer {
 		}
 
 		// Hook before import.
-		do_action( 'merlin_widget_importer_before_widgets_import' );
+		do_action( 'merlin_widget_importer_before_widgets_import', $data );
 		$data = apply_filters( 'merlin_before_widgets_import_data', $data );
 
 		// Get all available widgets site supports.
@@ -271,7 +271,7 @@ class Merlin_Widget_Importer {
 		}
 
 		// Hook after import.
-		do_action( 'merlin_widget_importer_after_widgets_import' );
+		do_action( 'merlin_widget_importer_after_widgets_import', $data );
 
 		// Return results.
 		return apply_filters( 'merlin_widget_import_results', $results );

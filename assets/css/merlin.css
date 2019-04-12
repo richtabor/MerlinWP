@@ -1642,6 +1642,15 @@ body.loaded .merlin__content--welcome {
 	stroke-linecap: round;
 }
 
+.merlin__select-spinner {
+	display: none;
+	height: 26px;
+	left: auto;
+	right: -29px;
+	top: 0;
+	width: 26px;
+}
+
 @-webkit-keyframes spinnerRotate {
 	100% {
 		-webkit-transform: rotate(360deg);
@@ -1727,9 +1736,11 @@ body.loaded .merlin__content--welcome {
 
 [class*="hint--"]:before,
 [class*="hint--"]:after {
+	font-weight: normal;
 	opacity: 0;
 	pointer-events: none;
 	position: absolute;
+	text-transform: none;
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	-webkit-transition: 100ms ease;
@@ -2056,7 +2067,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 
 .merlin__drawer--import-content li {
 	color: #7d8183;
-	padding: 2px 45px;
+	padding: 2px 50px;
 	text-align: left;
 }
 
@@ -2138,11 +2149,11 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	border-color: #0073aa;
 }
 
-.merlin__drawer--import-content .checkbox {
+.checkbox {
 	display: none !important;
 }
 
-.merlin__drawer--import-content .checkbox:checked + label.installing i {
+.checkbox:checked + label.installing i {
 	-webkit-animation: colorchangeInstalling 800ms infinite alternate;
 	animation: colorchangeInstalling 800ms infinite alternate;
 	background-color: #ffb900;
@@ -2151,7 +2162,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 }
 
-.merlin__drawer--import-content .checkbox:checked + label.success i {
+.checkbox:checked + label.success i {
 	-webkit-animation: popInSuccess 500ms forwards;
 	animation: popInSuccess 500ms forwards;
 	background-color: #46b450;
@@ -2164,21 +2175,21 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-	.merlin__drawer--import-content .checkbox:checked + label.success i {
+	.checkbox:checked + label.success i {
 		-webkit-animation: none;
 		animation: none;
 		background: #46b450;
 	}
 }
 
-.merlin__drawer--import-content .checkbox:checked + label.error i {
+.checkbox:checked + label.error i {
 	background-color: #d54e21;
 	border-color: #d54e21;
 	-webkit-transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 	transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 }
 
-.merlin__drawer--import-content .checkbox:checked + label i {
+.checkbox:checked + label i {
 	background-color: #0073aa;
 	border-color: #0073aa;
 	-webkit-transform: scale(1.2);
@@ -2186,14 +2197,14 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transform: scale(1.2);
 }
 
-.merlin__drawer--import-content .checkbox:checked + label i:after {
+.checkbox:checked + label i:after {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
 	width: 9px;
 }
 
-.merlin__drawer--import-content .checkbox:checked + label i:before {
+.checkbox:checked + label i:before {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
@@ -2278,35 +2289,114 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	}
 }
 
+.merlin__drawer--install-plugins {
+	overflow: visible;
+	text-align: left;
+}
+
 .merlin__drawer--open .merlin__drawer--install-plugins {
 	padding-bottom: 1px;
 }
 
 .merlin__drawer--install-plugins li {
 	color: #7d8183;
+	padding: 2px 30px;
+	text-align: left;
 }
 
-.merlin__drawer--install-plugins li span {
+.merlin__drawer--install-plugins li:hover span {
+	color: #0073aa;
+}
+
+.merlin__drawer--install-plugins li .merlin__status-class {
 	display: none;
 }
 
-.merlin__drawer--install-plugins li .spinner {
+.merlin__drawer--install-plugins li .badge {
+	background: #e6f3fa;
+	border-radius: 3px;
+	color: #0073aa !important;
+	font-size: 11px;
+	font-weight: 500;
+	margin-left: 1px;
+	padding: 3px 5px;
+	position: relative;
+	text-transform: uppercase;
+	top: -1px;
+}
+
+.merlin__drawer--install-plugins label {
+	cursor: pointer;
 	display: inline-block;
-	margin-top: 2px;
-	opacity: 0;
+	position: relative;
+	width: 100%;
+}
+
+.merlin__drawer--install-plugins label span {
+	-webkit-transition: color 100ms;
+	transition: color 100ms;
+}
+
+.merlin__drawer--install-plugins label i {
+	background-color: transparent;
+	border: 2px solid #b2b7ba;
+	border-radius: 50%;
+	display: inline-block;
+	float: right;
+	height: 13px;
+	margin-top: 3px;
+	position: relative;
+	text-align: left;
+	-webkit-transform-origin: center;
+	-ms-transform-origin: center;
+	transform-origin: center;
+	-webkit-transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	transition: border-color 100ms, background-color 100ms, -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89), -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+	width: 13px;
+}
+
+.merlin__drawer--install-plugins label i:before {
+	background: #0073aa;
+	border-radius: 2px;
+	content: "";
+	height: 2px;
+	left: 0.2em;
 	position: absolute;
-	right: 10px;
-	-webkit-transition: opacity 200ms cubic-bezier(0.694, 0, 0.335, 1);
-	transition: opacity 200ms cubic-bezier(0.694, 0, 0.335, 1);
-	visibility: visible;
+	top: 0.4em;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: width 50ms ease 50ms;
+	transition: width 50ms ease 50ms;
+	width: 0;
 }
 
-.merlin__drawer--install-plugins.installing li .spinner {
-	opacity: 1;
+.merlin__drawer--install-plugins label i:after {
+	background: #0073aa;
+	border-radius: 2px;
+	content: "";
+	height: 2px;
+	left: 4px;
+	position: absolute;
+	top: 0.67em;
+	-webkit-transform: rotate(310deg);
+	-ms-transform: rotate(310deg);
+	transform: rotate(310deg);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: width 50ms ease;
+	transition: width 50ms ease;
+	width: 0;
 }
 
-.merlin__drawer--install-plugins.installing li span {
-	opacity: 0;
+.merlin__drawer--install-plugins label:hover i {
+	border-color: #0073aa;
 }
 
 .merlin__drawer--open .merlin__drawer--extras {
@@ -2469,6 +2559,14 @@ body.loaded .merlin__content__footer--fullwidth {
 	filter: blur(0);
 }
 
+.merlin__content__footer--nolinks {
+	margin-bottom: 3.14em;
+}
+
+.merlin__content__footer--nolinks .merlin__button {
+	margin-top: 0.57em;
+}
+
 .merlin__content--license .merlin__content__footer {
 	margin-top: -0.24em;
 }
@@ -2488,4 +2586,133 @@ body.loaded .merlin__content__footer--fullwidth {
 
 body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
+}
+
+.merlin__progress-bar {
+	cursor: default;
+	height: 100%;
+}
+
+.merlin__progress-bar .js-merlin-progress-bar {
+	background-color: #daf1dc;
+	border-radius: 0;
+	bottom: 0;
+	display: block;
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 0;
+}
+
+.js-merlin-progress-bar-percentage {
+	bottom: 0;
+	color: #46b450;
+	display: none !important;
+	left: 0;
+	line-height: 38px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.merlin__button--loading .js-merlin-progress-bar-percentage {
+	display: block !important;
+}
+
+.merlin__button--next[data-callback="install_content"] {
+	background: #f1f1f1;
+}
+
+.merlin__select-control-wrapper {
+	margin: 9px auto -4px;
+	max-width: 200px;
+	position: relative;
+}
+
+.merlin__select-control-wrapper .icon {
+	height: 15px;
+	opacity: 0.5;
+	position: relative;
+	top: 6px;
+	width: 15px;
+
+	fill: #7d8183;
+}
+
+.merlin__select-control-wrapper .icon:hover {
+	opacity: 1;
+
+	fill: #0073aa;
+}
+
+.merlin__select-control-help {
+	height: 26px;
+	position: absolute;
+	right: 7px;
+	top: 0;
+}
+
+.merlin__select-control {
+	background: #f9f9f9;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0 #eee;
+	box-shadow: 0 1px 0 #eee;
+	color: #555d66;
+	cursor: pointer;
+	display: block;
+	font-size: 13px;
+	font-weight: normal;
+	height: 27px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	padding-left: 8px;
+	width: 100%;
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.merlin__select-control:hover {
+	border-color: #999;
+}
+
+.merlin__select-control:focus {
+	border-color: #5b9dd9;
+}
+
+.merlin__select-control select::-ms-expand {
+	display: none;
+}
+
+.merlin__demo-import-preview {
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	margin: 20px 0;
+	padding: 10px;
+	width: calc( 100% - 20px);
+}
+
+.merlin__demo-import-preview-image {
+	width: 100%;
+}
+
+.merlin__drawer--open .is-multi-import {
+	padding-bottom: 30px;
+	-webkit-transition: padding 300ms cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+	transition: padding 300ms cubic-bezier(0.75, 0, 0.25, 1) 100ms;
+}
+
+.is-multi-import {
+	-webkit-transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
+	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
+}
+
+.is-multi-import .merlin__content__footer {
+	margin-top: 7px;
 }

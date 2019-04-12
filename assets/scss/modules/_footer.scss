@@ -25,7 +25,11 @@
 	}
 
 	&--nolinks {
-		margin-bottom: 1.9em;
+		margin-bottom: 3.14em;
+
+		.merlin__button {
+			margin-top: .57em;
+		}
 	}
 
 	.merlin__content--license & {
