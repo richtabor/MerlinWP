@@ -7,7 +7,7 @@
  * Envato WordPress Theme Setup Wizard by David Baker.
  *
  * @package   Merlin WP
- * @version   @@pkg.version
+ * @version   1.0.0
  * @link      https://merlinwp.com/
  * @author    Rich Tabor, from ThemeBeans.com & the team at ProteusThemes.com
  * @copyright Copyright (c) 2018, Merlin WP of Inventionn LLC
@@ -222,7 +222,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '@@pkg.version' );
+			define( 'MERLIN_VERSION', '1.0.0' );
 		}
 	}
 
@@ -2381,12 +2381,29 @@ class Merlin {
 				if ( ! $available ) {
 					continue;
 				}
+
+				switch($slug) {
+					case 'content':
+						$import_title = esc_html__('Content', '@@textdomain');
+						break;
+
+					case 'widgets':
+                        $import_title = esc_html__('Widgets', '@@textdomain');
+                        break;
+
+                    case 'options':
+                        $import_title = esc_html__('Options', '@@textdomain');
+                        break;
+
+                    default:
+                        $import_title = esc_html__('After Import', '@@textdomain');
+				}
 				?>
 
 				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
 					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox checkbox-<?php echo esc_attr( $slug ); ?>" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
-						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
+						<i></i><span><?php echo $import_title; ?></span>
 					</label>
 				</li>
 
