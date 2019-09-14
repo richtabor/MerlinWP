@@ -10,7 +10,7 @@ Merlin WP is currently in beta, it's not suggested to use Merlin WP in productio
 
 ### 1. Add Merlin WP to your WordPress theme
 
-First, [download the latest release](https://github.com/richtabor/MerlinWP/releases) from the Merlin WP GitHub reposity.  Next, add all of the files within the release into your theme.
+First, [download the latest release](https://github.com/richtabor/MerlinWP/releases) from the Merlin WP GitHub repository.  Next, add all of the files within the release into your theme.
 
 Now all you need to do is require the `class-merlin.php` class, `merlin-config.php` and the composer autoload files in your `functions.php`, like this:
 
