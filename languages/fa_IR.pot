@@ -1,0 +1,349 @@
+# Copyright (C) 2018 Merlin-WP
+# This file is distributed under the same license as the Merlin-WP package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Merlin-WP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Merlin WP\n"
+"Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
+"Report-Msgid-Bugs-To: https://merlinwp.com\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: class-merlin.php:453
+msgid "Something went wrong. Please refresh the page and try again!"
+msgstr "خطایی رخ داده است. لطفا دوباره امتحان کنید."
+
+#: class-merlin.php:599
+msgid "Please define default parameters in the form of an array."
+msgstr ""
+
+#: class-merlin.php:604
+msgid "Please define an SVG icon filename."
+msgstr ""
+
+#: class-merlin.php:713
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: class-merlin.php:720
+msgid "Child"
+msgstr ""
+
+#: class-merlin.php:726
+msgid "License"
+msgstr ""
+
+#: class-merlin.php:734
+msgid "Plugins"
+msgstr "افزونه ها"
+
+#: class-merlin.php:742, class-merlin.php:1982
+msgid "Content"
+msgstr "محتوا"
+
+#: class-merlin.php:748
+msgid "Ready"
+msgstr "آماده"
+
+#: class-merlin.php:853
+msgid "The welcome step has been displayed"
+msgstr "گام های اولیه کامل گردیده است."
+
+#: class-merlin.php:947
+msgid "The license activation step has been displayed"
+msgstr "گام های فعال سازی لایسنس نمایش داده شده است"
+
+#: class-merlin.php:1017
+msgid "The child theme installation step has been displayed"
+msgstr ""
+
+#: class-merlin.php:1104
+msgid "Required"
+msgstr "لازم است"
+
+#: class-merlin.php:1105
+msgid "req"
+msgstr ""
+
+#: class-merlin.php:1145
+msgid "The plugin installation step has been displayed"
+msgstr ""
+
+#: class-merlin.php:1191
+msgid "Select Demo"
+msgstr "انتخاب دمو"
+
+#: class-merlin.php:1229
+msgid "The content import step has been displayed"
+msgstr ""
+
+#: class-merlin.php:1309
+msgid "The final step has been displayed"
+msgstr ""
+
+#: class-merlin.php:1386
+msgid "The existing child theme was activated"
+msgstr ""
+
+#: class-merlin.php:1403
+msgid "The newly generated child theme was activated"
+msgstr ""
+
+#: class-merlin.php:1424
+msgid "Yikes! The theme activation failed. Please try again or contact support."
+msgstr ""
+
+#: class-merlin.php:1433
+msgid "Please add your license key before attempting to activate one."
+msgstr ""
+
+#: class-merlin.php:1446
+msgid "The license activation was performed with the following results"
+msgstr ""
+
+#: class-merlin.php:1492, class-merlin.php:1533
+msgid "An error occurred, please try again."
+msgstr ""
+
+#: class-merlin.php:1505
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: class-merlin.php:1511
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: class-merlin.php:1515
+msgid "This appears to be an invalid license key. Please try again or contact support."
+msgstr ""
+
+#: class-merlin.php:1520
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: class-merlin.php:1525
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: class-merlin.php:1529
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: class-merlin.php:1623
+msgid "The child theme functions.php content was generated"
+msgstr ""
+
+#: class-merlin.php:1654
+msgid "The child theme style.css content was generated"
+msgstr ""
+
+#: class-merlin.php:1688
+msgid "The child theme screenshot was copied to the child theme, with the following result"
+msgstr ""
+
+#: class-merlin.php:1690
+msgid "The child theme screenshot was not generated, because of these results"
+msgstr ""
+
+#: class-merlin.php:1719
+msgid "Activating"
+msgstr ""
+
+#: class-merlin.php:1735
+msgid "Updating"
+msgstr ""
+
+#: class-merlin.php:1751, class-merlin.php:1767, class-merlin.php:1985, class-merlin.php:1998, class-merlin.php:2011, class-merlin.php:2024, class-merlin.php:2037, class-merlin.php:2050, class-merlin.php:2093
+msgid "Installing"
+msgstr ""
+
+#: class-merlin.php:1759
+msgid "A plugin with the following data will be processed"
+msgstr ""
+
+#: class-merlin.php:1771
+msgid "A plugin with the following data was processed"
+msgstr ""
+
+#: class-merlin.php:1780, class-merlin.php:1986, class-merlin.php:1999, class-merlin.php:2012, class-merlin.php:2025, class-merlin.php:2038, class-merlin.php:2051
+msgid "Success"
+msgstr ""
+
+#: class-merlin.php:1803
+msgid "The content importer AJAX call failed to start, because of incorrect data"
+msgstr ""
+
+#: class-merlin.php:1808
+msgid "Invalid content!"
+msgstr ""
+
+#: class-merlin.php:1819
+msgid "The content import AJAX call will be executed with this import data"
+msgstr ""
+
+#: class-merlin.php:1861
+msgid "The content import AJAX call failed with this passed data"
+msgstr ""
+
+#: class-merlin.php:1872
+msgid "Error"
+msgstr ""
+
+#: class-merlin.php:1886
+msgid "The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data."
+msgstr ""
+
+#: class-merlin.php:1891
+msgid "Invalid data!"
+msgstr ""
+
+#: class-merlin.php:1983
+msgid "Demo content data."
+msgstr ""
+
+#: class-merlin.php:1984, class-merlin.php:1997, class-merlin.php:2010, class-merlin.php:2023, class-merlin.php:2036, class-merlin.php:2049
+msgid "Pending"
+msgstr ""
+
+#: class-merlin.php:1995
+msgid "Widgets"
+msgstr ""
+
+#: class-merlin.php:1996
+msgid "Sample widgets data."
+msgstr ""
+
+#: class-merlin.php:2008
+msgid "Revolution Slider"
+msgstr ""
+
+#: class-merlin.php:2009
+msgid "Sample Revolution sliders data."
+msgstr ""
+
+#: class-merlin.php:2021
+msgid "Options"
+msgstr ""
+
+#: class-merlin.php:2022
+msgid "Sample theme options data."
+msgstr ""
+
+#: class-merlin.php:2034
+msgid "Redux Options"
+msgstr ""
+
+#: class-merlin.php:2035
+msgid "Redux framework options."
+msgstr ""
+
+#: class-merlin.php:2047
+msgid "After import setup"
+msgstr ""
+
+#: class-merlin.php:2048
+msgid "After import setup."
+msgstr ""
+
+#: class-merlin.php:2077
+msgid "The revolution slider import was executed"
+msgstr ""
+
+#: class-merlin.php:2114
+msgid "The home page was set"
+msgstr ""
+
+#: class-merlin.php:2124
+msgid "The blog page was set"
+msgstr ""
+
+#: class-merlin.php:2139
+msgid "The Hello world post status was set to draft"
+msgstr ""
+
+#: class-merlin.php:2163
+msgid "This predefined demo import does not have the name parameter: import_file_name"
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:30
+msgid "The customizer import has finished successfully"
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:57
+msgid "Error: The customizer import file is missing! File path: %s"
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:70
+msgid "Error: The customizer import file does not have any content in it. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:80
+msgid "Error: The customizer import file is not in a correct format. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-merlin-customizer-importer.php:86
+msgid "Error: The customizer import file is not suitable for current theme. You can only import customizer settings for the same theme or a child theme."
+msgstr ""
+
+#: includes/class-merlin-downloader.php:49
+msgid "The file was not able to save to disk, while trying to download it"
+msgstr ""
+
+#: includes/class-merlin-downloader.php:66
+msgid "Missing URL for downloading a file!"
+msgstr ""
+
+#: includes/class-merlin-downloader.php:84
+msgid "An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s."
+msgstr ""
+
+#: includes/class-merlin-redux-importer.php:32
+msgid "The Redux Framework data was imported"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:72
+msgid "Error: Widget import file could not be found."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:83
+msgid "Error: Widget import file does not have any content in it."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:105
+msgid "Error: Widget import data could not be read. Please try a different file."
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:144
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:165
+msgid "Site does not support widget"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:198
+msgid "Widget already exists"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:256
+msgid "Imported"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:260
+msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:266
+msgid "No Title"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:328
+msgid "No results for widget import!"
+msgstr ""
