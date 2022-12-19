@@ -6,7 +6,7 @@ var pkg = require('./package.json');
 var project = pkg.name;
 var slug = pkg.slug;
 var version = pkg.version;
-var projectURL = 'http://demo.merlinwp.dev/wp-admin/themes.php?page=merlin';
+var projectURL = 'http://merlinwp.test/wp-admin/themes.php?page=merlin';
 
 // Translations.
 var text_domain = '@@textdomain';
