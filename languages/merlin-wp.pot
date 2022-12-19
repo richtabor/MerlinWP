@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Merlin-WP
+# Copyright (C) 2022 Merlin-WP
 # This file is distributed under the same license as the Merlin-WP package.
 msgid ""
 msgstr ""
@@ -8,6 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: Merlin WP\n"
 "Last-Translator: Rich Tabor <hello@merlinwp.com>\n"
+"POT-Creation-Date: 2022-12-19 18:24+0000\n"
 "Report-Msgid-Bugs-To: https://merlinwp.com\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -108,10 +109,7 @@ msgstr ""
 msgid "The license activation was performed with the following results"
 msgstr ""
 
-#: class-merlin.php:1492, class-merlin.php:1533
-msgid "An error occurred, please try again."
-msgstr ""
-
+#. translators: Expiration date
 #: class-merlin.php:1505
 msgid "Your license key expired on %s."
 msgstr ""
@@ -128,12 +126,17 @@ msgstr ""
 msgid "Your license is not active for this URL."
 msgstr ""
 
+#. translators: EDD Item Name
 #: class-merlin.php:1525
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
 #: class-merlin.php:1529
 msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: class-merlin.php:1533, class-merlin.php:1492
+msgid "An error occurred, please try again."
 msgstr ""
 
 #: class-merlin.php:1623
@@ -144,12 +147,12 @@ msgstr ""
 msgid "The child theme style.css content was generated"
 msgstr ""
 
-#: class-merlin.php:1688
-msgid "The child theme screenshot was copied to the child theme, with the following result"
-msgstr ""
-
 #: class-merlin.php:1690
 msgid "The child theme screenshot was not generated, because of these results"
+msgstr ""
+
+#: class-merlin.php:1688
+msgid "The child theme screenshot was copied to the child theme, with the following result"
 msgstr ""
 
 #: class-merlin.php:1719
@@ -164,16 +167,16 @@ msgstr ""
 msgid "Installing"
 msgstr ""
 
-#: class-merlin.php:1759
-msgid "A plugin with the following data will be processed"
-msgstr ""
-
 #: class-merlin.php:1771
 msgid "A plugin with the following data was processed"
 msgstr ""
 
 #: class-merlin.php:1780, class-merlin.php:1986, class-merlin.php:1999, class-merlin.php:2012, class-merlin.php:2025, class-merlin.php:2038, class-merlin.php:2051
 msgid "Success"
+msgstr ""
+
+#: class-merlin.php:1759
+msgid "A plugin with the following data will be processed"
 msgstr ""
 
 #: class-merlin.php:1803
@@ -332,12 +335,12 @@ msgstr ""
 msgid "Widget already exists"
 msgstr ""
 
-#: includes/class-merlin-widget-importer.php:256
-msgid "Imported"
-msgstr ""
-
 #: includes/class-merlin-widget-importer.php:260
 msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/class-merlin-widget-importer.php:256
+msgid "Imported"
 msgstr ""
 
 #: includes/class-merlin-widget-importer.php:266

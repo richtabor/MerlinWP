@@ -1,5 +1,5 @@
+@use "sass:math";
 @import "variables";
-
 @import "mixins";
 
 .merlin__body {
@@ -39,7 +39,7 @@ p {
 	margin: 14px auto 0;
 }
 
-.lead + .merlin__button--knockout {
+.lead+.merlin__button--knockout {
 	z-index: -1;
 }
 

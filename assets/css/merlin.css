@@ -108,7 +108,6 @@ p.success {
 		filter: blur(0px);
 	}
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	@-webkit-keyframes vanishIn {
 		0% {
@@ -127,7 +126,6 @@ p.success {
 		}
 	}
 }
-
 @-webkit-keyframes vanishOut {
 	0% {
 		opacity: 1;
@@ -150,7 +148,6 @@ p.success {
 		filter: blur(50px);
 	}
 }
-
 @keyframes vanishOut {
 	0% {
 		opacity: 1;
@@ -173,7 +170,6 @@ p.success {
 		filter: blur(50px);
 	}
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	@-webkit-keyframes vanishOut {
 		0% {
@@ -192,7 +188,6 @@ p.success {
 		}
 	}
 }
-
 .hidden {
 	border: 0;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -276,7 +271,6 @@ p.success {
 		transform-origin: top right;
 	}
 }
-
 @-webkit-keyframes fadeout {
 	0% {
 		opacity: 1;
@@ -289,7 +283,6 @@ p.success {
 		transform-origin: top right;
 	}
 }
-
 @keyframes fadeout {
 	0% {
 		opacity: 1;
@@ -302,7 +295,6 @@ p.success {
 		transform-origin: top right;
 	}
 }
-
 @-webkit-keyframes thirdmessgae {
 	0% {
 		overflow: hidden;
@@ -311,7 +303,6 @@ p.success {
 		overflow: visibile;
 	}
 }
-
 @keyframes thirdmessgae {
 	0% {
 		overflow: hidden;
@@ -320,7 +311,6 @@ p.success {
 		overflow: visibile;
 	}
 }
-
 .from-me {
 	background: #0b93f6;
 	border-radius: 12px;
@@ -341,7 +331,6 @@ p.success {
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1), opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1);
 	width: 300px;
 }
-
 .loaded .from-me:not(.is-third-message) {
 	opacity: 1;
 	-webkit-transform: translateY(0) translateX(0) scale(1);
@@ -351,12 +340,10 @@ p.success {
 	-ms-transform-origin: right;
 	transform-origin: right;
 }
-
 .loaded .from-me.with-second-message {
 	-webkit-animation: moveup 1700ms ease-out 4200ms forwards;
 	animation: moveup 1700ms ease-out 4200ms forwards;
 }
-
 .loaded .from-me.is-third-message {
 	opacity: 1;
 	-webkit-transform: scale(1) translateY(0);
@@ -370,15 +357,12 @@ p.success {
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms;
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 7100ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 7000ms;
 }
-
 .from-me a {
 	color: #fff;
 }
-
 .from-me p {
 	font-size: 13px;
 }
-
 .from-me::before {
 	border-bottom-left-radius: 16px 14px;
 	border-right: 20px solid #0b93f6;
@@ -390,7 +374,6 @@ p.success {
 	-webkit-transform: translate(0, -2px);
 	z-index: 0;
 }
-
 .from-me::after {
 	background: #f1f1f1;
 	border-bottom-left-radius: 10px;
@@ -421,7 +404,6 @@ p.success {
 	transition: transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 4300ms, -webkit-transform 500ms cubic-bezier(0.694, 0.5, 0.1, 1) 4200ms;
 	width: 24px;
 }
-
 .loaded .chat-bubble {
 	-webkit-animation: fadeout 300ms ease-out 6500ms forwards;
 	animation: fadeout 300ms ease-out 6500ms forwards;
@@ -433,7 +415,6 @@ p.success {
 	-ms-transform-origin: right;
 	transform-origin: right;
 }
-
 .chat-bubble:before {
 	background: #ddd;
 	border-radius: 50%;
@@ -445,7 +426,6 @@ p.success {
 	width: 34px;
 	z-index: 1;
 }
-
 .chat-bubble:after {
 	background: #ddd;
 	border-radius: 50%;
@@ -457,7 +437,6 @@ p.success {
 	width: 34px;
 	z-index: 1;
 }
-
 .chat-bubble .tail {
 	background: #ddd;
 	border-radius: 50%;
@@ -467,7 +446,6 @@ p.success {
 	right: -17px;
 	width: 15px;
 }
-
 .chat-bubble .tail::before {
 	background: #ddd;
 	border-radius: 50%;
@@ -479,7 +457,6 @@ p.success {
 	right: -3px;
 	width: 5px;
 }
-
 .chat-bubble .loading {
 	left: 0;
 	position: absolute;
@@ -487,7 +464,6 @@ p.success {
 	width: 30px;
 	z-index: 10;
 }
-
 .chat-bubble .loading .dot {
 	background: #c1c1c1;
 	border-radius: 50%;
@@ -497,20 +473,16 @@ p.success {
 	margin: 0 0 0 3px;
 	width: 6px;
 }
-
 .chat-bubble .loading .dot:first-child {
 	margin: 0;
 }
-
 .chat-bubble .loading .dot.one {
 	-webkit-animation: cycleOne 1s ease-in-out infinite;
 	animation: cycleOne 1s ease-in-out infinite;
 }
-
 .chat-bubble .loading .dot.two {
 	-webkit-animation: cycleTwo 1s ease-in-out infinite;
 }
-
 .chat-bubble .loading .dot.three {
 	-webkit-animation: cycleThree 1s ease-in-out infinite;
 	animation: cycleThree 1s ease-in-out infinite;
@@ -521,7 +493,7 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	33.333% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 	66.6667% {
 		background: rgba(150, 150, 150, 0.4);
@@ -536,7 +508,7 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	33.333% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 	66.6667% {
 		background: rgba(150, 150, 150, 0.4);
@@ -545,7 +517,6 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 }
-
 @-webkit-keyframes cycleTwo {
 	0% {
 		background: rgba(150, 150, 150, 0.4);
@@ -554,13 +525,12 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	66.6667% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 	100% {
 		background: rgba(150, 150, 150, 0.4);
 	}
 }
-
 @keyframes cycleTwo {
 	0% {
 		background: rgba(150, 150, 150, 0.4);
@@ -569,13 +539,12 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	66.6667% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 	100% {
 		background: rgba(150, 150, 150, 0.4);
 	}
 }
-
 @-webkit-keyframes cycleThree {
 	0% {
 		background: rgba(150, 150, 150, 0.4);
@@ -587,10 +556,9 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	100% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 }
-
 @keyframes cycleThree {
 	0% {
 		background: rgba(150, 150, 150, 0.4);
@@ -602,10 +570,9 @@ p.success {
 		background: rgba(150, 150, 150, 0.4);
 	}
 	100% {
-		background: #969696;
+		background: rgb(150, 150, 150);
 	}
 }
-
 .dots {
 	cursor: default;
 	display: block;
@@ -618,16 +585,13 @@ p.success {
 	top: 10px;
 	z-index: 0;
 }
-
 .merlin__content--ready .dots {
 	display: none;
 }
-
 .merlin__content--content .dots {
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 }
-
 body.exiting .merlin__content--content .dots {
 	opacity: 0;
 }
@@ -658,7 +622,6 @@ body.exiting .merlin__content--content .dots {
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.dots li.active {
 		-webkit-animation: none;
@@ -684,7 +647,6 @@ body.exiting .merlin__content--content .dots {
 	width: 8px;
 	z-index: -1;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.dots li.active::after {
 		-webkit-animation: none;
@@ -727,13 +689,10 @@ body.exiting .merlin__content--content .dots {
 		transform: scale(1.6);
 	}
 }
-
 @-webkit-keyframes popIn {
 	0% {
 		background: #e3e3e3;
 	}
-	40% {
-	}
 	55% {
 		background: #e3e3e3;
 		-webkit-transform: scale(1);
@@ -760,13 +719,10 @@ body.exiting .merlin__content--content .dots {
 		transform: scale(1);
 	}
 }
-
 @keyframes popIn {
 	0% {
 		background: #e3e3e3;
 	}
-	40% {
-	}
 	55% {
 		background: #e3e3e3;
 		-webkit-transform: scale(1);
@@ -793,7 +749,6 @@ body.exiting .merlin__content--content .dots {
 		transform: scale(1);
 	}
 }
-
 svg:not(:root) {
 	overflow: hidden;
 }
@@ -804,7 +759,6 @@ svg:not(:root) {
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
-
 .js--finished .icon:not(.icon--checkmark):not(.icon--help) {
 	opacity: 0;
 	-webkit-transform: scale(0.8);
@@ -836,7 +790,6 @@ svg:not(:root) {
 	text-align: center;
 	zoom: 1;
 }
-
 .merlin__content--transition {
 	opacity: 0;
 	-webkit-transform: translateX(50%) scale(0.95);
@@ -853,7 +806,6 @@ svg:not(:root) {
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__content--transition {
 		-webkit-transform: translateX(0) scale(1);
@@ -868,7 +820,6 @@ svg:not(:root) {
 		filter: blur(2px);
 	}
 }
-
 .merlin__content--welcome .merlin__content--transition {
 	opacity: 1;
 	-webkit-transform: translateX(0) scale(1);
@@ -878,34 +829,27 @@ svg:not(:root) {
 	-webkit-filter: blur(0);
 	filter: blur(0);
 }
-
 .merlin__content--plugins .merlin__content__footer.no-plugins,
 .merlin__content--welcome .merlin__content__footer {
 	padding-top: 22px;
 }
-
 .merlin__content--plugins .merlin__content__footer {
 	padding-top: 3px;
 }
-
 .merlin__content--license .merlin__content__footer {
 	padding-top: 30px;
 }
-
 .merlin__content--license .merlin__content__footer.is-registered {
 	padding-top: 87px;
 }
-
 .merlin__content--license .merlin__button--knockout {
 	margin-top: 0;
 	padding-bottom: 8px;
 	padding-top: 8px;
 }
-
 .merlin__content--license-key {
 	margin-top: 22px;
 }
-
 .merlin__content--license-key.has-error input {
 	-webkit-animation: errorShake 0.4s 1 linear;
 	animation: errorShake 0.4s 1 linear;
@@ -913,7 +857,6 @@ svg:not(:root) {
 	-webkit-box-shadow: 0 0 2px rgba(213, 78, 33, 0.8);
 	box-shadow: 0 0 2px rgba(213, 78, 33, 0.8);
 }
-
 .merlin__content--license-key label {
 	border: 0;
 	clip: rect(1px, 1px, 1px, 1px);
@@ -926,14 +869,12 @@ svg:not(:root) {
 	-webkit-clip-path: circle(1% at 1% 1%);
 	clip-path: circle(1% at 1% 1%);
 }
-
 .merlin__content--license-key-wrapper {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 	width: 87%;
 }
-
 .merlin__content--license-key .icon {
 	height: 27px;
 	margin-bottom: 0;
@@ -949,20 +890,17 @@ svg:not(:root) {
 	backface-visibility: hidden;
 	fill: #7d8183;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__content--license-key .icon {
 		-webkit-transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
 		transition: fill 50ms ease-in-out, opacity 50ms ease-in-out;
 	}
 }
-
 .merlin__content--license-key .icon:hover {
 	opacity: 1;
 
 	fill: #0073aa;
 }
-
 .merlin__content--license-key a {
 	height: 27px;
 	position: absolute;
@@ -970,7 +908,6 @@ svg:not(:root) {
 	top: 4px;
 	width: 27px;
 }
-
 .merlin__content--license-key a::after {
 	background: transparent;
 	background: -webkit-gradient(linear, right top, left top, color-stop(40%, #fff), to(rgba(255, 255, 255, 0)));
@@ -987,7 +924,6 @@ svg:not(:root) {
 	width: 20px;
 	z-index: 1;
 }
-
 .merlin__content--license-key a:active svg {
 	-webkit-animation: small_pulse 200ms;
 	animation: small_pulse 200ms;
@@ -997,7 +933,6 @@ svg:not(:root) {
 	-webkit-animation-fill-mode: none;
 	animation-fill-mode: none;
 }
-
 .merlin__content--license-key input {
 	background: transparent;
 	border-radius: 3px;
@@ -1009,11 +944,9 @@ svg:not(:root) {
 	padding: 10px 27px 8px 9px;
 	width: 100%;
 }
-
 .merlin__content--ready {
 	padding-bottom: 12px;
 }
-
 body.loaded .merlin__content--transition {
 	opacity: 1;
 	-webkit-transform: translateX(0) scale(1);
@@ -1023,7 +956,6 @@ body.loaded .merlin__content--transition {
 	-webkit-filter: blur(0);
 	filter: blur(0);
 }
-
 body.exiting .merlin__content--transition {
 	opacity: 0;
 	-webkit-transform: translateX(-40%) scale(0.96);
@@ -1037,7 +969,6 @@ body.exiting .merlin__content--transition {
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	body.exiting .merlin__content--transition {
 		-webkit-transform: translateX(0) scale(1);
@@ -1060,11 +991,9 @@ body.exiting .merlin__content--transition {
 	-webkit-transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 400ms cubic-bezier(0.694, 0, 0.335, 1);
 }
-
 body.loaded .merlin__content--welcome {
 	opacity: 1;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__content--welcome {
 		-webkit-animation: none;
@@ -1222,7 +1151,6 @@ body.loaded .merlin__content--welcome {
 		transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 	}
 }
-
 @-webkit-keyframes small_pulse {
 	0% {
 		-webkit-transform: scale(1);
@@ -1237,7 +1165,6 @@ body.loaded .merlin__content--welcome {
 		transform: scale(1);
 	}
 }
-
 @keyframes small_pulse {
 	0% {
 		-webkit-transform: scale(1);
@@ -1252,7 +1179,6 @@ body.loaded .merlin__content--welcome {
 		transform: scale(1);
 	}
 }
-
 @-webkit-keyframes errorShake {
 	0% {
 		-webkit-transform: translate(8px);
@@ -1279,7 +1205,6 @@ body.loaded .merlin__content--welcome {
 		transform: translate(0px);
 	}
 }
-
 @keyframes errorShake {
 	0% {
 		-webkit-transform: translate(8px);
@@ -1306,7 +1231,6 @@ body.loaded .merlin__content--welcome {
 		transform: translate(0px);
 	}
 }
-
 .merlin__button {
 	background: #fff;
 	border: 0;
@@ -1326,36 +1250,29 @@ body.loaded .merlin__content--welcome {
 	-webkit-transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__button {
 		-webkit-transition: color 50ms ease-in-out, background 50ms ease-in-out;
 		transition: color 50ms ease-in-out, background 50ms ease-in-out;
 	}
 }
-
 .merlin__button:hover {
 	background: #f1f1f1;
 }
-
 .merlin__button:hover .chevron::after,
 .merlin__button:hover .chevron::before {
 	background: #0073aa;
 }
-
 .merlin__button:active {
 	background: #ebebeb;
 }
-
 .merlin__button span {
 	display: inline-block;
 }
-
 .merlin__button--colorchange {
 	-webkit-animation: colorchange 800ms infinite alternate;
 	animation: colorchange 800ms infinite alternate;
 }
-
 .merlin__button--fullwidth {
 	display: block;
 	font-size: 14px;
@@ -1365,43 +1282,35 @@ body.loaded .merlin__content--welcome {
 	width: 60%;
 	z-index: 999;
 }
-
 .merlin__button--next,
 .merlin__button--skip {
 	bottom: 12px;
 	position: absolute;
 }
-
 .merlin__button--next {
 	color: #0073aa;
 	right: 12px;
 }
-
 .merlin__button--next:hover,
 .merlin__button--next:active {
 	color: #005d8a;
 }
-
 .merlin__button--skip {
 	left: 12px;
 }
-
 .merlin__button--skip:hover,
 .merlin__button--skip:active {
 	color: #444;
 }
-
 .merlin__button--blue {
 	background: #0073aa;
 	color: #fff;
 }
-
 .merlin__button--blue:hover,
 .merlin__button--blue:active {
 	background: #005d8a;
 	color: #fff;
 }
-
 .merlin__button--knockout {
 	background: transparent;
 	color: #7d8183;
@@ -1413,31 +1322,26 @@ body.loaded .merlin__content--welcome {
 	-webkit-transition: color 150ms ease;
 	transition: color 150ms ease;
 }
-
 .merlin__button--knockout:hover,
 .merlin__button--knockout:active {
 	background: transparent;
 	color: #0073aa;
 }
-
 .merlin__button--no-chevron {
 	margin-left: 0;
 	margin-top: 3px;
 	padding-right: 18px;
 }
-
 .merlin__button--loading:hover,
 .merlin__button--loading:active {
 	background: transparent;
 }
-
 .merlin__button--loading .merlin__button--loading__text {
 	-webkit-transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1), -webkit-filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 }
-
 .merlin__button--loading__spinner {
 	left: 50%;
 	margin-left: -12px;
@@ -1453,21 +1357,18 @@ body.loaded .merlin__content--welcome {
 	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 	transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms, -webkit-transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 }
-
 .merlin__button--loading .merlin__button--loading__text {
 	opacity: 0;
 
 	-webkit-filter: blur(100px);
 	filter: blur(100px);
 }
-
 .merlin__button--loading .merlin__button--loading__spinner {
 	opacity: 1;
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	transform: scale(1);
 }
-
 .merlin__button--external::after {
 	content: "➝";
 	display: inline-block !important;
@@ -1484,7 +1385,6 @@ body.loaded .merlin__content--welcome {
 	transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 	transition: transform 0.2s cubic-bezier(0, 0.25, 0.08, 1), opacity 0.2s cubic-bezier(0, 0.25, 0.08, 1), -webkit-transform 0.2s cubic-bezier(0, 0.25, 0.08, 1);
 }
-
 .merlin__button--external:hover::after {
 	opacity: 1;
 	-webkit-transform: translateX(0);
@@ -1523,7 +1423,6 @@ body.loaded .merlin__content--welcome {
 		background: #f1f1f1;
 	}
 }
-
 .chevron {
 	display: block;
 	position: absolute;
@@ -1538,7 +1437,6 @@ body.loaded .merlin__content--welcome {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-
 .chevron::after,
 .chevron::before {
 	background: #7d8183;
@@ -1558,7 +1456,6 @@ body.loaded .merlin__content--welcome {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-
 .chevron::before {
 	right: 50%;
 	-webkit-transform: rotate(40deg) scaleY(1);
@@ -1568,7 +1465,6 @@ body.loaded .merlin__content--welcome {
 	-ms-transform-origin: 100% 100%;
 	transform-origin: 100% 100%;
 }
-
 .chevron::after {
 	left: 50%;
 	-webkit-transform: rotate(-40deg) scaleY(1);
@@ -1578,11 +1474,9 @@ body.loaded .merlin__content--welcome {
 	-ms-transform-origin: 0 100%;
 	transform-origin: 0 100%;
 }
-
 .merlin__drawer--open .chevron {
 	top: 44%;
 }
-
 .merlin__drawer--open .chevron::before {
 	-webkit-transform: rotate(-40deg) scaleY(1);
 	-ms-transform: rotate(-40deg) scaleY(1);
@@ -1591,7 +1485,6 @@ body.loaded .merlin__content--welcome {
 	-ms-transform-origin: 100% 0;
 	transform-origin: 100% 0;
 }
-
 .merlin__drawer--open .chevron::after {
 	-webkit-transform: rotate(40deg) scaleY(1);
 	-ms-transform: rotate(40deg) scaleY(1);
@@ -1606,17 +1499,14 @@ body.loaded .merlin__content--welcome {
 	transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 50ms;
 	width: 23px;
 }
-
 .merlin-spinner:before {
 	content: "";
 	display: block;
 	padding-top: 100%;
 }
-
 .exiting .merlin-spinner {
 	opacity: 0;
 }
-
 .merlin-spinner__svg {
 	-webkit-animation: spinnerRotate 2s linear infinite;
 	animation: spinnerRotate 2s linear infinite;
@@ -1632,12 +1522,11 @@ body.loaded .merlin__content--welcome {
 	transform-origin: center center;
 	width: 100%;
 }
-
 .merlin-spinner__svg .path {
 	-webkit-animation: spinnerDash 1.5s ease-in-out infinite, spinnerColor 6s ease-in-out infinite;
 	animation: spinnerDash 1.5s ease-in-out infinite, spinnerColor 6s ease-in-out infinite;
 
-	stroke-dasharray: 1,200;
+	stroke-dasharray: 1, 200;
 	stroke-dashoffset: 0;
 	stroke-linecap: round;
 }
@@ -1664,37 +1553,34 @@ body.loaded .merlin__content--welcome {
 		transform: rotate(360deg);
 	}
 }
-
 @-webkit-keyframes spinnerDash {
 	0% {
-		stroke-dasharray: 1,200;
+		stroke-dasharray: 1, 200;
 		stroke-dashoffset: 0;
 	}
 	50% {
-		stroke-dasharray: 89,200;
+		stroke-dasharray: 89, 200;
 		stroke-dashoffset: -35px;
 	}
 	100% {
-		stroke-dasharray: 89,200;
+		stroke-dasharray: 89, 200;
 		stroke-dashoffset: -124px;
 	}
 }
-
 @keyframes spinnerDash {
 	0% {
-		stroke-dasharray: 1,200;
+		stroke-dasharray: 1, 200;
 		stroke-dashoffset: 0;
 	}
 	50% {
-		stroke-dasharray: 89,200;
+		stroke-dasharray: 89, 200;
 		stroke-dashoffset: -35px;
 	}
 	100% {
-		stroke-dasharray: 89,200;
+		stroke-dasharray: 89, 200;
 		stroke-dashoffset: -124px;
 	}
 }
-
 @-webkit-keyframes spinnerColor {
 	100%,
 	0% {
@@ -1711,7 +1597,6 @@ body.loaded .merlin__content--welcome {
 		stroke: #00ace1;
 	}
 }
-
 @keyframes spinnerColor {
 	100%,
 	0% {
@@ -1728,14 +1613,13 @@ body.loaded .merlin__content--welcome {
 		stroke: #00ace1;
 	}
 }
-
-[class*="hint--"] {
+[class*=hint--] {
 	display: inline-block;
 	position: relative;
 }
 
-[class*="hint--"]:before,
-[class*="hint--"]:after {
+[class*=hint--]:before,
+[class*=hint--]:after {
 	font-weight: normal;
 	opacity: 0;
 	pointer-events: none;
@@ -1751,13 +1635,13 @@ body.loaded .merlin__content--welcome {
 	z-index: 1000000;
 }
 
-[class*="hint--"]:hover:before,
-[class*="hint--"]:hover:after {
+[class*=hint--]:hover:before,
+[class*=hint--]:hover:after {
 	opacity: 1;
 	visibility: visible;
 }
 
-[class*="hint--"]:before {
+[class*=hint--]:before {
 	background: transparent;
 	border: 6px solid transparent;
 	content: "";
@@ -1765,7 +1649,7 @@ body.loaded .merlin__content--welcome {
 	z-index: 1000001;
 }
 
-[class*="hint--"]:after {
+[class*=hint--]:after {
 	background: #383838;
 	border-radius: 2px;
 	-webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
@@ -1777,11 +1661,11 @@ body.loaded .merlin__content--welcome {
 	white-space: nowrap;
 }
 
-[class*="hint--"][aria-label]:after {
+[class*=hint--][aria-label]:after {
 	content: attr(aria-label);
 }
 
-[class*="hint--"][data-hint]:after {
+[class*=hint--][data-hint]:after {
 	content: attr(data-hint);
 }
 
@@ -1859,26 +1743,21 @@ body.loaded .merlin__content--welcome {
 	-webkit-transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 	transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.return-to-dashboard {
 		opacity: 1 !important;
 	}
 }
-
 .merlin__body--welcome .return-to-dashboard {
 	opacity: 0;
 }
-
 .merlin__body--welcome.loaded .return-to-dashboard {
 	opacity: 1;
 }
-
 .return-to-dashboard.ignore {
 	margin-top: 0.3em;
 	padding: 0;
 }
-
 body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	opacity: 0;
 	pointer-events: none;
@@ -1899,7 +1778,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 600ms, max-height 700ms cubic-bezier(0.33, 0, 0.2, 1) 0ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 }
-
 .merlin__drawer li {
 	margin: 0;
 	opacity: 0;
@@ -1911,61 +1789,49 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-transition: 0.25s ease;
 	transition: 0.25s ease;
 }
-
 .merlin__drawer li:last-child {
 	padding-bottom: 0;
 }
-
 .merlin__drawer li:nth-of-type(10) {
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
-
 .merlin__drawer li:nth-of-type(9) {
 	-webkit-transition-delay: 0.18s;
 	transition-delay: 0.18s;
 }
-
 .merlin__drawer li:nth-of-type(8) {
 	-webkit-transition-delay: 0.16s;
 	transition-delay: 0.16s;
 }
-
 .merlin__drawer li:nth-of-type(7) {
 	-webkit-transition-delay: 0.14s;
 	transition-delay: 0.14s;
 }
-
 .merlin__drawer li:nth-of-type(6) {
 	-webkit-transition-delay: 0.12s;
 	transition-delay: 0.12s;
 }
-
 .merlin__drawer li:nth-of-type(5) {
 	-webkit-transition-delay: 0.1s;
 	transition-delay: 0.1s;
 }
-
 .merlin__drawer li:nth-of-type(4) {
 	-webkit-transition-delay: 0.08s;
 	transition-delay: 0.08s;
 }
-
 .merlin__drawer li:nth-of-type(3) {
 	-webkit-transition-delay: 0.06s;
 	transition-delay: 0.06s;
 }
-
 .merlin__drawer li:nth-of-type(2) {
 	-webkit-transition-delay: 0.04s;
 	transition-delay: 0.04s;
 }
-
 .merlin__drawer li:nth-of-type(1) {
 	-webkit-transition-delay: 0.02s;
 	transition-delay: 0.02s;
 }
-
 .merlin__drawer--open .merlin__drawer {
 	max-height: 400px;
 	opacity: 1;
@@ -1978,7 +1844,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms;
 	transition: transform 600ms cubic-bezier(0.75, 0, 0.25, 1), padding 600ms cubic-bezier(0.75, 0, 0.25, 1), opacity 300ms linear 200ms, max-height 900ms cubic-bezier(0.33, 0, 0.2, 1) 100ms, -webkit-transform 600ms cubic-bezier(0.75, 0, 0.25, 1);
 }
-
 .merlin__drawer--open .merlin__drawer li {
 	opacity: 1;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -1986,74 +1851,60 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-transition: 0.4s ease;
 	transition: 0.4s ease;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(1) {
 	-webkit-transition-delay: 0.15s;
 	transition-delay: 0.15s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(2) {
 	-webkit-transition-delay: 0.3s;
 	transition-delay: 0.3s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(3) {
 	-webkit-transition-delay: 0.45s;
 	transition-delay: 0.45s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(4) {
 	-webkit-transition-delay: 0.6s;
 	transition-delay: 0.6s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(5) {
 	-webkit-transition-delay: 0.75s;
 	transition-delay: 0.75s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(6) {
 	-webkit-transition-delay: 0.9s;
 	transition-delay: 0.9s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(7) {
 	-webkit-transition-delay: 1.05s;
 	transition-delay: 1.05s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(8) {
 	-webkit-transition-delay: 1.2s;
 	transition-delay: 1.2s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(9) {
 	-webkit-transition-delay: 1.35s;
 	transition-delay: 1.35s;
 }
-
 .merlin__drawer--open .merlin__drawer li:nth-of-type(10) {
 	-webkit-transition-delay: 1.5s;
 	transition-delay: 1.5s;
 }
-
 .merlin__drawer--open .merlin__button--next {
 	-webkit-animation: colorchange 1s infinite alternate 1000ms;
 	animation: colorchange 1s infinite alternate 1000ms;
 }
-
 .merlin__drawer--open .merlin__button--loading {
 	-webkit-animation: none;
 	animation: none;
 }
-
 .merlin__drawer--open #skip {
 	display: none;
 	opacity: 0;
 	visibility: hidden;
 	z-index: -1;
 }
-
 .merlin__drawer--open #close {
 	display: inline-block;
 	opacity: 1;
@@ -2064,29 +1915,24 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 .merlin__drawer--import-content {
 	padding-top: 3px;
 }
-
 .merlin__drawer--import-content li {
 	color: #7d8183;
 	padding: 2px 50px;
 	text-align: left;
 }
-
 .merlin__drawer--import-content li:hover span {
 	color: #0073aa;
 }
-
 .merlin__drawer--import-content label {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	width: 100%;
 }
-
 .merlin__drawer--import-content label span {
 	-webkit-transition: color 100ms;
 	transition: color 100ms;
 }
-
 .merlin__drawer--import-content label i {
 	background-color: transparent;
 	border: 2px solid #b2b7ba;
@@ -2106,7 +1952,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89), -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	width: 13px;
 }
-
 .merlin__drawer--import-content label i:before {
 	background: #0073aa;
 	border-radius: 2px;
@@ -2125,7 +1970,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: width 50ms ease 50ms;
 	width: 0;
 }
-
 .merlin__drawer--import-content label i:after {
 	background: #0073aa;
 	border-radius: 2px;
@@ -2144,7 +1988,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: width 50ms ease;
 	width: 0;
 }
-
 .merlin__drawer--import-content label:hover i {
 	border-color: #0073aa;
 }
@@ -2152,7 +1995,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 .checkbox {
 	display: none !important;
 }
-
 .checkbox:checked + label.installing i {
 	-webkit-animation: colorchangeInstalling 800ms infinite alternate;
 	animation: colorchangeInstalling 800ms infinite alternate;
@@ -2161,7 +2003,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 	transition: background-color 400ms cubic-bezier(0.18, 1, 0.21, 1), border-color 400ms cubic-bezier(0.18, 1, 0.21, 1);
 }
-
 .checkbox:checked + label.success i {
 	-webkit-animation: popInSuccess 500ms forwards;
 	animation: popInSuccess 500ms forwards;
@@ -2173,7 +2014,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.checkbox:checked + label.success i {
 		-webkit-animation: none;
@@ -2181,14 +2021,12 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		background: #46b450;
 	}
 }
-
 .checkbox:checked + label.error i {
 	background-color: #d54e21;
 	border-color: #d54e21;
 	-webkit-transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 	transition: background-color 500ms cubic-bezier(0.18, 1, 0.21, 1) 220ms, border-color 400ms cubic-bezier(0.18, 1, 0.21, 1) 220ms;
 }
-
 .checkbox:checked + label i {
 	background-color: #0073aa;
 	border-color: #0073aa;
@@ -2196,14 +2034,12 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-ms-transform: scale(1.2);
 	transform: scale(1.2);
 }
-
 .checkbox:checked + label i:after {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
 	transition: width 50ms ease 100ms;
 	width: 9px;
 }
-
 .checkbox:checked + label i:before {
 	background: #fff;
 	-webkit-transition: width 50ms ease 100ms;
@@ -2232,7 +2068,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		border-color: #8dd394;
 	}
 }
-
 @-webkit-keyframes popInSuccess {
 	0% {
 		background-color: #46b450;
@@ -2260,7 +2095,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		transform: scale(1.2);
 	}
 }
-
 @keyframes popInSuccess {
 	0% {
 		background-color: #46b450;
@@ -2288,30 +2122,24 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		transform: scale(1.2);
 	}
 }
-
 .merlin__drawer--install-plugins {
 	overflow: visible;
 	text-align: left;
 }
-
 .merlin__drawer--open .merlin__drawer--install-plugins {
 	padding-bottom: 1px;
 }
-
 .merlin__drawer--install-plugins li {
 	color: #7d8183;
 	padding: 2px 30px;
 	text-align: left;
 }
-
 .merlin__drawer--install-plugins li:hover span {
 	color: #0073aa;
 }
-
 .merlin__drawer--install-plugins li .merlin__status-class {
 	display: none;
 }
-
 .merlin__drawer--install-plugins li .badge {
 	background: #e6f3fa;
 	border-radius: 3px;
@@ -2324,19 +2152,16 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	text-transform: uppercase;
 	top: -1px;
 }
-
 .merlin__drawer--install-plugins label {
 	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	width: 100%;
 }
-
 .merlin__drawer--install-plugins label span {
 	-webkit-transition: color 100ms;
 	transition: color 100ms;
 }
-
 .merlin__drawer--install-plugins label i {
 	background-color: transparent;
 	border: 2px solid #b2b7ba;
@@ -2356,7 +2181,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89), -webkit-transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 	width: 13px;
 }
-
 .merlin__drawer--install-plugins label i:before {
 	background: #0073aa;
 	border-radius: 2px;
@@ -2375,7 +2199,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: width 50ms ease 50ms;
 	width: 0;
 }
-
 .merlin__drawer--install-plugins label i:after {
 	background: #0073aa;
 	border-radius: 2px;
@@ -2394,7 +2217,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	transition: width 50ms ease;
 	width: 0;
 }
-
 .merlin__drawer--install-plugins label:hover i {
 	border-color: #0073aa;
 }
@@ -2411,7 +2233,7 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	box-shadow: inset 0 0 0 #46b450;
 	display: none;
 	height: 110px;
-	left: calc( 50% - 55px);
+	left: calc(50% - 55px);
 	position: absolute;
 	top: 20px;
 	width: 110px;
@@ -2420,11 +2242,9 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	stroke-miterlimit: 10;
 	stroke-width: 2;
 }
-
 .js--finished .icon--checkmark {
 	display: inline-block;
 }
-
 .icon--checkmark__check {
 	-webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 	animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
@@ -2435,7 +2255,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	stroke-dasharray: 48;
 	stroke-dashoffset: 48;
 }
-
 .icon--checkmark__circle {
 	-webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 	animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
@@ -2459,7 +2278,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		stroke-dashoffset: 0;
 	}
 }
-
 @-webkit-keyframes scale {
 	0%,
 	100% {
@@ -2471,7 +2289,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		transform: scale3d(1.1, 1.1, 1);
 	}
 }
-
 @keyframes scale {
 	0%,
 	100% {
@@ -2483,40 +2300,33 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		transform: scale3d(1.1, 1.1, 1);
 	}
 }
-
 @-webkit-keyframes fill {
 	100% {
 		-webkit-box-shadow: inset 0 0 0 100px #46b450;
 		box-shadow: inset 0 0 0 100px #46b450;
 	}
 }
-
 @keyframes fill {
 	100% {
 		-webkit-box-shadow: inset 0 0 0 100px #46b450;
 		box-shadow: inset 0 0 0 100px #46b450;
 	}
 }
-
 .merlin__content__footer {
 	clear: both;
 	margin-top: 2.75em;
 }
-
 .merlin__content__footer {
 	*zoom: 1;
 }
-
 .merlin__content__footer:before,
 .merlin__content__footer:after {
 	content: "";
 	display: table;
 }
-
 .merlin__content__footer:after {
 	clear: both;
 }
-
 .merlin__content__footer--fullwidth {
 	opacity: 0;
 	-webkit-transform: translateX(50%);
@@ -2533,7 +2343,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 	-webkit-filter: blur(10px);
 	filter: blur(10px);
 }
-
 @media screen and (prefers-reduced-motion: reduce) {
 	.merlin__content__footer--fullwidth {
 		-webkit-transform: translateX(0);
@@ -2548,7 +2357,6 @@ body:not(.merlin__body--welcome) .return-to-dashboard.ignore {
 		filter: blur(2px);
 	}
 }
-
 body.loaded .merlin__content__footer--fullwidth {
 	opacity: 1;
 	-webkit-transform: translateX(0);
@@ -2558,32 +2366,25 @@ body.loaded .merlin__content__footer--fullwidth {
 	-webkit-filter: blur(0);
 	filter: blur(0);
 }
-
 .merlin__content__footer--nolinks {
 	margin-bottom: 3.14em;
 }
-
 .merlin__content__footer--nolinks .merlin__button {
 	margin-top: 0.57em;
 }
-
 .merlin__content--license .merlin__content__footer {
 	margin-top: -0.24em;
 }
-
 .merlin__content--ready .merlin__content__footer {
 	margin-top: 1.9em;
 }
-
 .merlin__content--ready .merlin__content__footer .merlin__button--knockout {
 	margin-top: 10px;
 }
-
 .merlin__content--content .merlin__content__footer {
 	-webkit-transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 	transition: opacity 500ms cubic-bezier(0.694, 0, 0.335, 1);
 }
-
 body.exiting .merlin__content--content .merlin__content__footer {
 	opacity: 0;
 }
@@ -2592,7 +2393,6 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	cursor: default;
 	height: 100%;
 }
-
 .merlin__progress-bar .js-merlin-progress-bar {
 	background-color: #daf1dc;
 	border-radius: 0;
@@ -2617,12 +2417,11 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	right: 0;
 	top: 0;
 }
-
 .merlin__button--loading .js-merlin-progress-bar-percentage {
 	display: block !important;
 }
 
-.merlin__button--next[data-callback="install_content"] {
+.merlin__button--next[data-callback=install_content] {
 	background: #f1f1f1;
 }
 
@@ -2631,7 +2430,6 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	max-width: 200px;
 	position: relative;
 }
-
 .merlin__select-control-wrapper .icon {
 	height: 15px;
 	opacity: 0.5;
@@ -2641,20 +2439,17 @@ body.exiting .merlin__content--content .merlin__content__footer {
 
 	fill: #7d8183;
 }
-
 .merlin__select-control-wrapper .icon:hover {
 	opacity: 1;
 
 	fill: #0073aa;
 }
-
 .merlin__select-control-help {
 	height: 26px;
 	position: absolute;
 	right: 7px;
 	top: 0;
 }
-
 .merlin__select-control {
 	background: #f9f9f9;
 	border: 1px solid #ccc;
@@ -2677,27 +2472,22 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	-moz-appearance: none;
 	appearance: none;
 }
-
 .merlin__select-control:hover {
 	border-color: #999;
 }
-
 .merlin__select-control:focus {
 	border-color: #5b9dd9;
 }
-
 .merlin__select-control select::-ms-expand {
 	display: none;
 }
-
 .merlin__demo-import-preview {
 	background-color: #f1f1f1;
 	border-radius: 5px;
 	margin: 20px 0;
 	padding: 10px;
-	width: calc( 100% - 20px);
+	width: calc(100% - 20px);
 }
-
 .merlin__demo-import-preview-image {
 	width: 100%;
 }
@@ -2712,7 +2502,6 @@ body.exiting .merlin__content--content .merlin__content__footer {
 	-webkit-transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
 	transition: padding 600ms cubic-bezier(0.75, 0, 0.25, 1);
 }
-
 .is-multi-import .merlin__content__footer {
 	margin-top: 7px;
 }
