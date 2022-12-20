@@ -232,12 +232,13 @@ class Merlin {
 	 * @param array $config Package-specific configuration args.
 	 * @param array $strings Text for the different elements.
 	 */
-	function __construct( $config = array(), $strings = array() ) {
+	public function __construct( $config = array(), $strings = array() ) {
 
 		$this->version();
 
 		$config = wp_parse_args(
-			$config, array(
+			$config,
+			array(
 				'base_path'            => get_parent_theme_file_path(),
 				'base_url'             => get_parent_theme_file_uri(),
 				'directory'            => 'merlin',
@@ -303,13 +304,13 @@ class Merlin {
 		add_action( 'after_switch_theme', array( $this, 'switch_theme' ) );
 		add_action( 'admin_init', array( $this, 'steps' ), 30, 0 );
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'admin_page' ), 30, 0 );
+		add_action( 'current_screen', array( $this, 'admin_page' ), 30, 0 );
 		add_action( 'admin_init', array( $this, 'ignore' ), 5 );
 		add_action( 'admin_footer', array( $this, 'svg_sprite' ) );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
-		add_action( 'wp_ajax_merlin_content', array( $this, '_ajax_content' ), 10, 0 );
-		add_action( 'wp_ajax_merlin_get_total_content_import_items', array( $this, '_ajax_get_total_content_import_items' ), 10, 0 );
-		add_action( 'wp_ajax_merlin_plugins', array( $this, '_ajax_plugins' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_content', array( $this, 'ajax_content' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_get_total_content_import_items', array( $this, 'ajax_get_total_content_import_items' ), 10, 0 );
+		add_action( 'wp_ajax_merlin_plugins', array( $this, 'ajax_plugins' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_child_theme', array( $this, 'generate_child' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_activate_license', array( $this, '_ajax_activate_license' ), 10, 0 );
 		add_action( 'wp_ajax_merlin_update_selected_import_data_info', array( $this, 'update_selected_import_data_info' ), 10, 0 );
@@ -323,7 +324,7 @@ class Merlin {
 	/**
 	 * Require necessary classes.
 	 */
-	function required_classes() {
+	public function required_classes() {
 		if ( ! class_exists( '\WP_Importer' ) ) {
 			require ABSPATH . '/wp-admin/includes/class-wp-importer.php';
 		}
@@ -417,7 +418,12 @@ class Merlin {
 		$strings = $this->strings;
 
 		$this->hook_suffix = add_submenu_page(
-			esc_html( $this->parent_slug ), esc_html( $strings['admin-menu'] ), esc_html( $strings['admin-menu'] ), sanitize_key( $this->capability ), sanitize_key( $this->merlin_url ), array( $this, 'admin_page' )
+			esc_html( $this->parent_slug ),
+			esc_html( $strings['admin-menu'] ),
+			esc_html( $strings['admin-menu'] ),
+			sanitize_key( $this->capability ),
+			sanitize_key( $this->merlin_url ),
+			array( $this, 'admin_page' )
 		);
 	}
 
@@ -447,7 +453,7 @@ class Merlin {
 		wp_enqueue_style( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/css/merlin' . $suffix . '.css', array( 'wp-admin' ), MERLIN_VERSION );
 
 		// Enqueue javascript.
-		wp_enqueue_script( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/js/merlin' . $suffix . '.js', array( 'jquery-core' ), MERLIN_VERSION );
+		wp_enqueue_script( 'merlin', trailingslashit( $this->base_url ) . $this->directory . '/assets/js/merlin' . $suffix . '.js', array( 'jquery-core' ), MERLIN_VERSION, true );
 
 		$texts = array(
 			'something_went_wrong' => esc_html__( 'Something went wrong. Please refresh the page and try again!', '@@textdomain' ),
@@ -457,7 +463,9 @@ class Merlin {
 		if ( class_exists( 'TGM_Plugin_Activation' ) ) {
 			// Check first if TMGPA is included.
 			wp_localize_script(
-				'merlin', 'merlin_params', array(
+				'merlin',
+				'merlin_params',
+				array(
 					'tgm_plugin_nonce' => array(
 						'update'  => wp_create_nonce( 'tgmpa-update' ),
 						'install' => wp_create_nonce( 'tgmpa-install' ),
@@ -471,7 +479,9 @@ class Merlin {
 		} else {
 			// If TMGPA is not included.
 			wp_localize_script(
-				'merlin', 'merlin_params', array(
+				'merlin',
+				'merlin_params',
+				array(
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
 					'wpnonce' => wp_create_nonce( 'merlin_nonce' ),
 					'texts'   => $texts,
@@ -849,7 +859,7 @@ class Merlin {
 			<?php wp_nonce_field( 'merlin' ); ?>
 		</footer>
 
-	<?php
+		<?php
 		$this->logger->debug( __( 'The welcome step has been displayed', '@@textdomain' ) );
 	}
 
@@ -1013,7 +1023,7 @@ class Merlin {
 			<?php endif; ?>
 			<?php wp_nonce_field( 'merlin' ); ?>
 		</footer>
-	<?php
+		<?php
 		$this->logger->debug( __( 'The child theme installation step has been displayed', '@@textdomain' ) );
 	}
 
@@ -1141,7 +1151,7 @@ class Merlin {
 			</footer>
 		</form>
 
-	<?php
+		<?php
 		$this->logger->debug( __( 'The plugin installation step has been displayed', '@@textdomain' ) );
 	}
 
@@ -1225,7 +1235,7 @@ class Merlin {
 			</footer>
 		</form>
 
-	<?php
+		<?php
 		$this->logger->debug( __( 'The content import step has been displayed', '@@textdomain' ) );
 	}
 
@@ -1305,7 +1315,7 @@ class Merlin {
 
 		</footer>
 
-	<?php
+		<?php
 		$this->logger->debug( __( 'The final step has been displayed', '@@textdomain' ) );
 	}
 
@@ -1389,7 +1399,8 @@ class Merlin {
 				array(
 					'done'    => 1,
 					'message' => sprintf(
-						esc_html( $success ), $slug
+						esc_html( $success ),
+						$slug
 					),
 				)
 			);
@@ -1406,7 +1417,8 @@ class Merlin {
 			array(
 				'done'    => 1,
 				'message' => sprintf(
-					esc_html( $already ), $name
+					esc_html( $already ),
+					$name
 				),
 			)
 		);
@@ -1666,7 +1678,7 @@ class Merlin {
 		$screenshot = apply_filters( 'merlin_generate_child_screenshot', '' );
 
 		if ( ! empty( $screenshot ) ) {
-			// Get custom screenshot file extension
+			// Get custom screenshot file extension.
 			if ( '.png' === substr( $screenshot, -4 ) ) {
 				$screenshot_ext = 'png';
 			} else {
@@ -1696,7 +1708,7 @@ class Merlin {
 	 *
 	 * @internal    Used as a calback.
 	 */
-	function _ajax_plugins() {
+	public function ajax_plugins() {
 
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) || empty( $_POST['slug'] ) ) {
 			exit( 0 );
@@ -1758,7 +1770,7 @@ class Merlin {
 			$this->logger->debug(
 				__( 'A plugin with the following data will be processed', '@@textdomain' ),
 				array(
-					'plugin_slug' => $_POST['slug'],
+					'plugin_slug' => sanitize_text_field( wp_unslash( $_POST['slug'] ) ),
 					'message'     => $json['message'],
 				)
 			);
@@ -1770,7 +1782,7 @@ class Merlin {
 			$this->logger->debug(
 				__( 'A plugin with the following data was processed', '@@textdomain' ),
 				array(
-					'plugin_slug' => $_POST['slug'],
+					'plugin_slug' => sanitize_text_field( wp_unslash( $_POST['slug'] ) ),
 				)
 			);
 
@@ -1790,10 +1802,14 @@ class Merlin {
 	 *
 	 * @internal    Used as a callback.
 	 */
-	function _ajax_content() {
+	public function ajax_content() {
 		static $content = null;
 
-		$selected_import = intval( $_POST['selected_index'] );
+		$selected_import = 0;
+
+		if ( ! empty( $_POST['selected_index'] ) ) {
+			$selected_import = intval( $_POST['selected_index'] );
+		}
 
 		if ( null === $content ) {
 			$content = $this->get_import_data( $selected_import );
@@ -1881,7 +1897,7 @@ class Merlin {
 	/**
 	 * AJAX call to retrieve total items (posts, pages, CPT, attachments) for the content import.
 	 */
-	public function _ajax_get_total_content_import_items() {
+	public function ajax_get_total_content_import_items() {
 		if ( ! check_ajax_referer( 'merlin_nonce', 'wpnonce' ) && empty( $_POST['selected_index'] ) ) {
 			$this->logger->error( __( 'The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data.', '@@textdomain' ) );
 
@@ -2095,7 +2111,7 @@ class Merlin {
 		$data['action']   = 'merlin_content';
 		$data['content']  = 'content';
 		$data['_wpnonce'] = wp_create_nonce( 'merlin_nonce' );
-		$data['hash']     = md5( rand() ); // Has to be unique (check JS code catching this AJAX response).
+		$data['hash']     = md5( wp_rand() ); // Has to be unique (check JS code catching this AJAX response).
 
 		return $data;
 	}
@@ -2177,7 +2193,7 @@ class Merlin {
 		if ( ! empty( $existing_name ) ) {
 			$this->import_file_base_name = $existing_name;
 		} else {
-			$this->import_file_base_name = date( 'Y-m-d__H-i-s' );
+			$this->import_file_base_name = gmdate( 'Y-m-d__H-i-s' );
 		}
 
 		set_transient( 'merlin_import_file_base_name', $this->import_file_base_name, MINUTE_IN_SECONDS );
