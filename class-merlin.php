@@ -1770,7 +1770,7 @@ class Merlin {
 			$this->logger->debug(
 				__( 'A plugin with the following data will be processed', '@@textdomain' ),
 				array(
-					'plugin_slug' => sanitize_text_field( wp_unslash( $_POST['slug'] ) ),
+					'plugin_slug' => sanitize_key( $_POST['slug'] ),
 					'message'     => $json['message'],
 				)
 			);
@@ -1782,7 +1782,7 @@ class Merlin {
 			$this->logger->debug(
 				__( 'A plugin with the following data was processed', '@@textdomain' ),
 				array(
-					'plugin_slug' => sanitize_text_field( wp_unslash( $_POST['slug'] ) ),
+					'plugin_slug' => sanitize_key( $_POST['slug'] ),
 				)
 			);
 
