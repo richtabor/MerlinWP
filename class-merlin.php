@@ -1101,7 +1101,7 @@ class Merlin {
 								<span><?php echo esc_html( $plugin['name'] ); ?></span>
 
 								<span class="badge">
-									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', '@@textdomain' ); ?>">
+									<span class="hint--top" aria-label="<?php esc_attr_e( 'Required', '@@textdomain' ); ?>">
 										<?php esc_html_e( 'req', '@@textdomain' ); ?>
 									</span>
 								</span>
