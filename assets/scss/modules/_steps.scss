@@ -39,6 +39,11 @@
 
 .dots li.done {
 	background: $blue;
+	a{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .dots li.active {
