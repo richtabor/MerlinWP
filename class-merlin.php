@@ -370,7 +370,7 @@ class Merlin {
 
 		delete_transient( $this->theme->template . '_merlin_redirect' );
 
-		wp_safe_redirect( menu_page_url( $this->merlin_url ) );
+		wp_safe_redirect( menu_page_url( $this->merlin_url, false ) );
 
 		exit;
 	}
