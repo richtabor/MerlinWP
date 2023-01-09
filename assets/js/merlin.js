@@ -546,7 +546,8 @@ function PluginManager(){
         callback: function(func){
             console.log(func);
             console.log(this);
-        }
+        },
+        callbacks: callbacks,
     }
 
 })(jQuery);
