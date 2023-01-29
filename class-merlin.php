@@ -7,7 +7,7 @@
  * Envato WordPress Theme Setup Wizard by David Baker.
  *
  * @package   Merlin WP
- * @version   @@pkg.version
+ * @version   1.0.0
  * @link      https://merlinwp.com/
  * @author    Rich Tabor, from ThemeBeans.com & the team at ProteusThemes.com
  * @copyright Copyright (c) 2018, Merlin WP of Inventionn LLC
@@ -222,7 +222,7 @@ class Merlin {
 	private function version() {
 
 		if ( ! defined( 'MERLIN_VERSION' ) ) {
-			define( 'MERLIN_VERSION', '@@pkg.version' );
+			define( 'MERLIN_VERSION', '1.0.0' );
 		}
 	}
 
@@ -370,7 +370,7 @@ class Merlin {
 
 		delete_transient( $this->theme->template . '_merlin_redirect' );
 
-		wp_safe_redirect( menu_page_url( $this->merlin_url ) );
+        wp_safe_redirect( menu_page_url( $this->merlin_url, false ) );
 
 		exit;
 	}
@@ -1435,7 +1435,7 @@ class Merlin {
 			);
 		}
 
-		$license_key = sanitize_key( $_POST['license_key'] );
+		$license_key = sanitize_text_field( $_POST['license_key'] );
 
 		if ( ! has_filter( 'merlin_ajax_activate_license' ) ) {
 			$result = $this->edd_activate_license( $license_key );
@@ -1476,9 +1476,9 @@ class Merlin {
 		// Data to send in our API request.
 		$api_params = array(
 			'edd_action' => 'activate_license',
-			'license'    => rawurlencode( $license ),
-			'item_name'  => rawurlencode( $this->edd_item_name ),
-			'url'        => esc_url( home_url( '/' ) ),
+			'license'    => urlencode( $license ),
+			'item_name'  => urlencode( $this->edd_item_name ),
+			'url'        => home_url()
 		);
 
 		$response = $this->edd_get_api_response( $api_params );
@@ -2381,12 +2381,29 @@ class Merlin {
 				if ( ! $available ) {
 					continue;
 				}
+
+				switch($slug) {
+					case 'content':
+						$import_title = esc_html__('Content', '@@textdomain');
+						break;
+
+					case 'widgets':
+                        $import_title = esc_html__('Widgets', '@@textdomain');
+                        break;
+
+                    case 'options':
+                        $import_title = esc_html__('Options', '@@textdomain');
+                        break;
+
+                    default:
+                        $import_title = esc_html__('After Import', '@@textdomain');
+				}
 				?>
 
 				<li class="merlin__drawer--import-content__list-item status status--Pending" data-content="<?php echo esc_attr( $slug ); ?>">
 					<input type="checkbox" name="default_content[<?php echo esc_attr( $slug ); ?>]" class="checkbox checkbox-<?php echo esc_attr( $slug ); ?>" id="default_content_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 					<label for="default_content_<?php echo esc_attr( $slug ); ?>">
-						<i></i><span><?php echo esc_html( ucfirst( str_replace( '_', ' ', $slug ) ) ); ?></span>
+						<i></i><span><?php echo $import_title; ?></span>
 					</label>
 				</li>
 
