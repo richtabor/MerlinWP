@@ -225,6 +225,9 @@ class Merlin {
 			define( 'MERLIN_VERSION', '@@pkg.version' );
 		}
 	}
+	private $ready_big_button_url;
+	private $slug;
+	private $hook_suffix;
 
 	/**
 	 * Class Constructor.
@@ -835,7 +838,7 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'welcome' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'welcome' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
@@ -895,7 +898,7 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'license' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'license' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
@@ -914,7 +917,7 @@ class Merlin {
 						<?php if ( ! empty( $action_url ) ) : ?>
 							<a href="<?php echo esc_url( $action_url ); ?>" alt="<?php echo esc_attr( $action ); ?>" target="_blank">
 								<span class="hint--top" aria-label="<?php echo esc_attr( $action ); ?>">
-									<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ), $this->svg_allowed_html() ); ?>
+									<?php echo wp_kses( $this->svg( array( 'icon' => 'help' ) ) ?? '', $this->svg_allowed_html() ); ?>
 								</span>
 							</a>
 						<?php endif ?>
@@ -935,7 +938,7 @@ class Merlin {
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next js-merlin-license-activate-button" data-callback="activate_license">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
-					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
+					<?php echo wp_kses( $this->loading_spinner() ?? '', $this->loading_spinner_allowed_html() ); ?>
 				</a>
 
 			<?php else : ?>
@@ -983,7 +986,7 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'child' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'child' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
@@ -1005,7 +1008,7 @@ class Merlin {
 
 				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_child">
 					<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
-					<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
+					<?php echo wp_kses( $this->loading_spinner() ?? '', $this->loading_spinner_allowed_html() ); ?>
 				</a>
 
 			<?php else : ?>
@@ -1068,7 +1071,7 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'plugins' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'plugins' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
@@ -1101,7 +1104,7 @@ class Merlin {
 								<span><?php echo esc_html( $plugin['name'] ); ?></span>
 
 								<span class="badge">
-									<span class="hint--top" aria-label="<?php esc_attr_e( 'Required', '@@textdomain' ); ?>">
+									<span class="hint--top" aria-label="<?php esc_html_e( 'Required', '@@textdomain' ); ?>">
 										<?php esc_html_e( 'req', '@@textdomain' ); ?>
 									</span>
 								</span>
@@ -1132,7 +1135,7 @@ class Merlin {
 					<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html( $skip ); ?></a>
 					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="install_plugins">
 						<span class="merlin__button--loading__text"><?php echo esc_html( $install ); ?></span>
-						<?php echo wp_kses( $this->loading_spinner(), $this->loading_spinner_allowed_html() ); ?>
+						<?php echo wp_kses( $this->loading_spinner() ?? '', $this->loading_spinner_allowed_html() ); ?>
 					</a>
 				<?php else : ?>
 					<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="merlin__button merlin__button--next merlin__button--proceed merlin__button--colorchange"><?php echo esc_html( $next ); ?></a>
@@ -1167,7 +1170,7 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'content' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'content' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<svg class="icon icon--checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
 				<circle class="icon--checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="icon--checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
@@ -1189,7 +1192,7 @@ class Merlin {
 
 					<div class="merlin__select-control-help">
 						<span class="hint--top" aria-label="<?php echo esc_attr__( 'Select Demo', '@@textdomain' ); ?>">
-							<?php echo wp_kses( $this->svg( array( 'icon' => 'downarrow' ) ), $this->svg_allowed_html() ); ?>
+							<?php echo wp_kses( $this->svg( array( 'icon' => 'downarrow' ) ) ?? '', $this->svg_allowed_html() ); ?>
 						</span>
 					</div>
 				</div>
@@ -1254,6 +1257,7 @@ class Merlin {
 		$skip      = $strings['btn-skip'];
 		$next      = $strings['btn-next'];
 		$big_btn   = $strings['ready-big-button'];
+		
 
 		// Links.
 		$links = array();
@@ -1279,11 +1283,11 @@ class Merlin {
 
 		<div class="merlin__content--transition">
 
-			<?php echo wp_kses( $this->svg( array( 'icon' => 'done' ) ), $this->svg_allowed_html() ); ?>
+			<?php echo wp_kses( $this->svg( array( 'icon' => 'done' ) ) ?? '', $this->svg_allowed_html() ); ?>
 
 			<h1><?php echo esc_html( sprintf( $header, $theme ) ); ?></h1>
 
-			<p><?php wp_kses( printf( $paragraph, $author ), $allowed_html_array ); ?></p>
+			<p><?php wp_kses( printf( $paragraph, $author ) ?? '', $allowed_html_array ); ?></p>
 
 		</div>
 
@@ -1297,7 +1301,7 @@ class Merlin {
 				<ul class="merlin__drawer merlin__drawer--extras">
 
 					<?php foreach ( $links as $link ) : ?>
-						<li><?php echo wp_kses( $link, $allowed_html_array ); ?></li>
+						<li><?php echo wp_kses( $link ?? '', $allowed_html_array ); ?></li>
 					<?php endforeach; ?>
 
 				</ul>
@@ -2123,6 +2127,7 @@ class Merlin {
 
 			$this->logger->debug( __( 'The blog page was set', '@@textdomain' ), array( 'blog_page_id' => $blogpage ) );
 		}
+
 	}
 
 	/**
