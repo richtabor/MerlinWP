@@ -544,7 +544,7 @@ class Merlin {
 			<?php printf( esc_html( $strings['title%s%s%s%s'] ), '<ti', 'tle>', esc_html( $this->theme->name ), '</title>' ); ?>
 			<?php do_action( 'admin_print_styles' ); ?>
 			<?php do_action( 'admin_print_scripts' ); ?>
-			<?php //do_action( 'admin_head' ); ?>
+			<?php do_action( 'admin_head' ); ?>
 		</head>
 		<body class="merlin__body merlin__body--<?php echo esc_attr( $current_step ); ?>">
 		<?php
@@ -719,10 +719,10 @@ class Merlin {
 			),
 		);
 
-		// $this->steps['child'] = array(
-		// 	'name' => esc_html__( 'Child', '@@textdomain' ),
-		// 	'view' => array( $this, 'child' ),
-		// );
+		$this->steps['child'] = array(
+			'name' => esc_html__( 'Child', '@@textdomain' ),
+			'view' => array( $this, 'child' ),
+		);
 
 		if ( $this->license_step_enabled ) {
 			$this->steps['license'] = array(
@@ -1114,7 +1114,7 @@ class Merlin {
 				<?php endif; ?>
 
 				<?php if ( ! empty( $recommended_plugins ) ) : ?>
-					<?php foreach ( array_reverse($recommended_plugins) as $slug => $plugin ) : ?>
+					<?php foreach ( $recommended_plugins as $slug => $plugin ) : ?>
 						<li data-slug="<?php echo esc_attr( $slug ); ?>">
 							<input type="checkbox" name="default_plugins[<?php echo esc_attr( $slug ); ?>]" class="checkbox" id="default_plugins_<?php echo esc_attr( $slug ); ?>" value="1" checked>
 
@@ -1293,9 +1293,7 @@ class Merlin {
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth <?php echo esc_attr( $links_class ); ?>">
 
-			<div class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin btn-view-website">
-				<?php echo $big_btn; ?>
-			</div>
+			<a href="<?php echo esc_url( $this->ready_big_button_url ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html( $big_btn ); ?></a>
 
 			<?php if ( ! empty( $links ) ) : ?>
 				<a id="merlin__drawer-trigger" class="merlin__button merlin__button--knockout"><span><?php echo esc_html( $action ); ?></span><span class="chevron"></span></a>
